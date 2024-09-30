@@ -1,0 +1,128 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5914077870649237281
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5914077870649237277}
+  - component: {fileID: 5914077870649237283}
+  m_Layer: 0
+  m_Name: OrbGroupPrefab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5914077870649237277
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5914077870649237281}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5914077870649237283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5914077870649237281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a078f1a1fa90645429767eade3c9cbb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orbGroupId: 0
+  orbPrefab: {fileID: 5914077870649237282, guid: 8fb4ac99fba0a2044a24f00f828e9a88,
+    type: 3}
+  patternID: -1
+  rate: 524
+  life: 3
+  color: {r: 1, g: 1, b: 1, a: 0}
+  colorIntensity: 6
+  alpha: 1
+  size: 9.9
+  drag: 2.5
+  velocityDrag: 1
+  noisyDrag: 0
+  noisyDragFrequency: 0
+  staticParticle: 0
+  stationaryTransparent: 0
+  stationaryMaxSpeed: 0
+  emitterShape: 0
+  emitterPlacementMode: 0
+  emitterPosition: {x: 0, y: 0, z: 0}
+  emitterRotation: {x: 0, y: 0, z: 0}
+  emitterSize: 1.85
+  emitterSizeOffset: 0
+  meshArray:
+  - {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: -462981019419857548, guid: 4f80f05a85bd6b145877e07448fe4712, type: 3}
+  - {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: -8803937527578110353, guid: 2c7be26c26c4662478d899ea9bffa353, type: 3}
+  - {fileID: -6402532953415861574, guid: 4db93dad8293a5344a9633174fe8749a, type: 3}
+  - {fileID: 8048870288576412449, guid: a91d16b04adbdb5438ea60dc71cb4490, type: 3}
+  - {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 3349657277884010633, guid: d898c85b759400b499b1eda58dabe64e, type: 3}
+  - {fileID: 3613567641014311022, guid: 983eaae41e6ec7e4bb3b3aa26ff8cb86, type: 3}
+  - {fileID: 4348358574549261534, guid: 4761349f1206a8b48b5023e21ee9f1b7, type: 3}
+  sdfCollisionArray:
+  - {fileID: 11700000, guid: bec695729fbd5384c8a5dcd869dc932a, type: 2}
+  - {fileID: 11700000, guid: 3cf177f0f7db4a649bc50c7a293530ba, type: 2}
+  - {fileID: 11700000, guid: 6b89dbadfd3592646b8e79e3cf289cd1, type: 2}
+  - {fileID: 11700000, guid: 8ac9f4e96a0547a49aa20731190326e9, type: 2}
+  - {fileID: 11700000, guid: a5edf3d7747b8ab439a18ef6a49e654f, type: 2}
+  - {fileID: 11700000, guid: e3947031457de294ab3ccebb83ffbf93, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 11700000, guid: 7443b426e93d83c49ab22f7b70a38005, type: 2}
+  - {fileID: 11700000, guid: 36cc0d701987740438258e0486aae77c, type: 2}
+  - {fileID: 11700000, guid: 6a2ebff6512e05445996d00cfa87e120, type: 2}
+  emitFromInside: 0
+  activateCollision: 0
+  showMesh: 0
+  data:
+    orbGroupId: 0
+    name: 
+    orbCount: 0
+    rate: 0
+    life: 0
+    colorR: 0
+    colorG: 0
+    colorB: 0
+    colorIntensity: 0
+    alpha: 0
+    size: 0
+    drag: 0
+    velocityDrag: 0
+    noisyDrag: 0
+    noisyDragFrequency: 0
+    staticParticle: 0
+    stationaryTransparent: 0
+    stationaryMaxSpeed: 0
+    emitterShapeIndex: 0
+    emitterPlacementMode: 0
+    emitterPositionX: 0
+    emitterPositionY: 0
+    emitterPositionZ: 0
+    emitterOrientationX: 0
+    emitterOrientationY: 0
+    emitterOrientationZ: 0
+    emitterSize: 0
+    emitterSizeOffset: 0
+    emitFromInside: 0
+    activateCollision: 0
+    showMesh: 0
