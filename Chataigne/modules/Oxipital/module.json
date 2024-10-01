@@ -1,0 +1,58 @@
+{
+	"name": "Oxipital",
+	"type": "OSCQuery",
+	"path": "Software",
+	"version": "1.0.0",
+	"description": "Control Oxipital. This requires an additional OSCQuery module connected to the Oxipital Engine.",
+	"url": "",
+	"downloadURL": "",
+	"hasInput": true,
+	"hasOutput": true,
+	"hideDefaultCommands": true,
+	"hideDefaultParameters": [],
+	"defaults": {
+		"serverName": "Unity-Oxipital",
+		"output": {
+			"remotePort": 8999
+		}
+	},
+	"parameters": {
+		"Setup": {
+			"type": "Container",
+			"Num Forces": {
+				"type": "Integer",
+				"min": 0,
+				"max": 8,
+				"default": 4
+			},
+			"Num Orb Groups": {
+				"type": "Integer",
+				"min": 0,
+				"max": 8,
+				"default": 4
+			},
+			"Num Macros": {
+				"type": "Integer",
+				"min": 0,
+				"max": 8,
+				"default": 4
+			}
+		},
+
+		"Macros":
+		{
+			"type": "Container"
+		},
+		"Forces": {
+			"type": "Container"
+		},
+		"Orb Groups": {
+			"type": "Container"
+		}
+	},
+	"scripts": [
+		"Oxipital.js"
+	],
+	"values": {},
+	"commands": {}
+}
