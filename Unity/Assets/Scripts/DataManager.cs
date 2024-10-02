@@ -95,11 +95,11 @@ public class DataManager : MonoBehaviour
 		}
 
 		// Save Force
-		data.forceControllerData = new List<ForceControllerData>();
+		/*data.forceControllerData = new List<ForceControllerData>();
 		foreach (ForceController f in forceMngr.Forces)
 		{
 			data.forceControllerData.Add(f.StoreData());
-		}
+		}*/
 
 		// Save CameraController data
 		data.cameraControllerData = cameraController.StoreData();

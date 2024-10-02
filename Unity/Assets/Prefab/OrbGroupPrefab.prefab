@@ -24,13 +24,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5914077870649237281}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5914077870649237283
 MonoBehaviour:
@@ -45,14 +45,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orbGroupId: 0
-  orbPrefab: {fileID: 5914077870649237282, guid: 8fb4ac99fba0a2044a24f00f828e9a88,
+  orbPrefab: {fileID: 5914077870649237282, guid: fa0db7fa020b35b4091c9da4cafbd4ea,
     type: 3}
   patternID: -1
   rate: 524
   life: 3
   color: {r: 1, g: 1, b: 1, a: 0}
+  colorNoiseAmp: 0
+  colorNoiseFreq: 0
+  useColorTexture: 0
+  colorTexture: {fileID: 0}
   colorIntensity: 6
   alpha: 1
+  alphaNoiseAmplitude: 0
+  alphaNoiseFrequency: 1
+  alphaNoiseOctaves: 1
+  alphaNoiseLacunarity: 2
+  alphaNoiseRoughness: 0.5
   size: 9.9
   drag: 2.5
   velocityDrag: 1
@@ -103,8 +112,17 @@ MonoBehaviour:
     colorR: 0
     colorG: 0
     colorB: 0
+    colorNoiseAmp: 0
+    colorNoiseFreq: 0
+    colorNoiseOffset: 0
+    useColorTexture: 0
     colorIntensity: 0
     alpha: 0
+    alphaNoiseAmplitude: 0
+    alphaNoiseFrequency: 0
+    alphaNoiseOctaves: 0
+    alphaNoiseLacunarity: 0
+    alphaNoiseRoughness: 0
     size: 0
     drag: 0
     velocityDrag: 0
