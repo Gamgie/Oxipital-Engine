@@ -7,18 +7,19 @@ using UnityEngine;
 using UnityEngine.VFX;
 
 
-public class InBuffer : Attribute
-{
-    public InBuffer(int index, BufferType type = BufferType.Auto)
-    {
-        this.index = index;
-        this.type = type;
-    }
-    public enum BufferType { Auto, Float, Vector3 };
-    public BufferType type = BufferType.Auto;
-    public int index;
-}
-public class StandardForceController : MonoBehaviour
+//public class InBuffer : Attribute
+//{
+//    public InBuffer(int index, BufferType type = BufferType.Auto)
+//    {
+//        this.index = index;
+//        this.type = type;
+//    }
+//    public enum BufferType { Auto, Float, Vector3 };
+//    public BufferType type = BufferType.Auto;
+//    public int index;
+//}
+
+public class StandardForceDancerGroup : DancerGroup
 {
     public int forceID;
     public int forceCount = 1;
@@ -165,19 +166,19 @@ public class StandardForceController : MonoBehaviour
         if (_floatBuffer == null && _floatFields.Count != 0)
         {
             _floatBuffer = new GraphicsBuffer(GraphicsBuffer.Target.Structured, _floatFields.Count, Marshal.SizeOf(typeof(float)));
-            _floatBufferID = Shader.PropertyToID("Force " + forceID + " Floats");
+            _floatBufferID = Shader.PropertyToID("Force "+ forceID + " Floats");
         }
         else
-        {
-            Debug.LogError("[Force" + forceID + "] Cannot create float buffer at init.");
-        }
+		{
+            Debug.LogError("[Force"+forceID+"] Cannot create float buffer at init.");
+		}
         if (_vector3Buffer == null && _vector3Fields.Count != 0)
         {
             _vector3Buffer = new GraphicsBuffer(GraphicsBuffer.Target.Structured, _vector3Fields.Count, Marshal.SizeOf(typeof(Vector3)));
             _vector3BufferID = Shader.PropertyToID("Force " + forceID + " Vector3");
         }
         else
-        {
+		{
             Debug.LogError("[Force" + forceID + "] Cannot create vector3 buffer at init.");
         }
     }
@@ -246,7 +247,7 @@ public class StandardForceController : MonoBehaviour
         }
     }
 
-    private List<T> GetList<T>(List<FieldInfo> fields, T defaultValue)
+    private List<T> GetList<T>(List<FieldInfo> fields,T defaultValue)
     {
         List<T> list = new List<T>();
         int index = 0;
