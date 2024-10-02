@@ -6,24 +6,69 @@ using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.VFX;
 
+
+public class InBuffer : Attribute
+{
+    public InBuffer(int index, BufferType type = BufferType.Auto)
+    {
+        this.index = index;
+        this.type = type;
+    }
+    public enum BufferType { Auto, Float, Vector3 };
+    public BufferType type = BufferType.Auto;
+    public int index;
+}
 public class StandardForceController : MonoBehaviour
 {
-    public int ID
-    {
-        get
-        {
-            return forceID;
-        }
-    }
-
     public int forceID;
     public int forceCount = 1;
 
-    [Space(10)]
+    [Space(20)]
+    [Header("General Parameters")]
+    [InBuffer(0)]
     public float intensity;
     [Range(0, 20)]
+    [InBuffer(1)]
     public float radius;
+    [InBuffer(0)]
     public Vector3 axis;
+
+    [Header("Radial")]
+    [Range(0, 1)]
+    [InBuffer(2)]
+    public float radialIntensity;
+    [Range(0, 1)]
+    [InBuffer(3)]
+    public float radialFrequency;
+
+    [Header("Axial")]
+    [Range(0, 1)]
+    [InBuffer(4)]
+    public float axialIntensity;
+    [InBuffer(1)]
+    public Vector3 axialFrequency;
+    [Range(0, 1)]
+    [InBuffer(5)]
+    public float axialFactor;
+
+    [Header("Linear")]
+    [Range(0, 1)]
+    [InBuffer(6)]
+    public float linearIntensity;
+
+    [Header("Orthoradial")]
+    [Range(0, 1)]
+    [InBuffer(7)]
+    public float orthoIntensity;
+    [Range(0, 1)]
+    [InBuffer(8)]
+    public float orthoInnerRadius;
+    [Range(0, 1)]
+    [InBuffer(9)]
+    public float orthoFactor;
+    [Range(0, 1)]
+    [InBuffer(10)]
+    public float orthoClockwise;
 
     BalletPattern _pattern; // Handle positions of the force
     VisualEffect[] _vfxs;
@@ -74,7 +119,7 @@ public class StandardForceController : MonoBehaviour
         if (_positionsBuffer == null)
         {
             _positionsBuffer = new GraphicsBuffer(GraphicsBuffer.Target.Structured, forceCount, Marshal.SizeOf(typeof(Vector3)));
-            _positionsBufferID = Shader.PropertyToID(forceID + " Positions Graphics Buffer");
+            _positionsBufferID = Shader.PropertyToID("Force " + forceID + " Positions");
         }
 
         // Parse force's field and prepare list
@@ -83,26 +128,57 @@ public class StandardForceController : MonoBehaviour
         _vector3Fields = new List<FieldInfo>();
 
         foreach (FieldInfo f in type.GetFields())
-		{
-            if(f.FieldType == typeof(float))
-			{
-                _floatFields.Add(f);
-            }
-            else if (f.FieldType == typeof(Vector3))
+        {
+            InBuffer inBufferAttribute = f.GetCustomAttribute<InBuffer>();
+            if (inBufferAttribute == null) continue;
+
+            InBuffer.BufferType bufferType = inBufferAttribute.type;
+            if (bufferType == InBuffer.BufferType.Auto)
             {
-                _vector3Fields.Add(f);
+                if (f.FieldType == typeof(float)) bufferType = InBuffer.BufferType.Float;
+                else if (f.FieldType == typeof(Vector3)) bufferType = InBuffer.BufferType.Vector3;
+            }
+            else
+            {
+                //check that type is compliant
+                if (f.FieldType == typeof(float) && bufferType != InBuffer.BufferType.Float)
+                    throw new Exception("Field " + f.Name + " is declared as a float but is not marked as such in the InBuffer attribute.");
+            }
+
+            switch (bufferType)
+            {
+                case InBuffer.BufferType.Float:
+                    while (_floatFields.Count <= inBufferAttribute.index) _floatFields.Add(null);
+                    _floatFields[inBufferAttribute.index] = f;
+                    break;
+
+                case InBuffer.BufferType.Vector3:
+                    while (_vector3Fields.Count <= inBufferAttribute.index) _vector3Fields.Add(null);
+                    _vector3Fields[inBufferAttribute.index] = f;
+                    break;
+
+                default:
+                    throw new Exception("Field " + f.Name + " type <> buffer type mismatch.");
             }
         }
 
-        if (_floatBuffer == null)
-		{
+        if (_floatBuffer == null && _floatFields.Count != 0)
+        {
             _floatBuffer = new GraphicsBuffer(GraphicsBuffer.Target.Structured, _floatFields.Count, Marshal.SizeOf(typeof(float)));
-            _floatBufferID = Shader.PropertyToID(forceID + " Float Graphics Buffer");
+            _floatBufferID = Shader.PropertyToID("Force "+ forceID + " Floats");
         }
-        if(_vector3Buffer == null)
+        else
 		{
-            _vector3Buffer = new GraphicsBuffer(GraphicsBuffer.Target.Structured, _vector3Fields.Count, Marshal.SizeOf(typeof(float)));
-            _vector3BufferID = Shader.PropertyToID(forceID + " Vector3 Graphics Buffer");
+            Debug.LogError("[Force"+forceID+"] Cannot create float buffer at init.");
+		}
+        if (_vector3Buffer == null && _vector3Fields.Count != 0)
+        {
+            _vector3Buffer = new GraphicsBuffer(GraphicsBuffer.Target.Structured, _vector3Fields.Count, Marshal.SizeOf(typeof(Vector3)));
+            _vector3BufferID = Shader.PropertyToID("Force " + forceID + " Vector3");
+        }
+        else
+		{
+            Debug.LogError("[Force" + forceID + "] Cannot create vector3 buffer at init.");
         }
     }
 
@@ -133,19 +209,19 @@ public class StandardForceController : MonoBehaviour
         }
 
         // Update floats
-        if(_floatBuffer != null)
-		{
-            List<float> floats = GetFloatList();
+        if (_floatBuffer != null)
+        {
+            List<float> floats = GetList<float>(_floatFields, -1);
             if (floats != null || floats.Count != 0)
                 _floatBuffer.SetData(floats);
-		}
+        }
 
         // Update vector3
         if (_vector3Buffer != null)
         {
-            List<Vector3> vec3 = GetVector3List();
+            List<Vector3> vec3 = GetList<Vector3>(_vector3Fields, Vector3.zero);
             if (vec3 != null || vec3.Count != 0)
-                _floatBuffer.SetData(vec3);
+                _vector3Buffer.SetData(vec3);
         }
 
         foreach (VisualEffect vfx in _vfxs)
@@ -156,26 +232,43 @@ public class StandardForceController : MonoBehaviour
             if (vfx == null)
                 return;
 
-            // float Buffer
+            // Float Buffer
             if (vfx.HasGraphicsBuffer(_floatBufferID))
                 vfx.SetGraphicsBuffer(_floatBufferID, _floatBuffer);
 
-            // vector3 Buffer
+            // Vector3 Buffer
             if (vfx.HasGraphicsBuffer(_vector3BufferID))
                 vfx.SetGraphicsBuffer(_vector3BufferID, _vector3Buffer);
 
-            // positions Buffer
+            // Positions Buffer
             if (vfx.HasGraphicsBuffer(_positionsBufferID))
                 vfx.SetGraphicsBuffer(_positionsBufferID, _positionsBuffer);
         }
     }
 
-	private List<float> GetFloatList()
-	{
-		throw new NotImplementedException();
-	}
+    private List<T> GetList<T>(List<FieldInfo> fields,T defaultValue)
+    {
+        List<T> list = new List<T>();
+        int index = 0;
+        foreach (FieldInfo field in fields)
+        {
+            if (field == null)
+            {
+                Debug.LogWarning("Field " + index + " is null in " + gameObject.name + " for " + field.Name + " " + index + ", setting to default value");
+                list.Add(defaultValue);
+            }
+            else
+            {
+                T value = (T)field.GetValue(this);
+                list.Add(value);
+            }
+        }
 
-	void UpdateVfxArray()
+        return list;
+    }
+
+
+    void UpdateVfxArray()
     {
         if (_orbsMngr == null)
         {
