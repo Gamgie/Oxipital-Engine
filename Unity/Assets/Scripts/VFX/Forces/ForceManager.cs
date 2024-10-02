@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ForceManager : MonoBehaviour
 {
-    public List<ForceController> Forces
+    public List<StandardForceController> Forces
     {
         get
 		{
@@ -14,7 +14,7 @@ public class ForceManager : MonoBehaviour
 		}
     }
 
-    private List<ForceController> _forces;
+    private List<StandardForceController> _forces;
     private OrbsManager _orbsMngr;
     private BalletManager _balletMngr;
     private DataManager _dataMngr;
@@ -36,9 +36,9 @@ public class ForceManager : MonoBehaviour
         OxipitalData data = _dataMngr.LoadData();
 
         // Initialize each force and load its datas
-        foreach (ForceController force in _forces)
+        foreach (StandardForceController force in _forces)
 		{
-            if(data.forceControllerData != null)
+            /*if(data.forceControllerData != null)
 			{
                 foreach (ForceControllerData forceData in data.forceControllerData)
                 {
@@ -48,7 +48,7 @@ public class ForceManager : MonoBehaviour
                         break;
                     }
                 }
-            }
+            }*/
 
             force.Initiliaze(_orbsMngr, _balletMngr);
 		}
@@ -57,10 +57,10 @@ public class ForceManager : MonoBehaviour
 	// Update is called once per frame
 	void UpdateForceList()
     {
-        _forces = new List<ForceController>();
+        _forces = new List<StandardForceController>();
 
-        ForceController[] forcesChildren = GetComponentsInChildren<ForceController>();
-        foreach (ForceController f in forcesChildren)
+        StandardForceController[] forcesChildren = GetComponentsInChildren<StandardForceController>();
+        foreach (StandardForceController f in forcesChildren)
         {
             _forces.Add(f);
         }

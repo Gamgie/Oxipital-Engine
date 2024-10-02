@@ -12,7 +12,7 @@ float3 AxialForce(in float4x4 parameters, in float3 pos, in float3 axis, in Stru
 
 	// Axial force is attracting all particles towards axis
 	// F = Intensity / ( R + 1 )²
-	//Axial force (proportional to invert distance squared and pointed toward axis)
+	// Axial force (proportional to invert distance squared and pointed toward axis)
 
 	// Raise intensity level to adjust to other force.
 	intensity *= 5;

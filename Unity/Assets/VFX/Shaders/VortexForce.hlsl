@@ -1,6 +1,6 @@
 #include "VFXCommon.hlsl"
 
-float3 VortexForce(in float4x4 parameters, in float3 pos, in float3 axis, in StructuredBuffer<float3> forceCenterBuffer)
+float3 VortexForce(in float4x4 parameters, in float3 axis, in float pos, in StructuredBuffer<float3> forceCenterBuffer)
 {
     float3 totalForce = float3(0.0, 0.0, 0.0);
     int centerCount = forceCenterBuffer.Length;
