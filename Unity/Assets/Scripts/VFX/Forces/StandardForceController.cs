@@ -70,6 +70,32 @@ public class StandardForceController : MonoBehaviour
     [InBuffer(10)]
     public float orthoClockwise;
 
+    [Header("Turbulence Curl")]
+    [Range(0, 1)]
+    [InBuffer(11)]
+    public float curlIntensity;
+    [Range(0, 5)]
+    [InBuffer(12)]
+    public float curlFrequency;
+    [Range(0, 1)]
+    [InBuffer(13)]
+    public float curlDrag;
+    [Range(1, 8)]
+    [InBuffer(14)]
+    public float curlOctaves;
+    [Range(0, 1)]
+    [InBuffer(15)]
+    public float curlRoughness;
+    [Range(0, 1)]
+    [InBuffer(16)]
+    public float curlLacunarity;
+    [Range(0, 1)]
+    [InBuffer(17)]
+    public float curlScale;
+    [Range(0, 1)]
+    [InBuffer(18)]
+    public float curlTranslation;
+
     BalletPattern _pattern; // Handle positions of the force
     VisualEffect[] _vfxs;
     GraphicsBuffer _positionsBuffer;
