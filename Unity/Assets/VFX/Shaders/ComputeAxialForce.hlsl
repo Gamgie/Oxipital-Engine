@@ -1,14 +1,7 @@
-float3 ComputeAxialForce(in StructuredBuffer<float> floatBuffer, in StructuredBuffer<float3> vector3Buffer, in float normalizedDistance, in float3 pos, in float3 center )
+float3 ComputeAxialForce(in float3 pos, in float3 axis, in float normalizedDistance, in float3 center, in float3 axialFrequency, in float axialFactor)
 {
     // Axial force is attracting towards axis
     // F = Intensity / pow(( R + 1 ),axialFactor)
-
-	float3 axialForce = float3(0.0, 0.0, 0.0);
-	float3 axis = vector3Buffer[0];
-	float3 axialFrequency = vector3Buffer[1];
-
-    float axialForceIntensity = floatBuffer[8];
-    float axialFactor = floatBuffer[9];
 
 	float3 axialForceX = float3(0.0,0.0,0.0);
 	float3 axialForceY = float3(0.0,0.0,0.0);
@@ -67,6 +60,6 @@ float3 ComputeAxialForce(in StructuredBuffer<float> floatBuffer, in StructuredBu
 	}		
 
     // Total force contribution from this center
-    axialForce = normalizedDistance * axialForceIntensity * (axialForceX + axialForceY + axialForceZ);
-    return axialForce;
+
+    return axialForceX + axialForceY + axialForceZ;
 }

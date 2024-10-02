@@ -47,7 +47,7 @@ public class StandardForceController : MonoBehaviour
     public float axialIntensity;
     [InBuffer(1)]
     public Vector3 axialFrequency;
-    [Range(0, 1)]
+    [Range(0, 3)]
     [InBuffer(5)]
     public float axialFactor;
 
@@ -63,7 +63,7 @@ public class StandardForceController : MonoBehaviour
     [Range(0, 1)]
     [InBuffer(8)]
     public float orthoInnerRadius;
-    [Range(0, 1)]
+    [Range(0, 3)]
     [InBuffer(9)]
     public float orthoFactor;
     [Range(0, 1)]
