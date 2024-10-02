@@ -59,25 +59,32 @@ public class Screenshot : MonoBehaviour
 
         string screenCaptureFileName = filepath + "\\" + filename + ".";
 
-        foreach (string file in System.IO.Directory.GetFiles(filepath))
-        {
-            string actualFileNumber = file.Substring(screenCaptureFileName.Length);
-            actualFileNumber = actualFileNumber.Remove(actualFileNumber.Length - 4);
-            try
+        if(File.Exists(filepath))
+		{
+            foreach (string file in System.IO.Directory.GetFiles(filepath))
             {
-                int actualFileIndex = Convert.ToInt32(actualFileNumber);
-                if (actualFileIndex > fileIndex)
-                    fileIndex = actualFileIndex + 1;
-            }
-            catch(OverflowException)
-            {
-                Debug.LogError(" \" " + actualFileNumber + " \" is outside the range of the Int32 type.");
-            }
-            catch(FormatException)
-            {
-                Debug.LogError(" \" " + actualFileNumber + " \" is not in a recognizable format.");
+                string actualFileNumber = file.Substring(screenCaptureFileName.Length);
+                actualFileNumber = actualFileNumber.Remove(actualFileNumber.Length - 4);
+                try
+                {
+                    int actualFileIndex = Convert.ToInt32(actualFileNumber);
+                    if (actualFileIndex > fileIndex)
+                        fileIndex = actualFileIndex + 1;
+                }
+                catch (OverflowException)
+                {
+                    Debug.LogError(" \" " + actualFileNumber + " \" is outside the range of the Int32 type.");
+                }
+                catch (FormatException)
+                {
+                    Debug.LogError(" \" " + actualFileNumber + " \" is not in a recognizable format.");
+                }
             }
         }
+        else
+		{
+            Debug.LogWarning(filepath + "does not exist. Screenshot cannot be captured");
+		}
     }
 
     IEnumerator ActivateObjects(List<GameObject> goList)
