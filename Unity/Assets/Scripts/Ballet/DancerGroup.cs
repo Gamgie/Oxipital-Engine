@@ -43,8 +43,7 @@ public class DancerGroup : MonoBehaviour
     [Range(0, 10)]
     public float patternSizeLFOAmplitude;
 
-    [SerializeField]
-    public List<DancePattern> patterns;
+    List<DancePattern> patterns;
 
     private void OnEnable()
     {
@@ -58,9 +57,7 @@ public class DancerGroup : MonoBehaviour
     void init()
     {
         dancers = GetComponentsInChildren<Dancer>().ToList();
-        patterns = new List<DancePattern>();
-        patterns.Add(new LinePattern());
-        patterns.Add(new CirclePattern());
+        patterns = GetComponents<DancePattern>().ToList();
     }
 
     void Update()

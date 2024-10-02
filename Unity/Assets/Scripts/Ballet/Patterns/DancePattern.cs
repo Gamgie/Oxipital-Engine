@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class DancePattern
+public class DancePattern : MonoBehaviour
 {
     public enum BlendMode { Add, Multiply, Replace }
     public BlendMode blendMode;
