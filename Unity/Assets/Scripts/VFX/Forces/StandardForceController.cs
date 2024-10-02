@@ -62,10 +62,10 @@ public class StandardForceController : MonoBehaviour
     public float orthoIntensity;
     [Range(0, 1)]
     [InBuffer(8)]
-    public float orthoInnerRadius;
+    public float orthoInnerRadius = 0.5f;
     [Range(0, 3)]
     [InBuffer(9)]
-    public float orthoFactor;
+    public float orthoFactor = 2;
     [Range(0, 1)]
     [InBuffer(10)]
     public float orthoClockwise;
