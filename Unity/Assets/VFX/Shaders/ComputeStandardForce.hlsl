@@ -25,7 +25,7 @@ void StandardForce(inout VFXAttributes attributes, in StructuredBuffer<float> fl
     bool clockWise = floatBuffer[10];
     
     // Linear Force is attracting towards the same direction
-    float linearForceIntensity = floatBuffer[7];
+    float linearForceIntensity = floatBuffer[6];
 
     // Spiral Force
     float spiralForceIntensity = floatBuffer[13];
@@ -46,7 +46,6 @@ void StandardForce(inout VFXAttributes attributes, in StructuredBuffer<float> fl
         float clockWiseFactor = clockWise == true ? 1 : -1;
 
 		float3 radialForce = intensity * radialIntensity * (1/(distanceToCenter+1)) * normalizedToCenterVector;
-
         
         float3 axialForce = intensity * axialIntensity * ComputeAxialForce(attributes.position, axis, normalizedDistance, centerPosition, axialFrequency, axialFactor);
 
@@ -54,8 +53,10 @@ void StandardForce(inout VFXAttributes attributes, in StructuredBuffer<float> fl
         float3 orthogonalVector = normalize(cross(normalizedToCenterVector, axis) * clockWiseFactor);
         float3 orthoradialForce = (intensity * orthoIntensity * orthogonalVector) / (pow(abs(normalizedDistance), abs(orthoFactor)));
 
+        float3 linearForce = linearForceIntensity * normalize(axis);
+
         // Total force contribution from this center
-        totalForce += radialForce + axialForce + orthoradialForce;
+        totalForce += radialForce + axialForce + orthoradialForce + linearForce;
     }
 	
     // Update velocity
