@@ -1,4 +1,4 @@
-float ComputeForceInfluence(in float3 particlePosition, in float forceRadius, in StructuredBuffer<float3> forceCenterBuffer)
+float ComputeForceInfluence(in float3 particlePosition, in float forceRadius, in StructuredBuffer<float3> forceCenterBuffer, in VFXCurve curve)
 {
     float totalForce = 0;
     int centerCount = forceCenterBuffer.Length;
@@ -8,10 +8,11 @@ float ComputeForceInfluence(in float3 particlePosition, in float forceRadius, in
         float distanceToCenter = length(forceCenterBuffer[i] - particlePosition);
 		
         if (distanceToCenter > forceRadius)
-            return 0;
+            continue;
 		
-        totalForce += max(1 - distanceToCenter / forceRadius, 0);
+        totalForce += SampleCurve(curve, distanceToCenter / forceRadius);
     }
-    
+    totalForce = min(totalForce,1);
+
     return totalForce;
 }
