@@ -96,6 +96,26 @@ public class StandardForceController : MonoBehaviour
     [InBuffer(18)]
     public float curlTranslation;
 
+    [Header("Perlin")]
+    [Range(0, 1)]
+    [InBuffer(19)]
+    public float perlinIntensity;
+    [Range(0, 5)]
+    [InBuffer(20)]
+    public float perlinFrequency;
+    [Range(1, 8)]
+    [InBuffer(21)]
+    public float perlinOctaves;
+    [Range(0, 1)]
+    [InBuffer(22)]
+    public float perlinRoughness;
+    [Range(0, 1)]
+    [InBuffer(23)]
+    public float perlinLacunarity;
+    [Range(0, 1)]
+    [InBuffer(24)]
+    public float perlinTranslationSpeed;
+
     BalletPattern _pattern; // Handle positions of the force
     VisualEffect[] _vfxs;
     GraphicsBuffer _positionsBuffer;
