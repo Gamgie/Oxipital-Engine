@@ -121,10 +121,6 @@
             {
               "value": "Unity-Oxipital",
               "controlAddress": "/serverName"
-            },
-            {
-              "value": true,
-              "controlAddress": "/isConnected"
             }
           ],
           "containers": {
@@ -156,12 +152,16 @@
             "setup": {
               "parameters": [
                 {
-                  "value": 1,
+                  "value": false,
+                  "controlAddress": "/clearOnSetup"
+                },
+                {
+                  "value": 4,
                   "hexMode": false,
                   "controlAddress": "/numForces"
                 },
                 {
-                  "value": 2,
+                  "value": 4,
                   "hexMode": false,
                   "controlAddress": "/numOrbGroups"
                 },
@@ -173,86 +173,19 @@
               ]
             },
             "macros": {
-              "parameters": [
-                {
-                  "value": 0.0,
-                  "minValue": 0.0,
-                  "maxValue": 1.0,
-                  "default": 0.0,
-                  "controlAddress": "/macro1"
-                },
-                {
-                  "value": 0.1420612782239914,
-                  "minValue": 0.0,
-                  "maxValue": 1.0,
-                  "default": 0.0,
-                  "controlAddress": "/macro2"
-                },
-                {
-                  "value": 0.0,
-                  "minValue": 0.0,
-                  "maxValue": 1.0,
-                  "default": 0.0,
-                  "controlAddress": "/macro3"
-                },
-                {
-                  "value": 0.0,
-                  "minValue": 0.0,
-                  "maxValue": 1.0,
-                  "default": 0.0,
-                  "controlAddress": "/macro4"
-                }
-              ]
             },
             "forces": {
               "containers": {
                 "force1": {
+                  "editorIsCollapsed": true,
                   "containers": {
                     "general": {
-                      "editorIsCollapsed": true,
                       "containers": {
                         "position": {
                           "owned": true,
                           "niceName": "Position"
                         },
                         "radius": {
-                          "parameters": [
-                            {
-                              "value": 0.0,
-                              "minValue": 0.0,
-                              "maxValue": 15.0,
-                              "default": 0.0,
-                              "controlAddress": "/baseValue"
-                            },
-                            {
-                              "value": 0.0,
-                              "minValue": -1.0,
-                              "maxValue": 1.0,
-                              "default": 0.0,
-                              "controlAddress": "/macroWeight1"
-                            },
-                            {
-                              "value": 0.0,
-                              "minValue": -1.0,
-                              "maxValue": 1.0,
-                              "default": 0.0,
-                              "controlAddress": "/macroWeight2"
-                            },
-                            {
-                              "value": 0.0,
-                              "minValue": -1.0,
-                              "maxValue": 1.0,
-                              "default": 0.0,
-                              "controlAddress": "/macroWeight3"
-                            },
-                            {
-                              "value": 0.0,
-                              "minValue": -1.0,
-                              "maxValue": 1.0,
-                              "default": 0.0,
-                              "controlAddress": "/macroWeight4"
-                            }
-                          ],
                           "owned": true,
                           "niceName": "Radius"
                         },
@@ -265,7 +198,6 @@
                       "niceName": "General"
                     },
                     "turbulence": {
-                      "editorIsCollapsed": true,
                       "containers": {
                         "intensity": {
                           "owned": true,
@@ -284,7 +216,6 @@
                       "niceName": "Turbulence"
                     },
                     "vortex": {
-                      "editorIsCollapsed": true,
                       "containers": {
                         "intensity": {
                           "owned": true,
@@ -299,7 +230,6 @@
                       "niceName": "Vortex"
                     },
                     "gravity": {
-                      "editorIsCollapsed": true,
                       "containers": {
                         "intensity": {
                           "owned": true,
@@ -316,12 +246,226 @@
                   },
                   "owned": true,
                   "niceName": "Force 1"
+                },
+                "force2": {
+                  "editorIsCollapsed": true,
+                  "containers": {
+                    "general": {
+                      "containers": {
+                        "position": {
+                          "owned": true,
+                          "niceName": "Position"
+                        },
+                        "radius": {
+                          "owned": true,
+                          "niceName": "Radius"
+                        },
+                        "intensity": {
+                          "owned": true,
+                          "niceName": "Intensity"
+                        }
+                      },
+                      "owned": true,
+                      "niceName": "General"
+                    },
+                    "turbulence": {
+                      "containers": {
+                        "intensity": {
+                          "owned": true,
+                          "niceName": "Intensity"
+                        },
+                        "frequency": {
+                          "owned": true,
+                          "niceName": "Frequency"
+                        },
+                        "octaves": {
+                          "owned": true,
+                          "niceName": "Octaves"
+                        }
+                      },
+                      "owned": true,
+                      "niceName": "Turbulence"
+                    },
+                    "vortex": {
+                      "containers": {
+                        "intensity": {
+                          "owned": true,
+                          "niceName": "Intensity"
+                        },
+                        "frequency": {
+                          "owned": true,
+                          "niceName": "Frequency"
+                        }
+                      },
+                      "owned": true,
+                      "niceName": "Vortex"
+                    },
+                    "gravity": {
+                      "containers": {
+                        "intensity": {
+                          "owned": true,
+                          "niceName": "Intensity"
+                        },
+                        "axis": {
+                          "owned": true,
+                          "niceName": "Axis"
+                        }
+                      },
+                      "owned": true,
+                      "niceName": "Gravity"
+                    }
+                  },
+                  "owned": true,
+                  "niceName": "Force 2"
+                },
+                "force3": {
+                  "editorIsCollapsed": true,
+                  "containers": {
+                    "general": {
+                      "containers": {
+                        "position": {
+                          "owned": true,
+                          "niceName": "Position"
+                        },
+                        "radius": {
+                          "owned": true,
+                          "niceName": "Radius"
+                        },
+                        "intensity": {
+                          "owned": true,
+                          "niceName": "Intensity"
+                        }
+                      },
+                      "owned": true,
+                      "niceName": "General"
+                    },
+                    "turbulence": {
+                      "containers": {
+                        "intensity": {
+                          "owned": true,
+                          "niceName": "Intensity"
+                        },
+                        "frequency": {
+                          "owned": true,
+                          "niceName": "Frequency"
+                        },
+                        "octaves": {
+                          "owned": true,
+                          "niceName": "Octaves"
+                        }
+                      },
+                      "owned": true,
+                      "niceName": "Turbulence"
+                    },
+                    "vortex": {
+                      "containers": {
+                        "intensity": {
+                          "owned": true,
+                          "niceName": "Intensity"
+                        },
+                        "frequency": {
+                          "owned": true,
+                          "niceName": "Frequency"
+                        }
+                      },
+                      "owned": true,
+                      "niceName": "Vortex"
+                    },
+                    "gravity": {
+                      "containers": {
+                        "intensity": {
+                          "owned": true,
+                          "niceName": "Intensity"
+                        },
+                        "axis": {
+                          "owned": true,
+                          "niceName": "Axis"
+                        }
+                      },
+                      "owned": true,
+                      "niceName": "Gravity"
+                    }
+                  },
+                  "owned": true,
+                  "niceName": "Force 3"
+                },
+                "force4": {
+                  "editorIsCollapsed": true,
+                  "containers": {
+                    "general": {
+                      "containers": {
+                        "position": {
+                          "owned": true,
+                          "niceName": "Position"
+                        },
+                        "radius": {
+                          "owned": true,
+                          "niceName": "Radius"
+                        },
+                        "intensity": {
+                          "owned": true,
+                          "niceName": "Intensity"
+                        }
+                      },
+                      "owned": true,
+                      "niceName": "General"
+                    },
+                    "turbulence": {
+                      "containers": {
+                        "intensity": {
+                          "owned": true,
+                          "niceName": "Intensity"
+                        },
+                        "frequency": {
+                          "owned": true,
+                          "niceName": "Frequency"
+                        },
+                        "octaves": {
+                          "owned": true,
+                          "niceName": "Octaves"
+                        }
+                      },
+                      "owned": true,
+                      "niceName": "Turbulence"
+                    },
+                    "vortex": {
+                      "containers": {
+                        "intensity": {
+                          "owned": true,
+                          "niceName": "Intensity"
+                        },
+                        "frequency": {
+                          "owned": true,
+                          "niceName": "Frequency"
+                        }
+                      },
+                      "owned": true,
+                      "niceName": "Vortex"
+                    },
+                    "gravity": {
+                      "containers": {
+                        "intensity": {
+                          "owned": true,
+                          "niceName": "Intensity"
+                        },
+                        "axis": {
+                          "owned": true,
+                          "niceName": "Axis"
+                        }
+                      },
+                      "owned": true,
+                      "niceName": "Gravity"
+                    }
+                  },
+                  "owned": true,
+                  "niceName": "Force 4"
                 }
               }
             },
             "orbGroups": {
               "containers": {
                 "orbGroup1": {
+                  "editorIsCollapsed": true,
                   "containers": {
                     "general": {
                       "containers": {
@@ -338,84 +482,10 @@
                           "niceName": "Scale"
                         },
                         "size": {
-                          "parameters": [
-                            {
-                              "value": 0.0,
-                              "minValue": 0.0,
-                              "maxValue": 1.0,
-                              "default": 0.0,
-                              "controlAddress": "/baseValue"
-                            },
-                            {
-                              "value": 0.0,
-                              "minValue": -1.0,
-                              "maxValue": 1.0,
-                              "default": 0.0,
-                              "controlAddress": "/macroWeight1"
-                            },
-                            {
-                              "value": 0.0,
-                              "minValue": -1.0,
-                              "maxValue": 1.0,
-                              "default": 0.0,
-                              "controlAddress": "/macroWeight2"
-                            },
-                            {
-                              "value": 0.0,
-                              "minValue": -1.0,
-                              "maxValue": 1.0,
-                              "default": 0.0,
-                              "controlAddress": "/macroWeight3"
-                            },
-                            {
-                              "value": 0.0,
-                              "minValue": -1.0,
-                              "maxValue": 1.0,
-                              "default": 0.0,
-                              "controlAddress": "/macroWeight4"
-                            }
-                          ],
                           "owned": true,
                           "niceName": "Size"
                         },
                         "sizeOffset": {
-                          "parameters": [
-                            {
-                              "value": 0.0,
-                              "minValue": 0.0,
-                              "maxValue": 1.0,
-                              "default": 0.0,
-                              "controlAddress": "/baseValue"
-                            },
-                            {
-                              "value": 0.0,
-                              "minValue": -1.0,
-                              "maxValue": 1.0,
-                              "default": 0.0,
-                              "controlAddress": "/macroWeight1"
-                            },
-                            {
-                              "value": 0.0,
-                              "minValue": -1.0,
-                              "maxValue": 1.0,
-                              "default": 0.0,
-                              "controlAddress": "/macroWeight2"
-                            },
-                            {
-                              "value": 0.0,
-                              "minValue": -1.0,
-                              "maxValue": 1.0,
-                              "default": 0.0,
-                              "controlAddress": "/macroWeight3"
-                            },
-                            {
-                              "value": 0.0,
-                              "minValue": -1.0,
-                              "maxValue": 1.0,
-                              "default": 0.0,
-                              "controlAddress": "/macroWeight4"
-                            }
-                          ],
                           "owned": true,
                           "niceName": "Size Offset"
                         },
@@ -615,6 +685,228 @@
                   },
                   "owned": true,
                   "niceName": "Orb Group 2"
+                },
+                "orbGroup3": {
+                  "editorIsCollapsed": true,
+                  "containers": {
+                    "general": {
+                      "containers": {
+                        "position": {
+                          "owned": true,
+                          "niceName": "Position"
+                        },
+                        "rotation": {
+                          "owned": true,
+                          "niceName": "Rotation"
+                        },
+                        "scale": {
+                          "owned": true,
+                          "niceName": "Scale"
+                        },
+                        "size": {
+                          "owned": true,
+                          "niceName": "Size"
+                        },
+                        "sizeOffset": {
+                          "owned": true,
+                          "niceName": "Size Offset"
+                        },
+                        "life": {
+                          "owned": true,
+                          "niceName": "Life"
+                        }
+                      },
+                      "owned": true,
+                      "niceName": "General"
+                    },
+                    "emission": {
+                      "containers": {
+                        "rate": {
+                          "owned": true,
+                          "niceName": "Rate"
+                        },
+                        "shape": {
+                          "owned": true,
+                          "niceName": "Shape"
+                        },
+                        "mode": {
+                          "owned": true,
+                          "niceName": "Mode"
+                        },
+                        "volumize": {
+                          "owned": true,
+                          "niceName": "Volumize"
+                        }
+                      },
+                      "owned": true,
+                      "niceName": "Emission"
+                    },
+                    "appearance": {
+                      "containers": {
+                        "size": {
+                          "owned": true,
+                          "niceName": "Size"
+                        },
+                        "alpha": {
+                          "owned": true,
+                          "niceName": "Alpha"
+                        },
+                        "color": {
+                          "owned": true,
+                          "niceName": "Color"
+                        },
+                        "colorMultiplier": {
+                          "owned": true,
+                          "niceName": "Color Multiplier"
+                        },
+                        "stationary": {
+                          "owned": true,
+                          "niceName": "Stationary"
+                        }
+                      },
+                      "owned": true,
+                      "niceName": "Appearance"
+                    },
+                    "physics": {
+                      "containers": {
+                        "forcesMultiplier": {
+                          "owned": true,
+                          "niceName": "Forces Multiplier"
+                        },
+                        "drag": {
+                          "owned": true,
+                          "niceName": "Drag"
+                        },
+                        "velocityDrag": {
+                          "owned": true,
+                          "niceName": "Velocity Drag"
+                        },
+                        "noisyDrag": {
+                          "owned": true,
+                          "niceName": "Noisy Drag"
+                        },
+                        "noisyDragFrequency": {
+                          "owned": true,
+                          "niceName": "Noisy Drag Frequency"
+                        }
+                      },
+                      "owned": true,
+                      "niceName": "Physics"
+                    }
+                  },
+                  "owned": true,
+                  "niceName": "Orb Group 3"
+                },
+                "orbGroup4": {
+                  "editorIsCollapsed": true,
+                  "containers": {
+                    "general": {
+                      "containers": {
+                        "position": {
+                          "owned": true,
+                          "niceName": "Position"
+                        },
+                        "rotation": {
+                          "owned": true,
+                          "niceName": "Rotation"
+                        },
+                        "scale": {
+                          "owned": true,
+                          "niceName": "Scale"
+                        },
+                        "size": {
+                          "owned": true,
+                          "niceName": "Size"
+                        },
+                        "sizeOffset": {
+                          "owned": true,
+                          "niceName": "Size Offset"
+                        },
+                        "life": {
+                          "owned": true,
+                          "niceName": "Life"
+                        }
+                      },
+                      "owned": true,
+                      "niceName": "General"
+                    },
+                    "emission": {
+                      "containers": {
+                        "rate": {
+                          "owned": true,
+                          "niceName": "Rate"
+                        },
+                        "shape": {
+                          "owned": true,
+                          "niceName": "Shape"
+                        },
+                        "mode": {
+                          "owned": true,
+                          "niceName": "Mode"
+                        },
+                        "volumize": {
+                          "owned": true,
+                          "niceName": "Volumize"
+                        }
+                      },
+                      "owned": true,
+                      "niceName": "Emission"
+                    },
+                    "appearance": {
+                      "containers": {
+                        "size": {
+                          "owned": true,
+                          "niceName": "Size"
+                        },
+                        "alpha": {
+                          "owned": true,
+                          "niceName": "Alpha"
+                        },
+                        "color": {
+                          "owned": true,
+                          "niceName": "Color"
+                        },
+                        "colorMultiplier": {
+                          "owned": true,
+                          "niceName": "Color Multiplier"
+                        },
+                        "stationary": {
+                          "owned": true,
+                          "niceName": "Stationary"
+                        }
+                      },
+                      "owned": true,
+                      "niceName": "Appearance"
+                    },
+                    "physics": {
+                      "containers": {
+                        "forcesMultiplier": {
+                          "owned": true,
+                          "niceName": "Forces Multiplier"
+                        },
+                        "drag": {
+                          "owned": true,
+                          "niceName": "Drag"
+                        },
+                        "velocityDrag": {
+                          "owned": true,
+                          "niceName": "Velocity Drag"
+                        },
+                        "noisyDrag": {
+                          "owned": true,
+                          "niceName": "Noisy Drag"
+                        },
+                        "noisyDragFrequency": {
+                          "owned": true,
+                          "niceName": "Noisy Drag Frequency"
+                        }
+                      },
+                      "owned": true,
+                      "niceName": "Physics"
+                    }
+                  },
+                  "owned": true,
+                  "niceName": "Orb Group 4"
                 }
               }
             }
@@ -7467,7 +7759,7 @@
             }
           }
         },
-        "hasListenExtension": true
+        "hasListenExtension": false
       }
     ],
     "viewOffset": [
