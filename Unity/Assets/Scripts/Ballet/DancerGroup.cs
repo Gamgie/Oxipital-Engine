@@ -74,7 +74,7 @@ public class DancerGroup : MonoBehaviour
         {
             dancers[i].weight = i <= count - 1 ? 1 : getCountRelativeProgression();
             dancers[i].transform.localPosition = Vector3.zero;
-            dancers[i].localPatternTime += Time.deltaTime * (patternSpeed * Mathf.Lerp(1, .5f+dancers[i].randomFactor, patternSpeedRandom));
+            dancers[i].localPatternTime += Time.deltaTime * (patternSpeed * Mathf.Lerp(1, .5f + dancers[i].randomFactor, patternSpeedRandom));
         }
 
 
@@ -89,6 +89,7 @@ public class DancerGroup : MonoBehaviour
     void addDancer()
     {
         GameObject dancer = Instantiate(dancerPrefab, transform);
+        dancer.gameObject.name = "Dancer " + (dancers.Count + 1);
         dancers.Add(dancer.GetComponent<Dancer>());
 
     }

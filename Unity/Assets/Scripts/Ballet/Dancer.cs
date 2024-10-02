@@ -16,13 +16,18 @@ public class Dancer : MonoBehaviour
 
     public float randomFactor = 0;
 
-    void Start()
+    Vector3 lastPosition;
+    public Vector3 velocity;
+    virtual public void Start()
     {
         randomFactor = Random.value;
     }
-    void Update()
+    virtual public void Update()
     {
         if (timeToKill > 0) killProgress = (Time.time - timeAtKill) / timeToKill;
+
+        //velocity = Vector3.Distance(transform.localPosition, lastPosition) / Time.deltaTime;
+        lastPosition = transform.localPosition;
     }
 
     public void kill(float time = 0)
