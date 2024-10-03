@@ -3,109 +3,237 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using OSCQuery;
+using System.Reflection;
+using System.Runtime.InteropServices;
+using System;
 
-public class DancerGroup : MonoBehaviour
+namespace Oxipital
 {
-    [Header("Pattern Settings")]
-    [Range(1, 10)]
-    public float count = 1;
-
-    public GameObject dancerPrefab;
-    public List<Dancer> dancers;
-
-    [Header("Patterns")]
-    [Range(0, 10)]
-    public float patternSize = 1; // Size of this pattern
-
-    [Range(0, 1)]
-    public float patternSizeSpread = 0;
-    [Range(0, 1)]
-    public float patternAxisSpread = 0;
-
-
-
-    [Header("Animation")]
-    [Range(-5, 5)]
-    public float patternSpeed = 1f; // speed of the choreography
-    [Range(0, 1)]
-    public float patternSpeedRandom = 0;
-
-    //[DoNotExpose]
-    [HideInInspector]
-    public float patternTime = 0;
-
-    [Range(0, 1)]
-    public float patternTimeOffset = 0; // offset phase
-
-
-    [Range(0, 10)]
-    public float patternSizeLFOFrequency;
-    [Range(0, 10)]
-    public float patternSizeLFOAmplitude;
-
-    List<DancePattern> patterns;
-
-    private void OnEnable()
+    public class DancerGroup<T> : BaseManager<T> where T : Dancer
     {
-        init();
-    }
+        const int MAX_DANCERS = 16;
+        public const int DANCER_DATA_SIZE = 8;
 
-    void Start()
-    {
-    }
+        [Header("Pattern Settings")]
+        public GameObject dancerPrefab;
 
-    void init()
-    {
-        dancers = GetComponentsInChildren<Dancer>().ToList();
-        patterns = GetComponents<DancePattern>().ToList();
-    }
+        [Header("Patterns")]
+        [Range(0, 20)]
+        public float patternSize = 1; // Size of this pattern
 
-    void Update()
-    {
+        [Range(0, 1)]
+        public float patternSizeSpread = 0;
+        [Range(0, 1)]
+        public float patternAxisSpread = 0;
 
-        //if (dancers.Count == 0) dancers = GetComponentsInChildren<Dancer>().ToList(); //Resync here if needed
 
-        while (Mathf.Ceil(count) < dancers.Count) removeLastDancer();
-        while (Mathf.Ceil(count) > dancers.Count) addDancer();
+        [Header("Animation")]
+        [Range(-5, 5)]
+        public float patternSpeed = 1f; // speed of the choreography
+        [Range(0, 1)]
+        public float patternSpeedRandom = 0;
 
-        patternTime += Time.deltaTime * patternSpeed;
+        //[DoNotExpose]
+        [HideInInspector]
+        public float patternTime = 0;
 
-        for (int i = 0; i < dancers.Count; i++)
+        [Range(0, 1)]
+        public float patternTimeOffset = 0; // offset phase
+
+
+        [Range(0, 10)]
+        public float patternSizeLFOFrequency;
+        [Range(0, 10)]
+        public float patternSizeLFOAmplitude;
+
+        [Header("Dancer")]
+        [Range(0, 1)]
+        public float dancerSize = 1;
+        [Range(0,1)]
+        public float dancerSizeSpread = 0;
+
+        [Range(0, 1)]
+        public float dancerWeightSizeFactor = 0;
+        [Range(0, 1)]
+        public float dancerIntensity = 1;
+        [Range(0, 1)]
+        public float dancerWeightIntensityFactor = 0;
+
+        public Vector3 dancerLookAt = Vector3.up;
+        [Range(0, 1)]
+        public float dancerLookAtMode = 0; // 0 = local, 1 = group, 2 = global
+
+        List<DancePattern> patterns;
+
+        //Graphics buffer
+
+        public GraphicsBuffer buffer;
+        public int bufferID;
+
+        Dictionary<int, FieldInfo> fieldInfos;
+        int groupFixedDataSize;
+
+
+        virtual protected void OnEnable()
         {
-            dancers[i].weight = i <= count - 1 ? 1 : getCountRelativeProgression();
-            dancers[i].transform.localPosition = Vector3.zero;
-            dancers[i].localPatternTime += Time.deltaTime * (patternSpeed * Mathf.Lerp(1, .5f + dancers[i].randomFactor, patternSpeedRandom));
+            init();
+        }
+
+        virtual protected void OnDisable()
+        {
+            clear();
+        }
+
+        void init()
+        {
+            items = GetComponentsInChildren<T>().ToList();
+            patterns = GetComponents<DancePattern>().ToList();
+            initBufferAndFieldInfoList();
+        }
+
+        void clear()
+        {
+            buffer.Release();
+        }
+
+        public void initBufferAndFieldInfoList()
+        {
+
+            fieldInfos = new Dictionary<int, FieldInfo>();
+
+            Type type = getGroupType();
+
+            int lastGroupFloatIndex = 0;
+            foreach (FieldInfo f in type.GetFields())
+            {
+                InBuffer inBufferAttribute = f.GetCustomAttribute<InBuffer>();
+                if (inBufferAttribute == null) continue;
+
+                fieldInfos[inBufferAttribute.index] = f;
+
+                int fieldNumFloats = 1;
+                if (f.FieldType == typeof(Vector3)) fieldNumFloats = 3;
+                if (f.FieldType == typeof(Vector4)) fieldNumFloats = 4;
+                lastGroupFloatIndex = inBufferAttribute.index + fieldNumFloats;
+            }
+
+            // Instantiate buffers
+            if (buffer == null)
+            {
+                groupFixedDataSize = lastGroupFloatIndex + 1;
+                int maxBufferSize = 1 //dancer count
+                    + 1 //items start index
+                    + groupFixedDataSize
+                    + MAX_DANCERS * DANCER_DATA_SIZE;
+
+                buffer = new GraphicsBuffer(GraphicsBuffer.Target.Structured, maxBufferSize, Marshal.SizeOf(typeof(float)));
+                bufferID = Shader.PropertyToID(gameObject.name + " Floats");
+            }
         }
 
 
-        foreach (var p in patterns)
+        void Update()
         {
-            p.updatePattern(this);
+
+            patternTime += Time.deltaTime * patternSpeed;
+
+            for (int i = 0; i < items.Count; i++)
+            {
+                Dancer d = items[i];
+                d.weight = i <= count - 1 ? 1 : getCountRelativeProgression();
+                d.intensity = dancerIntensity * Mathf.Lerp(1, d.weight, dancerWeightIntensityFactor);
+                
+                float dancerSizeSpreadFactor = Mathf.Lerp(1, i / count, dancerSizeSpread);
+                d.size = dancerSize * dancerSizeSpreadFactor * Mathf.Lerp(1, d.weight, dancerWeightSizeFactor);
+
+                d.transform.localPosition = Vector3.zero;
+
+                d.localPatternTime += Time.deltaTime * (patternSpeed * Mathf.Lerp(1, .5f + d.randomFactor, patternSpeedRandom));
+            }
+
+
+            foreach (var p in patterns)
+            {
+                p.updatePattern(this as DancerGroup<Dancer>);
+            }
+
+
+            foreach (var d in items)
+            {
+                Vector3 localLookAtTarget = transform.TransformPoint(d.transform.localPosition + dancerLookAt);
+                Vector3 groupLookAtTarget = transform.TransformPoint(dancerLookAt);
+                Vector3 absoluteLookAtTarget = dancerLookAt;
+                Vector3 target = dancerLookAtMode < 1 ? Vector3.Lerp(localLookAtTarget, groupLookAtTarget, dancerLookAtMode) :
+                                Vector3.Lerp(groupLookAtTarget, absoluteLookAtTarget, dancerLookAtMode - 1);
+                d.transform.LookAt(target);
+            }
+
+            //Update buffer with new data
+            buffer.SetData(getList());
         }
+
+        
+
+
+        //Helpers
+        protected virtual Type getGroupType() { return GetType(); }
+
+        float[] getList()
+        {
+            int indexOffset = 2; // first 2 are dancer count and group start index
+            float[] list = new float[indexOffset + groupFixedDataSize + items.Count * DANCER_DATA_SIZE];
+
+            int itemsStartIndex = indexOffset + groupFixedDataSize - 1;
+
+            list[0] = items.Count;
+            list[1] = itemsStartIndex;
+
+            //fill fixed data
+            foreach (var f in fieldInfos)
+            {
+                if (f.Value == null) continue;
+                int index = f.Key + indexOffset;
+
+                if (f.Value.FieldType == typeof(Vector3))
+                {
+                    Vector3 v = (Vector3)f.Value.GetValue(this);
+                    list[index] = v.x;
+                    list[index + 1] = v.y;
+                    list[index + 2] = v.z;
+                    break;
+                }
+                else if (f.Value.FieldType == typeof(Vector4))
+                {
+                    Vector4 v = (Vector4)f.Value.GetValue(this);
+                    list[index] = v.x;
+                    list[index + 1] = v.y;
+                    list[index + 2] = v.z;
+                    list[index + 3] = v.w;
+                    break;
+                }
+                else
+                {
+                    list[index] = (float)f.Value.GetValue(this);
+                }
+            }
+
+            //fill dancer data
+            for (int i = 0; i < items.Count; i++)
+            {
+                Dancer d = items[i];
+                list[itemsStartIndex + i * DANCER_DATA_SIZE] = d.transform.localPosition.x;
+                list[itemsStartIndex + i * DANCER_DATA_SIZE + 1] = d.transform.localPosition.y;
+                list[itemsStartIndex + i * DANCER_DATA_SIZE + 2] = d.transform.localPosition.z;
+                list[itemsStartIndex + i * DANCER_DATA_SIZE + 3] = d.transform.forward.x;
+                list[itemsStartIndex + i * DANCER_DATA_SIZE + 4] = d.transform.forward.y;
+                list[itemsStartIndex + i * DANCER_DATA_SIZE + 5] = d.transform.forward.z;
+                list[itemsStartIndex + i * DANCER_DATA_SIZE + 6] = d.intensity;
+                list[itemsStartIndex + i * DANCER_DATA_SIZE + 7] = d.size;
+            }
+
+            return list;
+        }
+        public int getFullDancersCount() { return Mathf.FloorToInt(count); }
+        public float getCountRelativeProgression() { return count - getFullDancersCount(); }
     }
-
-
-    //Dancer Management
-    void addDancer()
-    {
-        GameObject dancer = Instantiate(dancerPrefab, transform);
-        dancer.gameObject.name = "Dancer " + (dancers.Count + 1);
-        dancers.Add(dancer.GetComponent<Dancer>());
-
-    }
-
-    void removeLastDancer()
-    {
-        if (dancers[dancers.Count - 1] != null) dancers[dancers.Count - 1].kill(getKillTime());
-        dancers.RemoveAt(dancers.Count - 1);
-    }
-
-
-
-    //Virtual to override by child classes
-    protected virtual float getKillTime() { return 1; }
-
-    //Helpers
-    public int getFullDancersCount() { return Mathf.FloorToInt(count); }
-    public float getCountRelativeProgression() { return count - getFullDancersCount(); }
 }

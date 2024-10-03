@@ -1,54 +1,47 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class Dancer : MonoBehaviour
+
+namespace Oxipital
 {
-   
-    public float weight = 0;
-    public float radius = 1;
-
-    //Kill routine
-    public float killProgress = 0;
-    float timeAtKill = 0;
-    float timeToKill = 0;
-
-    public float localPatternTime = 0;
-
-    public float randomFactor = 0;
-
-    Vector3 lastPosition;
-    public Vector3 velocity;
-    virtual public void Start()
+    public class Dancer : BaseItem
     {
-        randomFactor = Random.value;
-    }
-    virtual public void Update()
-    {
-        if (timeToKill > 0) killProgress = (Time.time - timeAtKill) / timeToKill;
+        [Range(0, 1)]
+        public float weight = 0;
 
-        //velocity = Vector3.Distance(transform.localPosition, lastPosition) / Time.deltaTime;
-        lastPosition = transform.localPosition;
-    }
+        [Range(0, 1)]
+        public float intensity = 1;
 
-    public void kill(float time = 0)
-    {
-        if (time == 0)
+        [Range(0, 20)]
+        public float size = 1;
+
+        //for randomized speed in patterns
+        public float localPatternTime = 0;
+        public float randomFactor = 0;
+
+        //for physics based patterns
+        Vector3 lastPosition;
+        public Vector3 velocity;
+
+        virtual public void Start()
         {
-            Destroy(gameObject);
-            return;
+            randomFactor = Random.value;
         }
 
-        timeAtKill = Time.time;
-        timeToKill = time;
-        killProgress = 0;
-        Destroy(gameObject, timeToKill);
-    }
+        override protected void Update()
+        {
+            base.Update();
+            lastPosition = transform.localPosition;
+        }
 
-    private void OnDrawGizmos()
-    {
-        float w = weight * (1 - killProgress);
-        Color color = Color.Lerp(new Color(1.0f, 0, 0, 0), Color.red, w);
-        Gizmos.color = color;
-        Gizmos.DrawWireSphere(transform.position, radius);
+        private void OnDrawGizmos()
+        {
+            float w = weight * (1 - killProgress);
+            Color color = Color.Lerp(new Color(1.0f, 0, 0, 0), Color.red, w);
+            Gizmos.color = color;
+            Gizmos.DrawWireSphere(transform.position, size);
+        }
+
+       
     }
 }
