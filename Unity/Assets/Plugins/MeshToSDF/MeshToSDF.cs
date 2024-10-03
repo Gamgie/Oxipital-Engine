@@ -78,9 +78,6 @@ public class MeshToSDF : MonoBehaviour
     }
 
     private void Start() {
-        if(mesh == null) {
-            mesh = new Mesh();
-        }
         skinnedMeshRenderer = skinnedMeshRenderer ?? GetComponent<SkinnedMeshRenderer>();
 
     }
@@ -102,9 +99,12 @@ public class MeshToSDF : MonoBehaviour
         {
             prevMesh = mesh;
             fieldsChanged = false;
+
+            if (mesh == null) return;
             outputRenderTexture = MeshToVoxel(sdfResolution, mesh, offset, scaleBy,
     samplesPerTriangle, outputRenderTexture);
 
+            
             FloodFillToSDF(outputRenderTexture);
 
             if(outputRenderTexture== null)
