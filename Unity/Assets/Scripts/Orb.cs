@@ -22,7 +22,7 @@ namespace Oxipital
         {
             base.Update();
         }
-        
+
 
         internal void setForceBuffers(Dictionary<string, GraphicsBuffer> forceBuffers)
         {
@@ -70,6 +70,7 @@ namespace Oxipital
             }
 
             vfx.SetMesh("Emitter Mesh", m);
+            GetComponent<MeshToSDF>().mesh = m;
         }
     }
 }

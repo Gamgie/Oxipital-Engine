@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 using System;
+using UnityEngine.VFX.SDF;
 
 
 namespace Oxipital
@@ -103,6 +104,7 @@ namespace Oxipital
                 StartCoroutine("loadMesh");
                 lastMeshName = meshName;
             }
+
         }
 
         protected override void addItem()
