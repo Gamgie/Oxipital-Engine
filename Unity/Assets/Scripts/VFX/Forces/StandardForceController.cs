@@ -47,7 +47,7 @@ public class StandardForceController : MonoBehaviour
     public float axialIntensity;
     [InBuffer(1)]
     public Vector3 axialFrequency;
-    [Range(0, 3)]
+    [Range(1, 3)]
     [InBuffer(5)]
     public float axialFactor;
 
@@ -63,7 +63,7 @@ public class StandardForceController : MonoBehaviour
     [Range(0, 1)]
     [InBuffer(8)]
     public float orthoInnerRadius = 0.5f;
-    [Range(0, 3)]
+    [Range(1, 3)]
     [InBuffer(9)]
     public float orthoFactor = 2;
     [Range(0, 1)]
@@ -116,25 +116,33 @@ public class StandardForceController : MonoBehaviour
     [InBuffer(24)]
     public float perlinTranslationSpeed;
 
-    BalletPattern _pattern; // Handle positions of the force
+    [Header("Orthoaxial")]
+    [Range(0, 1)]
+    [InBuffer(25)]
+    public float orthoaxialIntensity;
+    [Range(0, 1)]
+    [InBuffer(26)]
+    public float orthoaxialInnerRadius;
+    [Range(1, 3)]
+    [InBuffer(27)]
+    public float orthoaxialFactor;
+    [Range(0, 1)]
+    [InBuffer(28)]
+    public float orthoaxialClockwise;
+
     VisualEffect[] _vfxs;
-    GraphicsBuffer _positionsBuffer;
-    int _positionsBufferID;
     GraphicsBuffer _floatBuffer;
     int _floatBufferID;
     GraphicsBuffer _vector3Buffer;
     int _vector3BufferID;
 
-    BalletManager _balletMngr;
     OrbsManager _orbsMngr;
-    BalletPatternController _patternController;
     List<FieldInfo> _floatFields;
     List<FieldInfo> _vector3Fields;
 
     public void Initiliaze(OrbsManager orbsMngr, BalletManager balletMngr)
     {
         _orbsMngr = orbsMngr;
-        _balletMngr = balletMngr;
 
         // Listen to orbManager to know when we created a new orb.
         // Update our list when it is the case
@@ -145,27 +153,6 @@ public class StandardForceController : MonoBehaviour
         else
         {
             Debug.LogError("Can not find Orbs Manager in " + gameObject.name);
-        }
-
-        if (_balletMngr != null)
-        {
-            // Add a pattern to ballet manager
-            _pattern = _balletMngr.AddPattern(BalletManager.PatternGroup.Force);
-            if (_pattern != null)
-            {
-                _patternController = this.gameObject.AddComponent<BalletPatternController>();
-                _patternController.SetPattern(_pattern);
-            }
-        }
-        else
-        {
-            Debug.LogError("Can't find Ballet Manager in " + gameObject.name);
-        }
-
-        if (_positionsBuffer == null)
-        {
-            _positionsBuffer = new GraphicsBuffer(GraphicsBuffer.Target.Structured, forceCount, Marshal.SizeOf(typeof(Vector3)));
-            _positionsBufferID = Shader.PropertyToID("Force " + forceID + " Positions");
         }
 
         // Parse force's field and prepare list
@@ -208,6 +195,7 @@ public class StandardForceController : MonoBehaviour
             }
         }
 
+        // Instantiate buffers
         if (_floatBuffer == null && _floatFields.Count != 0)
         {
             _floatBuffer = new GraphicsBuffer(GraphicsBuffer.Target.Structured, _floatFields.Count, Marshal.SizeOf(typeof(float)));
@@ -217,6 +205,7 @@ public class StandardForceController : MonoBehaviour
 		{
             Debug.LogError("[Force"+forceID+"] Cannot create float buffer at init.");
 		}
+
         if (_vector3Buffer == null && _vector3Fields.Count != 0)
         {
             _vector3Buffer = new GraphicsBuffer(GraphicsBuffer.Target.Structured, _vector3Fields.Count, Marshal.SizeOf(typeof(Vector3)));
@@ -233,25 +222,6 @@ public class StandardForceController : MonoBehaviour
         if (_vfxs == null)
         {
             UpdateVfxArray();
-        }
-
-        // Update pattern dancer count
-        if (_pattern != null && forceCount != _pattern.dancerCount)
-        {
-            _pattern.UpdateDancerCount(forceCount);
-
-            if (_positionsBuffer != null)
-                _positionsBuffer.Release();
-
-            _positionsBuffer = new GraphicsBuffer(GraphicsBuffer.Target.Structured, forceCount, Marshal.SizeOf(typeof(Vector3)));
-        }
-
-        // Update positions
-        if (_positionsBuffer != null)
-        {
-            List<Vector3> target = GetPositions();
-            if (target != null || target.Count != 0)
-                _positionsBuffer.SetData(target);
         }
 
         // Update floats
@@ -285,10 +255,6 @@ public class StandardForceController : MonoBehaviour
             // Vector3 Buffer
             if (vfx.HasGraphicsBuffer(_vector3BufferID))
                 vfx.SetGraphicsBuffer(_vector3BufferID, _vector3Buffer);
-
-            // Positions Buffer
-            if (vfx.HasGraphicsBuffer(_positionsBufferID))
-                vfx.SetGraphicsBuffer(_positionsBufferID, _positionsBuffer);
         }
     }
 
@@ -313,7 +279,6 @@ public class StandardForceController : MonoBehaviour
         return list;
     }
 
-
     void UpdateVfxArray()
     {
         if (_orbsMngr == null)
@@ -326,24 +291,12 @@ public class StandardForceController : MonoBehaviour
         }
     }
 
-    protected List<Vector3> GetPositions()
-    {
-        List<Vector3> targetPositions = new List<Vector3>();
-
-        if (_pattern == null)
-            return null;
-
-        for (int i = 0; i < _pattern.dancerCount; i++)
-        {
-            targetPositions.Add(_pattern.GetPosition(i));
-        }
-
-        return targetPositions;
-    }
-
     private void OnDestroy()
     {
-        if (_positionsBuffer != null)
-            _positionsBuffer.Release();
+        if (_floatBuffer != null)
+            _floatBuffer.Release();
+
+        if (_vector3Buffer != null)
+            _vector3Buffer.Release();
     }
 }
