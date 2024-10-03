@@ -139,10 +139,6 @@ namespace Oxipital
         public float orthoaxialClockwise;
 
 
-        //StandardForceGroup() : base("Force")
-        //{
-        //}
-
         protected override Type getGroupType()
         {
             return GetType();

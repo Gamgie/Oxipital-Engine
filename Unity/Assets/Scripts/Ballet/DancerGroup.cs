@@ -9,6 +9,12 @@ using System;
 
 namespace Oxipital
 {
+
+    //public interface IDancerGroup<out T> where T : Dancer
+    //{
+    //    BaseManager<Dancer> getManager();
+    //}
+
     public class DancerGroup<T> : BaseManager<T> where T : Dancer
     {
         const int MAX_DANCERS = 16;
@@ -25,7 +31,7 @@ namespace Oxipital
 
 
         [Header("Animation")]
-        [Range(-5, 5)]
+        [Range(-1, 1)]
         public float patternSpeed = 1f; // speed of the choreography
         [Range(0, 1)]
         public float patternSpeedRandom = 0;
@@ -75,7 +81,7 @@ namespace Oxipital
 
         }
 
-        virtual protected void OnEnable()
+        override protected void OnEnable()
         {
             init();
         }
@@ -132,8 +138,9 @@ namespace Oxipital
         }
 
 
-        void Update()
+        protected override void Update()
         {
+            base.Update();
 
             patternTime += Time.deltaTime * patternSpeed;
 
@@ -154,7 +161,7 @@ namespace Oxipital
 
             foreach (var p in patterns)
             {
-                p.updatePattern(this as DancerGroup<Dancer>);
+                p.updatePattern(this);
             }
 
 
@@ -171,9 +178,6 @@ namespace Oxipital
             //Update buffer with new data
             buffer.SetData(getList());
         }
-
-
-
 
         //Helpers
         protected virtual Type getGroupType() { return GetType(); }
@@ -211,9 +215,31 @@ namespace Oxipital
                     list[index + 3] = v.w;
                     break;
                 }
-                else
+                else if (f.Value.FieldType == typeof(Single))
+                {
+                    var val = f.Value.GetValue(this);
+                    list[index] = (float)val;
+                }
+                else if (f.Value.FieldType == typeof(Boolean))
+                {
+                    list[index] = (bool)f.Value.GetValue(this) ? 1 : 0;
+                }
+                else if (f.Value.FieldType == typeof(float))
                 {
                     list[index] = (float)f.Value.GetValue(this);
+                }
+                else if (f.Value.FieldType == typeof(int))
+                {
+                    list[index] = (int)f.Value.GetValue(this);
+                }
+                else if (f.Value.FieldType == typeof(double))
+                {
+                    list[index] = (float)(double)f.Value.GetValue(this);
+                }
+                else if (f.Value.FieldType.BaseType == typeof(Enum))
+                {
+                    list[index] = (float)(int)f.Value.GetValue(this);
+
                 }
             }
 

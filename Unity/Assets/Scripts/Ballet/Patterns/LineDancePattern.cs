@@ -6,7 +6,7 @@ namespace Oxipital
 {
     public class LineDancePattern : DancePattern
     {
-        override protected List<Vector3> getPatternPositions(DancerGroup<Dancer> group)
+        override protected List<Vector3> getPatternPositions<T>(DancerGroup<T> group)
         {
             List<Vector3> positions = new List<Vector3>();
 

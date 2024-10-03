@@ -12,9 +12,10 @@ namespace Oxipital
         [Range(0, 1)]
         public float weight = 1;
 
-        public virtual void updatePattern(DancerGroup<Dancer> group)
+        public virtual void updatePattern<T>(DancerGroup<T> group) where T : Dancer
         {
             if (group.items.Count == 0) return;
+            if (weight == 0) return;
 
             List<Vector3> positions = getPatternPositions(group);
 
@@ -50,7 +51,7 @@ namespace Oxipital
             }
         }
 
-        protected virtual List<Vector3> getPatternPositions(DancerGroup<Dancer> group)
+        protected virtual List<Vector3> getPatternPositions<T>(DancerGroup<T> group) where T : Dancer
         {
             List<Vector3> positions = new List<Vector3>();
             for (int i = 0; i < group.items.Count; i++) positions.Add(Vector3.zero);

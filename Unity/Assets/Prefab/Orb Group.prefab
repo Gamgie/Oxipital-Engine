@@ -10,6 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5635268860924018642}
   - component: {fileID: 920900145592058759}
+  - component: {fileID: 157857250213721860}
+  - component: {fileID: 396338098739613877}
+  - component: {fileID: -2678854857940927042}
   m_Layer: 0
   m_Name: Orb Group
   m_TagString: Untagged
@@ -45,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   killProgress: 0
-  count: 1
+  count: 4
   itemPrefab: {fileID: 5193657482102993924, guid: 907f0f6aee3852b46886e7b480494655,
     type: 3}
   items: []
@@ -65,7 +68,6 @@ MonoBehaviour:
   dancerWeightIntensityFactor: 0
   dancerLookAt: {x: 0, y: 1, z: 0}
   dancerLookAtMode: 0
-  bufferID: 0
   life: 20
   emitterShape: 0
   emitterSurfaceFactor: 0
@@ -82,3 +84,48 @@ MonoBehaviour:
   noisyDragFrequency: 0
   activateCollision: 0
   showMesh: 0
+--- !u!114 &157857250213721860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5956691939429203287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8eaf46799fb5dc5449e2a4be3dcd64aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blendMode: 0
+  weight: 1
+--- !u!114 &396338098739613877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5956691939429203287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad7f77a0e03eac7489a00f4dda7c49cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blendMode: 0
+  weight: 0
+--- !u!114 &-2678854857940927042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5956691939429203287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9abcf7b8dab6894bb2725b616b9ab55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blendMode: 0
+  weight: 0
+  G: 1
+  bodyMass: 1
+  prevPositions: []

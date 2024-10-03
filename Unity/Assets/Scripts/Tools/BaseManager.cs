@@ -5,9 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+
 public class BaseManager<T> : BaseItem where T : BaseItem
 {
-    public int count = 1;
+    [Range(0,16)]
+    public float count = 1;
 
     public GameObject itemPrefab;
     public List<T> items;

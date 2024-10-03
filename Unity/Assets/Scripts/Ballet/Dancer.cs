@@ -23,6 +23,7 @@ namespace Oxipital
         Vector3 lastPosition;
         public Vector3 velocity;
 
+        
         virtual public void Start()
         {
             randomFactor = Random.value;

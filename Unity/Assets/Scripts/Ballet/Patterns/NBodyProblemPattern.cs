@@ -12,7 +12,7 @@ namespace Oxipital
         public List<Vector3> prevPositions;
 
         // Start is called before the first frame update
-        override protected List<Vector3> getPatternPositions(DancerGroup<Dancer> group)
+        override protected List<Vector3> getPatternPositions<T>(DancerGroup<T> group)
         {
             List<Vector3> positions = new List<Vector3>();
 
