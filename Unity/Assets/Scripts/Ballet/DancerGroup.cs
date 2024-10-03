@@ -14,9 +14,6 @@ namespace Oxipital
         const int MAX_DANCERS = 16;
         public const int DANCER_DATA_SIZE = 8;
 
-        [Header("Pattern Settings")]
-        public GameObject dancerPrefab;
-
         [Header("Patterns")]
         [Range(0, 20)]
         public float patternSize = 1; // Size of this pattern
@@ -49,7 +46,7 @@ namespace Oxipital
         [Header("Dancer")]
         [Range(0, 1)]
         public float dancerSize = 1;
-        [Range(0,1)]
+        [Range(0, 1)]
         public float dancerSizeSpread = 0;
 
         [Range(0, 1)]
@@ -73,6 +70,11 @@ namespace Oxipital
         Dictionary<int, FieldInfo> fieldInfos;
         int groupFixedDataSize;
 
+
+        public DancerGroup(string itemName = "Dancer") : base(itemName)
+        {
+
+        }
 
         virtual protected void OnEnable()
         {
@@ -142,7 +144,7 @@ namespace Oxipital
                 Dancer d = items[i];
                 d.weight = i <= count - 1 ? 1 : getCountRelativeProgression();
                 d.intensity = dancerIntensity * Mathf.Lerp(1, d.weight, dancerWeightIntensityFactor);
-                
+
                 float dancerSizeSpreadFactor = Mathf.Lerp(1, i / count, dancerSizeSpread);
                 d.size = dancerSize * dancerSizeSpreadFactor * Mathf.Lerp(1, d.weight, dancerWeightSizeFactor);
 
@@ -172,7 +174,7 @@ namespace Oxipital
             buffer.SetData(getList());
         }
 
-        
+
 
 
         //Helpers

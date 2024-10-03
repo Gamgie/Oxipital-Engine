@@ -2,6 +2,7 @@ using Oxipital;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class BaseManager<T> : BaseItem where T : BaseItem
@@ -10,6 +11,18 @@ public class BaseManager<T> : BaseItem where T : BaseItem
 
     public GameObject itemPrefab;
     public List<T> items;
+
+    string itemName = "Item";
+
+    public BaseManager(string itemName = "Item")
+    {
+        this.itemName = itemName;
+    }
+
+    virtual protected void OnEnable()
+    {
+        items = GetComponentsInChildren<T>().ToList();
+    }
 
     override protected void Update()
     {

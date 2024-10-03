@@ -73,6 +73,9 @@ namespace Oxipital
         [Header("Debug")]
         public bool showMesh = false;
 
+
+        //OrbGroup() : base("Orb") { }
+
         protected override void Update()
         {
             base.Update();
