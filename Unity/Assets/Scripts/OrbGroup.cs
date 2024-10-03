@@ -14,9 +14,11 @@ namespace Oxipital
         [Range(0, 40)]
         public float life = 20;
 
-        public enum EmitterShape { Sphere, Plane, Torus, Cube, Pipe, Egg, Line, Circle, Merkaba, Pyramid, Landscape }
+        public enum EmitterShape { Sphere, Plane, Torus, Cube, Pipe, Egg, Line, Circle, Merkaba, Pyramid, Custom }
+
         [InBuffer(1)]
         public EmitterShape emitterShape;
+        EmitterShape lastEmitterShape;
 
         [InBuffer(2)]
         [Range(0, 1)]
@@ -73,8 +75,9 @@ namespace Oxipital
         [Header("Debug")]
         public bool showMesh = false;
 
-
-        //OrbGroup() : base("Orb") { }
+        public string meshName = "";
+        string lastMeshName = "";
+        Mesh emitterMesh;
 
         protected override void Update()
         {
@@ -83,6 +86,29 @@ namespace Oxipital
             {
                 items[i].setOrbBuffer(buffer, i);
             }
+
+            if(emitterShape != lastEmitterShape)
+            {
+                if(emitterShape != EmitterShape.Line && emitterShape != EmitterShape.Circle && emitterShape != EmitterShape.Custom)
+                {
+                    string shape = emitterShape.ToString().ToLower();
+                    meshName = shape;
+                }
+                
+                lastEmitterShape = emitterShape;
+            }
+
+            if (meshName != lastMeshName)
+            {
+                StartCoroutine("loadMesh");
+                lastMeshName = meshName;
+            }
+        }
+
+        protected override void addItem()
+        {
+            base.addItem();
+            items[items.Count - 1].setMesh(emitterMesh);
         }
 
         public void setForceBuffers(Dictionary<string, GraphicsBuffer> forceBuffers)
@@ -96,6 +122,54 @@ namespace Oxipital
         {
             return GetType();
         }
+
+
+        //Mesh loading
+        IEnumerator loadMesh()
+        {
+            setMesh();
+            yield return null;
+        }
+
+        async void setMesh()
+        {
+            if (meshName == "") return;
+            //var gltf = new GLTFast.GltfAsset();
+            //gltf.StreamingAsset = true;
+            //var success = await gltf.Load("emitters/"+meshName+".gltf");
+
+            var gltfI = new GLTFast.GltfImport();
+            var success = await gltfI.Load(Application.streamingAssetsPath + "/emitters/" + meshName + ".gltf");
+
+            if (success)
+            {
+                var meshes = gltfI.GetMeshes();
+                Debug.Log("GLTFImport Loaded " + meshes.Length + " meshes");
+
+                if (meshes.Length > 0)
+                {
+                    Mesh m = meshes[0];
+                    if (m == null)
+                    {
+                        Debug.LogWarning(meshName + " not found in StreamingAssets");
+                        return;
+                    }
+
+                    emitterMesh = m;
+                    foreach (Orb orb in items) orb.setMesh(m);
+                }
+                else
+                {
+                    Debug.LogWarning("No mesh found in glTF file");
+                }
+            }
+            else
+            {
+                Debug.LogError("Loading glTF failed!");
+            }
+        }
+
+
     }
 }
 
