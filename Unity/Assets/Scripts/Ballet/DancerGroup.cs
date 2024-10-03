@@ -50,8 +50,10 @@ namespace Oxipital
         public float patternSizeLFOAmplitude;
 
         [Header("Dancer")]
-        [Range(0, 1)]
+        [Range(0, 20)]
         public float dancerSize = 1;
+        [Range(0, 1)]
+        public float dancerHyperSize = 0;
         [Range(0, 1)]
         public float dancerSizeSpread = 0;
 
@@ -63,7 +65,7 @@ namespace Oxipital
         public float dancerWeightIntensityFactor = 0;
 
         public Vector3 dancerLookAt = Vector3.up;
-        [Range(0, 1)]
+        [Range(0, 2)]
         public float dancerLookAtMode = 0; // 0 = local, 1 = group, 2 = global
 
         List<DancePattern> patterns;
@@ -141,6 +143,7 @@ namespace Oxipital
         protected override void Update()
         {
             base.Update();
+            if (buffer == null) init();
 
             patternTime += Time.deltaTime * patternSpeed;
 
@@ -152,6 +155,7 @@ namespace Oxipital
 
                 float dancerSizeSpreadFactor = Mathf.Lerp(1, i / count, dancerSizeSpread);
                 d.size = dancerSize * dancerSizeSpreadFactor * Mathf.Lerp(1, d.weight, dancerWeightSizeFactor);
+                d.size = Mathf.Lerp(d.size, 100, dancerHyperSize);
 
                 d.transform.localPosition = Vector3.zero;
 
@@ -247,12 +251,12 @@ namespace Oxipital
             for (int i = 0; i < items.Count; i++)
             {
                 Dancer d = items[i];
-                list[itemsStartIndex + i * DANCER_DATA_SIZE] = d.transform.localPosition.x;
-                list[itemsStartIndex + i * DANCER_DATA_SIZE + 1] = d.transform.localPosition.y;
-                list[itemsStartIndex + i * DANCER_DATA_SIZE + 2] = d.transform.localPosition.z;
-                list[itemsStartIndex + i * DANCER_DATA_SIZE + 3] = d.transform.forward.x;
-                list[itemsStartIndex + i * DANCER_DATA_SIZE + 4] = d.transform.forward.y;
-                list[itemsStartIndex + i * DANCER_DATA_SIZE + 5] = d.transform.forward.z;
+                list[itemsStartIndex + i * DANCER_DATA_SIZE] = d.transform.position.x;
+                list[itemsStartIndex + i * DANCER_DATA_SIZE + 1] = d.transform.position.y;
+                list[itemsStartIndex + i * DANCER_DATA_SIZE + 2] = d.transform.position.z;
+                list[itemsStartIndex + i * DANCER_DATA_SIZE + 3] = d.transform.eulerAngles.x;
+                list[itemsStartIndex + i * DANCER_DATA_SIZE + 4] = d.transform.eulerAngles.y;
+                list[itemsStartIndex + i * DANCER_DATA_SIZE + 5] = d.transform.eulerAngles.z;
                 list[itemsStartIndex + i * DANCER_DATA_SIZE + 6] = d.intensity;
                 list[itemsStartIndex + i * DANCER_DATA_SIZE + 7] = d.size;
             }
