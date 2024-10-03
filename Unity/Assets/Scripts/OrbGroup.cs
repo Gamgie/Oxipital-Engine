@@ -85,7 +85,7 @@ namespace Oxipital
             }
         }
 
-        public void setForceBuffers(Dictionary<int, GraphicsBuffer> forceBuffers)
+        public void setForceBuffers(Dictionary<string, GraphicsBuffer> forceBuffers)
         {
             foreach (Orb orb in items)
             {

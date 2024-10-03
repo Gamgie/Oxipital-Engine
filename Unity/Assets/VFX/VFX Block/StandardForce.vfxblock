@@ -40,8 +40,6 @@ MonoBehaviour:
   m_Children:
   - {fileID: 4}
   - {fileID: 21}
-  - {fileID: 48}
-  - {fileID: 67}
   - {fileID: 69}
   - {fileID: 81}
   - {fileID: 90}
@@ -59,37 +57,7 @@ MonoBehaviour:
   m_UISuperCollapsed: 0
   m_UIInfos: {fileID: 3}
   m_ParameterInfo:
-  - name: Float Buffer
-    path: 
-    tooltip: 
-    space: -1
-    spaceable: 0
-    sheetType: 
-    realType: GraphicsBuffer
-    defaultValue:
-      m_Type:
-        m_SerializableType: 
-      m_SerializableObject: 
-    min: -Infinity
-    max: Infinity
-    enumValues: []
-    descendantCount: 0
-  - name: Vector3 Buffer
-    path: 
-    tooltip: 
-    space: -1
-    spaceable: 0
-    sheetType: 
-    realType: GraphicsBuffer
-    defaultValue:
-      m_Type:
-        m_SerializableType: 
-      m_SerializableObject: 
-    min: -Infinity
-    max: Infinity
-    enumValues: []
-    descendantCount: 0
-  - name: Positions Buffer
+  - name: Buffer
     path: 
     tooltip: 
     space: -1
@@ -140,9 +108,6 @@ MonoBehaviour:
     - model: {fileID: 21}
       id: 1
       isStickyNote: 0
-    - model: {fileID: 48}
-      id: 0
-      isStickyNote: 0
   - title: Compute total influence of all forces
     position:
       serializedVersion: 2
@@ -152,9 +117,6 @@ MonoBehaviour:
       height: 410
     contents:
     - model: {fileID: 90}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 67}
       id: 0
       isStickyNote: 0
     - model: {fileID: 81}
@@ -195,9 +157,9 @@ MonoBehaviour:
   categories: []
   uiBounds:
     serializedVersion: 2
-    x: -2636
+    x: -2635
     y: -1128
-    width: 4194
+    width: 4193
     height: 1632
 --- !u!114 &4
 MonoBehaviour:
@@ -277,7 +239,7 @@ MonoBehaviour:
   m_InputSlots: []
   m_OutputSlots:
   - {fileID: 22}
-  m_ExposedName: Float Buffer
+  m_ExposedName: Buffer
   m_Exposed: 1
   m_Order: 0
   m_Category: 
@@ -350,182 +312,6 @@ MonoBehaviour:
   - {fileID: 291}
   - {fileID: 295}
   - {fileID: 395}
---- !u!114 &48
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 330e0fca1717dde4aaa144f48232aa64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_UIIgnoredErrors: []
-  m_Parent: {fileID: 2}
-  m_Children: []
-  m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 1
-  m_UISuperCollapsed: 0
-  m_InputSlots: []
-  m_OutputSlots:
-  - {fileID: 49}
-  m_ExposedName: Vector3 Buffer
-  m_Exposed: 1
-  m_Order: 1
-  m_Category: 
-  m_Min:
-    m_Type:
-      m_SerializableType: 
-    m_SerializableObject: 
-  m_Max:
-    m_Type:
-      m_SerializableType: 
-    m_SerializableObject: 
-  m_IsOutput: 0
-  m_EnumValues: []
-  m_ValueFilter: 0
-  m_Tooltip: 
-  m_Nodes:
-  - m_Id: 0
-    linkedSlots:
-    - outputSlot: {fileID: 49}
-      inputSlot: {fileID: 96}
-    position: {x: -2611, y: -140}
-    expandedSlots: []
-    expanded: 0
-  - m_Id: 1
-    linkedSlots:
-    - outputSlot: {fileID: 49}
-      inputSlot: {fileID: 292}
-    position: {x: -770, y: -327}
-    expandedSlots: []
-    expanded: 0
---- !u!114 &49
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5ff4abdfc4ddb54992e15a0636f5d0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_UIIgnoredErrors: []
-  m_Parent: {fileID: 0}
-  m_Children: []
-  m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 1
-  m_UISuperCollapsed: 0
-  m_MasterSlot: {fileID: 49}
-  m_MasterData:
-    m_Owner: {fileID: 48}
-    m_Value:
-      m_Type:
-        m_SerializableType: UnityEngine.GraphicsBuffer, UnityEngine.CoreModule, Version=0.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: 
-    m_Space: -1
-  m_Property:
-    name: o
-    m_serializedType:
-      m_SerializableType: UnityEngine.GraphicsBuffer, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-  m_Direction: 1
-  m_LinkedSlots:
-  - {fileID: 96}
-  - {fileID: 292}
---- !u!114 &67
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 330e0fca1717dde4aaa144f48232aa64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_UIIgnoredErrors: []
-  m_Parent: {fileID: 2}
-  m_Children: []
-  m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 1
-  m_UISuperCollapsed: 0
-  m_InputSlots: []
-  m_OutputSlots:
-  - {fileID: 68}
-  m_ExposedName: Positions Buffer
-  m_Exposed: 1
-  m_Order: 2
-  m_Category: 
-  m_Min:
-    m_Type:
-      m_SerializableType: 
-    m_SerializableObject: 
-  m_Max:
-    m_Type:
-      m_SerializableType: 
-    m_SerializableObject: 
-  m_IsOutput: 0
-  m_EnumValues: []
-  m_ValueFilter: 0
-  m_Tooltip: 
-  m_Nodes:
-  - m_Id: 0
-    linkedSlots:
-    - outputSlot: {fileID: 68}
-      inputSlot: {fileID: 89}
-    position: {x: -2144, y: -846}
-    expandedSlots: []
-    expanded: 1
-  - m_Id: 1
-    linkedSlots:
-    - outputSlot: {fileID: 68}
-      inputSlot: {fileID: 293}
-    position: {x: -777, y: -276}
-    expandedSlots: []
-    expanded: 0
---- !u!114 &68
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5ff4abdfc4ddb54992e15a0636f5d0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_UIIgnoredErrors: []
-  m_Parent: {fileID: 0}
-  m_Children: []
-  m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 1
-  m_UISuperCollapsed: 0
-  m_MasterSlot: {fileID: 68}
-  m_MasterData:
-    m_Owner: {fileID: 67}
-    m_Value:
-      m_Type:
-        m_SerializableType: UnityEngine.GraphicsBuffer, UnityEngine.CoreModule, Version=0.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: 
-    m_Space: -1
-  m_Property:
-    name: o
-    m_serializedType:
-      m_SerializableType: UnityEngine.GraphicsBuffer, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-  m_Direction: 1
-  m_LinkedSlots:
-  - {fileID: 89}
-  - {fileID: 293}
 --- !u!114 &69
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -825,8 +611,7 @@ MonoBehaviour:
       m_SerializableType: UnityEngine.GraphicsBuffer, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
   m_Direction: 0
-  m_LinkedSlots:
-  - {fileID: 68}
+  m_LinkedSlots: []
 --- !u!114 &90
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1056,8 +841,7 @@ MonoBehaviour:
       m_SerializableType: UnityEngine.GraphicsBuffer, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
   m_Direction: 0
-  m_LinkedSlots:
-  - {fileID: 49}
+  m_LinkedSlots: []
 --- !u!114 &97
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1943,8 +1727,7 @@ MonoBehaviour:
       m_SerializableType: UnityEngine.GraphicsBuffer, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
   m_Direction: 0
-  m_LinkedSlots:
-  - {fileID: 49}
+  m_LinkedSlots: []
 --- !u!114 &293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1978,8 +1761,7 @@ MonoBehaviour:
       m_SerializableType: UnityEngine.GraphicsBuffer, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
   m_Direction: 0
-  m_LinkedSlots:
-  - {fileID: 68}
+  m_LinkedSlots: []
 --- !u!114 &294
 MonoBehaviour:
   m_ObjectHideFlags: 0

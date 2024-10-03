@@ -65,7 +65,6 @@ namespace Oxipital
         //Graphics buffer
 
         public GraphicsBuffer buffer;
-        public int bufferID;
 
         Dictionary<int, FieldInfo> fieldInfos;
         int groupFixedDataSize;
@@ -129,7 +128,6 @@ namespace Oxipital
                     + MAX_DANCERS * DANCER_DATA_SIZE;
 
                 buffer = new GraphicsBuffer(GraphicsBuffer.Target.Structured, maxBufferSize, Marshal.SizeOf(typeof(float)));
-                bufferID = Shader.PropertyToID(gameObject.name + " Floats");
             }
         }
 

@@ -34,7 +34,7 @@ public class BaseManager<T> : BaseItem where T : BaseItem
     void addItem()
     {
         GameObject item = Instantiate(itemPrefab, transform);
-        item.gameObject.name = "Dancer " + (items.Count + 1);
+        item.gameObject.name = itemName+" "+ (items.Count + 1);
         items.Add(item.GetComponent<T>());
 
     }

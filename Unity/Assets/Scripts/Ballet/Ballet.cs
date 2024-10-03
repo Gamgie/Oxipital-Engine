@@ -18,16 +18,16 @@ namespace Oxipital
         // Update is called once per frame
         void Update()
         {
-            //Dictionary<int, GraphicsBuffer> forceBuffers = new Dictionary<int, GraphicsBuffer>(standardForceManager.items.Count);
-            //foreach (StandardForceGroup group in standardForceManager.items)
-            //{
-            //    forceBuffers.Add(group.bufferID, group.buffer);
-            //}
+			Dictionary<string, GraphicsBuffer> forceBuffers = new Dictionary<string, GraphicsBuffer>(standardForceManager.items.Count);
+			foreach (StandardForceGroup group in standardForceManager.items)
+			{
+				forceBuffers.Add(group.gameObject.name, group.buffer);
+			}
 
-            //foreach (OrbGroup group in orbManager.items)
-            //{
-            //    group.setForceBuffers(forceBuffers);
-            //}
-        }
+			foreach (OrbGroup group in orbManager.items)
+			{
+				group.setForceBuffers(forceBuffers);
+			}
+		}
     }
 }

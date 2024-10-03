@@ -18,7 +18,7 @@ namespace Oxipital
             if (vfx == null) vfx = GetComponent<VisualEffect>();
         }
 
-        internal void setForceBuffers(Dictionary<int, GraphicsBuffer> forceBuffers)
+        internal void setForceBuffers(Dictionary<string, GraphicsBuffer> forceBuffers)
         {
             if (vfx == null) return;
 
@@ -38,9 +38,9 @@ namespace Oxipital
         {
             if (vfx == null) return;
 
-            if (!vfx.HasGraphicsBuffer("OrbBuffer"))
+            if (!vfx.HasGraphicsBuffer("Orb Buffer"))
             {
-                Debug.LogWarning("OrbBuffer not found in VFX");
+                Debug.LogWarning("Orb Buffer not found in VFX");
                 return;
             }
 
