@@ -1,11 +1,10 @@
 #include "VFXCommon.hlsl"
 #include "ComputeAxialForce.hlsl"
 
-void StandardForce(inout VFXAttributes attributes, in StructuredBuffer<float> floatBuffer, in StructuredBuffer<float3> vector3Buffer, in StructuredBuffer<float3> forceCenterBuffer)
+void StandardForce(inout VFXAttributes attributes, in float intensity, in StructuredBuffer<float> floatBuffer, in StructuredBuffer<float3> vector3Buffer, in StructuredBuffer<float3> forceCenterBuffer)
 {
     float3 totalForce = float3(0.0, 0.0, 0.0);
     int centerCount = forceCenterBuffer.Length;
-    float intensity = floatBuffer[0];
     
     float3 axis = vector3Buffer[0];
     float radius = floatBuffer[1];
@@ -25,7 +24,7 @@ void StandardForce(inout VFXAttributes attributes, in StructuredBuffer<float> fl
     bool clockWise = floatBuffer[10];
     
     // Linear Force is attracting towards the same direction
-    float linearForceIntensity = floatBuffer[7];
+    float linearForceIntensity = floatBuffer[6];
 
     // Spiral Force
     float spiralForceIntensity = floatBuffer[13];
@@ -45,17 +44,18 @@ void StandardForce(inout VFXAttributes attributes, in StructuredBuffer<float> fl
         float normalizedDistance = distanceToCenter / (radius * innerRadius);
         float clockWiseFactor = clockWise == true ? 1 : -1;
 
-		float3 radialForce = intensity * radialIntensity * (1/(distanceToCenter+1)) * normalizedToCenterVector;
-
+		float3 radialForce = radialIntensity * (1/(distanceToCenter+1)) * normalizedToCenterVector;
         
-        float3 axialForce = intensity * axialIntensity * ComputeAxialForce(attributes.position, axis, normalizedDistance, centerPosition, axialFrequency, axialFactor);
+        float3 axialForce = axialIntensity * ComputeAxialForce(attributes.position, axis, normalizedDistance, centerPosition, axialFrequency, axialFactor);
 
        	// Orthoradial force (inversely proportional to the distance)
         float3 orthogonalVector = normalize(cross(normalizedToCenterVector, axis) * clockWiseFactor);
-        float3 orthoradialForce = (intensity * orthoIntensity * orthogonalVector) / (pow(abs(normalizedDistance), abs(orthoFactor)));
+        float3 orthoradialForce = (orthoIntensity * orthogonalVector) / (pow(abs(normalizedDistance), abs(orthoFactor)));
+
+        float3 linearForce = linearForceIntensity * normalize(axis);
 
         // Total force contribution from this center
-        totalForce += radialForce + axialForce + orthoradialForce;
+        totalForce += intensity * (radialForce + axialForce + orthoradialForce + linearForce);
     }
 	
     // Update velocity
