@@ -4,46 +4,32 @@
 
 int dancerStartIndex;
 
-float ComputeForceInfluence(in float distanceToCenter, in StructuredBuffer<float> buffer, in VFXCurve curve, in int i)
-{
-    float forceFactorInside = GetFloat(0);
-    float forceFactorOutside = GetFloat(1);
-    float intensity = GetDFloat(i,6);
-    float forceRadius = GetDFloat(i,7);
-		
-    float forceRel = SampleCurve(curve, distanceToCenter / forceRadius);
-    float forceRemap = remapFloat(forceRel, 0, 1, forceFactorInside*intensity, forceFactorOutside*intensity);
-
-    return forceRemap;
-}
-
 void StandardForce(inout VFXAttributes attributes, in StructuredBuffer<float> buffer, in VFXCurve forceInfluenceCurve)
 {
-    float3 totalForce = float3(0.0, 0.0, 0.0);
+    float3 totalForce = float3(0.0, 1.0, 0.0);
     int dancerCount = buffer[0];
     dancerStartIndex = buffer[1];
     
-    float3 axis = float3(0.0,0.0,0.0);
-    
     // Radial Force is attracting towards the center
-    float radialIntensity = buffer[2];
+    float radialIntensity = GetFloat(2);
+    float radialFrequency = GetFloat(3);
 
     // Axial Parameters
-    float axialIntensity = buffer[4];
-    float axialFactor = buffer[5];
-    float3 axialFrequency = float3(0.0,0.0,0.0);
+    float axialIntensity =GetFloat(4);
+    float axialFactor = GetFloat(5);
+    float3 axialFrequency = GetVector(6);
 
     // Orthoradial Force is pushing particle on the orthogonal vector of the center vector
-    float orthoIntensity = buffer[7];
-    int orthoFactor = buffer[9];
-    float innerRadius = buffer[8];
-    bool clockWise = buffer[10];
+    float orthoIntensity = GetFloat(10);
+    float innerRadius = GetFloat(11);
+    int orthoFactor = GetFloat(12);
+    bool clockWise = GetFloat(13);
     
     // Linear Force is attracting towards the same direction
-    float linearForceIntensity = buffer[6];
+    float linearForceIntensity = GetFloat(9);
 
     // Spiral Force
-    float spiralForceIntensity = buffer[13];
+    // float spiralForceIntensity = GetFloat(13);
 
     if (innerRadius == 0)
     {
@@ -52,7 +38,9 @@ void StandardForce(inout VFXAttributes attributes, in StructuredBuffer<float> bu
 	
     for (int i = 0; i < dancerCount; ++i)
     {
+        float axis = GetDFloat(i, 3);
         float radius = GetDFloat(i, 7);
+        
         float3 centerPosition = GetDVector(i,0);
         float3 toCenterVector = centerPosition - attributes.position;
         float distanceToCenter = length(toCenterVector);
@@ -62,9 +50,9 @@ void StandardForce(inout VFXAttributes attributes, in StructuredBuffer<float> bu
         float clockWiseFactor = clockWise == true ? 1 : -1;
 
         // compute force influence linked to radius limit
-        float forceInfluence = ComputeForceInfluence(distanceToCenter, buffer, forceInfluenceCurve, i);
+        float forceInfluence = computeForceInfluence(distanceToCenter, buffer, forceInfluenceCurve, i);
 
-		float3 radialForce = radialIntensity * (1/(distanceToCenter+1)) * normalizedToCenterVector;
+		float3 radialForce = float3(1.0,0.0,0.0);//radialIntensity * (1/(distanceToCenter+1)) * normalizedToCenterVector;
         
         float3 axialForce = axialIntensity * ComputeAxialForce(attributes.position, axis, normalizedDistance, centerPosition, axialFrequency, axialFactor);
 

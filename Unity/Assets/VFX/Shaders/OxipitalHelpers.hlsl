@@ -1,3 +1,5 @@
+#include "VFXCommon.hlsl"
+
 #ifndef OXIPITAL_HELPERS
 #define OXIPITAL_HELPERS
 
@@ -26,6 +28,21 @@ float3 getDancerVectorProperty(in int dancerIndex, in int dancerProperty, in Str
 {
     int index = startIndex + dancerIndex* DANCER_DATA_SIZE + dancerProperty;
     return float3(buffer[index], buffer[index+1], buffer[index+2]);
+}
+
+float computeForceInfluence(in float distancetocenter, in StructuredBuffer<float> buffer, in VFXCurve curve, in int index)
+{
+    int dancerStartIndex = buffer[1];
+
+    float forceFactorInside = GetFloat(0);
+    float forceFactorOutside = GetFloat(1);
+    float intensity = GetDFloat(index,6);
+    float forceRadius = GetDFloat(index,7);
+		
+    float forcerel = SampleCurve(curve, distancetocenter / forceRadius);
+    float forceremap = remapFloat(forcerel, 0, 1, forceFactorInside*intensity, forceFactorOutside*intensity);
+
+    return forceremap;
 }
 
 
