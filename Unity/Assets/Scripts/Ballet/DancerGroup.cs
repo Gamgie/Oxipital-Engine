@@ -82,7 +82,6 @@ namespace Oxipital
         [Header("Debug")]
         [DoNotExpose]
         public Color debugColor = Color.red;
-        Color lastDebugColor;
         public DancerGroup(string itemName = "Dancer") : base(itemName)
         {
 
@@ -166,13 +165,8 @@ namespace Oxipital
                 d.transform.localPosition = Vector3.zero;
 
                 d.localPatternTime += Time.deltaTime * (patternSpeed * Mathf.Lerp(1, .5f + d.randomFactor, patternSpeedRandom));
-            }
-
-
-            if (debugColor != lastDebugColor)
-            {
-                lastDebugColor = debugColor;
-                foreach (var d in items) d.debugColor = debugColor;
+                
+                d.debugColor = debugColor;
             }
 
 
