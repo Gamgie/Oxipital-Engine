@@ -123,6 +123,7 @@ namespace Oxipital
                 int fieldNumFloats = 1;
                 if (f.FieldType == typeof(Vector3)) fieldNumFloats = 3;
                 if (f.FieldType == typeof(Vector4)) fieldNumFloats = 4;
+                if (f.FieldType == typeof(Color)) fieldNumFloats = 3;
                 lastGroupFloatIndex = inBufferAttribute.index + fieldNumFloats;
             }
 
@@ -208,7 +209,6 @@ namespace Oxipital
                     list[index] = v.x;
                     list[index + 1] = v.y;
                     list[index + 2] = v.z;
-                    break;
                 }
                 else if (f.Value.FieldType == typeof(Vector4))
                 {
@@ -217,7 +217,13 @@ namespace Oxipital
                     list[index + 1] = v.y;
                     list[index + 2] = v.z;
                     list[index + 3] = v.w;
-                    break;
+                }else if(f.Value.FieldType == typeof(Color))
+				{
+                    Color v = (Color)f.Value.GetValue(this);
+                    list[index] = v.r;
+                    list[index + 1] = v.g;
+                    list[index + 2] = v.b;
+
                 }
                 else if (f.Value.FieldType == typeof(Single))
                 {
