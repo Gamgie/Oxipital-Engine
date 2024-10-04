@@ -1,3 +1,4 @@
+
 var numForcesParam = local.parameters.setup.numForces;
 var numOrbGroupsParam = local.parameters.setup.numOrbGroups;
 var numMacrosParam = local.parameters.setup.numMacros;
@@ -11,7 +12,11 @@ var orbGroups = [];
 var macros = [];
 
 //Unity links
-// var unityForcesGroup = local.values.orbs.forces;
+var unityBallet = null;
+var unityForcesManager = null;
+var unityOrbsManager = null;
+var unityForcesParam = null;
+var unityOrbGroupsParam = null;
 
 var danceGroupParameters = {
 	"Patterns": {
@@ -124,18 +129,18 @@ var orbGroupParameters = {
 
 //CALLBACKS
 function init() {
-	setupMacros();
-	setupForces();
-	setupOrbs();
-
-	linkArrays();
+	linkUnity();
+	setup();
 }
+
 
 function moduleParameterChanged(param) {
 	if (param.is(numForcesParam)) {
+		if(unityForcesParam) unityForcesParam.set(numForcesParam.get());
 		setupForces();
 		linkArrays();
 	} else if (param.is(numOrbGroupsParam)) {
+		if(unityOrbGroupsParam) unityOrbGroupsParam.set(numOrbGroupsParam.get());
 		setupOrbs();
 		linkArrays();
 	} else if (param.is(numMacrosParam)) {
@@ -157,6 +162,14 @@ function moduleParameterChanged(param) {
 		}
 	}
 }
+
+function dataStructureEvent()
+{
+	linkUnity();
+
+	// setup();
+}
+
 
 //UPDATE
 function updateAllParametersForMacro(macroParam) {
@@ -222,6 +235,16 @@ function updateParam(index, groupName, paramName, sourceParam, parameters, items
 }
 
 // SETUP
+
+function setup()
+{
+	setupMacros();
+	setupForces();
+	setupOrbs();
+
+	linkArrays();
+}
+
 function clearItems(group) {
 	group.clear();
 }
@@ -230,6 +253,20 @@ function linkArrays() {
 	macros = macrosGroup.getControllables();
 	forces = forcesGroup.getContainers();
 	orbGroups = orbGroupsGroup.getContainers();
+}
+
+function linkUnity()
+{
+	ballet = local.values.getChild("ballet");
+	unityOrbs = ballet.getChild("orbs");
+	unityForces = ballet.getChild("forces");
+
+	unityOrbGroupsParam = unityOrbs.getChild("orbManager").getChild("count");
+	unityForcesParam = unityForces.getChild("standardForceManager").getChild("count");
+
+
+	if(unityOrbGroupsParam) unityOrbGroupsParam.set(numOrbGroupsParam.get());
+	if(unityForcesParam) unityForcesParam.set(numForcesParam.get());
 }
 
 function setupMacros() {
@@ -253,10 +290,12 @@ function setupMacros() {
 }
 
 function setupForces() {
+	if(numForcesParam == null) return;
 	setupParameters(forcesGroup, numForcesParam, forceParameters, forces, "Force");
 }
 
 function setupOrbs() {
+	if(numOrbGroupsParam == null) return;
 	setupParameters(orbGroupsGroup, numOrbGroupsParam, orbGroupParameters, orbGroups, "Orb Group");
 }
 
@@ -352,7 +391,6 @@ function setupMacrosToItem(item) {
 			for (var k = paramCurrentMacros; k > numMacros; k--) paramContainer.removeParameter("Macro Weight " + k);
 
 			for (var k = paramCurrentMacros; k < numMacros; k++) {
-				script.log("add Macro Weight " + (k + 1));
 				if (paramProp.noMacro == true) continue;
 				if (paramProp.type == "float" || paramProp.type == "int" && (paramProp.min != null && paramProp.min != null)) {
 					for (var k = 0; k < numMacrosParam.get(); k++) {

@@ -12,7 +12,6 @@ namespace Oxipital
     {
 
         VisualEffect vfx;
-
         protected void OnEnable()
         {
             if (vfx == null) vfx = GetComponent<VisualEffect>();
@@ -41,7 +40,9 @@ namespace Oxipital
 
             //Update intensity here as we need to pass it outside the GraphicsBuffer
             //Discussion : https://discussions.unity.com/t/spawn-a-variable-amount-of-particles-from-graphics-buffer/899049/2
-            vfx.SetFloat("Emitter Intensity", intensity);
+            bool isDying = killProgress > 0;
+            Debug.Log("killing orb " + isDying);
+            vfx.SetFloat("Emitter Intensity", isDying ? 0 : intensity);
         }
 
         internal void setOrbBuffer(GraphicsBuffer buffer, int index)
@@ -71,6 +72,13 @@ namespace Oxipital
 
             vfx.SetMesh("Emitter Mesh", m);
             GetComponent<MeshToSDF>().mesh = m;
+        }
+        public override void kill(float time)
+        {
+            base.kill(time);
+            if(vfx == null) return;
+            Debug.Log("Kill here");
+            vfx.SetFloat("Emitter Intensity", 0);
         }
     }
 }

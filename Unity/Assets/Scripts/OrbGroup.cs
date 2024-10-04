@@ -175,8 +175,22 @@ namespace Oxipital
             }
         }
 
+        override protected void killLastItem()
+        {
+            (items[items.Count - 1] as Orb).kill(getKillTime());
+        }
+        public override void kill(float time = 0)
+        {
+            base.kill(time);
+            count = 0;
+        }
 
+        protected override float getKillTime()
+        {
+            return life;
+        }
     }
+
 }
 
 

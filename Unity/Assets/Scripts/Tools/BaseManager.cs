@@ -43,13 +43,17 @@ public class BaseManager<T> : BaseItem where T : BaseItem
 
     void removeLastItem()
     {
-        if (items[items.Count - 1] != null) items[items.Count - 1].kill(getKillTime());
+        if (items[items.Count - 1] != null) killLastItem();
         items.RemoveAt(items.Count - 1);
+    }
+
+    virtual protected void killLastItem() { 
+        items[items.Count -1].kill(getKillTime()); 
     }
 
 
     //Virtual to override by child classes
-    protected virtual float getKillTime() { return 1; }
+    protected virtual float getKillTime() { return .1f; }
 
   
 }

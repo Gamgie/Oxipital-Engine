@@ -12,7 +12,11 @@ public class BaseItem : MonoBehaviour
     
     virtual protected void Update()
     {
-        if (timeToKill > 0) killProgress = (Time.time - timeAtKill) / timeToKill;
+        if (timeToKill > 0)
+        {
+            //Debug.Log("killing");
+            killProgress = (Time.time - timeAtKill) / timeToKill;
+        }
     }
 
     virtual public void kill(float time = 0)
