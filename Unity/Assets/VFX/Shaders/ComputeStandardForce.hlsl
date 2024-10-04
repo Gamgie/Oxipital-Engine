@@ -4,7 +4,7 @@
 
 void StandardForce(inout VFXAttributes attributes, in StructuredBuffer<float> buffer, in VFXCurve forceInfluenceCurve)
 {
-    float3 totalForce = float3(0.0, 1.0, 0.0);
+    float3 totalForce = float3(0.0, 0.0, 0.0);
     int dancerCount = buffer[0];
     int dancerStartIndex = buffer[1];
     
@@ -17,15 +17,15 @@ void StandardForce(inout VFXAttributes attributes, in StructuredBuffer<float> bu
     float axialFactor = GetFloat(5);
     float3 axialFrequency = GetVector(6);
 
+    // Linear Force is attracting towards the same direction
+    float linearForceIntensity = GetFloat(9);
+
     // Orthoradial Force is pushing particle on the orthogonal vector of the center vector
     float orthoIntensity = GetFloat(10);
     float innerRadius = GetFloat(11);
     int orthoFactor = GetFloat(12);
     bool clockWise = GetFloat(13);
     
-    // Linear Force is attracting towards the same direction
-    float linearForceIntensity = GetFloat(9);
-
     // Spiral Force
     // float spiralForceIntensity = GetFloat(13);
 
@@ -38,6 +38,8 @@ void StandardForce(inout VFXAttributes attributes, in StructuredBuffer<float> bu
     {
         float axis = GetDFloat(i, 3);
         float radius = GetDFloat(i, 7);
+
+        if(radius <= 0) continue;
         
         float3 centerPosition = GetDVector(i,0);
         float3 toCenterVector = centerPosition - attributes.position;
@@ -50,9 +52,9 @@ void StandardForce(inout VFXAttributes attributes, in StructuredBuffer<float> bu
         // compute force influence linked to radius limit
         float forceInfluence = computeForceInfluence(distanceToCenter, buffer, forceInfluenceCurve, i);
 
-		float3 radialForce = float3(1.0,0.0,0.0);//radialIntensity * (1/(distanceToCenter+1)) * normalizedToCenterVector;
+		float3 radialForce = radialIntensity * (1/(distanceToCenter+1)) * 2.5 * normalizedToCenterVector;
         
-        float3 axialForce = axialIntensity * ComputeAxialForce(attributes.position, axis, normalizedDistance, centerPosition, axialFrequency, axialFactor);
+        float3 axialForce = axialIntensity * 0.008 * ComputeAxialForce(attributes.position, axis, normalizedDistance, centerPosition, axialFrequency, axialFactor);
 
        	// Orthoradial force (inversely proportional to the distance)
         float3 orthogonalVector = normalize(cross(normalizedToCenterVector, axis) * clockWiseFactor);
@@ -64,8 +66,10 @@ void StandardForce(inout VFXAttributes attributes, in StructuredBuffer<float> bu
         totalForce += forceInfluence * (radialForce + axialForce + orthoradialForce + linearForce);
     }
 	
+    float deltaTime = 1.0/60.0;//unity_DeltaTime[2];
+
     // Update velocity
-    attributes.velocity += totalForce * unity_DeltaTime[2];
+    attributes.velocity += totalForce * deltaTime;
 }
 
 
