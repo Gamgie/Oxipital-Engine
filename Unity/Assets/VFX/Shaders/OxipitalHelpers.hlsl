@@ -39,7 +39,7 @@ float computeForceInfluence(in float distancetocenter, in StructuredBuffer<float
     float forceRadius = GetDFloat(index,7);
 		
     float forcerel = SampleCurve(curve, distancetocenter / forceRadius);
-    float forceremap = remapFloat(forcerel, 0, 1, forceFactorInside*intensity, forceFactorOutside*intensity);
+    float forceremap = remapFloat(forcerel, 0, 1, forceFactorOutside*intensity, forceFactorInside*intensity);
 
     return forceremap;
 }
