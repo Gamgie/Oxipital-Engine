@@ -25,7 +25,7 @@
 				"max": 8,
 				"default": 4
 			},
-			"Num Forces": {
+			"Num Force Groups": {
 				"type": "Integer",
 				"min": 0,
 				"max": 8,
@@ -44,7 +44,7 @@
 		"Orb Groups": {
 			"type": "Container"
 		},
-		"Forces": {
+		"Force Groups": {
 			"type": "Container"
 		}
 	},
@@ -52,5 +52,56 @@
 		"Oxipital.js"
 	],
 	"values": {},
-	"commands": {}
+	"commands": 
+	{
+		"Reset": {
+			"args": []
+		},
+		"Set Macro Value":
+		{
+			"args": [
+				{
+					"name": "Macro",
+					"type": "Integer",
+					"min": 0,
+					"max": 8
+				},
+				{
+					"name": "Value",
+					"type": "Float",
+					"min": 0,
+					"max": 1
+				}
+			]
+		},
+
+		"Set Orb Group Value":
+		{
+			"args": [
+				{
+					"name":"Type",
+					"type":"Enum",
+					"values":{ "Float":0, "Vector":1 }
+				},
+				{
+					"name": "Orb Group",
+					"type": "Integer",
+					"min": 0,
+					"max": 8
+				},
+				{
+					"name": "Float Value",
+					"type": "Float",
+					"min": 0,
+					"max": 1
+				},
+				{
+					"name": "Vector Value",
+					"type": "Float",
+					"min": 0,
+					"max": 1
+				}
+			]
+		}
+	}
 }
