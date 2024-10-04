@@ -12,8 +12,10 @@ namespace Oxipital
     {
         [Space(20)]
         [Header("General Parameters")]
+        [Range(0, 1)]
         [InBuffer(0)]
         public float forceFactorInside = 1;
+        [Range(0, 1)]
         [InBuffer(1)]
         public float forceFactorOutside = 0;
 
