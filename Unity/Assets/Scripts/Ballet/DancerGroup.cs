@@ -15,6 +15,7 @@ namespace Oxipital
     //    BaseManager<Dancer> getManager();
     //}
 
+    [DoNotExposeChildren]
     public class DancerGroup<T> : BaseManager<T> where T : Dancer
     {
         const int MAX_DANCERS = 16;
@@ -38,6 +39,7 @@ namespace Oxipital
 
         //[DoNotExpose]
         [HideInInspector]
+        [DoNotExpose]
         public float patternTime = 0;
 
         [Range(0, 1)]
@@ -77,7 +79,10 @@ namespace Oxipital
         Dictionary<int, FieldInfo> fieldInfos;
         int groupFixedDataSize;
 
-
+        [Header("Debug")]
+        [DoNotExpose]
+        public Color debugColor = Color.red;
+        Color lastDebugColor;
         public DancerGroup(string itemName = "Dancer") : base(itemName)
         {
 
@@ -164,6 +169,13 @@ namespace Oxipital
             }
 
 
+            if (debugColor != lastDebugColor)
+            {
+                lastDebugColor = debugColor;
+                foreach (var d in items) d.debugColor = debugColor;
+            }
+
+
             foreach (var p in patterns)
             {
                 p.updatePattern(this);
@@ -217,8 +229,9 @@ namespace Oxipital
                     list[index + 1] = v.y;
                     list[index + 2] = v.z;
                     list[index + 3] = v.w;
-                }else if(f.Value.FieldType == typeof(Color))
-				{
+                }
+                else if (f.Value.FieldType == typeof(Color))
+                {
                     Color v = (Color)f.Value.GetValue(this);
                     list[index] = v.r;
                     list[index + 1] = v.g;

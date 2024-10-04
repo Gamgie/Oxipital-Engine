@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using OSCQuery;
 
 namespace Oxipital
 {
@@ -16,14 +17,20 @@ namespace Oxipital
         public float size = 1;
 
         //for randomized speed in patterns
+        [DoNotExpose]
         public float localPatternTime = 0;
+        [DoNotExpose]
         public float randomFactor = 0;
 
         //for physics based patterns
         Vector3 lastPosition;
+        [DoNotExpose]
         public Vector3 velocity;
 
-        
+        [DoNotExpose]
+        [HideInInspector]
+        internal Color debugColor;
+
         virtual public void Start()
         {
             randomFactor = Random.value;
@@ -38,11 +45,12 @@ namespace Oxipital
         private void OnDrawGizmos()
         {
             float w = weight * (1 - killProgress);
-            Color color = Color.Lerp(new Color(1.0f, 0, 0, 0), Color.red, w);
+
+            Color color = Color.Lerp(new Color(1.0f, 0, 0, 0), debugColor, w);
             Gizmos.color = color;
             Gizmos.DrawWireSphere(transform.position, size);
         }
 
-       
+
     }
 }
