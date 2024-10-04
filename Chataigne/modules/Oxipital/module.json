@@ -13,24 +13,19 @@
 	"defaults": {
 		"serverName": "Unity-Oxipital",
 		"output": {
-			"remotePort": 8999
+			"remotePort": 12321
 		}
 	},
 	"parameters": {
 		"Setup": {
-			"type": "Container",
-			"Clear On Setup":
-			{
-				"type": "Boolean",
-				"default": true
-			},
-			"Num Forces": {
+			"type":"Container",
+			"Num Orb Groups": {
 				"type": "Integer",
 				"min": 0,
 				"max": 8,
 				"default": 4
 			},
-			"Num Orb Groups": {
+			"Num Forces": {
 				"type": "Integer",
 				"min": 0,
 				"max": 8,
@@ -43,15 +38,13 @@
 				"default": 4
 			}
 		},
-
-		"Macros":
-		{
-			"type": "Container"
-		},
-		"Forces": {
+		"Macros": {
 			"type": "Container"
 		},
 		"Orb Groups": {
+			"type": "Container"
+		},
+		"Forces": {
 			"type": "Container"
 		}
 	},
