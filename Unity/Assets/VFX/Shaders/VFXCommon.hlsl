@@ -23,8 +23,8 @@ def ClosestPointOnLine(a, b, p):
     result = a + dot(ap,ab)/dot(ab,ab) * ab
     return result
 */
-#ifndef _VFX_COMMON_H_
-#define _VFX_COMMON_H_
+#ifndef VFX_COMMON_H
+#define VFX_COMMON_H
 
 float3 ClosestPointOnALine(float3 pos, float3 axis, float3 center)
 {
@@ -45,4 +45,4 @@ float remapFloat(in float value, in float min1, in float max1, in float min2, in
     return outgoing;
 }
 
-#endif // _VFX_COMMON_H_
+#endif // VFX_COMMON_H

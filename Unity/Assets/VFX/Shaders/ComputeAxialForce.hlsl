@@ -1,3 +1,6 @@
+#ifndef COMPUTE_AXIAL_FORCE_H
+#define COMPUTE_AXIAL_FORCE_H
+
 float3 ComputeAxialForce(in float3 pos, in float3 axis, in float normalizedDistance, in float3 center, in float3 axialFrequency, in float axialFactor)
 {
     // Axial force is attracting towards axis
@@ -63,3 +66,5 @@ float3 ComputeAxialForce(in float3 pos, in float3 axis, in float normalizedDista
 
     return axialForceX + axialForceY + axialForceZ;
 }
+
+#endif // COMPUTE_AXIAL_FORCE_H
