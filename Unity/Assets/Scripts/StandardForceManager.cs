@@ -6,7 +6,7 @@ namespace Oxipital
 {
     public class StandardForceManager : BaseManager<StandardForceGroup>
     {
-        StandardForceManager() : base("Force")
+        StandardForceManager() : base("Force Group")
         {
         }
     }
