@@ -32,8 +32,7 @@ float3 getDancerVectorProperty(in int dancerIndex, in int dancerProperty, in Str
 
 float computeForceInfluence(in float distancetocenter, in StructuredBuffer<float> buffer, in VFXCurve curve, in int index)
 {
-    int dancerStartIndex = buffer[1];
-
+    int dancerStartIndex = buffer[1]; 
     float forceFactorInside = GetFloat(0);
     float forceFactorOutside = GetFloat(1);
     float intensity = GetDFloat(index,6);

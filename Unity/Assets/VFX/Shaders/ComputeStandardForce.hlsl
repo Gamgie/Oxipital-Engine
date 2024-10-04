@@ -2,13 +2,11 @@
 #include "ComputeAxialForce.hlsl"
 #include "OxipitalHelpers.hlsl"
 
-int dancerStartIndex;
-
 void StandardForce(inout VFXAttributes attributes, in StructuredBuffer<float> buffer, in VFXCurve forceInfluenceCurve)
 {
     float3 totalForce = float3(0.0, 1.0, 0.0);
     int dancerCount = buffer[0];
-    dancerStartIndex = buffer[1];
+    int dancerStartIndex = buffer[1];
     
     // Radial Force is attracting towards the center
     float radialIntensity = GetFloat(2);

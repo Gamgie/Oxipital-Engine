@@ -6,7 +6,7 @@ namespace Oxipital
 {
     public class OrbManager : BaseManager<OrbGroup>
     {
-        OrbManager() : base("Orb")
+        OrbManager() : base("Orb Group")
         {
         }
 
