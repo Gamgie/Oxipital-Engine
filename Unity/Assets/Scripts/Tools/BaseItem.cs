@@ -5,7 +5,7 @@ using UnityEngine;
 public class BaseItem : MonoBehaviour
 {
     //Kill routine
-    public float killProgress = 0;
+    internal float killProgress = 0;
     float timeAtKill = 0;
     float timeToKill = 0;
 

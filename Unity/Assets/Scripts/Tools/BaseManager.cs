@@ -12,7 +12,7 @@ public class BaseManager<T> : BaseItem where T : BaseItem
     public float count = 1;
 
     public GameObject itemPrefab;
-    public List<T> items;
+    internal List<T> items;
 
     string itemName = "Item";
 
