@@ -20,7 +20,7 @@ var unityOrbGroupsParam = null;
 
 var danceGroupParameters = {
 	"Patterns": {
-		"Count": { "type": "float", "default": 1, "min": 1, "max": 10 },
+		"Count": { "type": "float", "default": 1, "min": 1, "max": 10, "noMacro":true},
 		"Pattern Size": { "type": "float", "default": 1, "min": 0, "max": 20 },
 		"Pattern Size Spread": { "type": "float", "default": 0, "min": 0, "max": 1 },
 		"Pattern Axis Spread": { "type": "float", "default": 0, "min": 0, "max": 1 }
@@ -211,21 +211,26 @@ function updateParam(index, groupName, paramName, sourceParam, parameters, items
 
 	var targetParams = danceGroupParameters[groupName] ? danceGroupParameters : parameters;
 
+	var paramProps = targetParams[groupName][paramName];
+
 	var item = items[index];
 	var itemGroup = item.getChild(groupName);
 	var itemParamGroup = itemGroup.getChild(paramName);
 	var itemParam = itemParamGroup.getChild("baseValue");
-	var paramMin = targetParams[groupName][paramName].min;
-	var paramMax = targetParams[groupName][paramName].max;
-
+	var paramMin = paramProps.min;
+	var paramMax = paramProps.max;
+	
 	var finalValue = itemParam.get();
 
-	if (paramMin != null && paramMax != null) {
-		for (var i = 0; i < numMacrosParam.get(); i++) {
-			var macroWeight = itemParamGroup.getChild("macroWeight" + (i + 1)).get();
-			var macroValue = macros[i].get();
-			var macroInfluence = macroValue * macroWeight * (paramMax - paramMin);
-			finalValue += macroInfluence;
+	if(!paramProps.noMacro)
+	{
+		if (paramMin != null && paramMax != null) {
+			for (var i = 0; i < numMacrosParam.get(); i++) {
+				var macroWeight = itemParamGroup.getChild("macroWeight" + (i + 1)).get();
+				var macroValue = macros[i].get();
+				var macroInfluence = macroValue * macroWeight * (paramMax - paramMin);
+				finalValue += macroInfluence;
+			}
 		}
 	}
 

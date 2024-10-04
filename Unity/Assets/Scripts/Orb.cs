@@ -41,7 +41,6 @@ namespace Oxipital
             //Update intensity here as we need to pass it outside the GraphicsBuffer
             //Discussion : https://discussions.unity.com/t/spawn-a-variable-amount-of-particles-from-graphics-buffer/899049/2
             bool isDying = killProgress > 0;
-            Debug.Log("killing orb " + isDying);
             vfx.SetFloat("Emitter Intensity", isDying ? 0 : intensity);
         }
 
@@ -77,7 +76,6 @@ namespace Oxipital
         {
             base.kill(time);
             if(vfx == null) return;
-            Debug.Log("Kill here");
             vfx.SetFloat("Emitter Intensity", 0);
         }
     }

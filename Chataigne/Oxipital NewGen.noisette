@@ -101,6 +101,12 @@
         "scripts": {
           "items": [
             {
+              "parameters": [
+                {
+                  "value": true,
+                  "controlAddress": "/enableLog"
+                }
+              ],
               "niceName": "Oxipital",
               "type": "BaseItem",
               "scriptParams": {
@@ -164,31 +170,57 @@
                   "controlAddress": "/numOrbGroups"
                 },
                 {
-                  "value": 0,
+                  "value": 1,
                   "hexMode": false,
                   "controlAddress": "/numForces"
                 },
                 {
-                  "value": 3,
+                  "value": 1,
                   "hexMode": false,
                   "controlAddress": "/numMacros"
                 }
               ]
             },
             "macros": {
+              "parameters": [
+                {
+                  "value": 0.2933884263038635,
+                  "minValue": 0.0,
+                  "maxValue": 1.0,
+                  "default": 0.0,
+                  "controlAddress": "/macro1"
+                }
+              ]
             },
             "orbGroups": {
               "containers": {
                 "orbGroup1": {
-                  "editorIsCollapsed": true,
                   "containers": {
                     "patterns": {
                       "containers": {
                         "count": {
+                          "parameters": [
+                            {
+                              "value": 1.0,
+                              "minValue": 1.0,
+                              "maxValue": 10.0,
+                              "default": 1.0,
+                              "controlAddress": "/baseValue"
+                            }
+                          ],
                           "owned": true,
                           "niceName": "Count"
                         },
                         "patternSize": {
+                          "parameters": [
+                            {
+                              "value": 0.0,
+                              "minValue": 0.0,
+                              "maxValue": 20.0,
+                              "default": 1.0,
+                              "controlAddress": "/baseValue"
+                            }
+                          ],
                           "owned": true,
                           "niceName": "Pattern Size"
                         },
@@ -207,14 +239,48 @@
                     "animation": {
                       "containers": {
                         "patternSpeed": {
+                          "parameters": [
+                            {
+                              "value": 0.2587720155715942,
+                              "minValue": -1.0,
+                              "maxValue": 1.0,
+                              "default": 1.0,
+                              "controlAddress": "/baseValue"
+                            },
+                            {
+                              "value": -0.3201754093170166,
+                              "minValue": -1.0,
+                              "maxValue": 1.0,
+                              "default": 0.0,
+                              "controlAddress": "/macroWeight1"
+                            }
+                          ],
                           "owned": true,
                           "niceName": "Pattern Speed"
                         },
                         "patternSpeedRandom": {
+                          "parameters": [
+                            {
+                              "value": 0.206140398979187,
+                              "minValue": -1.0,
+                              "maxValue": 1.0,
+                              "default": 0.0,
+                              "controlAddress": "/macroWeight1"
+                            }
+                          ],
                           "owned": true,
                           "niceName": "Pattern Speed Random"
                         },
                         "patternTime": {
+                          "parameters": [
+                            {
+                              "value": -0.5219298005104065,
+                              "minValue": -1.0,
+                              "maxValue": 1.0,
+                              "default": 0.0,
+                              "controlAddress": "/macroWeight1"
+                            }
+                          ],
                           "owned": true,
                           "niceName": "Pattern Time"
                         },
@@ -387,7 +453,274 @@
               }
             },
             "forces": {
-              "editorIsCollapsed": true
+              "editorIsCollapsed": true,
+              "containers": {
+                "force1": {
+                  "editorIsCollapsed": true,
+                  "containers": {
+                    "patterns": {
+                      "containers": {
+                        "count": {
+                          "owned": true,
+                          "niceName": "Count"
+                        },
+                        "patternSize": {
+                          "owned": true,
+                          "niceName": "Pattern Size"
+                        },
+                        "patternSizeSpread": {
+                          "owned": true,
+                          "niceName": "Pattern Size Spread"
+                        },
+                        "patternAxisSpread": {
+                          "owned": true,
+                          "niceName": "Pattern Axis Spread"
+                        }
+                      },
+                      "owned": true,
+                      "niceName": "Patterns"
+                    },
+                    "animation": {
+                      "containers": {
+                        "patternSpeed": {
+                          "owned": true,
+                          "niceName": "Pattern Speed"
+                        },
+                        "patternSpeedRandom": {
+                          "owned": true,
+                          "niceName": "Pattern Speed Random"
+                        },
+                        "patternTime": {
+                          "owned": true,
+                          "niceName": "Pattern Time"
+                        },
+                        "patternTimeOffset": {
+                          "owned": true,
+                          "niceName": "Pattern Time Offset"
+                        },
+                        "patternSizeLFOFrequency": {
+                          "owned": true,
+                          "niceName": "Pattern Size LFO Frequency"
+                        },
+                        "patternSizeLFOAmplitude": {
+                          "owned": true,
+                          "niceName": "Pattern Size LFO Amplitude"
+                        }
+                      },
+                      "owned": true,
+                      "niceName": "Animation"
+                    },
+                    "dancer": {
+                      "containers": {
+                        "dancerSize": {
+                          "owned": true,
+                          "niceName": "Dancer Size"
+                        },
+                        "dancerHyperSize": {
+                          "owned": true,
+                          "niceName": "Dancer Hyper Size"
+                        },
+                        "dancerSizeSpread": {
+                          "owned": true,
+                          "niceName": "Dancer Size Spread"
+                        },
+                        "dancerWeightSizeFactor": {
+                          "owned": true,
+                          "niceName": "Dancer Weight Size Factor"
+                        },
+                        "dancerIntensity": {
+                          "owned": true,
+                          "niceName": "Dancer Intensity"
+                        },
+                        "dancerWeightIntensityFactor": {
+                          "owned": true,
+                          "niceName": "Dancer Weight Intensity Factor"
+                        },
+                        "dancerLookAt": {
+                          "owned": true,
+                          "niceName": "Dancer Look At"
+                        },
+                        "dancerLookAtMode": {
+                          "owned": true,
+                          "niceName": "Dancer Look At Mode"
+                        }
+                      },
+                      "owned": true,
+                      "niceName": "Dancer"
+                    },
+                    "general": {
+                      "containers": {
+                        "forceFactorInside": {
+                          "owned": true,
+                          "niceName": "Force Factor Inside"
+                        },
+                        "forceFactorOutside": {
+                          "owned": true,
+                          "niceName": "Force Factor Outside"
+                        }
+                      },
+                      "owned": true,
+                      "niceName": "General"
+                    },
+                    "radial": {
+                      "containers": {
+                        "radialIntensity": {
+                          "owned": true,
+                          "niceName": "Radial Intensity"
+                        },
+                        "radialFrequency": {
+                          "owned": true,
+                          "niceName": "Radial Frequency"
+                        }
+                      },
+                      "owned": true,
+                      "niceName": "Radial"
+                    },
+                    "axial": {
+                      "containers": {
+                        "axialIntensity": {
+                          "owned": true,
+                          "niceName": "Axial Intensity"
+                        },
+                        "axialFactor": {
+                          "owned": true,
+                          "niceName": "Axial Factor"
+                        },
+                        "axialFrequency": {
+                          "owned": true,
+                          "niceName": "Axial Frequency"
+                        }
+                      },
+                      "owned": true,
+                      "niceName": "Axial"
+                    },
+                    "linear": {
+                      "containers": {
+                        "linearIntensity": {
+                          "owned": true,
+                          "niceName": "Linear Intensity"
+                        }
+                      },
+                      "owned": true,
+                      "niceName": "Linear"
+                    },
+                    "orthoradial": {
+                      "containers": {
+                        "orthoIntensity": {
+                          "owned": true,
+                          "niceName": "Ortho Intensity"
+                        },
+                        "orthoInnerRadius": {
+                          "owned": true,
+                          "niceName": "Ortho Inner Radius"
+                        },
+                        "orthoFactor": {
+                          "owned": true,
+                          "niceName": "Ortho Factor"
+                        },
+                        "orthoClockwise": {
+                          "owned": true,
+                          "niceName": "Ortho Clockwise"
+                        }
+                      },
+                      "owned": true,
+                      "niceName": "Orthoradial"
+                    },
+                    "turbulenceCurl": {
+                      "containers": {
+                        "curlIntensity": {
+                          "owned": true,
+                          "niceName": "Curl Intensity"
+                        },
+                        "curlFrequency": {
+                          "owned": true,
+                          "niceName": "Curl Frequency"
+                        },
+                        "curlDrag": {
+                          "owned": true,
+                          "niceName": "Curl Drag"
+                        },
+                        "curlOctaves": {
+                          "owned": true,
+                          "niceName": "Curl Octaves"
+                        },
+                        "curlRoughness": {
+                          "owned": true,
+                          "niceName": "Curl Roughness"
+                        },
+                        "curlLacunarity": {
+                          "owned": true,
+                          "niceName": "Curl Lacunarity"
+                        },
+                        "curlScale": {
+                          "owned": true,
+                          "niceName": "Curl Scale"
+                        },
+                        "curlTranslation": {
+                          "owned": true,
+                          "niceName": "Curl Translation"
+                        }
+                      },
+                      "owned": true,
+                      "niceName": "Turbulence Curl"
+                    },
+                    "perlin": {
+                      "containers": {
+                        "perlinIntensity": {
+                          "owned": true,
+                          "niceName": "Perlin Intensity"
+                        },
+                        "perlinFrequency": {
+                          "owned": true,
+                          "niceName": "Perlin Frequency"
+                        },
+                        "perlinOctaves": {
+                          "owned": true,
+                          "niceName": "Perlin Octaves"
+                        },
+                        "perlinRoughness": {
+                          "owned": true,
+                          "niceName": "Perlin Roughness"
+                        },
+                        "perlinLacunarity": {
+                          "owned": true,
+                          "niceName": "Perlin Lacunarity"
+                        },
+                        "perlinTranslationSpeed": {
+                          "owned": true,
+                          "niceName": "Perlin Translation Speed"
+                        }
+                      },
+                      "owned": true,
+                      "niceName": "Perlin"
+                    },
+                    "orthoaxial": {
+                      "containers": {
+                        "orthoaxialIntensity": {
+                          "owned": true,
+                          "niceName": "Orthoaxial Intensity"
+                        },
+                        "orthoaxialInnerRadius": {
+                          "owned": true,
+                          "niceName": "Orthoaxial Inner Radius"
+                        },
+                        "orthoaxialFactor": {
+                          "owned": true,
+                          "niceName": "Orthoaxial Factor"
+                        },
+                        "orthoaxialClockwise": {
+                          "owned": true,
+                          "niceName": "Orthoaxial Clockwise"
+                        }
+                      },
+                      "owned": true,
+                      "niceName": "Orthoaxial"
+                    }
+                  },
+                  "owned": true,
+                  "niceName": "Force 1"
+                }
+              }
             }
           }
         },
@@ -452,19 +785,48 @@
                       ],
                       "owned": true,
                       "niceName": "OrbManager"
+                    }
+                  },
+                  "owned": true,
+                  "niceName": "Orbs"
+                },
+                "Forces": {
+                  "containers": {
+                    "Transform": {
+                      "parameters": [
+                        {
+                          "value": [
+                            1.0,
+                            1.0,
+                            1.0
+                          ],
+                          "controlAddress": "/localScale"
+                        }
+                      ],
+                      "editorIsCollapsed": true,
+                      "owned": true,
+                      "niceName": "Transform"
                     },
-                    "Orb_1": {
+                    "StandardForceManager": {
+                      "parameters": [
+                        {
+                          "value": true,
+                          "controlAddress": "/listen"
+                        },
+                        {
+                          "value": 1.0,
+                          "alwaysNotify": true,
+                          "controlAddress": "/count"
+                        }
+                      ],
+                      "owned": true,
+                      "niceName": "StandardForceManager"
+                    },
+                    "Force_1": {
+                      "editorIsCollapsed": true,
                       "containers": {
                         "Transform": {
                           "parameters": [
-                            {
-                              "value": [
-                                0.0,
-                                0.0,
-                                0.0
-                              ],
-                              "controlAddress": "/position"
-                            },
                             {
                               "value": [
                                 1.0,
@@ -474,19 +836,12 @@
                               "controlAddress": "/localScale"
                             }
                           ],
+                          "editorIsCollapsed": true,
                           "owned": true,
                           "niceName": "Transform"
                         },
-                        "OrbGroup": {
+                        "StandardForceGroup": {
                           "parameters": [
-                            {
-                              "value": "Torus",
-                              "controlAddress": "/emitterShape"
-                            },
-                            {
-                              "value": 0.34822,
-                              "controlAddress": "/patternTime"
-                            },
                             {
                               "value": [
                                 0.0,
@@ -498,7 +853,7 @@
                           ],
                           "editorIsCollapsed": true,
                           "owned": true,
-                          "niceName": "OrbGroup"
+                          "niceName": "StandardForceGroup"
                         },
                         "LineDancePattern": {
                           "parameters": [
@@ -534,143 +889,12 @@
                           "niceName": "NBodyProblemPattern"
                         },
                         "Dancer_1": {
-                          "containers": {
-                            "Transform": {
-                              "parameters": [
-                                {
-                                  "value": [
-                                    -0.2420749962329865,
-                                    0.0,
-                                    -1.561344981193542
-                                  ],
-                                  "controlAddress": "/position"
-                                },
-                                {
-                                  "value": [
-                                    -0.2420749962329865,
-                                    0.0,
-                                    -1.561344981193542
-                                  ],
-                                  "controlAddress": "/localPosition"
-                                },
-                                {
-                                  "value": [
-                                    270.0,
-                                    0.0,
-                                    0.0
-                                  ],
-                                  "controlAddress": "/eulerAngles"
-                                },
-                                {
-                                  "value": [
-                                    270.0,
-                                    0.0,
-                                    0.0
-                                  ],
-                                  "controlAddress": "/rotation"
-                                },
-                                {
-                                  "value": [
-                                    270.0,
-                                    0.0,
-                                    0.0
-                                  ],
-                                  "controlAddress": "/localRotation"
-                                },
-                                {
-                                  "value": [
-                                    1.0,
-                                    1.0,
-                                    1.0
-                                  ],
-                                  "controlAddress": "/localScale"
-                                }
-                              ],
-                              "owned": true,
-                              "niceName": "Transform"
-                            },
-                            "VisualEffect": {
-                              "parameters": [
-                                {
-                                  "value": [
-                                    0.0,
-                                    1.0,
-                                    -10.0
-                                  ],
-                                  "controlAddress": "/Camera_Position"
-                                }
-                              ],
-                              "editorIsCollapsed": true,
-                              "owned": true,
-                              "niceName": "VisualEffect"
-                            },
-                            "VFXRenderer": {
-                              "editorIsCollapsed": true,
-                              "owned": true,
-                              "niceName": "VFXRenderer"
-                            },
-                            "Orb": {
-                              "parameters": [
-                                {
-                                  "value": 0.34822,
-                                  "controlAddress": "/localPatternTime"
-                                },
-                                {
-                                  "value": 0.2568918,
-                                  "controlAddress": "/randomFactor"
-                                }
-                              ],
-                              "editorIsCollapsed": true,
-                              "owned": true,
-                              "niceName": "Orb"
-                            },
-                            "MeshToSDF": {
-                              "parameters": [
-                                {
-                                  "value": [
-                                    0.5,
-                                    0.5,
-                                    0.5
-                                  ],
-                                  "controlAddress": "/offset"
-                                }
-                              ],
-                              "editorIsCollapsed": true,
-                              "owned": true,
-                              "niceName": "MeshToSDF"
-                            },
-                            "CameraVFXInfo": {
-                              "editorIsCollapsed": true,
-                              "owned": true,
-                              "niceName": "CameraVFXInfo"
-                            }
-                          },
-                          "owned": true,
-                          "niceName": "Dancer 1"
-                        },
-                        "Dancer_2": {
                           "editorIsCollapsed": true,
                           "containers": {
                             "Transform": {
                               "parameters": [
                                 {
                                   "value": [
-                                    0.2420729994773865,
-                                    0.0,
-                                    1.561346054077148
-                                  ],
-                                  "controlAddress": "/position"
-                                },
-                                {
-                                  "value": [
-                                    0.2420729994773865,
-                                    0.0,
-                                    1.561346054077148
-                                  ],
-                                  "controlAddress": "/localPosition"
-                                },
-                                {
-                                  "value": [
                                     270.0,
                                     0.0,
                                     0.0
@@ -706,104 +930,18 @@
                               "owned": true,
                               "niceName": "Transform"
                             },
-                            "VisualEffect": {
-                              "parameters": [
-                                {
-                                  "value": [
-                                    0.0,
-                                    1.0,
-                                    -10.0
-                                  ],
-                                  "controlAddress": "/Camera_Position"
-                                }
-                              ],
+                            "Dancer": {
                               "editorIsCollapsed": true,
                               "owned": true,
-                              "niceName": "VisualEffect"
-                            },
-                            "VFXRenderer": {
-                              "editorIsCollapsed": true,
-                              "owned": true,
-                              "niceName": "VFXRenderer"
-                            },
-                            "Orb": {
-                              "parameters": [
-                                {
-                                  "value": 0.34822,
-                                  "controlAddress": "/localPatternTime"
-                                },
-                                {
-                                  "value": 0.5561134,
-                                  "controlAddress": "/randomFactor"
-                                }
-                              ],
-                              "editorIsCollapsed": true,
-                              "owned": true,
-                              "niceName": "Orb"
-                            },
-                            "MeshToSDF": {
-                              "parameters": [
-                                {
-                                  "value": [
-                                    0.5,
-                                    0.5,
-                                    0.5
-                                  ],
-                                  "controlAddress": "/offset"
-                                }
-                              ],
-                              "editorIsCollapsed": true,
-                              "owned": true,
-                              "niceName": "MeshToSDF"
-                            },
-                            "CameraVFXInfo": {
-                              "editorIsCollapsed": true,
-                              "owned": true,
-                              "niceName": "CameraVFXInfo"
+                              "niceName": "Dancer"
                             }
                           },
                           "owned": true,
-                          "niceName": "Dancer 2"
+                          "niceName": "Dancer 1"
                         }
                       },
                       "owned": true,
-                      "niceName": "Orb 1"
-                    }
-                  },
-                  "owned": true,
-                  "niceName": "Orbs"
-                },
-                "Forces": {
-                  "containers": {
-                    "Transform": {
-                      "parameters": [
-                        {
-                          "value": [
-                            1.0,
-                            1.0,
-                            1.0
-                          ],
-                          "controlAddress": "/localScale"
-                        }
-                      ],
-                      "editorIsCollapsed": true,
-                      "owned": true,
-                      "niceName": "Transform"
-                    },
-                    "StandardForceManager": {
-                      "parameters": [
-                        {
-                          "value": true,
-                          "controlAddress": "/listen"
-                        },
-                        {
-                          "value": 0.0,
-                          "alwaysNotify": true,
-                          "controlAddress": "/count"
-                        }
-                      ],
-                      "owned": true,
-                      "niceName": "StandardForceManager"
+                      "niceName": "Force 1"
                     }
                   },
                   "owned": true,
@@ -1155,7 +1293,7 @@
                         "count": {
                           "ACCESS": 3,
                           "VALUE": [
-                            1
+                            0
                           ],
                           "TYPE": "f",
                           "RANGE": [
@@ -1168,1917 +1306,6 @@
                           "DESCRIPTION": "Count"
                         }
                       }
-                    },
-                    "Orb_1": {
-                      "ACCESS": 0,
-                      "CONTENTS": {
-                        "Transform": {
-                          "ACCESS": 0,
-                          "CONTENTS": {
-                            "position": {
-                              "ACCESS": 3,
-                              "VALUE": [
-                                0,
-                                0,
-                                0
-                              ],
-                              "TYPE": "fff",
-                              "RANGE": [
-                                null
-                              ],
-                              "FULL_PATH": "/Ballet/Orbs/Orb_1/Transform/position",
-                              "DESCRIPTION": "Position"
-                            },
-                            "localPosition": {
-                              "ACCESS": 3,
-                              "VALUE": [
-                                0,
-                                0,
-                                0
-                              ],
-                              "TYPE": "fff",
-                              "RANGE": [
-                                null
-                              ],
-                              "FULL_PATH": "/Ballet/Orbs/Orb_1/Transform/localPosition",
-                              "DESCRIPTION": "Local Position"
-                            },
-                            "eulerAngles": {
-                              "ACCESS": 3,
-                              "VALUE": [
-                                0,
-                                0,
-                                0
-                              ],
-                              "TYPE": "fff",
-                              "RANGE": [
-                                null
-                              ],
-                              "FULL_PATH": "/Ballet/Orbs/Orb_1/Transform/eulerAngles",
-                              "DESCRIPTION": "Euler Angles"
-                            },
-                            "rotation": {
-                              "ACCESS": 3,
-                              "VALUE": [
-                                0,
-                                0,
-                                0
-                              ],
-                              "TYPE": "fff",
-                              "RANGE": [
-                                null
-                              ],
-                              "FULL_PATH": "/Ballet/Orbs/Orb_1/Transform/rotation",
-                              "DESCRIPTION": "Rotation"
-                            },
-                            "localRotation": {
-                              "ACCESS": 3,
-                              "VALUE": [
-                                0,
-                                0,
-                                0
-                              ],
-                              "TYPE": "fff",
-                              "RANGE": [
-                                null
-                              ],
-                              "FULL_PATH": "/Ballet/Orbs/Orb_1/Transform/localRotation",
-                              "DESCRIPTION": "Local Rotation"
-                            },
-                            "localScale": {
-                              "ACCESS": 3,
-                              "VALUE": [
-                                1,
-                                1,
-                                1
-                              ],
-                              "TYPE": "fff",
-                              "RANGE": [
-                                null
-                              ],
-                              "FULL_PATH": "/Ballet/Orbs/Orb_1/Transform/localScale",
-                              "DESCRIPTION": "Local Scale"
-                            }
-                          }
-                        },
-                        "OrbGroup": {
-                          "ACCESS": 0,
-                          "CONTENTS": {
-                            "life": {
-                              "ACCESS": 3,
-                              "VALUE": [
-                                1
-                              ],
-                              "TYPE": "f",
-                              "RANGE": [
-                                {
-                                  "MIN": 0,
-                                  "MAX": 40
-                                }
-                              ],
-                              "FULL_PATH": "/Ballet/Orbs/Orb_1/OrbGroup/life",
-                              "DESCRIPTION": "Life"
-                            },
-                            "emitterShape": {
-                              "ACCESS": 3,
-                              "VALUE": [
-                                "Torus"
-                              ],
-                              "TYPE": "s",
-                              "RANGE": [
-                                {
-                                  "VALS": [
-                                    "Sphere",
-                                    "Plane",
-                                    "Torus",
-                                    "Cube",
-                                    "Pipe",
-                                    "Egg",
-                                    "Line",
-                                    "Circle",
-                                    "Merkaba",
-                                    "Pyramid",
-                                    "Custom"
-                                  ]
-                                }
-                              ],
-                              "FULL_PATH": "/Ballet/Orbs/Orb_1/OrbGroup/emitterShape",
-                              "DESCRIPTION": "Emitter Shape"
-                            },
-                            "emitterSurfaceFactor": {
-                              "ACCESS": 3,
-                              "VALUE": [
-                                1
-                              ],
-                              "TYPE": "f",
-                              "RANGE": [
-                                {
-                                  "MIN": 0,
-                                  "MAX": 1
-                                }
-                              ],
-                              "FULL_PATH": "/Ballet/Orbs/Orb_1/OrbGroup/emitterSurfaceFactor",
-                              "DESCRIPTION": "Emitter Surface Factor"
-                            },
-                            "emitterVolumeFactor": {
-                              "ACCESS": 3,
-                              "VALUE": [
-                                0
-                              ],
-                              "TYPE": "f",
-                              "RANGE": [
-                                {
-                                  "MIN": 0,
-                                  "MAX": 1
-                                }
-                              ],
-                              "FULL_PATH": "/Ballet/Orbs/Orb_1/OrbGroup/emitterVolumeFactor",
-                              "DESCRIPTION": "Emitter Volume Factor"
-                            },
-                            "color": {
-                              "ACCESS": 3,
-                              "VALUE": [
-                                "FFFFFFFF"
-                              ],
-                              "TYPE": "r",
-                              "RANGE": [
-                                null
-                              ],
-                              "FULL_PATH": "/Ballet/Orbs/Orb_1/OrbGroup/color",
-                              "DESCRIPTION": "Color"
-                            },
-                            "alpha": {
-                              "ACCESS": 3,
-                              "VALUE": [
-                                0.175
-                              ],
-                              "TYPE": "f",
-                              "RANGE": [
-                                {
-                                  "MIN": 0,
-                                  "MAX": 1
-                                }
-                              ],
-                              "FULL_PATH": "/Ballet/Orbs/Orb_1/OrbGroup/alpha",
-                              "DESCRIPTION": "Alpha"
-                            },
-                            "hdrMultiplier": {
-                              "ACCESS": 3,
-                              "VALUE": [
-                                0
-                              ],
-                              "TYPE": "f",
-                              "RANGE": [
-                                {
-                                  "MIN": 0,
-                                  "MAX": 1
-                                }
-                              ],
-                              "FULL_PATH": "/Ballet/Orbs/Orb_1/OrbGroup/hdrMultiplier",
-                              "DESCRIPTION": "Hdr Multiplier"
-                            },
-                            "alphaSpeedThreshold": {
-                              "ACCESS": 3,
-                              "VALUE": [
-                                0
-                              ],
-                              "TYPE": "f",
-                              "RANGE": [
-                                {
-                                  "MIN": 0,
-                                  "MAX": 1
-                                }
-                              ],
-                              "FULL_PATH": "/Ballet/Orbs/Orb_1/OrbGroup/alphaSpeedThreshold",
-                              "DESCRIPTION": "Alpha Speed Threshold"
-                            },
-                            "textureOpacity": {
-                              "ACCESS": 3,
-                              "VALUE": [
-                                0
-                              ],
-                              "TYPE": "f",
-                              "RANGE": [
-                                {
-                                  "MIN": 0,
-                                  "MAX": 1
-                                }
-                              ],
-                              "FULL_PATH": "/Ballet/Orbs/Orb_1/OrbGroup/textureOpacity",
-                              "DESCRIPTION": "Texture Opacity"
-                            },
-                            "particleSize": {
-                              "ACCESS": 3,
-                              "VALUE": [
-                                0.5
-                              ],
-                              "TYPE": "f",
-                              "RANGE": [
-                                {
-                                  "MIN": 0,
-                                  "MAX": 1
-                                }
-                              ],
-                              "FULL_PATH": "/Ballet/Orbs/Orb_1/OrbGroup/particleSize",
-                              "DESCRIPTION": "Particle Size"
-                            },
-                            "forceWeight": {
-                              "ACCESS": 3,
-                              "VALUE": [
-                                1
-                              ],
-                              "TYPE": "f",
-                              "RANGE": [
-                                {
-                                  "MIN": 0,
-                                  "MAX": 1
-                                }
-                              ],
-                              "FULL_PATH": "/Ballet/Orbs/Orb_1/OrbGroup/forceWeight",
-                              "DESCRIPTION": "Force Weight"
-                            },
-                            "drag": {
-                              "ACCESS": 3,
-                              "VALUE": [
-                                0.5
-                              ],
-                              "TYPE": "f",
-                              "RANGE": [
-                                {
-                                  "MIN": 0,
-                                  "MAX": 1
-                                }
-                              ],
-                              "FULL_PATH": "/Ballet/Orbs/Orb_1/OrbGroup/drag",
-                              "DESCRIPTION": "Drag"
-                            },
-                            "velocityDrag": {
-                              "ACCESS": 3,
-                              "VALUE": [
-                                0
-                              ],
-                              "TYPE": "f",
-                              "RANGE": [
-                                {
-                                  "MIN": 0,
-                                  "MAX": 1
-                                }
-                              ],
-                              "FULL_PATH": "/Ballet/Orbs/Orb_1/OrbGroup/velocityDrag",
-                              "DESCRIPTION": "Velocity Drag"
-                            },
-                            "noisyDrag": {
-                              "ACCESS": 3,
-                              "VALUE": [
-                                0
-                              ],
-                              "TYPE": "f",
-                              "RANGE": [
-                                {
-                                  "MIN": 0,
-                                  "MAX": 1
-                                }
-                              ],
-                              "FULL_PATH": "/Ballet/Orbs/Orb_1/OrbGroup/noisyDrag",
-                              "DESCRIPTION": "Noisy Drag"
-                            },
-                            "noisyDragFrequency": {
-                              "ACCESS": 3,
-                              "VALUE": [
-                                0
-                              ],
-                              "TYPE": "f",
-                              "RANGE": [
-                                {
-                                  "MIN": 0,
-                                  "MAX": 1
-                                }
-                              ],
-                              "FULL_PATH": "/Ballet/Orbs/Orb_1/OrbGroup/noisyDragFrequency",
-                              "DESCRIPTION": "Noisy Drag Frequency"
-                            },
-                            "activateCollision": {
-                              "ACCESS": 3,
-                              "VALUE": [
-                                false
-                              ],
-                              "TYPE": "T",
-                              "RANGE": [
-                                null
-                              ],
-                              "FULL_PATH": "/Ballet/Orbs/Orb_1/OrbGroup/activateCollision",
-                              "DESCRIPTION": "Activate Collision"
-                            },
-                            "showMesh": {
-                              "ACCESS": 3,
-                              "VALUE": [
-                                false
-                              ],
-                              "TYPE": "T",
-                              "RANGE": [
-                                null
-                              ],
-                              "FULL_PATH": "/Ballet/Orbs/Orb_1/OrbGroup/showMesh",
-                              "DESCRIPTION": "Show Mesh"
-                            },
-                            "meshName": {
-                              "ACCESS": 3,
-                              "VALUE": [
-                                "torus"
-                              ],
-                              "TYPE": "s",
-                              "RANGE": [
-                                null
-                              ],
-                              "FULL_PATH": "/Ballet/Orbs/Orb_1/OrbGroup/meshName",
-                              "DESCRIPTION": "Mesh Name"
-                            },
-                            "patternSize": {
-                              "ACCESS": 3,
-                              "VALUE": [
-                                1.58
-                              ],
-                              "TYPE": "f",
-                              "RANGE": [
-                                {
-                                  "MIN": 0,
-                                  "MAX": 20
-                                }
-                              ],
-                              "FULL_PATH": "/Ballet/Orbs/Orb_1/OrbGroup/patternSize",
-                              "DESCRIPTION": "Pattern Size"
-                            },
-                            "patternSizeSpread": {
-                              "ACCESS": 3,
-                              "VALUE": [
-                                0
-                              ],
-                              "TYPE": "f",
-                              "RANGE": [
-                                {
-                                  "MIN": 0,
-                                  "MAX": 1
-                                }
-                              ],
-                              "FULL_PATH": "/Ballet/Orbs/Orb_1/OrbGroup/patternSizeSpread",
-                              "DESCRIPTION": "Pattern Size Spread"
-                            },
-                            "patternAxisSpread": {
-                              "ACCESS": 3,
-                              "VALUE": [
-                                0
-                              ],
-                              "TYPE": "f",
-                              "RANGE": [
-                                {
-                                  "MIN": 0,
-                                  "MAX": 1
-                                }
-                              ],
-                              "FULL_PATH": "/Ballet/Orbs/Orb_1/OrbGroup/patternAxisSpread",
-                              "DESCRIPTION": "Pattern Axis Spread"
-                            },
-                            "patternSpeed": {
-                              "ACCESS": 3,
-                              "VALUE": [
-                                0.105
-                              ],
-                              "TYPE": "f",
-                              "RANGE": [
-                                {
-                                  "MIN": -1,
-                                  "MAX": 1
-                                }
-                              ],
-                              "FULL_PATH": "/Ballet/Orbs/Orb_1/OrbGroup/patternSpeed",
-                              "DESCRIPTION": "Pattern Speed"
-                            },
-                            "patternSpeedRandom": {
-                              "ACCESS": 3,
-                              "VALUE": [
-                                0
-                              ],
-                              "TYPE": "f",
-                              "RANGE": [
-                                {
-                                  "MIN": 0,
-                                  "MAX": 1
-                                }
-                              ],
-                              "FULL_PATH": "/Ballet/Orbs/Orb_1/OrbGroup/patternSpeedRandom",
-                              "DESCRIPTION": "Pattern Speed Random"
-                            },
-                            "patternTime": {
-                              "ACCESS": 3,
-                              "VALUE": [
-                                0.34822
-                              ],
-                              "TYPE": "f",
-                              "RANGE": [
-                                null
-                              ],
-                              "FULL_PATH": "/Ballet/Orbs/Orb_1/OrbGroup/patternTime",
-                              "DESCRIPTION": "Pattern Time"
-                            },
-                            "patternTimeOffset": {
-                              "ACCESS": 3,
-                              "VALUE": [
-                                0
-                              ],
-                              "TYPE": "f",
-                              "RANGE": [
-                                {
-                                  "MIN": 0,
-                                  "MAX": 1
-                                }
-                              ],
-                              "FULL_PATH": "/Ballet/Orbs/Orb_1/OrbGroup/patternTimeOffset",
-                              "DESCRIPTION": "Pattern Time Offset"
-                            },
-                            "patternSizeLFOFrequency": {
-                              "ACCESS": 3,
-                              "VALUE": [
-                                0
-                              ],
-                              "TYPE": "f",
-                              "RANGE": [
-                                {
-                                  "MIN": 0,
-                                  "MAX": 10
-                                }
-                              ],
-                              "FULL_PATH": "/Ballet/Orbs/Orb_1/OrbGroup/patternSizeLFOFrequency",
-                              "DESCRIPTION": "Pattern Size LFOFrequency"
-                            },
-                            "patternSizeLFOAmplitude": {
-                              "ACCESS": 3,
-                              "VALUE": [
-                                0
-                              ],
-                              "TYPE": "f",
-                              "RANGE": [
-                                {
-                                  "MIN": 0,
-                                  "MAX": 10
-                                }
-                              ],
-                              "FULL_PATH": "/Ballet/Orbs/Orb_1/OrbGroup/patternSizeLFOAmplitude",
-                              "DESCRIPTION": "Pattern Size LFOAmplitude"
-                            },
-                            "dancerSize": {
-                              "ACCESS": 3,
-                              "VALUE": [
-                                1
-                              ],
-                              "TYPE": "f",
-                              "RANGE": [
-                                {
-                                  "MIN": 0,
-                                  "MAX": 20
-                                }
-                              ],
-                              "FULL_PATH": "/Ballet/Orbs/Orb_1/OrbGroup/dancerSize",
-                              "DESCRIPTION": "Dancer Size"
-                            },
-                            "dancerHyperSize": {
-                              "ACCESS": 3,
-                              "VALUE": [
-                                0
-                              ],
-                              "TYPE": "f",
-                              "RANGE": [
-                                {
-                                  "MIN": 0,
-                                  "MAX": 1
-                                }
-                              ],
-                              "FULL_PATH": "/Ballet/Orbs/Orb_1/OrbGroup/dancerHyperSize",
-                              "DESCRIPTION": "Dancer Hyper Size"
-                            },
-                            "dancerSizeSpread": {
-                              "ACCESS": 3,
-                              "VALUE": [
-                                0
-                              ],
-                              "TYPE": "f",
-                              "RANGE": [
-                                {
-                                  "MIN": 0,
-                                  "MAX": 1
-                                }
-                              ],
-                              "FULL_PATH": "/Ballet/Orbs/Orb_1/OrbGroup/dancerSizeSpread",
-                              "DESCRIPTION": "Dancer Size Spread"
-                            },
-                            "dancerWeightSizeFactor": {
-                              "ACCESS": 3,
-                              "VALUE": [
-                                0
-                              ],
-                              "TYPE": "f",
-                              "RANGE": [
-                                {
-                                  "MIN": 0,
-                                  "MAX": 1
-                                }
-                              ],
-                              "FULL_PATH": "/Ballet/Orbs/Orb_1/OrbGroup/dancerWeightSizeFactor",
-                              "DESCRIPTION": "Dancer Weight Size Factor"
-                            },
-                            "dancerIntensity": {
-                              "ACCESS": 3,
-                              "VALUE": [
-                                1
-                              ],
-                              "TYPE": "f",
-                              "RANGE": [
-                                {
-                                  "MIN": 0,
-                                  "MAX": 1
-                                }
-                              ],
-                              "FULL_PATH": "/Ballet/Orbs/Orb_1/OrbGroup/dancerIntensity",
-                              "DESCRIPTION": "Dancer Intensity"
-                            },
-                            "dancerWeightIntensityFactor": {
-                              "ACCESS": 3,
-                              "VALUE": [
-                                0
-                              ],
-                              "TYPE": "f",
-                              "RANGE": [
-                                {
-                                  "MIN": 0,
-                                  "MAX": 1
-                                }
-                              ],
-                              "FULL_PATH": "/Ballet/Orbs/Orb_1/OrbGroup/dancerWeightIntensityFactor",
-                              "DESCRIPTION": "Dancer Weight Intensity Factor"
-                            },
-                            "dancerLookAt": {
-                              "ACCESS": 3,
-                              "VALUE": [
-                                0,
-                                1,
-                                0
-                              ],
-                              "TYPE": "fff",
-                              "RANGE": [
-                                null
-                              ],
-                              "FULL_PATH": "/Ballet/Orbs/Orb_1/OrbGroup/dancerLookAt",
-                              "DESCRIPTION": "Dancer Look At"
-                            },
-                            "dancerLookAtMode": {
-                              "ACCESS": 3,
-                              "VALUE": [
-                                0
-                              ],
-                              "TYPE": "f",
-                              "RANGE": [
-                                {
-                                  "MIN": 0,
-                                  "MAX": 2
-                                }
-                              ],
-                              "FULL_PATH": "/Ballet/Orbs/Orb_1/OrbGroup/dancerLookAtMode",
-                              "DESCRIPTION": "Dancer Look At Mode"
-                            },
-                            "count": {
-                              "ACCESS": 3,
-                              "VALUE": [
-                                2
-                              ],
-                              "TYPE": "f",
-                              "RANGE": [
-                                {
-                                  "MIN": 0,
-                                  "MAX": 16
-                                }
-                              ],
-                              "FULL_PATH": "/Ballet/Orbs/Orb_1/OrbGroup/count",
-                              "DESCRIPTION": "Count"
-                            },
-                            "kill": {
-                              "ACCESS": 3,
-                              "TYPE": "N",
-                              "FULL_PATH": "/Ballet/Orbs/Orb_1/OrbGroup/kill",
-                              "DESCRIPTION": "Kill"
-                            }
-                          }
-                        },
-                        "LineDancePattern": {
-                          "ACCESS": 0,
-                          "CONTENTS": {
-                            "blendMode": {
-                              "ACCESS": 3,
-                              "VALUE": [
-                                "Add"
-                              ],
-                              "TYPE": "s",
-                              "RANGE": [
-                                {
-                                  "VALS": [
-                                    "Add",
-                                    "Multiply",
-                                    "Replace"
-                                  ]
-                                }
-                              ],
-                              "FULL_PATH": "/Ballet/Orbs/Orb_1/LineDancePattern/blendMode",
-                              "DESCRIPTION": "Blend Mode"
-                            },
-                            "weight": {
-                              "ACCESS": 3,
-                              "VALUE": [
-                                0
-                              ],
-                              "TYPE": "f",
-                              "RANGE": [
-                                {
-                                  "MIN": 0,
-                                  "MAX": 1
-                                }
-                              ],
-                              "FULL_PATH": "/Ballet/Orbs/Orb_1/LineDancePattern/weight",
-                              "DESCRIPTION": "Weight"
-                            }
-                          }
-                        },
-                        "CircleDancePattern": {
-                          "ACCESS": 0,
-                          "CONTENTS": {
-                            "blendMode": {
-                              "ACCESS": 3,
-                              "VALUE": [
-                                "Add"
-                              ],
-                              "TYPE": "s",
-                              "RANGE": [
-                                {
-                                  "VALS": [
-                                    "Add",
-                                    "Multiply",
-                                    "Replace"
-                                  ]
-                                }
-                              ],
-                              "FULL_PATH": "/Ballet/Orbs/Orb_1/CircleDancePattern/blendMode",
-                              "DESCRIPTION": "Blend Mode"
-                            },
-                            "weight": {
-                              "ACCESS": 3,
-                              "VALUE": [
-                                1
-                              ],
-                              "TYPE": "f",
-                              "RANGE": [
-                                {
-                                  "MIN": 0,
-                                  "MAX": 1
-                                }
-                              ],
-                              "FULL_PATH": "/Ballet/Orbs/Orb_1/CircleDancePattern/weight",
-                              "DESCRIPTION": "Weight"
-                            }
-                          }
-                        },
-                        "NBodyProblemPattern": {
-                          "ACCESS": 0,
-                          "CONTENTS": {
-                            "G": {
-                              "ACCESS": 3,
-                              "VALUE": [
-                                1
-                              ],
-                              "TYPE": "f",
-                              "RANGE": [
-                                null
-                              ],
-                              "FULL_PATH": "/Ballet/Orbs/Orb_1/NBodyProblemPattern/G",
-                              "DESCRIPTION": "G"
-                            },
-                            "bodyMass": {
-                              "ACCESS": 3,
-                              "VALUE": [
-                                1
-                              ],
-                              "TYPE": "f",
-                              "RANGE": [
-                                null
-                              ],
-                              "FULL_PATH": "/Ballet/Orbs/Orb_1/NBodyProblemPattern/bodyMass",
-                              "DESCRIPTION": "Body Mass"
-                            },
-                            "blendMode": {
-                              "ACCESS": 3,
-                              "VALUE": [
-                                "Add"
-                              ],
-                              "TYPE": "s",
-                              "RANGE": [
-                                {
-                                  "VALS": [
-                                    "Add",
-                                    "Multiply",
-                                    "Replace"
-                                  ]
-                                }
-                              ],
-                              "FULL_PATH": "/Ballet/Orbs/Orb_1/NBodyProblemPattern/blendMode",
-                              "DESCRIPTION": "Blend Mode"
-                            },
-                            "weight": {
-                              "ACCESS": 3,
-                              "VALUE": [
-                                0
-                              ],
-                              "TYPE": "f",
-                              "RANGE": [
-                                {
-                                  "MIN": 0,
-                                  "MAX": 1
-                                }
-                              ],
-                              "FULL_PATH": "/Ballet/Orbs/Orb_1/NBodyProblemPattern/weight",
-                              "DESCRIPTION": "Weight"
-                            }
-                          }
-                        },
-                        "Dancer_1": {
-                          "ACCESS": 0,
-                          "CONTENTS": {
-                            "Transform": {
-                              "ACCESS": 0,
-                              "CONTENTS": {
-                                "position": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    -0.914347,
-                                    0,
-                                    1.288553
-                                  ],
-                                  "TYPE": "fff",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_1/Transform/position",
-                                  "DESCRIPTION": "Position"
-                                },
-                                "localPosition": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    -0.914347,
-                                    0,
-                                    1.288553
-                                  ],
-                                  "TYPE": "fff",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_1/Transform/localPosition",
-                                  "DESCRIPTION": "Local Position"
-                                },
-                                "eulerAngles": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    270,
-                                    0,
-                                    0
-                                  ],
-                                  "TYPE": "fff",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_1/Transform/eulerAngles",
-                                  "DESCRIPTION": "Euler Angles"
-                                },
-                                "rotation": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    270,
-                                    0,
-                                    0
-                                  ],
-                                  "TYPE": "fff",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_1/Transform/rotation",
-                                  "DESCRIPTION": "Rotation"
-                                },
-                                "localRotation": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    270,
-                                    0,
-                                    0
-                                  ],
-                                  "TYPE": "fff",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_1/Transform/localRotation",
-                                  "DESCRIPTION": "Local Rotation"
-                                },
-                                "localScale": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    1,
-                                    1,
-                                    1
-                                  ],
-                                  "TYPE": "fff",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_1/Transform/localScale",
-                                  "DESCRIPTION": "Local Scale"
-                                }
-                              }
-                            },
-                            "VisualEffect": {
-                              "ACCESS": 0,
-                              "CONTENTS": {
-                                "pause": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    false
-                                  ],
-                                  "TYPE": "T",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_1/VisualEffect/pause",
-                                  "DESCRIPTION": "Pause"
-                                },
-                                "playRate": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    1
-                                  ],
-                                  "TYPE": "f",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_1/VisualEffect/playRate",
-                                  "DESCRIPTION": "Play Rate"
-                                },
-                                "resetSeedOnPlay": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    true
-                                  ],
-                                  "TYPE": "T",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_1/VisualEffect/resetSeedOnPlay",
-                                  "DESCRIPTION": "Reset Seed On Play"
-                                },
-                                "initialEventID": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    302
-                                  ],
-                                  "TYPE": "i",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_1/VisualEffect/initialEventID",
-                                  "DESCRIPTION": "Initial Event ID"
-                                },
-                                "initialEventName": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    "OnPlay"
-                                  ],
-                                  "TYPE": "s",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_1/VisualEffect/initialEventName",
-                                  "DESCRIPTION": "Initial Event Name"
-                                },
-                                "Camera_Position": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    0,
-                                    1,
-                                    -10
-                                  ],
-                                  "TYPE": "fff",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "DESCRIPTION": "Camera Position",
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_1/VisualEffect/Camera_Position"
-                                },
-                                "Emitter_Intensity": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    1
-                                  ],
-                                  "TYPE": "f",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "DESCRIPTION": "Emitter Intensity",
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_1/VisualEffect/Emitter_Intensity"
-                                },
-                                "Orb_Index": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    0
-                                  ],
-                                  "TYPE": "i",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "DESCRIPTION": "Orb Index",
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_1/VisualEffect/Orb_Index"
-                                }
-                              }
-                            },
-                            "VFXRenderer": {
-                              "ACCESS": 0,
-                              "CONTENTS": {
-                                "castShadows": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    false
-                                  ],
-                                  "TYPE": "T",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_1/VFXRenderer/castShadows",
-                                  "DESCRIPTION": "Cast Shadows"
-                                },
-                                "motionVectors": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    false
-                                  ],
-                                  "TYPE": "T",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_1/VFXRenderer/motionVectors",
-                                  "DESCRIPTION": "Motion Vectors"
-                                },
-                                "useLightProbes": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    false
-                                  ],
-                                  "TYPE": "T",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_1/VFXRenderer/useLightProbes",
-                                  "DESCRIPTION": "Use Light Probes"
-                                },
-                                "receiveShadows": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    false
-                                  ],
-                                  "TYPE": "T",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_1/VFXRenderer/receiveShadows",
-                                  "DESCRIPTION": "Receive Shadows"
-                                },
-                                "forceRenderingOff": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    false
-                                  ],
-                                  "TYPE": "T",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_1/VFXRenderer/forceRenderingOff",
-                                  "DESCRIPTION": "Force Rendering Off"
-                                },
-                                "staticShadowCaster": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    false
-                                  ],
-                                  "TYPE": "T",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_1/VFXRenderer/staticShadowCaster",
-                                  "DESCRIPTION": "Static Shadow Caster"
-                                },
-                                "rendererPriority": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    0
-                                  ],
-                                  "TYPE": "i",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_1/VFXRenderer/rendererPriority",
-                                  "DESCRIPTION": "Renderer Priority"
-                                },
-                                "rayTracingAccelerationStructureBuildFlagsOverride": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    false
-                                  ],
-                                  "TYPE": "T",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_1/VFXRenderer/rayTracingAccelerationStructureBuildFlagsOverride",
-                                  "DESCRIPTION": "Ray Tracing Acceleration Structure Build Flags Override"
-                                },
-                                "sortingLayerName": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    "Default"
-                                  ],
-                                  "TYPE": "s",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_1/VFXRenderer/sortingLayerName",
-                                  "DESCRIPTION": "Sorting Layer Name"
-                                },
-                                "sortingLayerID": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    0
-                                  ],
-                                  "TYPE": "i",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_1/VFXRenderer/sortingLayerID",
-                                  "DESCRIPTION": "Sorting Layer ID"
-                                },
-                                "sortingOrder": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    0
-                                  ],
-                                  "TYPE": "i",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_1/VFXRenderer/sortingOrder",
-                                  "DESCRIPTION": "Sorting Order"
-                                },
-                                "allowOcclusionWhenDynamic": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    true
-                                  ],
-                                  "TYPE": "T",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_1/VFXRenderer/allowOcclusionWhenDynamic",
-                                  "DESCRIPTION": "Allow Occlusion When Dynamic"
-                                },
-                                "lightmapIndex": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    -1
-                                  ],
-                                  "TYPE": "i",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_1/VFXRenderer/lightmapIndex",
-                                  "DESCRIPTION": "Lightmap Index"
-                                },
-                                "realtimeLightmapIndex": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    -1
-                                  ],
-                                  "TYPE": "i",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_1/VFXRenderer/realtimeLightmapIndex",
-                                  "DESCRIPTION": "Realtime Lightmap Index"
-                                }
-                              }
-                            },
-                            "Orb": {
-                              "ACCESS": 0,
-                              "CONTENTS": {
-                                "weight": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    1
-                                  ],
-                                  "TYPE": "f",
-                                  "RANGE": [
-                                    {
-                                      "MIN": 0,
-                                      "MAX": 1
-                                    }
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_1/Orb/weight",
-                                  "DESCRIPTION": "Weight"
-                                },
-                                "intensity": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    1
-                                  ],
-                                  "TYPE": "f",
-                                  "RANGE": [
-                                    {
-                                      "MIN": 0,
-                                      "MAX": 1
-                                    }
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_1/Orb/intensity",
-                                  "DESCRIPTION": "Intensity"
-                                },
-                                "size": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    1
-                                  ],
-                                  "TYPE": "f",
-                                  "RANGE": [
-                                    {
-                                      "MIN": 0,
-                                      "MAX": 20
-                                    }
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_1/Orb/size",
-                                  "DESCRIPTION": "Size"
-                                },
-                                "localPatternTime": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    0.34822
-                                  ],
-                                  "TYPE": "f",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_1/Orb/localPatternTime",
-                                  "DESCRIPTION": "Local Pattern Time"
-                                },
-                                "randomFactor": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    0.2568918
-                                  ],
-                                  "TYPE": "f",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_1/Orb/randomFactor",
-                                  "DESCRIPTION": "Random Factor"
-                                },
-                                "velocity": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    0,
-                                    0,
-                                    0
-                                  ],
-                                  "TYPE": "fff",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_1/Orb/velocity",
-                                  "DESCRIPTION": "Velocity"
-                                }
-                              }
-                            },
-                            "MeshToSDF": {
-                              "ACCESS": 0,
-                              "CONTENTS": {
-                                "executeInEditMode": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    false
-                                  ],
-                                  "TYPE": "T",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_1/MeshToSDF/executeInEditMode",
-                                  "DESCRIPTION": "Execute In Edit Mode"
-                                },
-                                "materialProperty": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    "_Texture3D"
-                                  ],
-                                  "TYPE": "s",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_1/MeshToSDF/materialProperty",
-                                  "DESCRIPTION": "Material Property"
-                                },
-                                "vfxProperty": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    "Emitter SDF"
-                                  ],
-                                  "TYPE": "s",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_1/MeshToSDF/vfxProperty",
-                                  "DESCRIPTION": "Vfx Property"
-                                },
-                                "fieldsChanged": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    false
-                                  ],
-                                  "TYPE": "T",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_1/MeshToSDF/fieldsChanged",
-                                  "DESCRIPTION": "Fields Changed"
-                                },
-                                "sdfResolution": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    64
-                                  ],
-                                  "TYPE": "i",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_1/MeshToSDF/sdfResolution",
-                                  "DESCRIPTION": "Sdf Resolution"
-                                },
-                                "offset": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    0.5,
-                                    0.5,
-                                    0.5
-                                  ],
-                                  "TYPE": "fff",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_1/MeshToSDF/offset",
-                                  "DESCRIPTION": "Offset"
-                                },
-                                "scaleBy": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    0.5
-                                  ],
-                                  "TYPE": "f",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_1/MeshToSDF/scaleBy",
-                                  "DESCRIPTION": "Scale By"
-                                },
-                                "postProcessThickness": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    0.01
-                                  ],
-                                  "TYPE": "f",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_1/MeshToSDF/postProcessThickness",
-                                  "DESCRIPTION": "Post Process Thickness"
-                                }
-                              }
-                            },
-                            "CameraVFXInfo": {
-                              "ACCESS": 0,
-                              "CONTENTS": null
-                            }
-                          },
-                          "DESCRIPTION": "Dancer 1"
-                        },
-                        "Dancer_2": {
-                          "ACCESS": 0,
-                          "CONTENTS": {
-                            "Transform": {
-                              "ACCESS": 0,
-                              "CONTENTS": {
-                                "position": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    0.9143471,
-                                    0,
-                                    -1.288553
-                                  ],
-                                  "TYPE": "fff",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_2/Transform/position",
-                                  "DESCRIPTION": "Position"
-                                },
-                                "localPosition": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    0.9143471,
-                                    0,
-                                    -1.288553
-                                  ],
-                                  "TYPE": "fff",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_2/Transform/localPosition",
-                                  "DESCRIPTION": "Local Position"
-                                },
-                                "eulerAngles": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    270,
-                                    0,
-                                    0
-                                  ],
-                                  "TYPE": "fff",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_2/Transform/eulerAngles",
-                                  "DESCRIPTION": "Euler Angles"
-                                },
-                                "rotation": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    270,
-                                    0,
-                                    0
-                                  ],
-                                  "TYPE": "fff",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_2/Transform/rotation",
-                                  "DESCRIPTION": "Rotation"
-                                },
-                                "localRotation": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    270,
-                                    0,
-                                    0
-                                  ],
-                                  "TYPE": "fff",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_2/Transform/localRotation",
-                                  "DESCRIPTION": "Local Rotation"
-                                },
-                                "localScale": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    1,
-                                    1,
-                                    1
-                                  ],
-                                  "TYPE": "fff",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_2/Transform/localScale",
-                                  "DESCRIPTION": "Local Scale"
-                                }
-                              }
-                            },
-                            "VisualEffect": {
-                              "ACCESS": 0,
-                              "CONTENTS": {
-                                "pause": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    false
-                                  ],
-                                  "TYPE": "T",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_2/VisualEffect/pause",
-                                  "DESCRIPTION": "Pause"
-                                },
-                                "playRate": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    1
-                                  ],
-                                  "TYPE": "f",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_2/VisualEffect/playRate",
-                                  "DESCRIPTION": "Play Rate"
-                                },
-                                "resetSeedOnPlay": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    true
-                                  ],
-                                  "TYPE": "T",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_2/VisualEffect/resetSeedOnPlay",
-                                  "DESCRIPTION": "Reset Seed On Play"
-                                },
-                                "initialEventID": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    302
-                                  ],
-                                  "TYPE": "i",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_2/VisualEffect/initialEventID",
-                                  "DESCRIPTION": "Initial Event ID"
-                                },
-                                "initialEventName": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    "OnPlay"
-                                  ],
-                                  "TYPE": "s",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_2/VisualEffect/initialEventName",
-                                  "DESCRIPTION": "Initial Event Name"
-                                },
-                                "Camera_Position": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    0,
-                                    1,
-                                    -10
-                                  ],
-                                  "TYPE": "fff",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "DESCRIPTION": "Camera Position",
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_2/VisualEffect/Camera_Position"
-                                },
-                                "Emitter_Intensity": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    1
-                                  ],
-                                  "TYPE": "f",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "DESCRIPTION": "Emitter Intensity",
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_2/VisualEffect/Emitter_Intensity"
-                                },
-                                "Orb_Index": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    1
-                                  ],
-                                  "TYPE": "i",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "DESCRIPTION": "Orb Index",
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_2/VisualEffect/Orb_Index"
-                                }
-                              }
-                            },
-                            "VFXRenderer": {
-                              "ACCESS": 0,
-                              "CONTENTS": {
-                                "castShadows": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    false
-                                  ],
-                                  "TYPE": "T",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_2/VFXRenderer/castShadows",
-                                  "DESCRIPTION": "Cast Shadows"
-                                },
-                                "motionVectors": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    false
-                                  ],
-                                  "TYPE": "T",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_2/VFXRenderer/motionVectors",
-                                  "DESCRIPTION": "Motion Vectors"
-                                },
-                                "useLightProbes": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    false
-                                  ],
-                                  "TYPE": "T",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_2/VFXRenderer/useLightProbes",
-                                  "DESCRIPTION": "Use Light Probes"
-                                },
-                                "receiveShadows": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    false
-                                  ],
-                                  "TYPE": "T",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_2/VFXRenderer/receiveShadows",
-                                  "DESCRIPTION": "Receive Shadows"
-                                },
-                                "forceRenderingOff": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    false
-                                  ],
-                                  "TYPE": "T",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_2/VFXRenderer/forceRenderingOff",
-                                  "DESCRIPTION": "Force Rendering Off"
-                                },
-                                "staticShadowCaster": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    false
-                                  ],
-                                  "TYPE": "T",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_2/VFXRenderer/staticShadowCaster",
-                                  "DESCRIPTION": "Static Shadow Caster"
-                                },
-                                "rendererPriority": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    0
-                                  ],
-                                  "TYPE": "i",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_2/VFXRenderer/rendererPriority",
-                                  "DESCRIPTION": "Renderer Priority"
-                                },
-                                "rayTracingAccelerationStructureBuildFlagsOverride": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    false
-                                  ],
-                                  "TYPE": "T",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_2/VFXRenderer/rayTracingAccelerationStructureBuildFlagsOverride",
-                                  "DESCRIPTION": "Ray Tracing Acceleration Structure Build Flags Override"
-                                },
-                                "sortingLayerName": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    "Default"
-                                  ],
-                                  "TYPE": "s",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_2/VFXRenderer/sortingLayerName",
-                                  "DESCRIPTION": "Sorting Layer Name"
-                                },
-                                "sortingLayerID": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    0
-                                  ],
-                                  "TYPE": "i",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_2/VFXRenderer/sortingLayerID",
-                                  "DESCRIPTION": "Sorting Layer ID"
-                                },
-                                "sortingOrder": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    0
-                                  ],
-                                  "TYPE": "i",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_2/VFXRenderer/sortingOrder",
-                                  "DESCRIPTION": "Sorting Order"
-                                },
-                                "allowOcclusionWhenDynamic": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    true
-                                  ],
-                                  "TYPE": "T",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_2/VFXRenderer/allowOcclusionWhenDynamic",
-                                  "DESCRIPTION": "Allow Occlusion When Dynamic"
-                                },
-                                "lightmapIndex": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    -1
-                                  ],
-                                  "TYPE": "i",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_2/VFXRenderer/lightmapIndex",
-                                  "DESCRIPTION": "Lightmap Index"
-                                },
-                                "realtimeLightmapIndex": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    -1
-                                  ],
-                                  "TYPE": "i",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_2/VFXRenderer/realtimeLightmapIndex",
-                                  "DESCRIPTION": "Realtime Lightmap Index"
-                                }
-                              }
-                            },
-                            "Orb": {
-                              "ACCESS": 0,
-                              "CONTENTS": {
-                                "weight": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    1
-                                  ],
-                                  "TYPE": "f",
-                                  "RANGE": [
-                                    {
-                                      "MIN": 0,
-                                      "MAX": 1
-                                    }
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_2/Orb/weight",
-                                  "DESCRIPTION": "Weight"
-                                },
-                                "intensity": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    1
-                                  ],
-                                  "TYPE": "f",
-                                  "RANGE": [
-                                    {
-                                      "MIN": 0,
-                                      "MAX": 1
-                                    }
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_2/Orb/intensity",
-                                  "DESCRIPTION": "Intensity"
-                                },
-                                "size": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    1
-                                  ],
-                                  "TYPE": "f",
-                                  "RANGE": [
-                                    {
-                                      "MIN": 0,
-                                      "MAX": 20
-                                    }
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_2/Orb/size",
-                                  "DESCRIPTION": "Size"
-                                },
-                                "localPatternTime": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    0.34822
-                                  ],
-                                  "TYPE": "f",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_2/Orb/localPatternTime",
-                                  "DESCRIPTION": "Local Pattern Time"
-                                },
-                                "randomFactor": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    0.5561134
-                                  ],
-                                  "TYPE": "f",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_2/Orb/randomFactor",
-                                  "DESCRIPTION": "Random Factor"
-                                },
-                                "velocity": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    0,
-                                    0,
-                                    0
-                                  ],
-                                  "TYPE": "fff",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_2/Orb/velocity",
-                                  "DESCRIPTION": "Velocity"
-                                }
-                              }
-                            },
-                            "MeshToSDF": {
-                              "ACCESS": 0,
-                              "CONTENTS": {
-                                "executeInEditMode": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    false
-                                  ],
-                                  "TYPE": "T",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_2/MeshToSDF/executeInEditMode",
-                                  "DESCRIPTION": "Execute In Edit Mode"
-                                },
-                                "materialProperty": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    "_Texture3D"
-                                  ],
-                                  "TYPE": "s",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_2/MeshToSDF/materialProperty",
-                                  "DESCRIPTION": "Material Property"
-                                },
-                                "vfxProperty": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    "Emitter SDF"
-                                  ],
-                                  "TYPE": "s",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_2/MeshToSDF/vfxProperty",
-                                  "DESCRIPTION": "Vfx Property"
-                                },
-                                "fieldsChanged": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    false
-                                  ],
-                                  "TYPE": "T",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_2/MeshToSDF/fieldsChanged",
-                                  "DESCRIPTION": "Fields Changed"
-                                },
-                                "sdfResolution": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    64
-                                  ],
-                                  "TYPE": "i",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_2/MeshToSDF/sdfResolution",
-                                  "DESCRIPTION": "Sdf Resolution"
-                                },
-                                "offset": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    0.5,
-                                    0.5,
-                                    0.5
-                                  ],
-                                  "TYPE": "fff",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_2/MeshToSDF/offset",
-                                  "DESCRIPTION": "Offset"
-                                },
-                                "scaleBy": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    0.5
-                                  ],
-                                  "TYPE": "f",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_2/MeshToSDF/scaleBy",
-                                  "DESCRIPTION": "Scale By"
-                                },
-                                "postProcessThickness": {
-                                  "ACCESS": 3,
-                                  "VALUE": [
-                                    0.01
-                                  ],
-                                  "TYPE": "f",
-                                  "RANGE": [
-                                    null
-                                  ],
-                                  "FULL_PATH": "/Ballet/Orbs/Orb_1/Dancer_2/MeshToSDF/postProcessThickness",
-                                  "DESCRIPTION": "Post Process Thickness"
-                                }
-                              }
-                            },
-                            "CameraVFXInfo": {
-                              "ACCESS": 0,
-                              "CONTENTS": null
-                            }
-                          },
-                          "DESCRIPTION": "Dancer 2"
-                        }
-                      },
-                      "DESCRIPTION": "Orb 1"
                     }
                   },
                   "DESCRIPTION": "Orbs"
@@ -3181,7 +1408,7 @@
                         "count": {
                           "ACCESS": 3,
                           "VALUE": [
-                            0
+                            1
                           ],
                           "TYPE": "f",
                           "RANGE": [
@@ -3194,6 +1421,1148 @@
                           "DESCRIPTION": "Count"
                         }
                       }
+                    },
+                    "Force_1": {
+                      "ACCESS": 0,
+                      "CONTENTS": {
+                        "Transform": {
+                          "ACCESS": 0,
+                          "CONTENTS": {
+                            "position": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                0,
+                                0,
+                                0
+                              ],
+                              "TYPE": "fff",
+                              "RANGE": [
+                                null
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/Transform/position",
+                              "DESCRIPTION": "Position"
+                            },
+                            "localPosition": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                0,
+                                0,
+                                0
+                              ],
+                              "TYPE": "fff",
+                              "RANGE": [
+                                null
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/Transform/localPosition",
+                              "DESCRIPTION": "Local Position"
+                            },
+                            "eulerAngles": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                0,
+                                0,
+                                0
+                              ],
+                              "TYPE": "fff",
+                              "RANGE": [
+                                null
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/Transform/eulerAngles",
+                              "DESCRIPTION": "Euler Angles"
+                            },
+                            "rotation": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                0,
+                                0,
+                                0
+                              ],
+                              "TYPE": "fff",
+                              "RANGE": [
+                                null
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/Transform/rotation",
+                              "DESCRIPTION": "Rotation"
+                            },
+                            "localRotation": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                0,
+                                0,
+                                0
+                              ],
+                              "TYPE": "fff",
+                              "RANGE": [
+                                null
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/Transform/localRotation",
+                              "DESCRIPTION": "Local Rotation"
+                            },
+                            "localScale": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                1,
+                                1,
+                                1
+                              ],
+                              "TYPE": "fff",
+                              "RANGE": [
+                                null
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/Transform/localScale",
+                              "DESCRIPTION": "Local Scale"
+                            }
+                          }
+                        },
+                        "StandardForceGroup": {
+                          "ACCESS": 0,
+                          "CONTENTS": {
+                            "forceFactorInside": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                1
+                              ],
+                              "TYPE": "f",
+                              "RANGE": [
+                                {
+                                  "MIN": 0,
+                                  "MAX": 1
+                                }
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/StandardForceGroup/forceFactorInside",
+                              "DESCRIPTION": "Force Factor Inside"
+                            },
+                            "forceFactorOutside": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                0
+                              ],
+                              "TYPE": "f",
+                              "RANGE": [
+                                {
+                                  "MIN": 0,
+                                  "MAX": 1
+                                }
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/StandardForceGroup/forceFactorOutside",
+                              "DESCRIPTION": "Force Factor Outside"
+                            },
+                            "radialIntensity": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                0
+                              ],
+                              "TYPE": "f",
+                              "RANGE": [
+                                {
+                                  "MIN": 0,
+                                  "MAX": 1
+                                }
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/StandardForceGroup/radialIntensity",
+                              "DESCRIPTION": "Radial Intensity"
+                            },
+                            "radialFrequency": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                0
+                              ],
+                              "TYPE": "f",
+                              "RANGE": [
+                                {
+                                  "MIN": 0,
+                                  "MAX": 1
+                                }
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/StandardForceGroup/radialFrequency",
+                              "DESCRIPTION": "Radial Frequency"
+                            },
+                            "axialIntensity": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                0
+                              ],
+                              "TYPE": "f",
+                              "RANGE": [
+                                {
+                                  "MIN": 0,
+                                  "MAX": 1
+                                }
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/StandardForceGroup/axialIntensity",
+                              "DESCRIPTION": "Axial Intensity"
+                            },
+                            "axialFactor": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                1
+                              ],
+                              "TYPE": "f",
+                              "RANGE": [
+                                {
+                                  "MIN": 1,
+                                  "MAX": 3
+                                }
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/StandardForceGroup/axialFactor",
+                              "DESCRIPTION": "Axial Factor"
+                            },
+                            "axialFrequency": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                0,
+                                0,
+                                0
+                              ],
+                              "TYPE": "fff",
+                              "RANGE": [
+                                null
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/StandardForceGroup/axialFrequency",
+                              "DESCRIPTION": "Axial Frequency"
+                            },
+                            "linearIntensity": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                0
+                              ],
+                              "TYPE": "f",
+                              "RANGE": [
+                                {
+                                  "MIN": 0,
+                                  "MAX": 1
+                                }
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/StandardForceGroup/linearIntensity",
+                              "DESCRIPTION": "Linear Intensity"
+                            },
+                            "orthoIntensity": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                0
+                              ],
+                              "TYPE": "f",
+                              "RANGE": [
+                                {
+                                  "MIN": 0,
+                                  "MAX": 1
+                                }
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/StandardForceGroup/orthoIntensity",
+                              "DESCRIPTION": "Ortho Intensity"
+                            },
+                            "orthoInnerRadius": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                0.5
+                              ],
+                              "TYPE": "f",
+                              "RANGE": [
+                                {
+                                  "MIN": 0,
+                                  "MAX": 1
+                                }
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/StandardForceGroup/orthoInnerRadius",
+                              "DESCRIPTION": "Ortho Inner Radius"
+                            },
+                            "orthoFactor": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                2
+                              ],
+                              "TYPE": "f",
+                              "RANGE": [
+                                {
+                                  "MIN": 1,
+                                  "MAX": 3
+                                }
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/StandardForceGroup/orthoFactor",
+                              "DESCRIPTION": "Ortho Factor"
+                            },
+                            "orthoClockwise": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                0
+                              ],
+                              "TYPE": "f",
+                              "RANGE": [
+                                {
+                                  "MIN": 0,
+                                  "MAX": 1
+                                }
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/StandardForceGroup/orthoClockwise",
+                              "DESCRIPTION": "Ortho Clockwise"
+                            },
+                            "curlIntensity": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                0
+                              ],
+                              "TYPE": "f",
+                              "RANGE": [
+                                {
+                                  "MIN": 0,
+                                  "MAX": 1
+                                }
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/StandardForceGroup/curlIntensity",
+                              "DESCRIPTION": "Curl Intensity"
+                            },
+                            "curlFrequency": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                0
+                              ],
+                              "TYPE": "f",
+                              "RANGE": [
+                                {
+                                  "MIN": 0,
+                                  "MAX": 5
+                                }
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/StandardForceGroup/curlFrequency",
+                              "DESCRIPTION": "Curl Frequency"
+                            },
+                            "curlDrag": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                0
+                              ],
+                              "TYPE": "f",
+                              "RANGE": [
+                                {
+                                  "MIN": 0,
+                                  "MAX": 1
+                                }
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/StandardForceGroup/curlDrag",
+                              "DESCRIPTION": "Curl Drag"
+                            },
+                            "curlOctaves": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                1
+                              ],
+                              "TYPE": "f",
+                              "RANGE": [
+                                {
+                                  "MIN": 1,
+                                  "MAX": 8
+                                }
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/StandardForceGroup/curlOctaves",
+                              "DESCRIPTION": "Curl Octaves"
+                            },
+                            "curlRoughness": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                0
+                              ],
+                              "TYPE": "f",
+                              "RANGE": [
+                                {
+                                  "MIN": 0,
+                                  "MAX": 1
+                                }
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/StandardForceGroup/curlRoughness",
+                              "DESCRIPTION": "Curl Roughness"
+                            },
+                            "curlLacunarity": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                0
+                              ],
+                              "TYPE": "f",
+                              "RANGE": [
+                                {
+                                  "MIN": 0,
+                                  "MAX": 1
+                                }
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/StandardForceGroup/curlLacunarity",
+                              "DESCRIPTION": "Curl Lacunarity"
+                            },
+                            "curlScale": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                0
+                              ],
+                              "TYPE": "f",
+                              "RANGE": [
+                                {
+                                  "MIN": 0,
+                                  "MAX": 1
+                                }
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/StandardForceGroup/curlScale",
+                              "DESCRIPTION": "Curl Scale"
+                            },
+                            "curlTranslation": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                0
+                              ],
+                              "TYPE": "f",
+                              "RANGE": [
+                                {
+                                  "MIN": 0,
+                                  "MAX": 1
+                                }
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/StandardForceGroup/curlTranslation",
+                              "DESCRIPTION": "Curl Translation"
+                            },
+                            "perlinIntensity": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                0
+                              ],
+                              "TYPE": "f",
+                              "RANGE": [
+                                {
+                                  "MIN": 0,
+                                  "MAX": 1
+                                }
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/StandardForceGroup/perlinIntensity",
+                              "DESCRIPTION": "Perlin Intensity"
+                            },
+                            "perlinFrequency": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                0
+                              ],
+                              "TYPE": "f",
+                              "RANGE": [
+                                {
+                                  "MIN": 0,
+                                  "MAX": 5
+                                }
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/StandardForceGroup/perlinFrequency",
+                              "DESCRIPTION": "Perlin Frequency"
+                            },
+                            "perlinOctaves": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                1
+                              ],
+                              "TYPE": "f",
+                              "RANGE": [
+                                {
+                                  "MIN": 1,
+                                  "MAX": 8
+                                }
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/StandardForceGroup/perlinOctaves",
+                              "DESCRIPTION": "Perlin Octaves"
+                            },
+                            "perlinRoughness": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                0
+                              ],
+                              "TYPE": "f",
+                              "RANGE": [
+                                {
+                                  "MIN": 0,
+                                  "MAX": 1
+                                }
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/StandardForceGroup/perlinRoughness",
+                              "DESCRIPTION": "Perlin Roughness"
+                            },
+                            "perlinLacunarity": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                0
+                              ],
+                              "TYPE": "f",
+                              "RANGE": [
+                                {
+                                  "MIN": 0,
+                                  "MAX": 1
+                                }
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/StandardForceGroup/perlinLacunarity",
+                              "DESCRIPTION": "Perlin Lacunarity"
+                            },
+                            "perlinTranslationSpeed": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                0
+                              ],
+                              "TYPE": "f",
+                              "RANGE": [
+                                {
+                                  "MIN": 0,
+                                  "MAX": 1
+                                }
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/StandardForceGroup/perlinTranslationSpeed",
+                              "DESCRIPTION": "Perlin Translation Speed"
+                            },
+                            "orthoaxialIntensity": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                0
+                              ],
+                              "TYPE": "f",
+                              "RANGE": [
+                                {
+                                  "MIN": 0,
+                                  "MAX": 1
+                                }
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/StandardForceGroup/orthoaxialIntensity",
+                              "DESCRIPTION": "Orthoaxial Intensity"
+                            },
+                            "orthoaxialInnerRadius": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                0
+                              ],
+                              "TYPE": "f",
+                              "RANGE": [
+                                {
+                                  "MIN": 0,
+                                  "MAX": 1
+                                }
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/StandardForceGroup/orthoaxialInnerRadius",
+                              "DESCRIPTION": "Orthoaxial Inner Radius"
+                            },
+                            "orthoaxialFactor": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                1
+                              ],
+                              "TYPE": "f",
+                              "RANGE": [
+                                {
+                                  "MIN": 1,
+                                  "MAX": 3
+                                }
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/StandardForceGroup/orthoaxialFactor",
+                              "DESCRIPTION": "Orthoaxial Factor"
+                            },
+                            "orthoaxialClockwise": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                0
+                              ],
+                              "TYPE": "f",
+                              "RANGE": [
+                                {
+                                  "MIN": 0,
+                                  "MAX": 1
+                                }
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/StandardForceGroup/orthoaxialClockwise",
+                              "DESCRIPTION": "Orthoaxial Clockwise"
+                            },
+                            "patternSize": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                1
+                              ],
+                              "TYPE": "f",
+                              "RANGE": [
+                                {
+                                  "MIN": 0,
+                                  "MAX": 20
+                                }
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/StandardForceGroup/patternSize",
+                              "DESCRIPTION": "Pattern Size"
+                            },
+                            "patternSizeSpread": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                0
+                              ],
+                              "TYPE": "f",
+                              "RANGE": [
+                                {
+                                  "MIN": 0,
+                                  "MAX": 1
+                                }
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/StandardForceGroup/patternSizeSpread",
+                              "DESCRIPTION": "Pattern Size Spread"
+                            },
+                            "patternAxisSpread": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                0
+                              ],
+                              "TYPE": "f",
+                              "RANGE": [
+                                {
+                                  "MIN": 0,
+                                  "MAX": 1
+                                }
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/StandardForceGroup/patternAxisSpread",
+                              "DESCRIPTION": "Pattern Axis Spread"
+                            },
+                            "patternSpeed": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                0
+                              ],
+                              "TYPE": "f",
+                              "RANGE": [
+                                {
+                                  "MIN": -1,
+                                  "MAX": 1
+                                }
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/StandardForceGroup/patternSpeed",
+                              "DESCRIPTION": "Pattern Speed"
+                            },
+                            "patternSpeedRandom": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                0
+                              ],
+                              "TYPE": "f",
+                              "RANGE": [
+                                {
+                                  "MIN": 0,
+                                  "MAX": 1
+                                }
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/StandardForceGroup/patternSpeedRandom",
+                              "DESCRIPTION": "Pattern Speed Random"
+                            },
+                            "patternTime": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                0
+                              ],
+                              "TYPE": "f",
+                              "RANGE": [
+                                null
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/StandardForceGroup/patternTime",
+                              "DESCRIPTION": "Pattern Time"
+                            },
+                            "patternTimeOffset": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                0
+                              ],
+                              "TYPE": "f",
+                              "RANGE": [
+                                {
+                                  "MIN": 0,
+                                  "MAX": 1
+                                }
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/StandardForceGroup/patternTimeOffset",
+                              "DESCRIPTION": "Pattern Time Offset"
+                            },
+                            "patternSizeLFOFrequency": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                0
+                              ],
+                              "TYPE": "f",
+                              "RANGE": [
+                                {
+                                  "MIN": 0,
+                                  "MAX": 10
+                                }
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/StandardForceGroup/patternSizeLFOFrequency",
+                              "DESCRIPTION": "Pattern Size LFOFrequency"
+                            },
+                            "patternSizeLFOAmplitude": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                0
+                              ],
+                              "TYPE": "f",
+                              "RANGE": [
+                                {
+                                  "MIN": 0,
+                                  "MAX": 10
+                                }
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/StandardForceGroup/patternSizeLFOAmplitude",
+                              "DESCRIPTION": "Pattern Size LFOAmplitude"
+                            },
+                            "dancerSize": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                1
+                              ],
+                              "TYPE": "f",
+                              "RANGE": [
+                                {
+                                  "MIN": 0,
+                                  "MAX": 20
+                                }
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/StandardForceGroup/dancerSize",
+                              "DESCRIPTION": "Dancer Size"
+                            },
+                            "dancerHyperSize": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                0
+                              ],
+                              "TYPE": "f",
+                              "RANGE": [
+                                {
+                                  "MIN": 0,
+                                  "MAX": 1
+                                }
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/StandardForceGroup/dancerHyperSize",
+                              "DESCRIPTION": "Dancer Hyper Size"
+                            },
+                            "dancerSizeSpread": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                0
+                              ],
+                              "TYPE": "f",
+                              "RANGE": [
+                                {
+                                  "MIN": 0,
+                                  "MAX": 1
+                                }
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/StandardForceGroup/dancerSizeSpread",
+                              "DESCRIPTION": "Dancer Size Spread"
+                            },
+                            "dancerWeightSizeFactor": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                0
+                              ],
+                              "TYPE": "f",
+                              "RANGE": [
+                                {
+                                  "MIN": 0,
+                                  "MAX": 1
+                                }
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/StandardForceGroup/dancerWeightSizeFactor",
+                              "DESCRIPTION": "Dancer Weight Size Factor"
+                            },
+                            "dancerIntensity": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                1
+                              ],
+                              "TYPE": "f",
+                              "RANGE": [
+                                {
+                                  "MIN": 0,
+                                  "MAX": 1
+                                }
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/StandardForceGroup/dancerIntensity",
+                              "DESCRIPTION": "Dancer Intensity"
+                            },
+                            "dancerWeightIntensityFactor": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                0
+                              ],
+                              "TYPE": "f",
+                              "RANGE": [
+                                {
+                                  "MIN": 0,
+                                  "MAX": 1
+                                }
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/StandardForceGroup/dancerWeightIntensityFactor",
+                              "DESCRIPTION": "Dancer Weight Intensity Factor"
+                            },
+                            "dancerLookAt": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                0,
+                                1,
+                                0
+                              ],
+                              "TYPE": "fff",
+                              "RANGE": [
+                                null
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/StandardForceGroup/dancerLookAt",
+                              "DESCRIPTION": "Dancer Look At"
+                            },
+                            "dancerLookAtMode": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                0
+                              ],
+                              "TYPE": "f",
+                              "RANGE": [
+                                {
+                                  "MIN": 0,
+                                  "MAX": 2
+                                }
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/StandardForceGroup/dancerLookAtMode",
+                              "DESCRIPTION": "Dancer Look At Mode"
+                            },
+                            "count": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                1
+                              ],
+                              "TYPE": "f",
+                              "RANGE": [
+                                {
+                                  "MIN": 0,
+                                  "MAX": 16
+                                }
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/StandardForceGroup/count",
+                              "DESCRIPTION": "Count"
+                            }
+                          }
+                        },
+                        "LineDancePattern": {
+                          "ACCESS": 0,
+                          "CONTENTS": {
+                            "blendMode": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                "Add"
+                              ],
+                              "TYPE": "s",
+                              "RANGE": [
+                                {
+                                  "VALS": [
+                                    "Add",
+                                    "Multiply",
+                                    "Replace"
+                                  ]
+                                }
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/LineDancePattern/blendMode",
+                              "DESCRIPTION": "Blend Mode"
+                            },
+                            "weight": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                0
+                              ],
+                              "TYPE": "f",
+                              "RANGE": [
+                                {
+                                  "MIN": 0,
+                                  "MAX": 1
+                                }
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/LineDancePattern/weight",
+                              "DESCRIPTION": "Weight"
+                            }
+                          }
+                        },
+                        "CircleDancePattern": {
+                          "ACCESS": 0,
+                          "CONTENTS": {
+                            "blendMode": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                "Add"
+                              ],
+                              "TYPE": "s",
+                              "RANGE": [
+                                {
+                                  "VALS": [
+                                    "Add",
+                                    "Multiply",
+                                    "Replace"
+                                  ]
+                                }
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/CircleDancePattern/blendMode",
+                              "DESCRIPTION": "Blend Mode"
+                            },
+                            "weight": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                0
+                              ],
+                              "TYPE": "f",
+                              "RANGE": [
+                                {
+                                  "MIN": 0,
+                                  "MAX": 1
+                                }
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/CircleDancePattern/weight",
+                              "DESCRIPTION": "Weight"
+                            }
+                          }
+                        },
+                        "NBodyProblemPattern": {
+                          "ACCESS": 0,
+                          "CONTENTS": {
+                            "G": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                1
+                              ],
+                              "TYPE": "f",
+                              "RANGE": [
+                                null
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/NBodyProblemPattern/G",
+                              "DESCRIPTION": "G"
+                            },
+                            "bodyMass": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                1
+                              ],
+                              "TYPE": "f",
+                              "RANGE": [
+                                null
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/NBodyProblemPattern/bodyMass",
+                              "DESCRIPTION": "Body Mass"
+                            },
+                            "blendMode": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                "Add"
+                              ],
+                              "TYPE": "s",
+                              "RANGE": [
+                                {
+                                  "VALS": [
+                                    "Add",
+                                    "Multiply",
+                                    "Replace"
+                                  ]
+                                }
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/NBodyProblemPattern/blendMode",
+                              "DESCRIPTION": "Blend Mode"
+                            },
+                            "weight": {
+                              "ACCESS": 3,
+                              "VALUE": [
+                                0
+                              ],
+                              "TYPE": "f",
+                              "RANGE": [
+                                {
+                                  "MIN": 0,
+                                  "MAX": 1
+                                }
+                              ],
+                              "FULL_PATH": "/Ballet/Forces/Force_1/NBodyProblemPattern/weight",
+                              "DESCRIPTION": "Weight"
+                            }
+                          }
+                        },
+                        "Dancer_1": {
+                          "ACCESS": 0,
+                          "CONTENTS": {
+                            "Transform": {
+                              "ACCESS": 0,
+                              "CONTENTS": {
+                                "position": {
+                                  "ACCESS": 3,
+                                  "VALUE": [
+                                    0,
+                                    0,
+                                    0
+                                  ],
+                                  "TYPE": "fff",
+                                  "RANGE": [
+                                    null
+                                  ],
+                                  "FULL_PATH": "/Ballet/Forces/Force_1/Dancer_1/Transform/position",
+                                  "DESCRIPTION": "Position"
+                                },
+                                "localPosition": {
+                                  "ACCESS": 3,
+                                  "VALUE": [
+                                    0,
+                                    0,
+                                    0
+                                  ],
+                                  "TYPE": "fff",
+                                  "RANGE": [
+                                    null
+                                  ],
+                                  "FULL_PATH": "/Ballet/Forces/Force_1/Dancer_1/Transform/localPosition",
+                                  "DESCRIPTION": "Local Position"
+                                },
+                                "eulerAngles": {
+                                  "ACCESS": 3,
+                                  "VALUE": [
+                                    270,
+                                    0,
+                                    0
+                                  ],
+                                  "TYPE": "fff",
+                                  "RANGE": [
+                                    null
+                                  ],
+                                  "FULL_PATH": "/Ballet/Forces/Force_1/Dancer_1/Transform/eulerAngles",
+                                  "DESCRIPTION": "Euler Angles"
+                                },
+                                "rotation": {
+                                  "ACCESS": 3,
+                                  "VALUE": [
+                                    270,
+                                    0,
+                                    0
+                                  ],
+                                  "TYPE": "fff",
+                                  "RANGE": [
+                                    null
+                                  ],
+                                  "FULL_PATH": "/Ballet/Forces/Force_1/Dancer_1/Transform/rotation",
+                                  "DESCRIPTION": "Rotation"
+                                },
+                                "localRotation": {
+                                  "ACCESS": 3,
+                                  "VALUE": [
+                                    270,
+                                    0,
+                                    0
+                                  ],
+                                  "TYPE": "fff",
+                                  "RANGE": [
+                                    null
+                                  ],
+                                  "FULL_PATH": "/Ballet/Forces/Force_1/Dancer_1/Transform/localRotation",
+                                  "DESCRIPTION": "Local Rotation"
+                                },
+                                "localScale": {
+                                  "ACCESS": 3,
+                                  "VALUE": [
+                                    1,
+                                    1,
+                                    1
+                                  ],
+                                  "TYPE": "fff",
+                                  "RANGE": [
+                                    null
+                                  ],
+                                  "FULL_PATH": "/Ballet/Forces/Force_1/Dancer_1/Transform/localScale",
+                                  "DESCRIPTION": "Local Scale"
+                                }
+                              }
+                            },
+                            "Dancer": {
+                              "ACCESS": 0,
+                              "CONTENTS": {
+                                "weight": {
+                                  "ACCESS": 3,
+                                  "VALUE": [
+                                    1
+                                  ],
+                                  "TYPE": "f",
+                                  "RANGE": [
+                                    {
+                                      "MIN": 0,
+                                      "MAX": 1
+                                    }
+                                  ],
+                                  "FULL_PATH": "/Ballet/Forces/Force_1/Dancer_1/Dancer/weight",
+                                  "DESCRIPTION": "Weight"
+                                },
+                                "intensity": {
+                                  "ACCESS": 3,
+                                  "VALUE": [
+                                    1
+                                  ],
+                                  "TYPE": "f",
+                                  "RANGE": [
+                                    {
+                                      "MIN": 0,
+                                      "MAX": 1
+                                    }
+                                  ],
+                                  "FULL_PATH": "/Ballet/Forces/Force_1/Dancer_1/Dancer/intensity",
+                                  "DESCRIPTION": "Intensity"
+                                },
+                                "size": {
+                                  "ACCESS": 3,
+                                  "VALUE": [
+                                    1
+                                  ],
+                                  "TYPE": "f",
+                                  "RANGE": [
+                                    {
+                                      "MIN": 0,
+                                      "MAX": 20
+                                    }
+                                  ],
+                                  "FULL_PATH": "/Ballet/Forces/Force_1/Dancer_1/Dancer/size",
+                                  "DESCRIPTION": "Size"
+                                },
+                                "localPatternTime": {
+                                  "ACCESS": 3,
+                                  "VALUE": [
+                                    0
+                                  ],
+                                  "TYPE": "f",
+                                  "RANGE": [
+                                    null
+                                  ],
+                                  "FULL_PATH": "/Ballet/Forces/Force_1/Dancer_1/Dancer/localPatternTime",
+                                  "DESCRIPTION": "Local Pattern Time"
+                                },
+                                "randomFactor": {
+                                  "ACCESS": 3,
+                                  "VALUE": [
+                                    0.2568918
+                                  ],
+                                  "TYPE": "f",
+                                  "RANGE": [
+                                    null
+                                  ],
+                                  "FULL_PATH": "/Ballet/Forces/Force_1/Dancer_1/Dancer/randomFactor",
+                                  "DESCRIPTION": "Random Factor"
+                                },
+                                "velocity": {
+                                  "ACCESS": 3,
+                                  "VALUE": [
+                                    0,
+                                    0,
+                                    0
+                                  ],
+                                  "TYPE": "fff",
+                                  "RANGE": [
+                                    null
+                                  ],
+                                  "FULL_PATH": "/Ballet/Forces/Force_1/Dancer_1/Dancer/velocity",
+                                  "DESCRIPTION": "Velocity"
+                                },
+                                "Start": {
+                                  "ACCESS": 3,
+                                  "TYPE": "N",
+                                  "FULL_PATH": "/Ballet/Forces/Force_1/Dancer_1/Dancer/Start",
+                                  "DESCRIPTION": "Start"
+                                }
+                              }
+                            }
+                          },
+                          "DESCRIPTION": "Dancer 1"
+                        }
+                      },
+                      "DESCRIPTION": "Force 1"
                     }
                   },
                   "DESCRIPTION": "Forces"
