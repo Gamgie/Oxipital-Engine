@@ -1,10 +1,10 @@
 
-var numForcesParam = local.parameters.setup.numForces;
+var numForceGroupsParam = local.parameters.setup.numForceGroups;
 var numOrbGroupsParam = local.parameters.setup.numOrbGroups;
 var numMacrosParam = local.parameters.setup.numMacros;
 
 var macrosGroup = local.parameters.macros;
-var forcesGroup = local.parameters.forces;
+var forceGroupsGroup = local.parameters.forceGroups;
 var orbGroupsGroup = local.parameters.orbGroups;
 
 var forces = [];
@@ -15,20 +15,22 @@ var macros = [];
 var unityBallet = null;
 var unityForcesManager = null;
 var unityOrbsManager = null;
-var unityForcesParam = null;
+var unityForceGroupsParam = null;
 var unityOrbGroupsParam = null;
 
 var danceGroupParameters = {
 	"Patterns": {
-		"Count": { "type": "float", "default": 1, "min": 1, "max": 10, "noMacro":true},
+		"Count": { "type": "float", "default": 1, "min": 1, "max": 10, "noMacro": true },
 		"Pattern Size": { "type": "float", "default": 1, "min": 0, "max": 20 },
 		"Pattern Size Spread": { "type": "float", "default": 0, "min": 0, "max": 1 },
-		"Pattern Axis Spread": { "type": "float", "default": 0, "min": 0, "max": 1 }
+		"Pattern Axis Spread": { "type": "float", "default": 0, "min": 0, "max": 1 },
+		"Line Pattern Weight": { "type": "float", "default": 0, "min": 0, "max": 1, "customComponent": "LineDancePattern/weight" },
+		"Circle Pattern Weight": { "type": "float", "default": 1, "min": 0, "max": 1, "customComponent": "CircleDancePattern/weight" },
+		"NBody Pattern Weight": { "type": "float", "default": 0, "min": 0, "max": 1, "customComponent": "NBodyProblemPattern/weight" },
 	},
 	"Animation": {
-		"Pattern Speed": { "type": "float", "default": 1, "min": -1, "max": 1 },
+		"Pattern Speed": { "type": "float", "default": 0.1, "min": -1, "max": 1 },
 		"Pattern Speed Random": { "type": "float", "default": 0, "min": 0, "max": 1 },
-		"Pattern Time": { "type": "float", "default": 0, "min": 0, "max": 1, "hidden": true },
 		"Pattern Time Offset": { "type": "float", "default": 0, "min": 0, "max": 1 },
 		"Pattern Size LFO Frequency": { "type": "float", "default": 0, "min": 0, "max": 10 },
 		"Pattern Size LFO Amplitude": { "type": "float", "default": 0, "min": 0, "max": 10 }
@@ -45,7 +47,7 @@ var danceGroupParameters = {
 	}
 };
 
-var forceParameters = {
+var forceGroupParameters = {
 	"General": {
 		"Force Factor Inside": { "type": "float", "default": 1, "min": 0, "max": 1 },
 		"Force Factor Outside": { "type": "float", "default": 0, "min": 0, "max": 1 }
@@ -97,28 +99,21 @@ var forceParameters = {
 
 var orbGroupParameters = {
 	"General": {
-		"Position": { "type": "p3d", "default": [0, 0, 0] },
-		"Rotation": { "type": "p3d", "default": [0, 0, 0] },
-		"Scale": { "type": "p3d", "default": [1, 1, 1] },
-		"Size": { "type": "float", "default": 0, "min": 0, "max": 1 },
-		"Size Offset": { "type": "float", "default": 0, "min": 0, "max": 1 },
 		"Life": { "type": "float", "default": 20, "min": 0, "max": 40 },
-	},
-	"Emission": {
-		"Shape": { "type": "enum", "default": "Sphere", "values": ["Sphere", "Plane", "Torus", "Cube", "Pipe", "Egg", "Line", "Circle", "Merkaba", "Pyramid", "Custom"] },
-		"Surface Factor": { "type": "float", "default": 0, "min": 0, "max": 1 },
-		"Volume Factor": { "type": "float", "default": 0, "min": 0, "max": 1 },
+		"Emitter Shape": { "type": "enum", "default": "Sphere", "values": ["Sphere", "Plane", "Torus", "Cube", "Pipe", "Egg", "Line", "Circle", "Merkaba", "Pyramid", "Custom"] },
+		"Emitter Surface Factor": { "type": "float", "default": 0, "min": 0, "max": 1 },
+		"Emitter Volume Factor": { "type": "float", "default": 0, "min": 0, "max": 1 },
 	},
 	"Appearance": {
-		"Color": { "type": "color", "default": [1, 1, 1] },
-		"Alpha": { "type": "float", "default": 0.5, "min": 0, "max": 1 },
-		"HDR Multiplier": { "type": "float", "default": 1, "min": 0, "max": 1 },
+		"Color": { "type": "color", "default": [.8, 2, .05] },
+		"Alpha": { "type": "float", "default": 0.2, "min": 0, "max": 1 },
+		"HDR Multiplier": { "type": "float", "default": 0, "min": 0, "max": 1 },
 		"Alpha Speed Threshold": { "type": "float", "default": 0, "min": 0, "max": 1 },
 		"Texture Opacity": { "type": "float", "default": 0, "min": 0, "max": 1 },
 		"Particle Size": { "type": "float", "default": 0, "min": 0, "max": 1 },
 	},
 	"Physics": {
-		"Forces Multiplier": { "type": "float", "default": 1, "min": 0, "max": 1 },
+		"Force Weight": { "type": "float", "default": 1, "min": 0, "max": 1 },
 		"Drag": { "type": "float", "default": 0.5, "min": 0, "max": 1 },
 		"Velocity Drag": { "type": "float", "default": 0, "min": 0, "max": 1 },
 		"Noisy Drag": { "type": "float", "default": 0, "min": 0, "max": 1 },
@@ -126,6 +121,7 @@ var orbGroupParameters = {
 		"Activate Collision": { "type": "bool", "default": false }
 	}
 };
+
 
 //CALLBACKS
 function init() {
@@ -135,12 +131,12 @@ function init() {
 
 
 function moduleParameterChanged(param) {
-	if (param.is(numForcesParam)) {
-		if(unityForcesParam) unityForcesParam.set(numForcesParam.get());
+	if (param.is(numForceGroupsParam)) {
+		if (unityForceGroupsParam) unityForceGroupsParam.set(numForceGroupsParam.get());
 		setupForces();
 		linkArrays();
 	} else if (param.is(numOrbGroupsParam)) {
-		if(unityOrbGroupsParam) unityOrbGroupsParam.set(numOrbGroupsParam.get());
+		if (unityOrbGroupsParam) unityOrbGroupsParam.set(numOrbGroupsParam.get());
 		setupOrbs();
 		linkArrays();
 	} else if (param.is(numMacrosParam)) {
@@ -149,11 +145,11 @@ function moduleParameterChanged(param) {
 		updateAllParametersForMacro(param);
 	} else {
 		var p4 = param.getParent(4);
-		if (p4 == forcesGroup) {
-			var forceIndex = parseInt(param.getParent(3).niceName.split(" ")[1]) - 1;
+		if (p4 == forceGroupsGroup) {
+			var forceIndex = parseInt(param.getParent(3).niceName.split(" ")[2]) - 1;
 			var groupName = param.getParent(2).niceName;
 			var paramName = param.getParent().niceName;
-			updateParam(forceIndex, groupName, paramName, param, forceParameters, forces);
+			updateParam(forceIndex, groupName, paramName, param, forceGroupParameters, forces);
 		} else if (p4 == orbGroupsGroup) {
 			var orbGroupIndex = parseInt(param.getParent(3).niceName.split(" ")[2]) - 1;
 			var groupName = param.getParent(2).niceName;
@@ -163,8 +159,7 @@ function moduleParameterChanged(param) {
 	}
 }
 
-function dataStructureEvent()
-{
+function dataStructureEvent() {
 	linkUnity();
 
 	// setup();
@@ -175,7 +170,7 @@ function dataStructureEvent()
 function updateAllParametersForMacro(macroParam) {
 	var index = macrosGroup.getControllables().indexOf(macroParam);
 
-	updateAllParameters(index, forces, forceParameters);
+	updateAllParameters(index, forces, forceGroupParameters);
 	updateAllParameters(index, orbGroups, orbGroupParameters);
 }
 
@@ -213,17 +208,20 @@ function updateParam(index, groupName, paramName, sourceParam, parameters, items
 
 	var paramProps = targetParams[groupName][paramName];
 
+	// script.log("Updating " + groupName + " " + paramName + " for " + items + "," + index);
+
 	var item = items[index];
 	var itemGroup = item.getChild(groupName);
 	var itemParamGroup = itemGroup.getChild(paramName);
 	var itemParam = itemParamGroup.getChild("baseValue");
 	var paramMin = paramProps.min;
 	var paramMax = paramProps.max;
-	
+
+	var managerName = item.getParent().niceName;
+
 	var finalValue = itemParam.get();
 
-	if(!paramProps.noMacro)
-	{
+	if (!paramProps.noMacro) {
 		if (paramMin != null && paramMax != null) {
 			for (var i = 0; i < numMacrosParam.get(); i++) {
 				var macroWeight = itemParamGroup.getChild("macroWeight" + (i + 1)).get();
@@ -234,15 +232,40 @@ function updateParam(index, groupName, paramName, sourceParam, parameters, items
 		}
 	}
 
-	finalValue = Math.min(paramMax, Math.max(paramMin, finalValue));
+	if (paramMin != null && paramMax != null) finalValue = Math.min(paramMax, Math.max(paramMin, finalValue));
 
-	script.log("Update Param " + (index + 1) + " " + groupName + " " + paramName + " " + finalValue);
+	
+	var paramPath = "";
+	if(paramProps.customComponent != null) {
+		// script.log("Using custom component : " + paramProps.customComponent);
+		paramPath = paramProps.customComponent;
+	}else{
+		var unityComponentName = parameters == forceGroupParameters ? "StandardForceGroup" : "OrbGroup";
+		paramPath = unityComponentName + "/" + itemParamGroup.name;
+	}
+
+
+	updateUnityParam(managerName, item.niceName, paramPath, finalValue);
+}
+
+function updateUnityParam(managerName, itemName, paramPath, value) {
+	if (unityBallet == null) return;
+
+	var manager = unityBallet.getChild(managerName);
+	if (manager == null) return;
+
+	var item = manager.getChild(itemName);
+	if (item == null) return;
+
+	var param = item.getChild(paramPath);
+	if (param == null) return;
+
+	if (value != null) param.set(value);
 }
 
 // SETUP
 
-function setup()
-{
+function setup() {
 	setupMacros();
 	setupForces();
 	setupOrbs();
@@ -256,22 +279,29 @@ function clearItems(group) {
 
 function linkArrays() {
 	macros = macrosGroup.getControllables();
-	forces = forcesGroup.getContainers();
+	forces = forceGroupsGroup.getContainers();
 	orbGroups = orbGroupsGroup.getContainers();
 }
 
-function linkUnity()
-{
-	ballet = local.values.getChild("ballet");
-	unityOrbs = ballet.getChild("orbs");
-	unityForces = ballet.getChild("forces");
+function linkUnity() {
+	unityBallet = local.values.getChild("ballet");
+	if (unityBallet == null) {
+		script.log("No ballet found");
+		unityOrbs = null;
+		unityForces = null;
+		unityOrbGroupsParam = null;
+		unityForceGroupsParam = null;
+		return;
+	}
 
-	unityOrbGroupsParam = unityOrbs.getChild("orbManager").getChild("count");
-	unityForcesParam = unityForces.getChild("standardForceManager").getChild("count");
+	unityOrbs = unityBallet.getChild(orbGroupsGroup.niceName);
+	unityForces = unityBallet.getChild(forceGroupsGroup.niceName);
 
+	unityOrbGroupsParam = unityOrbs.OrbManager.count;
+	unityForceGroupsParam = unityForces.StandardForceManager.count;
 
-	if(unityOrbGroupsParam) unityOrbGroupsParam.set(numOrbGroupsParam.get());
-	if(unityForcesParam) unityForcesParam.set(numForcesParam.get());
+	if (unityOrbGroupsParam) unityOrbGroupsParam.set(numOrbGroupsParam.get());
+	if (unityForceGroupsParam) unityForceGroupsParam.set(numForceGroupsParam.get());
 }
 
 function setupMacros() {
@@ -295,12 +325,12 @@ function setupMacros() {
 }
 
 function setupForces() {
-	if(numForcesParam == null) return;
-	setupParameters(forcesGroup, numForcesParam, forceParameters, forces, "Force");
+	if (numForceGroupsParam == null) return;
+	setupParameters(forceGroupsGroup, numForceGroupsParam, forceGroupParameters, forces, "Force Group");
 }
 
 function setupOrbs() {
-	if(numOrbGroupsParam == null) return;
+	if (numOrbGroupsParam == null) return;
 	setupParameters(orbGroupsGroup, numOrbGroupsParam, orbGroupParameters, orbGroups, "Orb Group");
 }
 
@@ -324,8 +354,6 @@ function setupParameters(group, numParam, parameters, items, prefix) {
 	for (var i = numExistingItems; i < numItems; i++) {
 		createItem(i, group, parameters, prefix);
 	}
-
-
 
 	items = group.getContainers();
 }
@@ -372,14 +400,18 @@ function addParametersToItem(item, parameters) {
 			} else if (paramType == "color") {
 				paramContainer.addColorParameter("Base Value", "Base value for this parameter", paramDefault);
 			} else if (paramType == "enum") {
-				paramContainer.addEnumParameter("Base Value", "Base value for this parameter", paramDefault, paramConfig.values);
+				var ep = paramContainer.addEnumParameter("Base Value", "Base value for this parameter", paramDefault);
+				for (var v = 0; v < paramConfig.values.length; v++) {
+					ep.addOption(paramConfig.values[v], paramConfig.values[v]);
+				}
+			} else if (paramType == "bool") {
+				paramContainer.addBoolParameter("Base Value", "Base value for this parameter", paramDefault);
 			}
 		}
 	}
 }
 
 function setupMacrosToItem(item) {
-	script.log("setup Macros to item : " + item.niceName);
 	var paramGroups = item.getContainers();
 	for (var i = 0; i < paramGroups.length; i++) {
 		var paramGroup = paramGroups[i];
@@ -414,7 +446,7 @@ function getPropForParam(param) {
 	var group = param.getParent(3);
 
 	var isDanceGroup = danceGroupParameters[paramGroupName] != null;
-	var items = isDanceGroup ? danceGroupParameters : (group.is(forcesGroup) ? forceParameters : orbGroupParameters);
+	var items = isDanceGroup ? danceGroupParameters : (group.is(forceGroupsGroup) ? forceGroupParameters : orbGroupParameters);
 
 	return items[paramGroupName][paramName];
 }

@@ -145,6 +145,11 @@ namespace Oxipital
         public float orthoaxialClockwise;
 
 
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+            debugColor = Color.cyan;
+        }
         protected override Type getGroupType()
         {
             return GetType();
