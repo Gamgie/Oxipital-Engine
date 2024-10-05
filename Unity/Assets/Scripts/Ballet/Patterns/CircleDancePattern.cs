@@ -17,10 +17,10 @@ namespace Oxipital
             Random.InitState(1);
             for (int i = 0; i < dancerCount; i++)
             {
-                float tAtFull = (float)i / fullDancerCount;
+                float tAtFull = fullDancerCount == 0 ? 0 : (float)i / fullDancerCount;
                 float tAtNextFull = (float)(i) / dancerCount;
 
-                float rel = i / group.count;
+                float rel = i * 1f / group.count;
                 float initT = Mathf.Lerp(tAtFull, tAtNextFull, relativeProgression) + group.patternTimeOffset * rel;
                 float normalT = initT + group.patternTime;
                 float randomT = initT + group.items[i].localPatternTime;

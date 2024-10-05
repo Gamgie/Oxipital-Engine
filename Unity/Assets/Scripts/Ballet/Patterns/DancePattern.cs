@@ -41,13 +41,13 @@ namespace Oxipital
 
                 float smoothWeight = Mathf.Sin(weight * Mathf.PI - Mathf.PI / 2) * 0.5f + 0.5f;
 
-                float rel = i / group.count;
+                float rel = i*1f / group.count;
 
                 float pRelSize = Mathf.Lerp(1, rel, group.patternSizeSpread);
                 float pSize = Mathf.Lerp(0, group.patternSize, pRelSize);
 
                 float targetSize = pSize + Mathf.Sin(Time.time * group.patternSizeLFOFrequency) * group.patternSizeLFOAmplitude;
-                dancer.transform.localPosition = Vector3.Lerp(dancer.transform.position, targetPos, smoothWeight) * targetSize;
+                dancer.transform.localPosition = Vector3.Lerp(dancer.transform.localPosition, targetPos, smoothWeight) * targetSize;
             }
         }
 

@@ -42,6 +42,7 @@ var danceGroupParameters = {
 		"Dancer Weight Size Factor": { "type": "float", "default": 0, "min": 0, "max": 1 },
 		"Dancer Intensity": { "type": "float", "default": 1, "min": 0, "max": 1 },
 		"Dancer Weight Intensity Factor": { "type": "float", "default": 0, "min": 0, "max": 1 },
+		"Dancer Rotation": { "type": "p3d", "default": [0, 0, 0] },
 		"Dancer Look At": { "type": "p3d", "default": [0, 1, 0] },
 		"Dancer Look At Mode": { "type": "float", "default": 0, "min": 0, "max": 2 }
 	}
@@ -58,6 +59,7 @@ var forceGroupParameters = {
 	},
 	"Axial": {
 		"Axial Intensity": { "type": "float", "default": 0, "min": 0, "max": 1 },
+		"Axis Multiplier": { "type": "p3d", "default": [0, 1, 0] },
 		"Axial Factor": { "type": "float", "default": 1, "min": 1, "max": 3 },
 		"Axial Frequency": { "type": "p3d", "default": [0, 0, 0] }
 	},
@@ -68,7 +70,7 @@ var forceGroupParameters = {
 		"Ortho Intensity": { "type": "float", "default": 0, "min": 0, "max": 1 },
 		"Ortho Inner Radius": { "type": "float", "default": 0.5, "min": 0, "max": 1 },
 		"Ortho Factor": { "type": "float", "default": 2, "min": 1, "max": 3 },
-		"Ortho Clockwise": { "type": "float", "default": 0, "min": 0, "max": 1 }
+		"Ortho Clockwise": { "type": "float", "default": 1, "min": -1, "max": 1 }
 	},
 	"Turbulence Curl": {
 		"Curl Intensity": { "type": "float", "default": 0, "min": 0, "max": 1 },

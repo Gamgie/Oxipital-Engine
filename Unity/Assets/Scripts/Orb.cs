@@ -20,6 +20,7 @@ namespace Oxipital
         override protected void Update()
         {
             base.Update();
+            debugColor = GetComponentInParent<OrbGroup>().color;
         }
 
 

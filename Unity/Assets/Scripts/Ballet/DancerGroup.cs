@@ -66,6 +66,7 @@ namespace Oxipital
         [Range(0, 1)]
         public float dancerWeightIntensityFactor = 0;
 
+        public Vector3 dancerRotation = Vector3.zero;
         public Vector3 dancerLookAt = Vector3.up;
         [Range(0, 2)]
         public float dancerLookAtMode = 0; // 0 = local, 1 = group, 2 = global
@@ -79,9 +80,8 @@ namespace Oxipital
         Dictionary<int, FieldInfo> fieldInfos;
         int groupFixedDataSize;
 
-        [Header("Debug")]
-        [DoNotExpose]
-        public Color debugColor = Color.red;
+
+
         public DancerGroup(string itemName = "Dancer") : base(itemName)
         {
 
@@ -109,9 +109,8 @@ namespace Oxipital
             buffer.Release();
         }
 
-        public void initBufferAndFieldInfoList()
+        internal void initBufferAndFieldInfoList()
         {
-
             fieldInfos = new Dictionary<int, FieldInfo>();
 
             Type type = getGroupType();
@@ -131,6 +130,12 @@ namespace Oxipital
                 lastGroupFloatIndex = inBufferAttribute.index + fieldNumFloats;
             }
 
+            if(buffer == null || !buffer.IsValid())
+            {
+                if(buffer != null) buffer.Dispose();
+                buffer = null;
+            }
+
             // Instantiate buffers
             if (buffer == null)
             {
@@ -148,7 +153,7 @@ namespace Oxipital
         protected override void Update()
         {
             base.Update();
-            if (buffer == null) init();
+            if (buffer == null || !buffer.IsValid()) init();
 
             patternTime += Time.deltaTime * patternSpeed;
 
@@ -165,8 +170,6 @@ namespace Oxipital
                 d.transform.localPosition = Vector3.zero;
 
                 d.localPatternTime += Time.deltaTime * (patternSpeed * Mathf.Lerp(1, .5f + d.randomFactor, patternSpeedRandom));
-                
-                d.debugColor = debugColor;
             }
 
 
@@ -178,12 +181,16 @@ namespace Oxipital
 
             foreach (var d in items)
             {
-                Vector3 localLookAtTarget = transform.TransformPoint(d.transform.localPosition + dancerLookAt);
+                float lookAtWeight = Mathf.Clamp01(dancerLookAtMode);
+                float groupAbsoluteWeight = Mathf.Clamp01(dancerLookAtMode - 1);
+
                 Vector3 groupLookAtTarget = transform.TransformPoint(dancerLookAt);
                 Vector3 absoluteLookAtTarget = dancerLookAt;
-                Vector3 target = dancerLookAtMode < 1 ? Vector3.Lerp(localLookAtTarget, groupLookAtTarget, dancerLookAtMode) :
-                                Vector3.Lerp(groupLookAtTarget, absoluteLookAtTarget, dancerLookAtMode - 1);
-                d.transform.LookAt(target);
+                Vector3 lookAtTarget = Vector3.Lerp(groupLookAtTarget, absoluteLookAtTarget, groupAbsoluteWeight);
+
+                Quaternion lookRot = Quaternion.LookRotation(lookAtTarget - d.transform.position);
+                d.targetRotation = Quaternion.Lerp(Quaternion.identity, lookRot, lookAtWeight) * Quaternion.Euler(dancerRotation);
+
             }
 
             //Update buffer with new data
@@ -267,9 +274,9 @@ namespace Oxipital
                 list[itemsStartIndex + i * DANCER_DATA_SIZE] = d.transform.position.x;
                 list[itemsStartIndex + i * DANCER_DATA_SIZE + 1] = d.transform.position.y;
                 list[itemsStartIndex + i * DANCER_DATA_SIZE + 2] = d.transform.position.z;
-                list[itemsStartIndex + i * DANCER_DATA_SIZE + 3] = d.transform.eulerAngles.x;
-                list[itemsStartIndex + i * DANCER_DATA_SIZE + 4] = d.transform.eulerAngles.y;
-                list[itemsStartIndex + i * DANCER_DATA_SIZE + 5] = d.transform.eulerAngles.z;
+                list[itemsStartIndex + i * DANCER_DATA_SIZE + 3] = d.targetRotation.eulerAngles.x;
+                list[itemsStartIndex + i * DANCER_DATA_SIZE + 4] = d.targetRotation.eulerAngles.y;
+                list[itemsStartIndex + i * DANCER_DATA_SIZE + 5] = d.targetRotation.eulerAngles.z;
                 list[itemsStartIndex + i * DANCER_DATA_SIZE + 6] = d.intensity;
                 list[itemsStartIndex + i * DANCER_DATA_SIZE + 7] = d.size;
             }

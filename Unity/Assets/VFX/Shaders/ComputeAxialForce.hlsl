@@ -1,7 +1,10 @@
 #ifndef COMPUTE_AXIAL_FORCE_H
 #define COMPUTE_AXIAL_FORCE_H
 
-float3 ComputeAxialForce(in float3 pos, in float3 axis, in float normalizedDistance, in float3 center, in float3 axialFrequency, in float axialFactor)
+#include "VFXCommon.hlsl"
+
+
+float3 ComputeAxialForce(in float3 pos, in float3 rotation, in float normalizedDistance, in float3 center, in float3 axialFrequency, in float axialFactor, in float3 axisMultiplier)
 {
     // Axial force is attracting towards axis
     // F = Intensity / pow(( R + 1 ),axialFactor)
@@ -9,11 +12,13 @@ float3 ComputeAxialForce(in float3 pos, in float3 axis, in float normalizedDista
 	float3 axialForceX = float3(0.0,0.0,0.0);
 	float3 axialForceY = float3(0.0,0.0,0.0);
 	float3 axialForceZ = float3(0.0,0.0,0.0);
-
+	
+    
     // Compute X Axis
-	if(axis.x != 0)
-    {
-		float3 axialHorizontalVector = ClosestPointOnALine(pos, float3(axis.x, 0, 0), center);
+    if (axisMultiplier.x != 0)
+    {	
+        float3 xAxis = ComputeRightVectorFromRotation(rotation);
+        float3 axialHorizontalVector = ClosestPointOnALine(pos, xAxis*axisMultiplier.x, center);
 		float waveX = 0;
 
 		if(axialFrequency.x != 0)
@@ -25,13 +30,14 @@ float3 ComputeAxialForce(in float3 pos, in float3 axis, in float normalizedDista
 			waveX = 1;
 		}
 
-		axialForceX = ( axis.x / pow(abs(normalizedDistance+1),abs(axialFactor)) ) * waveX * normalize(axialHorizontalVector);
-	}
+        axialForceX = (axisMultiplier.x / pow(abs(normalizedDistance + 1), abs(axialFactor))) * waveX * normalize(axialHorizontalVector);
+    }
 		
 	// Compute Y Axis
-	if(axis.y != 0)
+	if(axisMultiplier.y != 0)
     {
-		float3 axialVerticalVector = ClosestPointOnALine(pos, float3(0, axis.y, 0), center);
+		float3 yAxis = ComputeUpVectorFromRotation(rotation);
+        float3 axialVerticalVector = ClosestPointOnALine(pos, yAxis * axisMultiplier.y, center);
 		float waveY = 0;
 
 		if(axialFrequency.y != 0)
@@ -43,12 +49,13 @@ float3 ComputeAxialForce(in float3 pos, in float3 axis, in float normalizedDista
 			waveY = 1;
 		}
 
-		axialForceY = ( axis.y / pow(abs(normalizedDistance+1),abs(axialFactor)) ) * waveY * normalize(axialVerticalVector);
-	}
+        axialForceY = (axisMultiplier.y / pow(abs(normalizedDistance + 1), abs(axialFactor))) * waveY * normalize(axialVerticalVector);
+    }
 	// Compute Z Axis
-	if(axis.z != 0)
+    if (axisMultiplier.z != 0)
     {
-		float3 axialDepthVector = ClosestPointOnALine(pos, float3(0, 0, axis.z), center);
+		float3 zAxis = ComputeForwardVectorFromRotation(rotation);
+        float3 axialDepthVector = ClosestPointOnALine(pos, zAxis*axisMultiplier.z, center);
 		float waveZ = 0;
 
 		if(axialFrequency.z != 0)
@@ -59,12 +66,14 @@ float3 ComputeAxialForce(in float3 pos, in float3 axis, in float normalizedDista
         {
 			waveZ = 1;
 		}
-		axialForceZ = ( axis.z / pow(abs(normalizedDistance+1),abs(axialFactor) ) ) * waveZ * normalize(axialDepthVector);
-	}		
+        axialForceZ = (axisMultiplier.z / pow(abs(normalizedDistance + 1), abs(axialFactor))) * waveZ * normalize(axialDepthVector);
+    }		
 
     // Total force contribution from this center
 
     return axialForceX + axialForceY + axialForceZ;
 }
+
+
 
 #endif // COMPUTE_AXIAL_FORCE_H

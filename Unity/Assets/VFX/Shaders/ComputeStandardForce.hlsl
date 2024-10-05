@@ -2,7 +2,7 @@
 #include "ComputeAxialForce.hlsl"
 #include "OxipitalHelpers.hlsl"
 
-void StandardForce(inout VFXAttributes attributes, in StructuredBuffer<float> buffer, in VFXCurve forceInfluenceCurve)
+void StandardForce(inout VFXAttributes attributes, in StructuredBuffer<float> buffer, in VFXCurve forceInfluenceCurve, in float deltaTime, in float globalMultiplier)
 {
     float3 totalForce = float3(0.0, 0.0, 0.0);
     int dancerCount = buffer[0];
@@ -13,18 +13,19 @@ void StandardForce(inout VFXAttributes attributes, in StructuredBuffer<float> bu
     float radialFrequency = GetFloat(3);
 
     // Axial Parameters
-    float axialIntensity =GetFloat(4);
+    float axialIntensity = GetFloat(4);
     float axialFactor = GetFloat(5);
-    float3 axialFrequency = GetVector(6);
+    float3 axisMultiplier = GetVector(6)
+    float3 axialFrequency = GetVector(9);
 
     // Linear Force is attracting towards the same direction
-    float linearForceIntensity = GetFloat(9);
+    float linearForceIntensity = GetFloat(12);
 
     // Orthoradial Force is pushing particle on the orthogonal vector of the center vector
-    float orthoIntensity = GetFloat(10);
-    float innerRadius = GetFloat(11);
-    int orthoFactor = GetFloat(12);
-    bool clockWise = GetFloat(13);
+    float orthoIntensity = GetFloat(13);
+    float innerRadius = GetFloat(14);
+    int orthoFactor = GetFloat(15);
+    float clockWise = GetFloat(16);
     
     // Spiral Force
     // float spiralForceIntensity = GetFloat(13);
@@ -36,40 +37,65 @@ void StandardForce(inout VFXAttributes attributes, in StructuredBuffer<float> bu
 	
     for (int i = 0; i < dancerCount; ++i)
     {
-        float axis = GetDFloat(i, 3);
+        float3 rotation = GetDVector(i, 3);
+        
+        float3 axis = ComputeForwardVectorFromRotation(rotation);
+        
         float radius = GetDFloat(i, 7);
 
-        if(radius <= 0) continue;
+        if (radius <= 0)
+            continue;
         
-        float3 centerPosition = GetDVector(i,0);
+        float3 centerPosition = GetDVector(i, 0);
         float3 toCenterVector = centerPosition - attributes.position;
         float distanceToCenter = length(toCenterVector);
 		
         float3 normalizedToCenterVector = toCenterVector / distanceToCenter;
         float normalizedDistance = distanceToCenter / (radius * innerRadius);
-        float clockWiseFactor = clockWise == true ? 1 : -1;
 
         // compute force influence linked to radius limit
         float forceInfluence = computeForceInfluence(distanceToCenter, buffer, forceInfluenceCurve, i);
 
-		float3 radialForce = radialIntensity * (1/(distanceToCenter+1)) * 2.5 * normalizedToCenterVector;
+        float3 radialForce = radialIntensity * (1 / (distanceToCenter + 1)) * 2.5 * normalizedToCenterVector;
         
-        float3 axialForce = axialIntensity * 0.008 * ComputeAxialForce(attributes.position, axis, normalizedDistance, centerPosition, axialFrequency, axialFactor);
-
-       	// Orthoradial force (inversely proportional to the distance)
-        float3 orthogonalVector = normalize(cross(normalizedToCenterVector, axis) * clockWiseFactor);
-        float3 orthoradialForce = (orthoIntensity * orthogonalVector) / (pow(abs(normalizedDistance), abs(orthoFactor)));
-
-        float3 linearForce = linearForceIntensity * normalize(axis);
-
+        
+        float3 axialForce = 0;
+        float3 orthogonalVector = 0;
+        float3 orthoradialForce = 0;
+        float3 linearForce = 0;
+        
+        if (length(axis) > 0)
+        {
+            axialForce = axialIntensity * ComputeAxialForce(attributes.position, rotation, normalizedDistance, centerPosition, axialFrequency, axialFactor, axisMultiplier);
+            axialForce *= 2; //to normalize strength feeling compared to other forces
+            
+       	    // Orthoradial force (inversely proportional to the distance)
+            if (clockWise != 0)
+            {
+                orthogonalVector = normalize(cross(normalizedToCenterVector, axis) * clockWise);
+                orthoradialForce = (abs(clockWise) * orthoIntensity * orthogonalVector) / (pow(abs(normalizedDistance), abs(orthoFactor)));
+            }
+            
+            linearForce = linearForceIntensity * normalize(axis);
+        }
+        
+            
+        
         // Total force contribution from this center
-        totalForce += forceInfluence * (radialForce + axialForce + orthoradialForce + linearForce);
+        if (radialIntensity > 0)
+            totalForce += radialForce * forceInfluence;
+        if (axialIntensity > 0)
+            totalForce += axialForce * forceInfluence;
+        if (orthoIntensity > 0)
+            totalForce += orthoradialForce * forceInfluence;
+        if (linearForceIntensity > 0)
+            totalForce += linearForce * forceInfluence;
+        
     }
 	
-    float deltaTime = 1.0/60.0;//unity_DeltaTime[2];
 
     // Update velocity
-    attributes.velocity += totalForce * deltaTime;
+    attributes.velocity += totalForce * globalMultiplier * deltaTime; // * deltaTime;
 }
 
 

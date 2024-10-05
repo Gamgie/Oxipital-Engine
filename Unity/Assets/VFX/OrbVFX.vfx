@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Parent: {fileID: 114350483966674976}
   m_Children:
   - {fileID: 8926484042661614942}
-  m_UIPosition: {x: 706, y: 936}
+  m_UIPosition: {x: 706, y: 946}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -162,9 +162,9 @@ MonoBehaviour:
     position:
       serializedVersion: 2
       x: -487
-      y: -665
-      width: 1642
-      height: 2000
+      y: -666
+      width: 1643
+      height: 2011
     contents:
     - model: {fileID: 114023846229194376}
       id: 0
@@ -233,9 +233,9 @@ MonoBehaviour:
   uiBounds:
     serializedVersion: 2
     x: -487
-    y: -665
+    y: -666
     width: 1778
-    height: 2000
+    height: 2012
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1068,6 +1068,7 @@ MonoBehaviour:
   m_UISuperCollapsed: 0
   m_InputSlots:
   - {fileID: 8926484042661614726}
+  - {fileID: 8926484042661615260}
   m_OutputSlots: []
   m_Disabled: 0
   m_ActivationSlot: {fileID: 8926484042661614572}
@@ -1149,7 +1150,7 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 8926484042661614596}
       inputSlot: {fileID: 8926484042661614726}
-    position: {x: 492, y: 409}
+    position: {x: 492, y: 408.8}
     expandedSlots: []
     expanded: 0
 --- !u!114 &8926484042661614596
@@ -1319,7 +1320,7 @@ MonoBehaviour:
   m_Nodes:
   - m_Id: 0
     linkedSlots: []
-    position: {x: 491, y: 446}
+    position: {x: 491.2, y: 446.4}
     expandedSlots: []
     expanded: 0
 --- !u!114 &8926484042661614716
@@ -1549,14 +1550,14 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 8926484042661614722}
       inputSlot: {fileID: 8926484042661614950}
-    position: {x: 385, y: 1202}
+    position: {x: 385.6, y: 1202.4}
     expandedSlots: []
     expanded: 0
   - m_Id: 2
     linkedSlots:
     - outputSlot: {fileID: 8926484042661614722}
       inputSlot: {fileID: 8926484042661615005}
-    position: {x: 474, y: 490}
+    position: {x: 474.40002, y: 490.40002}
     expandedSlots: []
     expanded: 0
 --- !u!114 &8926484042661614722
@@ -1645,7 +1646,7 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 8926484042661614724}
       inputSlot: {fileID: 8926484042661614951}
-    position: {x: 389, y: 1242}
+    position: {x: 389.6, y: 1242.4}
     expandedSlots: []
     expanded: 0
 --- !u!114 &8926484042661614724
@@ -2894,7 +2895,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 385, y: 1019}
+  m_UIPosition: {x: 386, y: 1019}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -3292,7 +3293,7 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 8926484042661614983}
       inputSlot: {fileID: 8926484042661614962}
-    position: {x: -405, y: 1029}
+    position: {x: -404.8, y: 1028.8}
     expandedSlots: []
     expanded: 0
 --- !u!114 &8926484042661614983
@@ -3739,7 +3740,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 357, y: 1163}
+  m_UIPosition: {x: 358, y: 1163}
   m_UICollapsed: 0
   m_UISuperCollapsed: 1
   m_InputSlots: []
@@ -4087,6 +4088,40 @@ MonoBehaviour:
     name: Buffer Offset
     m_serializedType:
       m_SerializableType: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+  m_Direction: 0
+  m_LinkedSlots: []
+--- !u!114 &8926484042661615260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f780aa281814f9842a7c076d436932e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UIIgnoredErrors: []
+  m_Parent: {fileID: 0}
+  m_Children: []
+  m_UIPosition: {x: 0, y: 0}
+  m_UICollapsed: 1
+  m_UISuperCollapsed: 0
+  m_MasterSlot: {fileID: 8926484042661615260}
+  m_MasterData:
+    m_Owner: {fileID: 8926484042661614571}
+    m_Value:
+      m_Type:
+        m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089
+      m_SerializableObject: 1
+    m_Space: -1
+  m_Property:
+    name: Weight
+    m_serializedType:
+      m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
   m_Direction: 0
   m_LinkedSlots: []

@@ -65,21 +65,22 @@ MonoBehaviour:
   dancerWeightSizeFactor: 0
   dancerIntensity: 1
   dancerWeightIntensityFactor: 0
-  dancerLookAt: {x: 0, y: 1, z: 0}
+  dancerRotation: {x: 0, y: 0, z: 0}
+  dancerLookAt: {x: 0, y: 0, z: 0}
   dancerLookAtMode: 0
-  debugColor: {r: 1, g: 0, b: 0, a: 1}
   forceFactorInside: 1
   forceFactorOutside: 0
   radialIntensity: 0
   radialFrequency: 0
   axialIntensity: 0
   axialFactor: 1
+  axisMultiplier: {x: 0, y: 1, z: 0}
   axialFrequency: {x: 0, y: 0, z: 0}
   linearIntensity: 0
   orthoIntensity: 0
   orthoInnerRadius: 0.5
   orthoFactor: 2
-  orthoClockwise: 0
+  orthoClockwise: 1
   curlIntensity: 0
   curlFrequency: 1
   curlDrag: 1
@@ -94,10 +95,10 @@ MonoBehaviour:
   perlinRoughness: 0.5
   perlinLacunarity: 0.2
   perlinTranslationSpeed: 0.1
-  orthoaxialIntensity: 0
-  orthoaxialInnerRadius: 0
-  orthoaxialFactor: 1
-  orthoaxialClockwise: 0
+  orthoaxialIntensity: 0.749
+  orthoaxialInnerRadius: 0.279
+  orthoaxialFactor: 2.237
+  orthoaxialClockwise: 1
 --- !u!114 &1483635194092843799
 MonoBehaviour:
   m_ObjectHideFlags: 0

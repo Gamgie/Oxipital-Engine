@@ -29,7 +29,9 @@ namespace Oxipital
 
         [DoNotExpose]
         [HideInInspector]
-        internal Color debugColor;
+        internal Color debugColor = Color.red;
+
+        internal Quaternion targetRotation;
 
         virtual public void Start()
         {
