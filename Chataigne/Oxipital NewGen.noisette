@@ -441,41 +441,14 @@
                           "niceName": "Pattern Size"
                         },
                         "patternSizeSpread": {
-                          "parameters": [
-                            {
-                              "value": 0.0,
-                              "minValue": 0.0,
-                              "maxValue": 1.0,
-                              "default": 0.0,
-                              "controlAddress": "/baseValue"
-                            }
-                          ],
                           "owned": true,
                           "niceName": "Pattern Size Spread"
                         },
                         "patternAxisSpread": {
-                          "parameters": [
-                            {
-                              "value": 0.0,
-                              "minValue": 0.0,
-                              "maxValue": 1.0,
-                              "default": 0.0,
-                              "controlAddress": "/baseValue"
-                            }
-                          ],
                           "owned": true,
                           "niceName": "Pattern Axis Spread"
                         },
                         "linePatternWeight": {
-                          "parameters": [
-                            {
-                              "value": 0.0,
-                              "minValue": 0.0,
-                              "maxValue": 1.0,
-                              "default": 0.0,
-                              "controlAddress": "/baseValue"
-                            }
-                          ],
                           "owned": true,
                           "niceName": "Line Pattern Weight"
                         },
@@ -2499,14 +2472,6 @@
                             {
                               "value": 5.0,
                               "controlAddress": "/patternSize"
-                            },
-                            {
-                              "value": 0.0,
-                              "controlAddress": "/patternSizeSpread"
-                            },
-                            {
-                              "value": 0.0,
-                              "controlAddress": "/patternAxisSpread"
                             },
                             {
                               "value": 0.1462633609771729,
@@ -11971,23 +11936,6 @@
             {
               "parameters": [
                 {
-                  "controlAddress": "/color",
-                  "feedbackOnly": false,
-                  "type": "Color",
-                  "niceName": "Color",
-                  "customizable": true,
-                  "removable": false,
-                  "description": "Custom control of type Color",
-                  "hideInEditor": false
-                }
-              ],
-              "niceName": "Color",
-              "editorIsCollapsed": true,
-              "type": "Color Parameter"
-            },
-            {
-              "parameters": [
-                {
                   "value": 0.0,
                   "minValue": 0,
                   "maxValue": 1,
@@ -12024,6 +11972,27 @@
                 }
               ],
               "niceName": "Life",
+              "editorIsCollapsed": true,
+              "type": "Float Parameter"
+            },
+            {
+              "parameters": [
+                {
+                  "value": 0.5220994353294373,
+                  "minValue": 0,
+                  "maxValue": 1,
+                  "default": 0.0,
+                  "controlAddress": "/particleSize",
+                  "feedbackOnly": false,
+                  "type": "Float",
+                  "niceName": "Particle Size",
+                  "customizable": true,
+                  "removable": false,
+                  "description": "Custom control of type Float",
+                  "hideInEditor": false
+                }
+              ],
+              "niceName": "Particle Size",
               "editorIsCollapsed": true,
               "type": "Float Parameter"
             },
@@ -12240,61 +12209,6 @@
             {
               "parameters": [
                 {
-                  "value": 0.5220994353294373,
-                  "minValue": 0,
-                  "maxValue": 1,
-                  "default": 0.0,
-                  "controlAddress": "/particleSize",
-                  "feedbackOnly": false,
-                  "type": "Float",
-                  "niceName": "Particle Size",
-                  "customizable": true,
-                  "removable": false,
-                  "description": "Custom control of type Float",
-                  "hideInEditor": false
-                }
-              ],
-              "niceName": "Particle Size",
-              "editorIsCollapsed": true,
-              "type": "Float Parameter"
-            },
-            {
-              "parameters": [
-                {
-                  "controlAddress": "/orbRotation",
-                  "feedbackOnly": false,
-                  "type": "Point3D",
-                  "niceName": "Orb Rotation",
-                  "customizable": true,
-                  "removable": false,
-                  "description": "Custom control of type Point3D",
-                  "hideInEditor": false
-                }
-              ],
-              "niceName": "Orb Rotation",
-              "editorIsCollapsed": true,
-              "type": "Point3D Parameter"
-            },
-            {
-              "parameters": [
-                {
-                  "controlAddress": "/orbLookAt",
-                  "feedbackOnly": false,
-                  "type": "Point3D",
-                  "niceName": "Orb Look At",
-                  "customizable": true,
-                  "removable": false,
-                  "description": "Custom control of type Point3D",
-                  "hideInEditor": false
-                }
-              ],
-              "niceName": "Orb Look At",
-              "editorIsCollapsed": true,
-              "type": "Point3D Parameter"
-            },
-            {
-              "parameters": [
-                {
                   "value": 0.0,
                   "minValue": 0.0,
                   "maxValue": 2.0,
@@ -12406,26 +12320,6 @@
               "niceName": "Texture Opacity",
               "editorIsCollapsed": true,
               "type": "Float Parameter"
-            },
-            {
-              "parameters": [
-                {
-                  "minValue": 0,
-                  "maxValue": 1,
-                  "default": false,
-                  "controlAddress": "/activateCollision",
-                  "feedbackOnly": false,
-                  "type": "Boolean",
-                  "niceName": "Activate Collision",
-                  "customizable": true,
-                  "removable": false,
-                  "description": "Custom control of type Boolean",
-                  "hideInEditor": false
-                }
-              ],
-              "niceName": "Activate Collision",
-              "editorIsCollapsed": true,
-              "type": "Bool Parameter"
             },
             {
               "parameters": [
@@ -12636,6 +12530,77 @@
               "niceName": "Pattern Time Offset",
               "editorIsCollapsed": true,
               "type": "Float Parameter"
+            },
+            {
+              "parameters": [
+                {
+                  "controlAddress": "/color",
+                  "feedbackOnly": false,
+                  "type": "Color",
+                  "niceName": "Color",
+                  "customizable": true,
+                  "removable": false,
+                  "description": "Custom control of type Color",
+                  "hideInEditor": false
+                }
+              ],
+              "niceName": "Color",
+              "editorIsCollapsed": true,
+              "type": "Color Parameter"
+            },
+            {
+              "parameters": [
+                {
+                  "controlAddress": "/orbRotation",
+                  "feedbackOnly": false,
+                  "type": "Point3D",
+                  "niceName": "Orb Rotation",
+                  "customizable": true,
+                  "removable": false,
+                  "description": "Custom control of type Point3D",
+                  "hideInEditor": false
+                }
+              ],
+              "niceName": "Orb Rotation",
+              "editorIsCollapsed": true,
+              "type": "Point3D Parameter"
+            },
+            {
+              "parameters": [
+                {
+                  "controlAddress": "/orbLookAt",
+                  "feedbackOnly": false,
+                  "type": "Point3D",
+                  "niceName": "Orb Look At",
+                  "customizable": true,
+                  "removable": false,
+                  "description": "Custom control of type Point3D",
+                  "hideInEditor": false
+                }
+              ],
+              "niceName": "Orb Look At",
+              "editorIsCollapsed": true,
+              "type": "Point3D Parameter"
+            },
+            {
+              "parameters": [
+                {
+                  "minValue": 0,
+                  "maxValue": 1,
+                  "default": false,
+                  "controlAddress": "/activateCollision",
+                  "feedbackOnly": false,
+                  "type": "Boolean",
+                  "niceName": "Activate Collision",
+                  "customizable": true,
+                  "removable": false,
+                  "description": "Custom control of type Boolean",
+                  "hideInEditor": false
+                }
+              ],
+              "niceName": "Activate Collision",
+              "editorIsCollapsed": true,
+              "type": "Bool Parameter"
             }
           ],
           "viewOffset": [
@@ -12671,6 +12636,259 @@
                     ],
                     "owned": true,
                     "niceName": "Count"
+                  },
+                  "intensity": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/intensity"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Intensity"
+                  },
+                  "color": {
+                    "parameters": [
+                      {
+                        "value": [
+                          0.0,
+                          0.0,
+                          0.0,
+                          1.0
+                        ],
+                        "controlAddress": "/color"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Color"
+                  },
+                  "hdrMultiplier": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/hdrMultiplier"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "HDR Multiplier"
+                  },
+                  "life": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/life"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Life"
+                  },
+                  "alpha": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/alpha"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Alpha"
+                  },
+                  "drag": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/drag"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Drag"
+                  },
+                  "velocityDrag": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/velocityDrag"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Velocity Drag"
+                  },
+                  "noisyDrag": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/noisyDrag"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Noisy Drag"
+                  },
+                  "noisyDragFrequency": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/noisyDragFrequency"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Noisy Drag Frequency"
+                  },
+                  "alphaSpeedThreshold": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/alphaSpeedThreshold"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Alpha Speed Threshold"
+                  },
+                  "orbSize": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/orbSize"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Orb Size"
+                  },
+                  "orbHypersize": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/orbHypersize"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Orb Hypersize"
+                  },
+                  "orbSizeSpread": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/orbSizeSpread"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Orb Size Spread"
+                  },
+                  "orbWeightSizeFactor": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/orbWeightSizeFactor"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Orb Weight Size Factor"
+                  },
+                  "particleSize": {
+                    "parameters": [
+                      {
+                        "value": 1.0,
+                        "controlAddress": "/particleSize"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Particle Size"
+                  },
+                  "orbRotation": {
+                    "parameters": [
+                      {
+                        "value": [
+                          0.0,
+                          2.100000143051147,
+                          0.0
+                        ],
+                        "controlAddress": "/orbRotation"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Orb Rotation"
+                  },
+                  "orbLookAt": {
+                    "parameters": [
+                      {
+                        "value": [
+                          0.0,
+                          0.9000000953674316,
+                          0.0
+                        ],
+                        "controlAddress": "/orbLookAt"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Orb Look At"
+                  },
+                  "orbLookAtMode": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/orbLookAtMode"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Orb LookAt Mode"
+                  },
+                  "emitterShape": {
+                    "parameters": [
+                      {
+                        "value": "",
+                        "controlAddress": "/emitterShape"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Emitter Shape"
+                  },
+                  "emitterSurfaceFactor": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/emitterSurfaceFactor"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Emitter Surface Factor"
+                  },
+                  "emitterVolumeFactor": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/emitterVolumeFactor"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Emitter Volume Factor"
+                  },
+                  "textureOpacity": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/textureOpacity"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Texture Opacity"
+                  },
+                  "activateCollision": {
+                    "parameters": [
+                      {
+                        "value": false,
+                        "controlAddress": "/activateCollision"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Activate Collision"
+                  },
+                  "forceWeight": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/forceWeight"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Force Weight"
                   },
                   "patternSize": {
                     "parameters": [
@@ -12761,46 +12979,35 @@
                     ],
                     "owned": true,
                     "niceName": "Pattern Time Offset"
-                  },
-                  "orbSize": {
+                  }
+                }
+              }
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    0.0,
+                    0.6761691570281982,
+                    1.0,
+                    1.0
+                  ],
+                  "controlAddress": "/color"
+                }
+              ],
+              "niceName": "Preset 1",
+              "type": "MorphTarget",
+              "values": {
+                "containers": {
+                  "count": {
                     "parameters": [
                       {
-                        "value": 0.0,
-                        "controlAddress": "/orbSize"
+                        "value": 2.0,
+                        "controlAddress": "/count"
                       }
                     ],
                     "owned": true,
-                    "niceName": "Orb Size"
-                  },
-                  "orbHypersize": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/orbHypersize"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Orb Hypersize"
-                  },
-                  "orbSizeSpread": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/orbSizeSpread"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Orb Size Spread"
-                  },
-                  "orbWeightSizeFactor": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/orbWeightSizeFactor"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Orb Weight Size Factor"
+                    "niceName": "Count"
                   },
                   "intensity": {
                     "parameters": [
@@ -12811,84 +13018,6 @@
                     ],
                     "owned": true,
                     "niceName": "Intensity"
-                  },
-                  "orbRotation": {
-                    "parameters": [
-                      {
-                        "value": [
-                          0.0,
-                          2.100000143051147,
-                          0.0
-                        ],
-                        "controlAddress": "/orbRotation"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Orb Rotation"
-                  },
-                  "orbLookAt": {
-                    "parameters": [
-                      {
-                        "value": [
-                          0.0,
-                          0.9000000953674316,
-                          0.0
-                        ],
-                        "controlAddress": "/orbLookAt"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Orb Look At"
-                  },
-                  "orbLookAtMode": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/orbLookAtMode"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Orb LookAt Mode"
-                  },
-                  "life": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/life"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Life"
-                  },
-                  "emitterShape": {
-                    "parameters": [
-                      {
-                        "value": "",
-                        "controlAddress": "/emitterShape"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Emitter Shape"
-                  },
-                  "emitterSurfaceFactor": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/emitterSurfaceFactor"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Emitter Surface Factor"
-                  },
-                  "emitterVolumeFactor": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/emitterVolumeFactor"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Emitter Volume Factor"
                   },
                   "color": {
                     "parameters": [
@@ -12905,16 +13034,6 @@
                     "owned": true,
                     "niceName": "Color"
                   },
-                  "alpha": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/alpha"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Alpha"
-                  },
                   "hdrMultiplier": {
                     "parameters": [
                       {
@@ -12925,45 +13044,25 @@
                     "owned": true,
                     "niceName": "HDR Multiplier"
                   },
-                  "alphaSpeedThreshold": {
+                  "life": {
                     "parameters": [
                       {
                         "value": 0.0,
-                        "controlAddress": "/alphaSpeedThreshold"
+                        "controlAddress": "/life"
                       }
                     ],
                     "owned": true,
-                    "niceName": "Alpha Speed Threshold"
+                    "niceName": "Life"
                   },
-                  "textureOpacity": {
+                  "alpha": {
                     "parameters": [
                       {
                         "value": 0.0,
-                        "controlAddress": "/textureOpacity"
+                        "controlAddress": "/alpha"
                       }
                     ],
                     "owned": true,
-                    "niceName": "Texture Opacity"
-                  },
-                  "particleSize": {
-                    "parameters": [
-                      {
-                        "value": 1.0,
-                        "controlAddress": "/particleSize"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Particle Size"
-                  },
-                  "forceWeight": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/forceWeight"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Force Weight"
+                    "niceName": "Alpha"
                   },
                   "drag": {
                     "parameters": [
@@ -13005,6 +13104,144 @@
                     "owned": true,
                     "niceName": "Noisy Drag Frequency"
                   },
+                  "alphaSpeedThreshold": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/alphaSpeedThreshold"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Alpha Speed Threshold"
+                  },
+                  "orbSize": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/orbSize"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Orb Size"
+                  },
+                  "orbHypersize": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/orbHypersize"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Orb Hypersize"
+                  },
+                  "orbSizeSpread": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/orbSizeSpread"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Orb Size Spread"
+                  },
+                  "orbWeightSizeFactor": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/orbWeightSizeFactor"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Orb Weight Size Factor"
+                  },
+                  "particleSize": {
+                    "parameters": [
+                      {
+                        "value": 1.0,
+                        "controlAddress": "/particleSize"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Particle Size"
+                  },
+                  "orbRotation": {
+                    "parameters": [
+                      {
+                        "value": [
+                          0.0,
+                          0.0,
+                          0.0
+                        ],
+                        "controlAddress": "/orbRotation"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Orb Rotation"
+                  },
+                  "orbLookAt": {
+                    "parameters": [
+                      {
+                        "value": [
+                          0.0,
+                          0.0,
+                          0.0
+                        ],
+                        "controlAddress": "/orbLookAt"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Orb Look At"
+                  },
+                  "orbLookAtMode": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/orbLookAtMode"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Orb LookAt Mode"
+                  },
+                  "emitterShape": {
+                    "parameters": [
+                      {
+                        "value": "",
+                        "controlAddress": "/emitterShape"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Emitter Shape"
+                  },
+                  "emitterSurfaceFactor": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/emitterSurfaceFactor"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Emitter Surface Factor"
+                  },
+                  "emitterVolumeFactor": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/emitterVolumeFactor"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Emitter Volume Factor"
+                  },
+                  "textureOpacity": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/textureOpacity"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Texture Opacity"
+                  },
                   "activateCollision": {
                     "parameters": [
                       {
@@ -13014,35 +13251,16 @@
                     ],
                     "owned": true,
                     "niceName": "Activate Collision"
-                  }
-                }
-              }
-            },
-            {
-              "parameters": [
-                {
-                  "value": [
-                    0.0,
-                    0.6761691570281982,
-                    1.0,
-                    1.0
-                  ],
-                  "controlAddress": "/color"
-                }
-              ],
-              "niceName": "Preset 1",
-              "type": "MorphTarget",
-              "values": {
-                "containers": {
-                  "count": {
+                  },
+                  "forceWeight": {
                     "parameters": [
                       {
-                        "value": 2.0,
-                        "controlAddress": "/count"
+                        "value": 0.0,
+                        "controlAddress": "/forceWeight"
                       }
                     ],
                     "owned": true,
-                    "niceName": "Count"
+                    "niceName": "Force Weight"
                   },
                   "patternSize": {
                     "parameters": [
@@ -13133,46 +13351,35 @@
                     ],
                     "owned": true,
                     "niceName": "Pattern Time Offset"
-                  },
-                  "orbSize": {
+                  }
+                }
+              }
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    1.0,
+                    0.9803618788719177,
+                    0.0,
+                    1.0
+                  ],
+                  "controlAddress": "/color"
+                }
+              ],
+              "niceName": "Preset 2",
+              "type": "MorphTarget",
+              "values": {
+                "containers": {
+                  "count": {
                     "parameters": [
                       {
-                        "value": 0.0,
-                        "controlAddress": "/orbSize"
+                        "value": 3.0,
+                        "controlAddress": "/count"
                       }
                     ],
                     "owned": true,
-                    "niceName": "Orb Size"
-                  },
-                  "orbHypersize": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/orbHypersize"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Orb Hypersize"
-                  },
-                  "orbSizeSpread": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/orbSizeSpread"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Orb Size Spread"
-                  },
-                  "orbWeightSizeFactor": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/orbWeightSizeFactor"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Orb Weight Size Factor"
+                    "niceName": "Count"
                   },
                   "intensity": {
                     "parameters": [
@@ -13183,84 +13390,6 @@
                     ],
                     "owned": true,
                     "niceName": "Intensity"
-                  },
-                  "orbRotation": {
-                    "parameters": [
-                      {
-                        "value": [
-                          0.0,
-                          0.0,
-                          0.0
-                        ],
-                        "controlAddress": "/orbRotation"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Orb Rotation"
-                  },
-                  "orbLookAt": {
-                    "parameters": [
-                      {
-                        "value": [
-                          0.0,
-                          0.0,
-                          0.0
-                        ],
-                        "controlAddress": "/orbLookAt"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Orb Look At"
-                  },
-                  "orbLookAtMode": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/orbLookAtMode"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Orb LookAt Mode"
-                  },
-                  "life": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/life"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Life"
-                  },
-                  "emitterShape": {
-                    "parameters": [
-                      {
-                        "value": "",
-                        "controlAddress": "/emitterShape"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Emitter Shape"
-                  },
-                  "emitterSurfaceFactor": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/emitterSurfaceFactor"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Emitter Surface Factor"
-                  },
-                  "emitterVolumeFactor": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/emitterVolumeFactor"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Emitter Volume Factor"
                   },
                   "color": {
                     "parameters": [
@@ -13277,16 +13406,6 @@
                     "owned": true,
                     "niceName": "Color"
                   },
-                  "alpha": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/alpha"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Alpha"
-                  },
                   "hdrMultiplier": {
                     "parameters": [
                       {
@@ -13297,45 +13416,25 @@
                     "owned": true,
                     "niceName": "HDR Multiplier"
                   },
-                  "alphaSpeedThreshold": {
+                  "life": {
                     "parameters": [
                       {
                         "value": 0.0,
-                        "controlAddress": "/alphaSpeedThreshold"
+                        "controlAddress": "/life"
                       }
                     ],
                     "owned": true,
-                    "niceName": "Alpha Speed Threshold"
+                    "niceName": "Life"
                   },
-                  "textureOpacity": {
+                  "alpha": {
                     "parameters": [
                       {
                         "value": 0.0,
-                        "controlAddress": "/textureOpacity"
+                        "controlAddress": "/alpha"
                       }
                     ],
                     "owned": true,
-                    "niceName": "Texture Opacity"
-                  },
-                  "particleSize": {
-                    "parameters": [
-                      {
-                        "value": 1.0,
-                        "controlAddress": "/particleSize"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Particle Size"
-                  },
-                  "forceWeight": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/forceWeight"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Force Weight"
+                    "niceName": "Alpha"
                   },
                   "drag": {
                     "parameters": [
@@ -13377,6 +13476,144 @@
                     "owned": true,
                     "niceName": "Noisy Drag Frequency"
                   },
+                  "alphaSpeedThreshold": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/alphaSpeedThreshold"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Alpha Speed Threshold"
+                  },
+                  "orbSize": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/orbSize"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Orb Size"
+                  },
+                  "orbHypersize": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/orbHypersize"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Orb Hypersize"
+                  },
+                  "orbSizeSpread": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/orbSizeSpread"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Orb Size Spread"
+                  },
+                  "orbWeightSizeFactor": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/orbWeightSizeFactor"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Orb Weight Size Factor"
+                  },
+                  "particleSize": {
+                    "parameters": [
+                      {
+                        "value": 1.0,
+                        "controlAddress": "/particleSize"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Particle Size"
+                  },
+                  "orbRotation": {
+                    "parameters": [
+                      {
+                        "value": [
+                          0.0,
+                          0.0,
+                          0.0
+                        ],
+                        "controlAddress": "/orbRotation"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Orb Rotation"
+                  },
+                  "orbLookAt": {
+                    "parameters": [
+                      {
+                        "value": [
+                          0.0,
+                          0.0,
+                          0.0
+                        ],
+                        "controlAddress": "/orbLookAt"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Orb Look At"
+                  },
+                  "orbLookAtMode": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/orbLookAtMode"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Orb LookAt Mode"
+                  },
+                  "emitterShape": {
+                    "parameters": [
+                      {
+                        "value": "",
+                        "controlAddress": "/emitterShape"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Emitter Shape"
+                  },
+                  "emitterSurfaceFactor": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/emitterSurfaceFactor"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Emitter Surface Factor"
+                  },
+                  "emitterVolumeFactor": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/emitterVolumeFactor"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Emitter Volume Factor"
+                  },
+                  "textureOpacity": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/textureOpacity"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Texture Opacity"
+                  },
                   "activateCollision": {
                     "parameters": [
                       {
@@ -13386,35 +13623,16 @@
                     ],
                     "owned": true,
                     "niceName": "Activate Collision"
-                  }
-                }
-              }
-            },
-            {
-              "parameters": [
-                {
-                  "value": [
-                    1.0,
-                    0.9803618788719177,
-                    0.0,
-                    1.0
-                  ],
-                  "controlAddress": "/color"
-                }
-              ],
-              "niceName": "Preset 2",
-              "type": "MorphTarget",
-              "values": {
-                "containers": {
-                  "count": {
+                  },
+                  "forceWeight": {
                     "parameters": [
                       {
-                        "value": 3.0,
-                        "controlAddress": "/count"
+                        "value": 0.0,
+                        "controlAddress": "/forceWeight"
                       }
                     ],
                     "owned": true,
-                    "niceName": "Count"
+                    "niceName": "Force Weight"
                   },
                   "patternSize": {
                     "parameters": [
@@ -13505,46 +13723,35 @@
                     ],
                     "owned": true,
                     "niceName": "Pattern Time Offset"
-                  },
-                  "orbSize": {
+                  }
+                }
+              }
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    0.0,
+                    0.9400970935821533,
+                    1.0,
+                    1.0
+                  ],
+                  "controlAddress": "/color"
+                }
+              ],
+              "niceName": "Preset 3",
+              "type": "MorphTarget",
+              "values": {
+                "containers": {
+                  "count": {
                     "parameters": [
                       {
-                        "value": 0.0,
-                        "controlAddress": "/orbSize"
+                        "value": 4.0,
+                        "controlAddress": "/count"
                       }
                     ],
                     "owned": true,
-                    "niceName": "Orb Size"
-                  },
-                  "orbHypersize": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/orbHypersize"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Orb Hypersize"
-                  },
-                  "orbSizeSpread": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/orbSizeSpread"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Orb Size Spread"
-                  },
-                  "orbWeightSizeFactor": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/orbWeightSizeFactor"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Orb Weight Size Factor"
+                    "niceName": "Count"
                   },
                   "intensity": {
                     "parameters": [
@@ -13555,84 +13762,6 @@
                     ],
                     "owned": true,
                     "niceName": "Intensity"
-                  },
-                  "orbRotation": {
-                    "parameters": [
-                      {
-                        "value": [
-                          0.0,
-                          0.0,
-                          0.0
-                        ],
-                        "controlAddress": "/orbRotation"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Orb Rotation"
-                  },
-                  "orbLookAt": {
-                    "parameters": [
-                      {
-                        "value": [
-                          0.0,
-                          0.0,
-                          0.0
-                        ],
-                        "controlAddress": "/orbLookAt"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Orb Look At"
-                  },
-                  "orbLookAtMode": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/orbLookAtMode"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Orb LookAt Mode"
-                  },
-                  "life": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/life"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Life"
-                  },
-                  "emitterShape": {
-                    "parameters": [
-                      {
-                        "value": "",
-                        "controlAddress": "/emitterShape"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Emitter Shape"
-                  },
-                  "emitterSurfaceFactor": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/emitterSurfaceFactor"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Emitter Surface Factor"
-                  },
-                  "emitterVolumeFactor": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/emitterVolumeFactor"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Emitter Volume Factor"
                   },
                   "color": {
                     "parameters": [
@@ -13649,16 +13778,6 @@
                     "owned": true,
                     "niceName": "Color"
                   },
-                  "alpha": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/alpha"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Alpha"
-                  },
                   "hdrMultiplier": {
                     "parameters": [
                       {
@@ -13669,45 +13788,25 @@
                     "owned": true,
                     "niceName": "HDR Multiplier"
                   },
-                  "alphaSpeedThreshold": {
+                  "life": {
                     "parameters": [
                       {
                         "value": 0.0,
-                        "controlAddress": "/alphaSpeedThreshold"
+                        "controlAddress": "/life"
                       }
                     ],
                     "owned": true,
-                    "niceName": "Alpha Speed Threshold"
+                    "niceName": "Life"
                   },
-                  "textureOpacity": {
+                  "alpha": {
                     "parameters": [
                       {
                         "value": 0.0,
-                        "controlAddress": "/textureOpacity"
+                        "controlAddress": "/alpha"
                       }
                     ],
                     "owned": true,
-                    "niceName": "Texture Opacity"
-                  },
-                  "particleSize": {
-                    "parameters": [
-                      {
-                        "value": 1.0,
-                        "controlAddress": "/particleSize"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Particle Size"
-                  },
-                  "forceWeight": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/forceWeight"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Force Weight"
+                    "niceName": "Alpha"
                   },
                   "drag": {
                     "parameters": [
@@ -13749,6 +13848,144 @@
                     "owned": true,
                     "niceName": "Noisy Drag Frequency"
                   },
+                  "alphaSpeedThreshold": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/alphaSpeedThreshold"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Alpha Speed Threshold"
+                  },
+                  "orbSize": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/orbSize"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Orb Size"
+                  },
+                  "orbHypersize": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/orbHypersize"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Orb Hypersize"
+                  },
+                  "orbSizeSpread": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/orbSizeSpread"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Orb Size Spread"
+                  },
+                  "orbWeightSizeFactor": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/orbWeightSizeFactor"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Orb Weight Size Factor"
+                  },
+                  "particleSize": {
+                    "parameters": [
+                      {
+                        "value": 1.0,
+                        "controlAddress": "/particleSize"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Particle Size"
+                  },
+                  "orbRotation": {
+                    "parameters": [
+                      {
+                        "value": [
+                          0.0,
+                          0.0,
+                          0.0
+                        ],
+                        "controlAddress": "/orbRotation"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Orb Rotation"
+                  },
+                  "orbLookAt": {
+                    "parameters": [
+                      {
+                        "value": [
+                          0.0,
+                          0.0,
+                          0.0
+                        ],
+                        "controlAddress": "/orbLookAt"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Orb Look At"
+                  },
+                  "orbLookAtMode": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/orbLookAtMode"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Orb LookAt Mode"
+                  },
+                  "emitterShape": {
+                    "parameters": [
+                      {
+                        "value": "",
+                        "controlAddress": "/emitterShape"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Emitter Shape"
+                  },
+                  "emitterSurfaceFactor": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/emitterSurfaceFactor"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Emitter Surface Factor"
+                  },
+                  "emitterVolumeFactor": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/emitterVolumeFactor"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Emitter Volume Factor"
+                  },
+                  "textureOpacity": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/textureOpacity"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Texture Opacity"
+                  },
                   "activateCollision": {
                     "parameters": [
                       {
@@ -13758,35 +13995,16 @@
                     ],
                     "owned": true,
                     "niceName": "Activate Collision"
-                  }
-                }
-              }
-            },
-            {
-              "parameters": [
-                {
-                  "value": [
-                    0.0,
-                    0.9400970935821533,
-                    1.0,
-                    1.0
-                  ],
-                  "controlAddress": "/color"
-                }
-              ],
-              "niceName": "Preset 3",
-              "type": "MorphTarget",
-              "values": {
-                "containers": {
-                  "count": {
+                  },
+                  "forceWeight": {
                     "parameters": [
                       {
-                        "value": 4.0,
-                        "controlAddress": "/count"
+                        "value": 0.0,
+                        "controlAddress": "/forceWeight"
                       }
                     ],
                     "owned": true,
-                    "niceName": "Count"
+                    "niceName": "Force Weight"
                   },
                   "patternSize": {
                     "parameters": [
@@ -13877,259 +14095,6 @@
                     ],
                     "owned": true,
                     "niceName": "Pattern Time Offset"
-                  },
-                  "orbSize": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/orbSize"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Orb Size"
-                  },
-                  "orbHypersize": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/orbHypersize"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Orb Hypersize"
-                  },
-                  "orbSizeSpread": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/orbSizeSpread"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Orb Size Spread"
-                  },
-                  "orbWeightSizeFactor": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/orbWeightSizeFactor"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Orb Weight Size Factor"
-                  },
-                  "intensity": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/intensity"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Intensity"
-                  },
-                  "orbRotation": {
-                    "parameters": [
-                      {
-                        "value": [
-                          0.0,
-                          0.0,
-                          0.0
-                        ],
-                        "controlAddress": "/orbRotation"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Orb Rotation"
-                  },
-                  "orbLookAt": {
-                    "parameters": [
-                      {
-                        "value": [
-                          0.0,
-                          0.0,
-                          0.0
-                        ],
-                        "controlAddress": "/orbLookAt"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Orb Look At"
-                  },
-                  "orbLookAtMode": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/orbLookAtMode"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Orb LookAt Mode"
-                  },
-                  "life": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/life"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Life"
-                  },
-                  "emitterShape": {
-                    "parameters": [
-                      {
-                        "value": "",
-                        "controlAddress": "/emitterShape"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Emitter Shape"
-                  },
-                  "emitterSurfaceFactor": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/emitterSurfaceFactor"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Emitter Surface Factor"
-                  },
-                  "emitterVolumeFactor": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/emitterVolumeFactor"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Emitter Volume Factor"
-                  },
-                  "color": {
-                    "parameters": [
-                      {
-                        "value": [
-                          0.0,
-                          0.0,
-                          0.0,
-                          1.0
-                        ],
-                        "controlAddress": "/color"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Color"
-                  },
-                  "alpha": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/alpha"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Alpha"
-                  },
-                  "hdrMultiplier": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/hdrMultiplier"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "HDR Multiplier"
-                  },
-                  "alphaSpeedThreshold": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/alphaSpeedThreshold"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Alpha Speed Threshold"
-                  },
-                  "textureOpacity": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/textureOpacity"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Texture Opacity"
-                  },
-                  "particleSize": {
-                    "parameters": [
-                      {
-                        "value": 1.0,
-                        "controlAddress": "/particleSize"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Particle Size"
-                  },
-                  "forceWeight": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/forceWeight"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Force Weight"
-                  },
-                  "drag": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/drag"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Drag"
-                  },
-                  "velocityDrag": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/velocityDrag"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Velocity Drag"
-                  },
-                  "noisyDrag": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/noisyDrag"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Noisy Drag"
-                  },
-                  "noisyDragFrequency": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/noisyDragFrequency"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Noisy Drag Frequency"
-                  },
-                  "activateCollision": {
-                    "parameters": [
-                      {
-                        "value": false,
-                        "controlAddress": "/activateCollision"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Activate Collision"
                   }
                 }
               }
@@ -15226,153 +15191,15 @@
                     "owned": true,
                     "niceName": "Dancer Intensity"
                   },
-                  "patternSize": {
-                    "parameters": [
-                      {
-                        "value": 0.48590087890625,
-                        "controlAddress": "/patternSize"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Pattern Size"
-                  },
-                  "patternSizeSpread": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/patternSizeSpread"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Pattern Size Spread"
-                  },
-                  "patternAxisSpread": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/patternAxisSpread"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Pattern Axis Spread"
-                  },
-                  "patternLineWeight": {
+                  "forceSize": {
                     "parameters": [
                       {
                         "value": 1.0,
-                        "controlAddress": "/patternLineWeight"
+                        "controlAddress": "/forceSize"
                       }
                     ],
                     "owned": true,
-                    "niceName": "Pattern Line Weight"
-                  },
-                  "patternCircleWeight": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/patternCircleWeight"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Pattern Circle Weight"
-                  },
-                  "patternNBodyWeight": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/patternNBodyWeight"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Pattern NBody Weight"
-                  },
-                  "patternSpeed": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/patternSpeed"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Pattern Speed"
-                  },
-                  "patternSpeedRandom": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/patternSpeedRandom"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Pattern Speed Random"
-                  },
-                  "patternTimeOffset": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/patternTimeOffset"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Pattern Time Offset"
-                  },
-                  "forceLookAtMode": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/forceLookAtMode"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Force LookAt Mode"
-                  },
-                  "forceLookAt": {
-                    "parameters": [
-                      {
-                        "value": [
-                          0.0,
-                          0.0,
-                          0.0
-                        ],
-                        "controlAddress": "/forceLookAt"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Force Look At"
-                  },
-                  "forceRotation": {
-                    "parameters": [
-                      {
-                        "value": [
-                          0.0,
-                          0.0,
-                          0.0
-                        ],
-                        "controlAddress": "/forceRotation"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Force Rotation"
-                  },
-                  "forceWeightSizeFactor": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/forceWeightSizeFactor"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Force Weight Size Factor"
-                  },
-                  "forceSizeSpread": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/forceSizeSpread"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Force Size Spread"
+                    "niceName": "Force Size"
                   },
                   "forceHypersize": {
                     "parameters": [
@@ -15383,16 +15210,6 @@
                     ],
                     "owned": true,
                     "niceName": "Force Hypersize"
-                  },
-                  "forceSize": {
-                    "parameters": [
-                      {
-                        "value": 1.0,
-                        "controlAddress": "/forceSize"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Force Size"
                   },
                   "factorInside": {
                     "parameters": [
@@ -15582,6 +15399,16 @@
                     "owned": true,
                     "niceName": "Curl Frequency"
                   },
+                  "curlDrag": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/curlDrag"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Curl Drag"
+                  },
                   "curlOctaves": {
                     "parameters": [
                       {
@@ -15612,16 +15439,6 @@
                     "owned": true,
                     "niceName": "Curl Lacunarity"
                   },
-                  "curlDrag": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/curlDrag"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Curl Drag"
-                  },
                   "curlScale": {
                     "parameters": [
                       {
@@ -15641,6 +15458,16 @@
                     ],
                     "owned": true,
                     "niceName": "Curl Translation"
+                  },
+                  "forceSizeSpread": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/forceSizeSpread"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Force Size Spread"
                   },
                   "perlinIntensity": {
                     "parameters": [
@@ -15662,25 +15489,15 @@
                     "owned": true,
                     "niceName": "Perlin Frequency"
                   },
-                  "perlinTranslationSpeed": {
+                  "perlinOctaves": {
                     "parameters": [
                       {
-                        "value": 0.0,
-                        "controlAddress": "/perlinTranslationSpeed"
+                        "value": 1.0,
+                        "controlAddress": "/perlinOctaves"
                       }
                     ],
                     "owned": true,
-                    "niceName": "Perlin Translation Speed"
-                  },
-                  "perlinLacunarity": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/perlinLacunarity"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Perlin Lacunarity"
+                    "niceName": "Perlin Octaves"
                   },
                   "perlinRoughness": {
                     "parameters": [
@@ -15692,15 +15509,163 @@
                     "owned": true,
                     "niceName": "Perlin Roughness"
                   },
-                  "perlinOctaves": {
+                  "perlinLacunarity": {
                     "parameters": [
                       {
-                        "value": 1.0,
-                        "controlAddress": "/perlinOctaves"
+                        "value": 0.0,
+                        "controlAddress": "/perlinLacunarity"
                       }
                     ],
                     "owned": true,
-                    "niceName": "Perlin Octaves"
+                    "niceName": "Perlin Lacunarity"
+                  },
+                  "perlinTranslationSpeed": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/perlinTranslationSpeed"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Perlin Translation Speed"
+                  },
+                  "forceWeightSizeFactor": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/forceWeightSizeFactor"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Force Weight Size Factor"
+                  },
+                  "forceRotation": {
+                    "parameters": [
+                      {
+                        "value": [
+                          0.0,
+                          0.0,
+                          0.0
+                        ],
+                        "controlAddress": "/forceRotation"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Force Rotation"
+                  },
+                  "forceLookAt": {
+                    "parameters": [
+                      {
+                        "value": [
+                          0.0,
+                          0.0,
+                          0.0
+                        ],
+                        "controlAddress": "/forceLookAt"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Force Look At"
+                  },
+                  "forceLookAtMode": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/forceLookAtMode"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Force LookAt Mode"
+                  },
+                  "patternSize": {
+                    "parameters": [
+                      {
+                        "value": 0.48590087890625,
+                        "controlAddress": "/patternSize"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Pattern Size"
+                  },
+                  "patternSizeSpread": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/patternSizeSpread"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Pattern Size Spread"
+                  },
+                  "patternAxisSpread": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/patternAxisSpread"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Pattern Axis Spread"
+                  },
+                  "patternLineWeight": {
+                    "parameters": [
+                      {
+                        "value": 1.0,
+                        "controlAddress": "/patternLineWeight"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Pattern Line Weight"
+                  },
+                  "patternCircleWeight": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/patternCircleWeight"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Pattern Circle Weight"
+                  },
+                  "patternNBodyWeight": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/patternNBodyWeight"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Pattern NBody Weight"
+                  },
+                  "patternSpeed": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/patternSpeed"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Pattern Speed"
+                  },
+                  "patternSpeedRandom": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/patternSpeedRandom"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Pattern Speed Random"
+                  },
+                  "patternTimeOffset": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/patternTimeOffset"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Pattern Time Offset"
                   }
                 }
               }
@@ -15740,6 +15705,392 @@
                     ],
                     "owned": true,
                     "niceName": "Dancer Intensity"
+                  },
+                  "forceSize": {
+                    "parameters": [
+                      {
+                        "value": 1.0,
+                        "controlAddress": "/forceSize"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Force Size"
+                  },
+                  "forceHypersize": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/forceHypersize"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Force Hypersize"
+                  },
+                  "factorInside": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/factorInside"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Factor Inside"
+                  },
+                  "factorOutside": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/factorOutside"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Factor Outside"
+                  },
+                  "radialIntensity": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/radialIntensity"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Radial Intensity"
+                  },
+                  "radialFrequency": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/radialFrequency"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Radial Frequency"
+                  },
+                  "axialIntensity": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/axialIntensity"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Axial Intensity"
+                  },
+                  "axialFactor": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/axialFactor"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Axial Factor"
+                  },
+                  "axisMultiplier": {
+                    "parameters": [
+                      {
+                        "value": [
+                          0.0,
+                          0.0,
+                          0.0
+                        ],
+                        "controlAddress": "/axisMultiplier"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Axis Multiplier"
+                  },
+                  "axisFrequency": {
+                    "parameters": [
+                      {
+                        "value": [
+                          0.0,
+                          0.0,
+                          0.0
+                        ],
+                        "controlAddress": "/axisFrequency"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Axis Frequency"
+                  },
+                  "linearIntensity": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/linearIntensity"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Linear Intensity"
+                  },
+                  "orthoradialIntensity": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/orthoradialIntensity"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Orthoradial Intensity"
+                  },
+                  "orthoradialInnerRadius": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/orthoradialInnerRadius"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Orthoradial Inner Radius"
+                  },
+                  "orthoradialFactor": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/orthoradialFactor"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Orthoradial Factor"
+                  },
+                  "orthoaxialIntensity": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/orthoaxialIntensity"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Orthoaxial Intensity"
+                  },
+                  "orthoaxialInnerRadius": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/orthoaxialInnerRadius"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Orthoaxial Inner Radius"
+                  },
+                  "orthoaxialFactor": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/orthoaxialFactor"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Orthoaxial Factor"
+                  },
+                  "orthoaxialClockwise": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/orthoaxialClockwise"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Orthoaxial Clockwise"
+                  },
+                  "curlIntensity": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/curlIntensity"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Curl Intensity"
+                  },
+                  "curlFrequency": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/curlFrequency"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Curl Frequency"
+                  },
+                  "curlDrag": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/curlDrag"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Curl Drag"
+                  },
+                  "curlOctaves": {
+                    "parameters": [
+                      {
+                        "value": 1.0,
+                        "controlAddress": "/curlOctaves"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Curl Octaves"
+                  },
+                  "curlRoughness": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/curlRoughness"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Curl Roughness"
+                  },
+                  "curlLacunarity": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/curlLacunarity"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Curl Lacunarity"
+                  },
+                  "curlScale": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/curlScale"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Curl Scale"
+                  },
+                  "curlTranslation": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/curlTranslation"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Curl Translation"
+                  },
+                  "forceSizeSpread": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/forceSizeSpread"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Force Size Spread"
+                  },
+                  "perlinIntensity": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/perlinIntensity"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Perlin Intensity"
+                  },
+                  "perlinFrequency": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/perlinFrequency"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Perlin Frequency"
+                  },
+                  "perlinOctaves": {
+                    "parameters": [
+                      {
+                        "value": 1.0,
+                        "controlAddress": "/perlinOctaves"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Perlin Octaves"
+                  },
+                  "perlinRoughness": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/perlinRoughness"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Perlin Roughness"
+                  },
+                  "perlinLacunarity": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/perlinLacunarity"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Perlin Lacunarity"
+                  },
+                  "perlinTranslationSpeed": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/perlinTranslationSpeed"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Perlin Translation Speed"
+                  },
+                  "forceWeightSizeFactor": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/forceWeightSizeFactor"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Force Weight Size Factor"
+                  },
+                  "forceRotation": {
+                    "parameters": [
+                      {
+                        "value": [
+                          0.0,
+                          0.0,
+                          0.0
+                        ],
+                        "controlAddress": "/forceRotation"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Force Rotation"
+                  },
+                  "forceLookAt": {
+                    "parameters": [
+                      {
+                        "value": [
+                          0.0,
+                          0.0,
+                          0.0
+                        ],
+                        "controlAddress": "/forceLookAt"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Force Look At"
+                  },
+                  "forceLookAtMode": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/forceLookAtMode"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Force LookAt Mode"
                   },
                   "patternSize": {
                     "parameters": [
@@ -15830,74 +16181,45 @@
                     ],
                     "owned": true,
                     "niceName": "Pattern Time Offset"
+                  }
+                }
+              }
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    1.0,
+                    0.9803618788719177,
+                    0.0,
+                    1.0
+                  ],
+                  "controlAddress": "/color"
+                }
+              ],
+              "niceName": "Preset 2",
+              "type": "MorphTarget",
+              "values": {
+                "containers": {
+                  "count": {
+                    "parameters": [
+                      {
+                        "value": 3.0,
+                        "controlAddress": "/count"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Count"
                   },
-                  "forceLookAtMode": {
+                  "dancerIntensity": {
                     "parameters": [
                       {
                         "value": 0.0,
-                        "controlAddress": "/forceLookAtMode"
+                        "controlAddress": "/dancerIntensity"
                       }
                     ],
                     "owned": true,
-                    "niceName": "Force LookAt Mode"
-                  },
-                  "forceLookAt": {
-                    "parameters": [
-                      {
-                        "value": [
-                          0.0,
-                          0.0,
-                          0.0
-                        ],
-                        "controlAddress": "/forceLookAt"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Force Look At"
-                  },
-                  "forceRotation": {
-                    "parameters": [
-                      {
-                        "value": [
-                          0.0,
-                          0.0,
-                          0.0
-                        ],
-                        "controlAddress": "/forceRotation"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Force Rotation"
-                  },
-                  "forceWeightSizeFactor": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/forceWeightSizeFactor"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Force Weight Size Factor"
-                  },
-                  "forceSizeSpread": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/forceSizeSpread"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Force Size Spread"
-                  },
-                  "forceHypersize": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/forceHypersize"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Force Hypersize"
+                    "niceName": "Dancer Intensity"
                   },
                   "forceSize": {
                     "parameters": [
@@ -15908,6 +16230,16 @@
                     ],
                     "owned": true,
                     "niceName": "Force Size"
+                  },
+                  "forceHypersize": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/forceHypersize"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Force Hypersize"
                   },
                   "factorInside": {
                     "parameters": [
@@ -16097,6 +16429,16 @@
                     "owned": true,
                     "niceName": "Curl Frequency"
                   },
+                  "curlDrag": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/curlDrag"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Curl Drag"
+                  },
                   "curlOctaves": {
                     "parameters": [
                       {
@@ -16127,16 +16469,6 @@
                     "owned": true,
                     "niceName": "Curl Lacunarity"
                   },
-                  "curlDrag": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/curlDrag"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Curl Drag"
-                  },
                   "curlScale": {
                     "parameters": [
                       {
@@ -16156,6 +16488,16 @@
                     ],
                     "owned": true,
                     "niceName": "Curl Translation"
+                  },
+                  "forceSizeSpread": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/forceSizeSpread"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Force Size Spread"
                   },
                   "perlinIntensity": {
                     "parameters": [
@@ -16177,25 +16519,15 @@
                     "owned": true,
                     "niceName": "Perlin Frequency"
                   },
-                  "perlinTranslationSpeed": {
+                  "perlinOctaves": {
                     "parameters": [
                       {
-                        "value": 0.0,
-                        "controlAddress": "/perlinTranslationSpeed"
+                        "value": 1.0,
+                        "controlAddress": "/perlinOctaves"
                       }
                     ],
                     "owned": true,
-                    "niceName": "Perlin Translation Speed"
-                  },
-                  "perlinLacunarity": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/perlinLacunarity"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Perlin Lacunarity"
+                    "niceName": "Perlin Octaves"
                   },
                   "perlinRoughness": {
                     "parameters": [
@@ -16207,54 +16539,73 @@
                     "owned": true,
                     "niceName": "Perlin Roughness"
                   },
-                  "perlinOctaves": {
-                    "parameters": [
-                      {
-                        "value": 1.0,
-                        "controlAddress": "/perlinOctaves"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Perlin Octaves"
-                  }
-                }
-              }
-            },
-            {
-              "parameters": [
-                {
-                  "value": [
-                    1.0,
-                    0.9803618788719177,
-                    0.0,
-                    1.0
-                  ],
-                  "controlAddress": "/color"
-                }
-              ],
-              "niceName": "Preset 2",
-              "type": "MorphTarget",
-              "values": {
-                "containers": {
-                  "count": {
-                    "parameters": [
-                      {
-                        "value": 3.0,
-                        "controlAddress": "/count"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Count"
-                  },
-                  "dancerIntensity": {
+                  "perlinLacunarity": {
                     "parameters": [
                       {
                         "value": 0.0,
-                        "controlAddress": "/dancerIntensity"
+                        "controlAddress": "/perlinLacunarity"
                       }
                     ],
                     "owned": true,
-                    "niceName": "Dancer Intensity"
+                    "niceName": "Perlin Lacunarity"
+                  },
+                  "perlinTranslationSpeed": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/perlinTranslationSpeed"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Perlin Translation Speed"
+                  },
+                  "forceWeightSizeFactor": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/forceWeightSizeFactor"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Force Weight Size Factor"
+                  },
+                  "forceRotation": {
+                    "parameters": [
+                      {
+                        "value": [
+                          0.0,
+                          0.0,
+                          0.0
+                        ],
+                        "controlAddress": "/forceRotation"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Force Rotation"
+                  },
+                  "forceLookAt": {
+                    "parameters": [
+                      {
+                        "value": [
+                          0.0,
+                          0.0,
+                          0.0
+                        ],
+                        "controlAddress": "/forceLookAt"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Force Look At"
+                  },
+                  "forceLookAtMode": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/forceLookAtMode"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Force LookAt Mode"
                   },
                   "patternSize": {
                     "parameters": [
@@ -16345,74 +16696,45 @@
                     ],
                     "owned": true,
                     "niceName": "Pattern Time Offset"
+                  }
+                }
+              }
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    0.0,
+                    0.9400970935821533,
+                    1.0,
+                    1.0
+                  ],
+                  "controlAddress": "/color"
+                }
+              ],
+              "niceName": "Preset 3",
+              "type": "MorphTarget",
+              "values": {
+                "containers": {
+                  "count": {
+                    "parameters": [
+                      {
+                        "value": 4.0,
+                        "controlAddress": "/count"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Count"
                   },
-                  "forceLookAtMode": {
+                  "dancerIntensity": {
                     "parameters": [
                       {
                         "value": 0.0,
-                        "controlAddress": "/forceLookAtMode"
+                        "controlAddress": "/dancerIntensity"
                       }
                     ],
                     "owned": true,
-                    "niceName": "Force LookAt Mode"
-                  },
-                  "forceLookAt": {
-                    "parameters": [
-                      {
-                        "value": [
-                          0.0,
-                          0.0,
-                          0.0
-                        ],
-                        "controlAddress": "/forceLookAt"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Force Look At"
-                  },
-                  "forceRotation": {
-                    "parameters": [
-                      {
-                        "value": [
-                          0.0,
-                          0.0,
-                          0.0
-                        ],
-                        "controlAddress": "/forceRotation"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Force Rotation"
-                  },
-                  "forceWeightSizeFactor": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/forceWeightSizeFactor"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Force Weight Size Factor"
-                  },
-                  "forceSizeSpread": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/forceSizeSpread"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Force Size Spread"
-                  },
-                  "forceHypersize": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/forceHypersize"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Force Hypersize"
+                    "niceName": "Dancer Intensity"
                   },
                   "forceSize": {
                     "parameters": [
@@ -16423,6 +16745,16 @@
                     ],
                     "owned": true,
                     "niceName": "Force Size"
+                  },
+                  "forceHypersize": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/forceHypersize"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Force Hypersize"
                   },
                   "factorInside": {
                     "parameters": [
@@ -16612,6 +16944,16 @@
                     "owned": true,
                     "niceName": "Curl Frequency"
                   },
+                  "curlDrag": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/curlDrag"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Curl Drag"
+                  },
                   "curlOctaves": {
                     "parameters": [
                       {
@@ -16642,16 +16984,6 @@
                     "owned": true,
                     "niceName": "Curl Lacunarity"
                   },
-                  "curlDrag": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/curlDrag"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Curl Drag"
-                  },
                   "curlScale": {
                     "parameters": [
                       {
@@ -16671,6 +17003,16 @@
                     ],
                     "owned": true,
                     "niceName": "Curl Translation"
+                  },
+                  "forceSizeSpread": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/forceSizeSpread"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Force Size Spread"
                   },
                   "perlinIntensity": {
                     "parameters": [
@@ -16692,25 +17034,15 @@
                     "owned": true,
                     "niceName": "Perlin Frequency"
                   },
-                  "perlinTranslationSpeed": {
+                  "perlinOctaves": {
                     "parameters": [
                       {
-                        "value": 0.0,
-                        "controlAddress": "/perlinTranslationSpeed"
+                        "value": 1.0,
+                        "controlAddress": "/perlinOctaves"
                       }
                     ],
                     "owned": true,
-                    "niceName": "Perlin Translation Speed"
-                  },
-                  "perlinLacunarity": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/perlinLacunarity"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Perlin Lacunarity"
+                    "niceName": "Perlin Octaves"
                   },
                   "perlinRoughness": {
                     "parameters": [
@@ -16722,54 +17054,73 @@
                     "owned": true,
                     "niceName": "Perlin Roughness"
                   },
-                  "perlinOctaves": {
-                    "parameters": [
-                      {
-                        "value": 1.0,
-                        "controlAddress": "/perlinOctaves"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Perlin Octaves"
-                  }
-                }
-              }
-            },
-            {
-              "parameters": [
-                {
-                  "value": [
-                    0.0,
-                    0.9400970935821533,
-                    1.0,
-                    1.0
-                  ],
-                  "controlAddress": "/color"
-                }
-              ],
-              "niceName": "Preset 3",
-              "type": "MorphTarget",
-              "values": {
-                "containers": {
-                  "count": {
-                    "parameters": [
-                      {
-                        "value": 4.0,
-                        "controlAddress": "/count"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Count"
-                  },
-                  "dancerIntensity": {
+                  "perlinLacunarity": {
                     "parameters": [
                       {
                         "value": 0.0,
-                        "controlAddress": "/dancerIntensity"
+                        "controlAddress": "/perlinLacunarity"
                       }
                     ],
                     "owned": true,
-                    "niceName": "Dancer Intensity"
+                    "niceName": "Perlin Lacunarity"
+                  },
+                  "perlinTranslationSpeed": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/perlinTranslationSpeed"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Perlin Translation Speed"
+                  },
+                  "forceWeightSizeFactor": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/forceWeightSizeFactor"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Force Weight Size Factor"
+                  },
+                  "forceRotation": {
+                    "parameters": [
+                      {
+                        "value": [
+                          0.0,
+                          0.0,
+                          0.0
+                        ],
+                        "controlAddress": "/forceRotation"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Force Rotation"
+                  },
+                  "forceLookAt": {
+                    "parameters": [
+                      {
+                        "value": [
+                          0.0,
+                          0.0,
+                          0.0
+                        ],
+                        "controlAddress": "/forceLookAt"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Force Look At"
+                  },
+                  "forceLookAtMode": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/forceLookAtMode"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Force LookAt Mode"
                   },
                   "patternSize": {
                     "parameters": [
@@ -16860,392 +17211,6 @@
                     ],
                     "owned": true,
                     "niceName": "Pattern Time Offset"
-                  },
-                  "forceLookAtMode": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/forceLookAtMode"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Force LookAt Mode"
-                  },
-                  "forceLookAt": {
-                    "parameters": [
-                      {
-                        "value": [
-                          0.0,
-                          0.0,
-                          0.0
-                        ],
-                        "controlAddress": "/forceLookAt"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Force Look At"
-                  },
-                  "forceRotation": {
-                    "parameters": [
-                      {
-                        "value": [
-                          0.0,
-                          0.0,
-                          0.0
-                        ],
-                        "controlAddress": "/forceRotation"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Force Rotation"
-                  },
-                  "forceWeightSizeFactor": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/forceWeightSizeFactor"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Force Weight Size Factor"
-                  },
-                  "forceSizeSpread": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/forceSizeSpread"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Force Size Spread"
-                  },
-                  "forceHypersize": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/forceHypersize"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Force Hypersize"
-                  },
-                  "forceSize": {
-                    "parameters": [
-                      {
-                        "value": 1.0,
-                        "controlAddress": "/forceSize"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Force Size"
-                  },
-                  "factorInside": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/factorInside"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Factor Inside"
-                  },
-                  "factorOutside": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/factorOutside"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Factor Outside"
-                  },
-                  "radialIntensity": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/radialIntensity"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Radial Intensity"
-                  },
-                  "radialFrequency": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/radialFrequency"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Radial Frequency"
-                  },
-                  "axialIntensity": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/axialIntensity"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Axial Intensity"
-                  },
-                  "axialFactor": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/axialFactor"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Axial Factor"
-                  },
-                  "axisMultiplier": {
-                    "parameters": [
-                      {
-                        "value": [
-                          0.0,
-                          0.0,
-                          0.0
-                        ],
-                        "controlAddress": "/axisMultiplier"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Axis Multiplier"
-                  },
-                  "axisFrequency": {
-                    "parameters": [
-                      {
-                        "value": [
-                          0.0,
-                          0.0,
-                          0.0
-                        ],
-                        "controlAddress": "/axisFrequency"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Axis Frequency"
-                  },
-                  "linearIntensity": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/linearIntensity"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Linear Intensity"
-                  },
-                  "orthoradialIntensity": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/orthoradialIntensity"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Orthoradial Intensity"
-                  },
-                  "orthoradialInnerRadius": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/orthoradialInnerRadius"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Orthoradial Inner Radius"
-                  },
-                  "orthoradialFactor": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/orthoradialFactor"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Orthoradial Factor"
-                  },
-                  "orthoaxialIntensity": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/orthoaxialIntensity"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Orthoaxial Intensity"
-                  },
-                  "orthoaxialInnerRadius": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/orthoaxialInnerRadius"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Orthoaxial Inner Radius"
-                  },
-                  "orthoaxialFactor": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/orthoaxialFactor"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Orthoaxial Factor"
-                  },
-                  "orthoaxialClockwise": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/orthoaxialClockwise"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Orthoaxial Clockwise"
-                  },
-                  "curlIntensity": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/curlIntensity"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Curl Intensity"
-                  },
-                  "curlFrequency": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/curlFrequency"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Curl Frequency"
-                  },
-                  "curlOctaves": {
-                    "parameters": [
-                      {
-                        "value": 1.0,
-                        "controlAddress": "/curlOctaves"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Curl Octaves"
-                  },
-                  "curlRoughness": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/curlRoughness"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Curl Roughness"
-                  },
-                  "curlLacunarity": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/curlLacunarity"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Curl Lacunarity"
-                  },
-                  "curlDrag": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/curlDrag"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Curl Drag"
-                  },
-                  "curlScale": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/curlScale"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Curl Scale"
-                  },
-                  "curlTranslation": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/curlTranslation"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Curl Translation"
-                  },
-                  "perlinIntensity": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/perlinIntensity"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Perlin Intensity"
-                  },
-                  "perlinFrequency": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/perlinFrequency"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Perlin Frequency"
-                  },
-                  "perlinTranslationSpeed": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/perlinTranslationSpeed"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Perlin Translation Speed"
-                  },
-                  "perlinLacunarity": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/perlinLacunarity"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Perlin Lacunarity"
-                  },
-                  "perlinRoughness": {
-                    "parameters": [
-                      {
-                        "value": 0.0,
-                        "controlAddress": "/perlinRoughness"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Perlin Roughness"
-                  },
-                  "perlinOctaves": {
-                    "parameters": [
-                      {
-                        "value": 1.0,
-                        "controlAddress": "/perlinOctaves"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Perlin Octaves"
                   }
                 }
               }
@@ -17295,11 +17260,11 @@
             {
               "parameters": [
                 {
-                  "value": 136.0,
+                  "value": 24.0,
                   "controlAddress": "/listSize"
                 },
                 {
-                  "value": 37,
+                  "value": 30,
                   "hexMode": false,
                   "controlAddress": "/count"
                 },
@@ -17525,25 +17490,18 @@
                           "maxValue": 5.0,
                           "default": 0.0,
                           "controlAddress": "/#30"
-                        },
-                        {
-                          "value": 0.0,
-                          "minValue": 0,
-                          "maxValue": 1,
-                          "default": 0.0,
-                          "controlAddress": "/#31"
                         }
                       ],
                       "niceName": "Orb 1 Source Parameters",
                       "editorIsCollapsed": true,
                       "type": "Float",
-                      "listSize": 37
+                      "listSize": 30
                     },
                     {
                       "niceName": "Orb 2 Source Parameters",
                       "editorIsCollapsed": true,
                       "type": "Float",
-                      "listSize": 37
+                      "listSize": 30
                     },
                     {
                       "parameters": [
@@ -17552,154 +17510,126 @@
                           "controlAddress": "/#1"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/patterns/patternSize/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/dancer/dancerIntensity/baseValue",
                           "controlAddress": "/#2"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/patterns/patternSizeSpread/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/appearance/hdrMultiplier/baseValue",
                           "controlAddress": "/#3"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/patterns/patternAxisSpread/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/general/life/baseValue",
                           "controlAddress": "/#4"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/patterns/linePatternWeight/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/appearance/particleSize/baseValue",
                           "controlAddress": "/#5"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/patterns/circlePatternWeight/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/appearance/alpha/baseValue",
                           "controlAddress": "/#6"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/patterns/nBodyPatternWeight/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/physics/drag/baseValue",
                           "controlAddress": "/#7"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/animation/patternSpeed/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/physics/velocityDrag/baseValue",
                           "controlAddress": "/#8"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/animation/patternSpeedRandom/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/physics/noisyDrag/baseValue",
                           "controlAddress": "/#9"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/animation/patternTimeOffset/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/physics/noisyDragFrequency/baseValue",
                           "controlAddress": "/#10"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/dancer/dancerSize/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/appearance/alphaSpeedThreshold/baseValue",
                           "controlAddress": "/#11"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/dancer/dancerHyperSize/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/dancer/dancerSize/baseValue",
                           "controlAddress": "/#12"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/dancer/dancerSizeSpread/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/dancer/dancerHyperSize/baseValue",
                           "controlAddress": "/#13"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/dancer/dancerWeightSizeFactor/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/dancer/dancerSizeSpread/baseValue",
                           "controlAddress": "/#14"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/dancer/dancerIntensity/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/dancer/dancerWeightSizeFactor/baseValue",
                           "controlAddress": "/#15"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/dancer/dancerWeightIntensityFactor/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/dancer/dancerLookAtMode/baseValue",
                           "controlAddress": "/#16"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/dancer/dancerIntensity/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/general/emitterShape/baseValue",
                           "controlAddress": "/#17"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/dancer/dancerRotation/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/general/emitterSurfaceFactor/baseValue",
                           "controlAddress": "/#18"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/dancer/dancerLookAt/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/general/emitterVolumeFactor/baseValue",
                           "controlAddress": "/#19"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/dancer/dancerLookAtMode/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/appearance/textureOpacity/baseValue",
                           "controlAddress": "/#20"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/general/life/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/physics/forceWeight/baseValue",
                           "controlAddress": "/#21"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/general/emitterShape/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/patterns/patternSize/baseValue",
                           "controlAddress": "/#22"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/general/emitterSurfaceFactor/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/patterns/patternSizeSpread/baseValue",
                           "controlAddress": "/#23"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/general/emitterVolumeFactor/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/patterns/patternAxisSpread/baseValue",
                           "controlAddress": "/#24"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/physics/forceWeight/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/patterns/linePatternWeight/baseValue",
                           "controlAddress": "/#25"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/physics/drag/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/patterns/circlePatternWeight/baseValue",
                           "controlAddress": "/#26"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/physics/velocityDrag/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/patterns/nBodyPatternWeight/baseValue",
                           "controlAddress": "/#27"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/physics/noisyDrag/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/animation/patternSpeed/baseValue",
                           "controlAddress": "/#28"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/physics/noisyDragFrequency/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/animation/patternSpeedRandom/baseValue",
                           "controlAddress": "/#29"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/physics/activateCollision/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/animation/patternTimeOffset/baseValue",
                           "controlAddress": "/#30"
-                        },
-                        {
-                          "value": "",
-                          "controlAddress": "/#31"
-                        },
-                        {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/appearance/color/baseValue",
-                          "controlAddress": "/#32"
-                        },
-                        {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/appearance/alpha/baseValue",
-                          "controlAddress": "/#33"
-                        },
-                        {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/appearance/hdrMultiplier/baseValue",
-                          "controlAddress": "/#34"
-                        },
-                        {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/appearance/alphaSpeedThreshold/baseValue",
-                          "controlAddress": "/#35"
-                        },
-                        {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/appearance/textureOpacity/baseValue",
-                          "controlAddress": "/#36"
-                        },
-                        {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/appearance/particleSize/baseValue",
-                          "controlAddress": "/#37"
                         }
                       ],
                       "niceName": "Orb 1 Targets",
                       "editorIsCollapsed": true,
                       "type": "Target",
-                      "listSize": 37,
+                      "listSize": 30,
                       "containerMode": false
                     },
                     {
@@ -17709,153 +17639,126 @@
                           "controlAddress": "/#1"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/patterns/patternSize/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/dancer/dancerIntensity/baseValue",
                           "controlAddress": "/#2"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/patterns/patternSizeSpread/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/appearance/hdrMultiplier/baseValue",
                           "controlAddress": "/#3"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/patterns/patternAxisSpread/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/general/life/baseValue",
                           "controlAddress": "/#4"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/patterns/linePatternWeight/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/appearance/particleSize/baseValue",
                           "controlAddress": "/#5"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/patterns/circlePatternWeight/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/appearance/alpha/baseValue",
                           "controlAddress": "/#6"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/patterns/nBodyPatternWeight/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/physics/drag/baseValue",
                           "controlAddress": "/#7"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/animation/patternSpeed/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/physics/velocityDrag/baseValue",
                           "controlAddress": "/#8"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/animation/patternSpeedRandom/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/physics/noisyDrag/baseValue",
                           "controlAddress": "/#9"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/animation/patternTimeOffset/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/physics/noisyDragFrequency/baseValue",
                           "controlAddress": "/#10"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/dancer/dancerSize/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/appearance/alphaSpeedThreshold/baseValue",
                           "controlAddress": "/#11"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/dancer/dancerHyperSize/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/dancer/dancerSize/baseValue",
                           "controlAddress": "/#12"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/dancer/dancerSizeSpread/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/dancer/dancerHyperSize/baseValue",
                           "controlAddress": "/#13"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/dancer/dancerWeightSizeFactor/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/dancer/dancerSizeSpread/baseValue",
                           "controlAddress": "/#14"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/dancer/dancerIntensity/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/dancer/dancerWeightSizeFactor/baseValue",
                           "controlAddress": "/#15"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/dancer/dancerWeightIntensityFactor/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/dancer/dancerLookAtMode/baseValue",
                           "controlAddress": "/#16"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/dancer/dancerIntensity/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/general/emitterShape/baseValue",
                           "controlAddress": "/#17"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/dancer/dancerRotation/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/general/emitterSurfaceFactor/baseValue",
                           "controlAddress": "/#18"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/dancer/dancerLookAt/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/general/emitterVolumeFactor/baseValue",
                           "controlAddress": "/#19"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/dancer/dancerLookAtMode/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/appearance/textureOpacity/baseValue",
                           "controlAddress": "/#20"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/general/life/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/physics/forceWeight/baseValue",
                           "controlAddress": "/#21"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/general/emitterShape/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/patterns/patternSize/baseValue",
                           "controlAddress": "/#22"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/general/emitterSurfaceFactor/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/patterns/patternSizeSpread/baseValue",
                           "controlAddress": "/#23"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/general/emitterVolumeFactor/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/patterns/patternAxisSpread/baseValue",
                           "controlAddress": "/#24"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/physics/forceWeight/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/patterns/linePatternWeight/baseValue",
                           "controlAddress": "/#25"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/physics/drag/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/patterns/circlePatternWeight/baseValue",
                           "controlAddress": "/#26"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/physics/velocityDrag/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/patterns/nBodyPatternWeight/baseValue",
                           "controlAddress": "/#27"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/physics/noisyDrag/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/animation/patternSpeed/baseValue",
                           "controlAddress": "/#28"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/physics/noisyDragFrequency/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/animation/patternSpeedRandom/baseValue",
                           "controlAddress": "/#29"
                         },
                         {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/physics/activateCollision/baseValue",
+                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/animation/patternTimeOffset/baseValue",
                           "controlAddress": "/#30"
-                        },
-                        {
-                          "value": "",
-                          "controlAddress": "/#31"
-                        },
-                        {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/appearance/color/baseValue",
-                          "controlAddress": "/#32"
-                        },
-                        {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/appearance/alpha/baseValue",
-                          "controlAddress": "/#33"
-                        },
-                        {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/appearance/hdrMultiplier/baseValue",
-                          "controlAddress": "/#34"
-                        },
-                        {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/appearance/alphaSpeedThreshold/baseValue",
-                          "controlAddress": "/#35"
-                        },
-                        {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/appearance/textureOpacity/baseValue",
-                          "controlAddress": "/#36"
-                        },
-                        {
-                          "value": "/modules/oxipital/parameters/orbGroups/orbGroup2/appearance/particleSize/baseValue",
-                          "controlAddress": "/#37"
                         }
                       ],
                       "niceName": "Orb 2 Targets",
+                      "editorIsCollapsed": true,
                       "type": "Target",
-                      "listSize": 37,
+                      "listSize": 30,
                       "containerMode": false
                     },
                     {
@@ -17889,7 +17792,7 @@
                           "controlAddress": "/#4"
                         },
                         {
-                          "value": 0.4700855016708374,
+                          "value": 0.4290345907211304,
                           "minValue": 0,
                           "maxValue": 1,
                           "default": 0.0,
@@ -17908,11 +17811,173 @@
                           "maxValue": 1,
                           "default": 0.0,
                           "controlAddress": "/#7"
+                        },
+                        {
+                          "value": 0.0,
+                          "minValue": 0,
+                          "maxValue": 1,
+                          "default": 0.0,
+                          "controlAddress": "/#8"
+                        },
+                        {
+                          "value": 0.0,
+                          "minValue": 0,
+                          "maxValue": 1,
+                          "default": 0.0,
+                          "controlAddress": "/#9"
+                        },
+                        {
+                          "value": 0.0,
+                          "minValue": 0,
+                          "maxValue": 1,
+                          "default": 0.0,
+                          "controlAddress": "/#10"
+                        },
+                        {
+                          "value": 0.0,
+                          "minValue": 0,
+                          "maxValue": 1,
+                          "default": 0.0,
+                          "controlAddress": "/#11"
+                        },
+                        {
+                          "value": 0.0,
+                          "minValue": 0,
+                          "maxValue": 1,
+                          "default": 0.0,
+                          "controlAddress": "/#12"
+                        },
+                        {
+                          "value": 0.0,
+                          "minValue": 0,
+                          "maxValue": 1,
+                          "default": 0.0,
+                          "controlAddress": "/#13"
+                        },
+                        {
+                          "value": 0.0,
+                          "minValue": 0,
+                          "maxValue": 1,
+                          "default": 0.0,
+                          "controlAddress": "/#14"
+                        },
+                        {
+                          "value": 0.0,
+                          "minValue": 0,
+                          "maxValue": 1,
+                          "default": 0.0,
+                          "controlAddress": "/#15"
+                        },
+                        {
+                          "value": 0.0,
+                          "minValue": 0,
+                          "maxValue": 1,
+                          "default": 0.0,
+                          "controlAddress": "/#16"
+                        },
+                        {
+                          "value": 0.0,
+                          "minValue": 0,
+                          "maxValue": 1,
+                          "default": 0.0,
+                          "controlAddress": "/#17"
+                        },
+                        {
+                          "value": 0.0,
+                          "minValue": 0,
+                          "maxValue": 1,
+                          "default": 0.0,
+                          "controlAddress": "/#18"
+                        },
+                        {
+                          "value": 0.0,
+                          "minValue": 0,
+                          "maxValue": 1,
+                          "default": 0.0,
+                          "controlAddress": "/#19"
+                        },
+                        {
+                          "value": 0.0,
+                          "minValue": 0,
+                          "maxValue": 1,
+                          "default": 0.0,
+                          "controlAddress": "/#20"
+                        },
+                        {
+                          "value": 0.0,
+                          "minValue": 0,
+                          "maxValue": 1,
+                          "default": 0.0,
+                          "controlAddress": "/#21"
+                        },
+                        {
+                          "value": 0.0,
+                          "minValue": 0,
+                          "maxValue": 1,
+                          "default": 0.0,
+                          "controlAddress": "/#22"
+                        },
+                        {
+                          "value": 0.0,
+                          "minValue": 0,
+                          "maxValue": 1,
+                          "default": 0.0,
+                          "controlAddress": "/#23"
+                        },
+                        {
+                          "value": 0.0,
+                          "minValue": 0,
+                          "maxValue": 1,
+                          "default": 0.0,
+                          "controlAddress": "/#24"
+                        },
+                        {
+                          "value": 0.0,
+                          "minValue": 0,
+                          "maxValue": 1,
+                          "default": 0.0,
+                          "controlAddress": "/#25"
+                        },
+                        {
+                          "value": 0.0,
+                          "minValue": 0,
+                          "maxValue": 1,
+                          "default": 0.0,
+                          "controlAddress": "/#26"
+                        },
+                        {
+                          "value": 0.0,
+                          "minValue": 0,
+                          "maxValue": 1,
+                          "default": 0.0,
+                          "controlAddress": "/#27"
+                        },
+                        {
+                          "value": 0.0,
+                          "minValue": 0,
+                          "maxValue": 1,
+                          "default": 0.0,
+                          "controlAddress": "/#28"
+                        },
+                        {
+                          "value": 0.0,
+                          "minValue": 0,
+                          "maxValue": 1,
+                          "default": 0.0,
+                          "controlAddress": "/#29"
+                        },
+                        {
+                          "value": 0.0,
+                          "minValue": 0,
+                          "maxValue": 1,
+                          "default": 0.0,
+                          "controlAddress": "/#30"
                         }
                       ],
                       "niceName": "Smoothing Factors",
+                      "editorIsCollapsed": true,
                       "type": "Float",
-                      "listSize": 37
+                      "listSize": 30
                     },
                     {
                       "parameters": [
@@ -17921,154 +17986,126 @@
                           "controlAddress": "/#1"
                         },
                         {
-                          "value": "/customVariables/customVariables/values/orbPresets/patternSize",
+                          "value": "/customVariables/customVariables/values/orbPresets/intensity",
                           "controlAddress": "/#2"
                         },
                         {
-                          "value": "/customVariables/customVariables/values/orbPresets/patternSizeSpread",
+                          "value": "/customVariables/customVariables/values/orbPresets/hdrMultiplier",
                           "controlAddress": "/#3"
                         },
                         {
-                          "value": "/customVariables/customVariables/values/orbPresets/patternAxisSpread",
+                          "value": "/customVariables/customVariables/values/orbPresets/life",
                           "controlAddress": "/#4"
                         },
                         {
-                          "value": "/customVariables/customVariables/values/orbPresets/patternLineWeight",
+                          "value": "/customVariables/customVariables/values/orbPresets/particleSize",
                           "controlAddress": "/#5"
                         },
                         {
-                          "value": "/customVariables/customVariables/values/orbPresets/patternCircleWeight",
+                          "value": "/customVariables/customVariables/values/orbPresets/alpha",
                           "controlAddress": "/#6"
                         },
                         {
-                          "value": "/customVariables/customVariables/values/orbPresets/patternNBodyWeight",
+                          "value": "/customVariables/customVariables/values/orbPresets/drag",
                           "controlAddress": "/#7"
                         },
                         {
-                          "value": "/customVariables/customVariables/values/orbPresets/patternSpeed",
+                          "value": "/customVariables/customVariables/values/orbPresets/velocityDrag",
                           "controlAddress": "/#8"
                         },
                         {
-                          "value": "/customVariables/customVariables/values/orbPresets/patternSpeedRandom",
+                          "value": "/customVariables/customVariables/values/orbPresets/noisyDrag",
                           "controlAddress": "/#9"
                         },
                         {
-                          "value": "/customVariables/customVariables/values/orbPresets/patternTimeOffset",
+                          "value": "/customVariables/customVariables/values/orbPresets/noisyDragFrequency",
                           "controlAddress": "/#10"
                         },
                         {
-                          "value": "/customVariables/customVariables/values/orbPresets/count",
+                          "value": "/customVariables/customVariables/values/orbPresets/alphaSpeedThreshold",
                           "controlAddress": "/#11"
                         },
                         {
-                          "value": "/customVariables/customVariables/values/orbPresets/count",
+                          "value": "/customVariables/customVariables/values/orbPresets/orbSize",
                           "controlAddress": "/#12"
                         },
                         {
-                          "value": "/customVariables/customVariables/values/orbPresets/count",
+                          "value": "/customVariables/customVariables/values/orbPresets/orbHypersize",
                           "controlAddress": "/#13"
                         },
                         {
-                          "value": "/customVariables/customVariables/values/orbPresets/count",
+                          "value": "/customVariables/customVariables/values/orbPresets/orbSizeSpread",
                           "controlAddress": "/#14"
                         },
                         {
-                          "value": "/customVariables/customVariables/values/orbPresets/count",
+                          "value": "/customVariables/customVariables/values/orbPresets/orbWeightSizeFactor",
                           "controlAddress": "/#15"
                         },
                         {
-                          "value": "/customVariables/customVariables/values/orbPresets/count",
+                          "value": "/customVariables/customVariables/values/orbPresets/orbLookAtMode",
                           "controlAddress": "/#16"
                         },
                         {
-                          "value": "/customVariables/customVariables/values/orbPresets/count",
+                          "value": "/customVariables/customVariables/values/orbPresets/emitterShape",
                           "controlAddress": "/#17"
                         },
                         {
-                          "value": "/customVariables/customVariables/values/orbPresets/count",
+                          "value": "/customVariables/customVariables/values/orbPresets/emitterSurfaceFactor",
                           "controlAddress": "/#18"
                         },
                         {
-                          "value": "/customVariables/customVariables/values/orbPresets/count",
+                          "value": "/customVariables/customVariables/values/orbPresets/emitterVolumeFactor",
                           "controlAddress": "/#19"
                         },
                         {
-                          "value": "/customVariables/customVariables/values/orbPresets/count",
+                          "value": "/customVariables/customVariables/values/orbPresets/textureOpacity",
                           "controlAddress": "/#20"
                         },
                         {
-                          "value": "/customVariables/customVariables/values/orbPresets/count",
+                          "value": "/customVariables/customVariables/values/orbPresets/forceWeight",
                           "controlAddress": "/#21"
                         },
                         {
-                          "value": "/customVariables/customVariables/values/orbPresets/count",
+                          "value": "/customVariables/customVariables/values/orbPresets/patternSize",
                           "controlAddress": "/#22"
                         },
                         {
-                          "value": "/customVariables/customVariables/values/orbPresets/count",
+                          "value": "/customVariables/customVariables/values/orbPresets/patternSizeSpread",
                           "controlAddress": "/#23"
                         },
                         {
-                          "value": "/customVariables/customVariables/values/orbPresets/count",
+                          "value": "/customVariables/customVariables/values/orbPresets/patternAxisSpread",
                           "controlAddress": "/#24"
                         },
                         {
-                          "value": "/customVariables/customVariables/values/orbPresets/count",
+                          "value": "/customVariables/customVariables/values/orbPresets/patternLineWeight",
                           "controlAddress": "/#25"
                         },
                         {
-                          "value": "/customVariables/customVariables/values/orbPresets/count",
+                          "value": "/customVariables/customVariables/values/orbPresets/patternCircleWeight",
                           "controlAddress": "/#26"
                         },
                         {
-                          "value": "/customVariables/customVariables/values/orbPresets/count",
+                          "value": "/customVariables/customVariables/values/orbPresets/patternNBodyWeight",
                           "controlAddress": "/#27"
                         },
                         {
-                          "value": "/customVariables/customVariables/values/orbPresets/count",
+                          "value": "/customVariables/customVariables/values/orbPresets/patternSpeed",
                           "controlAddress": "/#28"
                         },
                         {
-                          "value": "/customVariables/customVariables/values/orbPresets/count",
+                          "value": "/customVariables/customVariables/values/orbPresets/patternSpeedRandom",
                           "controlAddress": "/#29"
                         },
                         {
-                          "value": "/customVariables/customVariables/values/orbPresets/count",
+                          "value": "/customVariables/customVariables/values/orbPresets/patternTimeOffset",
                           "controlAddress": "/#30"
-                        },
-                        {
-                          "value": "/customVariables/customVariables/values/orbPresets/count",
-                          "controlAddress": "/#31"
-                        },
-                        {
-                          "value": "",
-                          "controlAddress": "/#32"
-                        },
-                        {
-                          "value": "",
-                          "controlAddress": "/#33"
-                        },
-                        {
-                          "value": "",
-                          "controlAddress": "/#34"
-                        },
-                        {
-                          "value": "",
-                          "controlAddress": "/#35"
-                        },
-                        {
-                          "value": "",
-                          "controlAddress": "/#36"
-                        },
-                        {
-                          "value": "",
-                          "controlAddress": "/#37"
                         }
                       ],
                       "niceName": "CV Values",
                       "editorIsCollapsed": true,
                       "type": "Input Values",
-                      "listSize": 37
+                      "listSize": 30
                     }
                   ],
                   "viewOffset": [
