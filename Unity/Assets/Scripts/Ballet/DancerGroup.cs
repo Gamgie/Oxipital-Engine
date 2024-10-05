@@ -52,7 +52,7 @@ namespace Oxipital
         public float patternSizeLFOAmplitude;
 
         [Header("Dancer")]
-        [Range(0, 20)]
+        [Range(0, 10)]
         public float dancerSize = 1;
         [Range(0, 1)]
         public float dancerHyperSize = 0;
