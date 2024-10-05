@@ -120,27 +120,26 @@ namespace Oxipital
         public float particleSize = 0;
 
         [Header("Physics")]
-        [InBuffer(12)]
         [Range(0, 1)]
         public float forceWeight = 1;
 
-        [InBuffer(13)]
+        [InBuffer(12)]
         [Range(0, 1)]
         public float drag = .5f;
 
-        [InBuffer(14)]
+        [InBuffer(13)]
         [Range(0, 1)]
         public float velocityDrag = 0;
 
-        [InBuffer(15)]
+        [InBuffer(14)]
         [Range(0, 1)]
         public float noisyDrag = 0;
 
-        [InBuffer(16)]
+        [InBuffer(15)]
         [Range(0, 5)]
         public float noisyDragFrequency = 0;
 
-        [InBuffer(17)]
+        [InBuffer(16)]
         public bool activateCollision = false;
 
         [Header("Debug")]

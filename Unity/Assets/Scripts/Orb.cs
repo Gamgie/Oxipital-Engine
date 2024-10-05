@@ -43,6 +43,7 @@ namespace Oxipital
             //Discussion : https://discussions.unity.com/t/spawn-a-variable-amount-of-particles-from-graphics-buffer/899049/2
             bool isDying = killProgress > 0;
             vfx.SetFloat("Emitter Intensity", isDying ? 0 : intensity);
+            vfx.SetFloat("Force Weight", GetComponentInParent<OrbGroup>().forceWeight);
         }
 
         internal void setOrbBuffer(GraphicsBuffer buffer, int index)
