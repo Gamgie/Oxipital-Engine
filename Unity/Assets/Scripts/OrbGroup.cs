@@ -71,7 +71,7 @@ namespace Oxipital
         public float noisyDrag = 0;
 
         [InBuffer(16)]
-        [Range(0, 1)]
+        [Range(0, 5)]
         public float noisyDragFrequency = 0;
 
         [InBuffer(17)]
