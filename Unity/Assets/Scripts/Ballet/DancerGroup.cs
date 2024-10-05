@@ -188,7 +188,7 @@ namespace Oxipital
                 Vector3 absoluteLookAtTarget = dancerLookAt;
                 Vector3 lookAtTarget = Vector3.Lerp(groupLookAtTarget, absoluteLookAtTarget, groupAbsoluteWeight);
 
-                Quaternion lookRot = Quaternion.LookRotation(lookAtTarget - d.transform.position);
+                Quaternion lookRot = lookAtTarget == d.transform.position ? Quaternion.identity : Quaternion.LookRotation(lookAtTarget - d.transform.position);
                 d.targetRotation = Quaternion.Lerp(Quaternion.identity, lookRot, lookAtWeight) * Quaternion.Euler(dancerRotation);
 
             }

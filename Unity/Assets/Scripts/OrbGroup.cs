@@ -4,10 +4,76 @@ using UnityEngine;
 using UnityEngine.VFX;
 using System;
 using UnityEngine.VFX.SDF;
+using System.IO;
 
 
 namespace Oxipital
 {
+    public class MeshLoader
+    {
+        static MeshLoader instance;
+
+        static Dictionary<string, Mesh> shapeMeshMap;
+        public MeshLoader()
+        {
+            instance = this;
+        }
+
+        public static MeshLoader getInstance()
+        {
+            if(instance == null) instance = new MeshLoader();
+            return instance;
+        }
+
+        async public static void loadMeshes()
+        {
+            if(shapeMeshMap != null) return;
+            shapeMeshMap = new Dictionary<string, Mesh>();
+
+            string emittersPath = Path.Combine(Application.streamingAssetsPath, "emitters");
+            string[] files = Directory.GetFiles(emittersPath, "*.glb");
+
+            foreach (string file in files)
+            {
+                var gltfI = new GLTFast.GltfImport();
+                var success = await gltfI.Load(file);
+
+                if (success)
+                {
+                    var meshes = gltfI.GetMeshes();
+                    if (meshes.Length > 0)
+                    {
+                        Mesh m = meshes[0];
+                        if (m == null)
+                        {
+                            Debug.LogWarning(file + " loaded but no mesh found inside");
+                            return;
+                        }
+
+                        var fileWithoutExtension = Path.GetFileNameWithoutExtension(file);
+                        shapeMeshMap.Add(fileWithoutExtension, m);
+                        Debug.Log("Loaded mesh " + fileWithoutExtension);
+                    }
+                    else
+                    {
+                        Debug.LogWarning("No mesh found in glTF file");
+                    }
+                }
+                else
+                {
+                    Debug.LogError("Loading glTF failed!");
+                }
+            }
+
+            Debug.Log("Loaded all meshes");
+        }
+
+        public static Mesh getMesh(string name)
+        {
+            return shapeMeshMap[name];
+        }
+    }
+
     public class OrbGroup : DancerGroup<Orb>
     {
         [Header("Emission")]
@@ -82,7 +148,14 @@ namespace Oxipital
 
         public string meshName = "";
         string lastMeshName = "";
-        Mesh emitterMesh;
+
+        Mesh currentMesh;
+
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+            MeshLoader.loadMeshes();
+        }
 
         protected override void Update()
         {
@@ -105,7 +178,9 @@ namespace Oxipital
 
             if (meshName != lastMeshName)
             {
-                StartCoroutine("loadMesh");
+                currentMesh = MeshLoader.getMesh(meshName.ToLower());
+                if (currentMesh == null) Debug.LogWarning("Could not find mesh for " + meshName);
+                else foreach(Orb orb in items) orb.setMesh(currentMesh);
                 lastMeshName = meshName;
             }
 
@@ -114,7 +189,7 @@ namespace Oxipital
         protected override void addItem()
         {
             base.addItem();
-            items[items.Count - 1].setMesh(emitterMesh);
+            items[items.Count - 1].setMesh(currentMesh);
         }
 
         public void setForceBuffers(Dictionary<string, GraphicsBuffer> forceBuffers)
@@ -129,51 +204,6 @@ namespace Oxipital
             return GetType();
         }
 
-
-        //Mesh loading
-        IEnumerator loadMesh()
-        {
-            setMesh();
-            yield return null;
-        }
-
-        async void setMesh()
-        {
-            if (meshName == "") return;
-            //var gltf = new GLTFast.GltfAsset();
-            //gltf.StreamingAsset = true;
-            //var success = await gltf.Load("emitters/"+meshName+".gltf");
-
-            var gltfI = new GLTFast.GltfImport();
-            var success = await gltfI.Load(Application.streamingAssetsPath + "/emitters/" + meshName + ".gltf");
-
-            if (success)
-            {
-                var meshes = gltfI.GetMeshes();
-                Debug.Log("GLTFImport Loaded " + meshes.Length + " meshes");
-
-                if (meshes.Length > 0)
-                {
-                    Mesh m = meshes[0];
-                    if (m == null)
-                    {
-                        Debug.LogWarning(meshName + " not found in StreamingAssets");
-                        return;
-                    }
-
-                    emitterMesh = m;
-                    foreach (Orb orb in items) orb.setMesh(m);
-                }
-                else
-                {
-                    Debug.LogWarning("No mesh found in glTF file");
-                }
-            }
-            else
-            {
-                Debug.LogError("Loading glTF failed!");
-            }
-        }
 
         override protected void killLastItem()
         {
