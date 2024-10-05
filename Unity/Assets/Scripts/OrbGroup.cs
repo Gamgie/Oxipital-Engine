@@ -12,7 +12,7 @@ namespace Oxipital
     {
         [Header("Emission")]
         [InBuffer(0)]
-        [Range(0, 40)]
+        [Range(0, 60)]
         public float life = 20;
 
         public enum EmitterShape { Sphere, Plane, Torus, Cube, Pipe, Egg, Line, Circle, Merkaba, Pyramid, Custom }
