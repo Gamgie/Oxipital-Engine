@@ -22,7 +22,7 @@ namespace Oxipital
         public const int DANCER_DATA_SIZE = 8;
 
         [Header("Patterns")]
-        [Range(0, 20)]
+        [Range(0, 10)]
         public float patternSize = 1; // Size of this pattern
 
         [Range(0, 1)]
