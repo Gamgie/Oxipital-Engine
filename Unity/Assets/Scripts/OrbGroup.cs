@@ -11,18 +11,11 @@ namespace Oxipital
 {
     public class MeshLoader
     {
-        static MeshLoader instance;
+        public static bool isLoaded = false;
 
         static Dictionary<string, Mesh> shapeMeshMap;
         public MeshLoader()
         {
-            instance = this;
-        }
-
-        public static MeshLoader getInstance()
-        {
-            if(instance == null) instance = new MeshLoader();
-            return instance;
         }
 
         async public static void loadMeshes()
@@ -66,6 +59,7 @@ namespace Oxipital
             }
 
             Debug.Log("Loaded all meshes");
+            isLoaded = true;
         }
 
         public static Mesh getMesh(string name)
@@ -175,12 +169,15 @@ namespace Oxipital
                 lastEmitterShape = emitterShape;
             }
 
-            if (meshName != lastMeshName)
+            if (MeshLoader.isLoaded)
             {
-                currentMesh = MeshLoader.getMesh(meshName.ToLower());
-                if (currentMesh == null) Debug.LogWarning("Could not find mesh for " + meshName);
-                else foreach(Orb orb in items) orb.setMesh(currentMesh);
-                lastMeshName = meshName;
+                if (meshName != lastMeshName)
+                {
+                    currentMesh = MeshLoader.getMesh(meshName.ToLower());
+                    if (currentMesh == null) Debug.LogWarning("Could not find mesh for " + meshName);
+                    else foreach (Orb orb in items) orb.setMesh(currentMesh);
+                    lastMeshName = meshName;
+                }
             }
 
         }
