@@ -48,7 +48,8 @@ namespace Oxipital
         {
             float w = weight * (1 - killProgress);
 
-            Color color = Color.Lerp(new Color(1.0f, 0, 0, 0), debugColor, w);
+            Color c = Color.Lerp(Color.gray, debugColor, intensity);
+            Color color = Color.Lerp(new Color(1.0f, 0, 0, 0), c, w);
             Gizmos.color = color;
             Gizmos.DrawWireSphere(transform.position, size);
         }
