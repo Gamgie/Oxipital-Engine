@@ -2050,7 +2050,7 @@
             "macros": {
               "parameters": [
                 {
-                  "value": 0.06696709245443344,
+                  "value": 0.0871550664305687,
                   "minValue": 0.0,
                   "maxValue": 1.0,
                   "default": 0.0,
@@ -4312,7 +4312,7 @@
                               "controlAddress": "/patternTimeOffset"
                             },
                             {
-                              "value": 5.328455603118922,
+                              "value": 5.420743212570765,
                               "controlAddress": "/dancerSize"
                             },
                             {
@@ -16373,6 +16373,27 @@
                   "minValue": 0,
                   "maxValue": 1,
                   "default": 0.0,
+                  "controlAddress": "/orthoradialClockwise",
+                  "feedbackOnly": false,
+                  "type": "Float",
+                  "niceName": "Orthoradial Clockwise",
+                  "customizable": true,
+                  "removable": false,
+                  "description": "Custom control of type Float",
+                  "hideInEditor": false
+                }
+              ],
+              "niceName": "Orthoradial Clockwise",
+              "editorIsCollapsed": true,
+              "type": "Float Parameter"
+            },
+            {
+              "parameters": [
+                {
+                  "value": 0.0,
+                  "minValue": 0,
+                  "maxValue": 1,
+                  "default": 0.0,
                   "controlAddress": "/orthoaxialIntensity",
                   "feedbackOnly": false,
                   "type": "Float",
@@ -17551,6 +17572,16 @@
                     ],
                     "owned": true,
                     "niceName": "Pattern Time Offset"
+                  },
+                  "orthoradialClockwise": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/orthoradialClockwise"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Orthoradial Clockwise"
                   }
                 }
               }
@@ -18067,6 +18098,16 @@
                     ],
                     "owned": true,
                     "niceName": "Pattern Time Offset"
+                  },
+                  "orthoradialClockwise": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/orthoradialClockwise"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Orthoradial Clockwise"
                   }
                 }
               }
@@ -18583,6 +18624,16 @@
                     ],
                     "owned": true,
                     "niceName": "Pattern Time Offset"
+                  },
+                  "orthoradialClockwise": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/orthoradialClockwise"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Orthoradial Clockwise"
                   }
                 }
               }
@@ -19099,6 +19150,16 @@
                     ],
                     "owned": true,
                     "niceName": "Pattern Time Offset"
+                  },
+                  "orthoradialClockwise": {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/orthoradialClockwise"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Orthoradial Clockwise"
                   }
                 }
               }
@@ -22227,8 +22288,8 @@
       }
     ],
     "viewOffset": [
-      -379,
-      119
+      -200,
+      143
     ],
     "viewZoom": 1.0,
     "transitions": {
@@ -22242,8 +22303,8 @@
     "comments": {
       "hideInEditor": true,
       "viewOffset": [
-        -379,
-        119
+        -200,
+        143
       ],
       "viewZoom": 1.0
     }
