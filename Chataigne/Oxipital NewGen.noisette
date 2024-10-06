@@ -1,7 +1,7 @@
 {
   "metaData": {
-    "version": "1.9.21",
-    "versionNumber": 67861
+    "version": "1.9.22",
+    "versionNumber": 67862
   },
   "projectSettings": {
     "parameters": [
@@ -52,6 +52,1872 @@
     ],
     "items": [
       {
+        "niceName": "Orbs",
+        "type": "BaseItem",
+        "itemManager": {
+          "parameters": [
+            {
+              "value": [
+                1920.0,
+                1080.0
+              ],
+              "controlAddress": "/canvasSize",
+              "enabled": true
+            },
+            {
+              "value": false,
+              "controlAddress": "/snapGridMode"
+            },
+            {
+              "value": true,
+              "controlAddress": "/showSnapGrid"
+            }
+          ],
+          "items": [
+            {
+              "parameters": [
+                {
+                  "value": [
+                    -800.0,
+                    -480.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    141.0,
+                    50.0
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": "ORB 1",
+                  "controlAddress": "/text"
+                },
+                {
+                  "value": 42.19998550415039,
+                  "customUI": 3,
+                  "controlAddress": "/size"
+                }
+              ],
+              "niceName": "Comment",
+              "hideInEditor": true,
+              "type": "DashboardCommentItem"
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    -940.0,
+                    220.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    140.0,
+                    40.0
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#1",
+                  "controlAddress": "/target"
+                },
+                {
+                  "value": "Count",
+                  "controlAddress": "/customText",
+                  "enabled": true
+                },
+                {
+                  "value": "Horizontal Slider",
+                  "controlAddress": "/style"
+                },
+                {
+                  "value": "",
+                  "controlAddress": "/toggleImage",
+                  "enabled": false
+                }
+              ],
+              "niceName": "Item",
+              "hideInEditor": true,
+              "type": "DashboardParameterItem",
+              "ghostAddress": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#1",
+              "controllable": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#1"
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    -940.0,
+                    -420.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    89.0,
+                    31.0
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": "Emission",
+                  "controlAddress": "/text"
+                },
+                {
+                  "value": 22.79999542236328,
+                  "customUI": 3,
+                  "controlAddress": "/size"
+                }
+              ],
+              "niceName": "Comment 1",
+              "hideInEditor": true,
+              "type": "DashboardCommentItem"
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    -940.0,
+                    -280.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    69.0,
+                    31.0
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": "Shape",
+                  "controlAddress": "/text"
+                },
+                {
+                  "value": 22.79999542236328,
+                  "customUI": 3,
+                  "controlAddress": "/size"
+                }
+              ],
+              "niceName": "Comment 3",
+              "hideInEditor": true,
+              "type": "DashboardCommentItem"
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    -940.0,
+                    -180.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    85.0,
+                    31.0
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": "Particles",
+                  "controlAddress": "/text"
+                },
+                {
+                  "value": 22.79999542236328,
+                  "customUI": 3,
+                  "controlAddress": "/size"
+                }
+              ],
+              "niceName": "Comment 4",
+              "hideInEditor": true,
+              "type": "DashboardCommentItem"
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    -940.0,
+                    20.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    75.0,
+                    31.0
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": "Physics",
+                  "controlAddress": "/text"
+                },
+                {
+                  "value": 22.79999542236328,
+                  "customUI": 3,
+                  "controlAddress": "/size"
+                }
+              ],
+              "niceName": "Comment 5",
+              "hideInEditor": true,
+              "type": "DashboardCommentItem"
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    -940.0,
+                    180.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    74.0,
+                    31.0
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": "Pattern",
+                  "controlAddress": "/text"
+                },
+                {
+                  "value": 22.79999542236328,
+                  "customUI": 3,
+                  "controlAddress": "/size"
+                }
+              ],
+              "niceName": "Comment 2",
+              "hideInEditor": true,
+              "type": "DashboardCommentItem"
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    -740.0,
+                    -380.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    200.0,
+                    40.0
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#4",
+                  "controlAddress": "/target"
+                },
+                {
+                  "value": "Life",
+                  "controlAddress": "/customText",
+                  "enabled": true
+                },
+                {
+                  "value": "",
+                  "controlAddress": "/toggleImage",
+                  "enabled": false
+                }
+              ],
+              "niceName": "Item 1",
+              "hideInEditor": true,
+              "type": "DashboardParameterItem",
+              "ghostAddress": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#4",
+              "controllable": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#4"
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    -800.0,
+                    -240.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    160.0,
+                    30.0
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#12",
+                  "controlAddress": "/target"
+                },
+                {
+                  "value": "Dancer Size",
+                  "controlAddress": "/customText",
+                  "enabled": true
+                },
+                {
+                  "value": "",
+                  "controlAddress": "/toggleImage",
+                  "enabled": false
+                }
+              ],
+              "niceName": "Item 2",
+              "hideInEditor": true,
+              "type": "DashboardParameterItem",
+              "ghostAddress": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#12",
+              "controllable": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#12"
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    -580.0,
+                    -240.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    40.0,
+                    40.0
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#13",
+                  "controlAddress": "/target"
+                },
+                {
+                  "value": true,
+                  "controlAddress": "/showLabel"
+                },
+                {
+                  "value": "HS",
+                  "controlAddress": "/customText",
+                  "enabled": true
+                },
+                {
+                  "value": 12,
+                  "hexMode": false,
+                  "controlAddress": "/textSize",
+                  "enabled": true
+                },
+                {
+                  "value": false,
+                  "controlAddress": "/showValue"
+                },
+                {
+                  "value": [
+                    0.2115372568368912,
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "controlAddress": "/backgroundColor",
+                  "enabled": true
+                },
+                {
+                  "value": [
+                    0.8384627103805542,
+                    0.1580196022987366,
+                    0.1580196022987366,
+                    1.0
+                  ],
+                  "controlAddress": "/foregroundColor",
+                  "enabled": true
+                },
+                {
+                  "value": "Rotary Slider",
+                  "controlAddress": "/style"
+                },
+                {
+                  "value": "",
+                  "controlAddress": "/toggleImage",
+                  "enabled": false
+                }
+              ],
+              "niceName": "Item 3",
+              "hideInEditor": true,
+              "type": "DashboardParameterItem",
+              "ghostAddress": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#13",
+              "controllable": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#13"
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    -940.0,
+                    -240.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    120.0,
+                    40.0
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/general/emitterShape/baseValue",
+                  "controlAddress": "/target"
+                },
+                {
+                  "value": "",
+                  "controlAddress": "/toggleImage",
+                  "enabled": false
+                }
+              ],
+              "niceName": "Item 4",
+              "hideInEditor": true,
+              "type": "DashboardEnumParameterItem",
+              "ghostAddress": "/modules/oxipital/parameters/orbGroups/orbGroup1/general/emitterShape/baseValue",
+              "controllable": "/modules/oxipital/parameters/orbGroups/orbGroup1/general/emitterShape/baseValue"
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    -940.0,
+                    -380.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    180.0,
+                    40.0
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#2",
+                  "controlAddress": "/target"
+                },
+                {
+                  "value": "Intensity",
+                  "controlAddress": "/customText",
+                  "enabled": true
+                },
+                {
+                  "value": "",
+                  "controlAddress": "/toggleImage",
+                  "enabled": false
+                }
+              ],
+              "niceName": "Item 5",
+              "hideInEditor": true,
+              "type": "DashboardParameterItem",
+              "ghostAddress": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#2",
+              "controllable": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#2"
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    -780.0,
+                    220.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    120.0,
+                    40.0
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#22",
+                  "controlAddress": "/target"
+                },
+                {
+                  "value": "Pattern Size",
+                  "controlAddress": "/customText",
+                  "enabled": true
+                },
+                {
+                  "value": "",
+                  "controlAddress": "/toggleImage",
+                  "enabled": false
+                }
+              ],
+              "niceName": "Item 6",
+              "hideInEditor": true,
+              "type": "DashboardParameterItem",
+              "ghostAddress": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#22",
+              "controllable": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#22"
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    -640.0,
+                    220.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    40.0,
+                    40.0
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#23",
+                  "controlAddress": "/target"
+                },
+                {
+                  "value": true,
+                  "controlAddress": "/showLabel"
+                },
+                {
+                  "value": "S",
+                  "controlAddress": "/customText",
+                  "enabled": true
+                },
+                {
+                  "value": 12,
+                  "hexMode": false,
+                  "controlAddress": "/textSize",
+                  "enabled": true
+                },
+                {
+                  "value": false,
+                  "controlAddress": "/showValue"
+                },
+                {
+                  "value": "Rotary Slider",
+                  "controlAddress": "/style"
+                },
+                {
+                  "value": "",
+                  "controlAddress": "/toggleImage",
+                  "enabled": false
+                }
+              ],
+              "niceName": "Item 7",
+              "hideInEditor": true,
+              "type": "DashboardParameterItem",
+              "ghostAddress": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#23",
+              "controllable": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#23"
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    -580.0,
+                    220.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    40.0,
+                    40.0
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#24",
+                  "controlAddress": "/target"
+                },
+                {
+                  "value": "A",
+                  "controlAddress": "/customText",
+                  "enabled": true
+                },
+                {
+                  "value": 12,
+                  "hexMode": false,
+                  "controlAddress": "/textSize",
+                  "enabled": true
+                },
+                {
+                  "value": false,
+                  "controlAddress": "/showValue"
+                },
+                {
+                  "value": "Rotary Slider",
+                  "controlAddress": "/style"
+                },
+                {
+                  "value": "",
+                  "controlAddress": "/toggleImage",
+                  "enabled": false
+                }
+              ],
+              "niceName": "Item 8",
+              "hideInEditor": true,
+              "type": "DashboardParameterItem",
+              "ghostAddress": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#24",
+              "controllable": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#24"
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    -940.0,
+                    280.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    120.0,
+                    40.0
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#25",
+                  "controlAddress": "/target"
+                },
+                {
+                  "value": "Line",
+                  "controlAddress": "/customText",
+                  "enabled": true
+                },
+                {
+                  "value": "",
+                  "controlAddress": "/toggleImage",
+                  "enabled": false
+                }
+              ],
+              "niceName": "Item 9",
+              "hideInEditor": true,
+              "type": "DashboardParameterItem",
+              "ghostAddress": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#25",
+              "controllable": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#25"
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    -800.0,
+                    280.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    120.0,
+                    40.0
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#26",
+                  "controlAddress": "/target"
+                },
+                {
+                  "value": "Circle",
+                  "controlAddress": "/customText",
+                  "enabled": true
+                },
+                {
+                  "value": "",
+                  "controlAddress": "/toggleImage",
+                  "enabled": false
+                }
+              ],
+              "niceName": "Item 10",
+              "hideInEditor": true,
+              "type": "DashboardParameterItem",
+              "ghostAddress": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#26",
+              "controllable": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#26"
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    -660.0,
+                    280.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    120.0,
+                    40.0
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#27",
+                  "controlAddress": "/target"
+                },
+                {
+                  "value": "NBody",
+                  "controlAddress": "/customText",
+                  "enabled": true
+                },
+                {
+                  "value": "",
+                  "controlAddress": "/toggleImage",
+                  "enabled": false
+                }
+              ],
+              "niceName": "Item 11",
+              "hideInEditor": true,
+              "type": "DashboardParameterItem",
+              "ghostAddress": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#27",
+              "controllable": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#27"
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    -940.0,
+                    340.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    120.0,
+                    40.0
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#28",
+                  "controlAddress": "/target"
+                },
+                {
+                  "value": "Speed",
+                  "controlAddress": "/customText",
+                  "enabled": true
+                },
+                {
+                  "value": "",
+                  "controlAddress": "/toggleImage",
+                  "enabled": false
+                }
+              ],
+              "niceName": "Item 12",
+              "hideInEditor": true,
+              "type": "DashboardParameterItem",
+              "ghostAddress": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#28",
+              "controllable": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#28"
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    -800.0,
+                    340.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    120.0,
+                    40.0
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#29",
+                  "controlAddress": "/target"
+                },
+                {
+                  "value": "S Random",
+                  "controlAddress": "/customText",
+                  "enabled": true
+                },
+                {
+                  "value": "",
+                  "controlAddress": "/toggleImage",
+                  "enabled": false
+                }
+              ],
+              "niceName": "Item 13",
+              "hideInEditor": true,
+              "type": "DashboardParameterItem",
+              "ghostAddress": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#29",
+              "controllable": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#29"
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    -660.0,
+                    340.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    120.0,
+                    40.00000762939453
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#30",
+                  "controlAddress": "/target"
+                },
+                {
+                  "value": "Offset",
+                  "controlAddress": "/customText",
+                  "enabled": true
+                },
+                {
+                  "value": "",
+                  "controlAddress": "/toggleImage",
+                  "enabled": false
+                }
+              ],
+              "niceName": "Item 14",
+              "hideInEditor": true,
+              "type": "DashboardParameterItem",
+              "ghostAddress": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#30",
+              "controllable": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#30"
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    -640.0,
+                    -140.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    40.0,
+                    40.0
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/appearance/color/baseValue",
+                  "controlAddress": "/target"
+                },
+                {
+                  "value": "C",
+                  "controlAddress": "/customText",
+                  "enabled": true
+                },
+                {
+                  "value": [
+                    0.3809523582458496,
+                    0.3809523582458496,
+                    0.3809523582458496,
+                    1.0
+                  ],
+                  "controlAddress": "/borderColor",
+                  "enabled": true
+                },
+                {
+                  "value": "",
+                  "controlAddress": "/toggleImage",
+                  "enabled": false
+                }
+              ],
+              "niceName": "Item 15",
+              "hideInEditor": true,
+              "type": "DashboardParameterItem",
+              "ghostAddress": "/modules/oxipital/parameters/orbGroups/orbGroup1/appearance/color/baseValue",
+              "controllable": "/modules/oxipital/parameters/orbGroups/orbGroup1/appearance/color/baseValue"
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    -940.0,
+                    -140.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    220.0,
+                    40.0
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#5",
+                  "controlAddress": "/target"
+                },
+                {
+                  "value": "Size",
+                  "controlAddress": "/customText",
+                  "enabled": true
+                },
+                {
+                  "value": "",
+                  "controlAddress": "/toggleImage",
+                  "enabled": false
+                }
+              ],
+              "niceName": "Item 16",
+              "hideInEditor": true,
+              "type": "DashboardParameterItem",
+              "ghostAddress": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#5",
+              "controllable": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#5"
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    -940.0,
+                    -80.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    180.0,
+                    40.0
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#6",
+                  "controlAddress": "/target"
+                },
+                {
+                  "value": "Alpha",
+                  "controlAddress": "/customText",
+                  "enabled": true
+                },
+                {
+                  "value": "",
+                  "controlAddress": "/toggleImage",
+                  "enabled": false
+                }
+              ],
+              "niceName": "Item 17",
+              "hideInEditor": true,
+              "type": "DashboardParameterItem",
+              "ghostAddress": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#6",
+              "controllable": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#6"
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    -580.0,
+                    -140.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    40.0,
+                    40.0
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#3",
+                  "controlAddress": "/target"
+                },
+                {
+                  "value": "HDR",
+                  "controlAddress": "/customText",
+                  "enabled": true
+                },
+                {
+                  "value": 12,
+                  "hexMode": false,
+                  "controlAddress": "/textSize",
+                  "enabled": true
+                },
+                {
+                  "value": false,
+                  "controlAddress": "/showValue"
+                },
+                {
+                  "value": [
+                    0.1333333402872086,
+                    0.1333333402872086,
+                    0.1333333402872086,
+                    1.0
+                  ],
+                  "controlAddress": "/backgroundColor",
+                  "enabled": false
+                },
+                {
+                  "value": [
+                    0.7692307829856873,
+                    0.7248504161834717,
+                    0.7248504161834717,
+                    1.0
+                  ],
+                  "controlAddress": "/foregroundColor",
+                  "enabled": true
+                },
+                {
+                  "value": "Rotary Slider",
+                  "controlAddress": "/style"
+                },
+                {
+                  "value": "",
+                  "controlAddress": "/toggleImage",
+                  "enabled": false
+                }
+              ],
+              "niceName": "Item 18",
+              "hideInEditor": true,
+              "type": "DashboardParameterItem",
+              "ghostAddress": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#3",
+              "controllable": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#3"
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    -940.0,
+                    440.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    400.0,
+                    20.0
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/dancer/dancerRotation/baseValue",
+                  "controlAddress": "/target"
+                },
+                {
+                  "value": "Rot",
+                  "controlAddress": "/customText",
+                  "enabled": true
+                },
+                {
+                  "value": "",
+                  "controlAddress": "/toggleImage",
+                  "enabled": false
+                }
+              ],
+              "niceName": "Item 19",
+              "hideInEditor": true,
+              "type": "DashboardParameterItem",
+              "ghostAddress": "/modules/oxipital/parameters/orbGroups/orbGroup1/dancer/dancerRotation/baseValue",
+              "controllable": "/modules/oxipital/parameters/orbGroups/orbGroup1/dancer/dancerRotation/baseValue"
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    -940.0,
+                    400.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    400.0,
+                    20.0
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": "/modules/oxipital/values/Ballet/Orb_Groups/Orb_Group_1/Transform/position",
+                  "controlAddress": "/target"
+                },
+                {
+                  "value": "Pos",
+                  "controlAddress": "/customText",
+                  "enabled": true
+                },
+                {
+                  "value": "",
+                  "controlAddress": "/toggleImage",
+                  "enabled": false
+                }
+              ],
+              "niceName": "Item 20",
+              "hideInEditor": true,
+              "type": "DashboardParameterItem",
+              "ghostAddress": "/modules/oxipital/values/Ballet/Orb_Groups/Orb_Group_1/Transform/position",
+              "controllable": "/modules/oxipital/values/Ballet/Orb_Groups/Orb_Group_1/Transform/position"
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    -940.0,
+                    480.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    160.0,
+                    40.0
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#16",
+                  "controlAddress": "/target"
+                },
+                {
+                  "value": "Look At Mode",
+                  "controlAddress": "/customText",
+                  "enabled": true
+                },
+                {
+                  "value": "",
+                  "controlAddress": "/toggleImage",
+                  "enabled": false
+                }
+              ],
+              "niceName": "Item 21",
+              "hideInEditor": true,
+              "type": "DashboardParameterItem",
+              "ghostAddress": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#16",
+              "controllable": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#16"
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    -760.0,
+                    480.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    220.0,
+                    40.0
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/dancer/dancerLookAt/baseValue",
+                  "controlAddress": "/target"
+                },
+                {
+                  "value": false,
+                  "controlAddress": "/showLabel"
+                },
+                {
+                  "value": "",
+                  "controlAddress": "/toggleImage",
+                  "enabled": false
+                }
+              ],
+              "niceName": "Item 22",
+              "hideInEditor": true,
+              "type": "DashboardParameterItem",
+              "ghostAddress": "/modules/oxipital/parameters/orbGroups/orbGroup1/dancer/dancerLookAt/baseValue",
+              "controllable": "/modules/oxipital/parameters/orbGroups/orbGroup1/dancer/dancerLookAt/baseValue"
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    -740.0,
+                    -80.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    200.0,
+                    40.0
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#11",
+                  "controlAddress": "/target"
+                },
+                {
+                  "value": "Speed Threshold",
+                  "controlAddress": "/customText",
+                  "enabled": true
+                },
+                {
+                  "value": "",
+                  "controlAddress": "/toggleImage",
+                  "enabled": false
+                }
+              ],
+              "niceName": "Item 23",
+              "hideInEditor": true,
+              "type": "DashboardParameterItem",
+              "ghostAddress": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#11",
+              "controllable": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#11"
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    -940.0,
+                    60.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    340.0,
+                    40.0
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#7",
+                  "controlAddress": "/target"
+                },
+                {
+                  "value": true,
+                  "controlAddress": "/showLabel"
+                },
+                {
+                  "value": "Drag",
+                  "controlAddress": "/customText",
+                  "enabled": true
+                },
+                {
+                  "value": "",
+                  "controlAddress": "/toggleImage",
+                  "enabled": false
+                }
+              ],
+              "niceName": "Item 24",
+              "hideInEditor": true,
+              "type": "DashboardParameterItem",
+              "ghostAddress": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#7",
+              "controllable": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#7"
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    -580.0,
+                    60.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    40.0,
+                    40.0
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#8",
+                  "controlAddress": "/target"
+                },
+                {
+                  "value": "VD",
+                  "controlAddress": "/customText",
+                  "enabled": true
+                },
+                {
+                  "value": "Rotary Slider",
+                  "controlAddress": "/style"
+                },
+                {
+                  "value": "",
+                  "controlAddress": "/toggleImage",
+                  "enabled": false
+                }
+              ],
+              "niceName": "Item 25",
+              "hideInEditor": true,
+              "type": "DashboardParameterItem",
+              "ghostAddress": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#8",
+              "controllable": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#8"
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    -940.0,
+                    120.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    340.0,
+                    40.0
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#9",
+                  "controlAddress": "/target"
+                },
+                {
+                  "value": "Noisy Drag",
+                  "controlAddress": "/customText",
+                  "enabled": true
+                },
+                {
+                  "value": "Default",
+                  "controlAddress": "/style"
+                },
+                {
+                  "value": "",
+                  "controlAddress": "/toggleImage",
+                  "enabled": false
+                }
+              ],
+              "niceName": "Item 26",
+              "hideInEditor": true,
+              "type": "DashboardParameterItem",
+              "ghostAddress": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#9",
+              "controllable": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#9"
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    -580.0,
+                    120.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    40.0,
+                    40.0
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#10",
+                  "controlAddress": "/target"
+                },
+                {
+                  "value": "F",
+                  "controlAddress": "/customText",
+                  "enabled": true
+                },
+                {
+                  "value": "Rotary Slider",
+                  "controlAddress": "/style"
+                },
+                {
+                  "value": "",
+                  "controlAddress": "/toggleImage",
+                  "enabled": false
+                }
+              ],
+              "niceName": "Item 27",
+              "hideInEditor": true,
+              "type": "DashboardParameterItem",
+              "ghostAddress": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#10",
+              "controllable": "/states/state/processors/orbFloats/lists/orb1SourceParameters/#10"
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    -640.0,
+                    -240.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    20.0,
+                    20.0
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/dancer/dancerSize/macroWeight1",
+                  "controlAddress": "/target"
+                },
+                {
+                  "value": false,
+                  "controlAddress": "/showLabel"
+                },
+                {
+                  "value": "1",
+                  "controlAddress": "/customText",
+                  "enabled": true
+                },
+                {
+                  "value": false,
+                  "controlAddress": "/showValue"
+                },
+                {
+                  "value": [
+                    0.7058823704719543,
+                    0.196078434586525,
+                    0.1294117718935013,
+                    1.0
+                  ],
+                  "controlAddress": "/foregroundColor",
+                  "enabled": true
+                },
+                {
+                  "value": "Rotary Slider",
+                  "controlAddress": "/style"
+                },
+                {
+                  "value": "",
+                  "controlAddress": "/toggleImage",
+                  "enabled": false
+                }
+              ],
+              "niceName": "Item 28",
+              "hideInEditor": true,
+              "type": "DashboardParameterItem",
+              "ghostAddress": "/modules/oxipital/parameters/orbGroups/orbGroup1/dancer/dancerSize/macroWeight1",
+              "controllable": "/modules/oxipital/parameters/orbGroups/orbGroup1/dancer/dancerSize/macroWeight1"
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    -620.0,
+                    -240.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    20.0,
+                    20.0
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/dancer/dancerSize/macroWeight2",
+                  "controlAddress": "/target"
+                },
+                {
+                  "value": false,
+                  "controlAddress": "/showLabel"
+                },
+                {
+                  "value": "2",
+                  "controlAddress": "/customText",
+                  "enabled": true
+                },
+                {
+                  "value": false,
+                  "controlAddress": "/showValue"
+                },
+                {
+                  "value": [
+                    0.2144784331321716,
+                    0.5223960876464844,
+                    0.7058823704719543,
+                    1.0
+                  ],
+                  "controlAddress": "/foregroundColor",
+                  "enabled": false
+                },
+                {
+                  "value": "Rotary Slider",
+                  "controlAddress": "/style"
+                },
+                {
+                  "value": "",
+                  "controlAddress": "/toggleImage",
+                  "enabled": false
+                }
+              ],
+              "niceName": "Item 29",
+              "hideInEditor": true,
+              "type": "DashboardParameterItem",
+              "ghostAddress": "/modules/oxipital/parameters/orbGroups/orbGroup1/dancer/dancerSize/macroWeight2",
+              "controllable": "/modules/oxipital/parameters/orbGroups/orbGroup1/dancer/dancerSize/macroWeight2"
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    -640.0,
+                    -220.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    20.0,
+                    20.0
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/dancer/dancerSize/macroWeight3",
+                  "controlAddress": "/target"
+                },
+                {
+                  "value": false,
+                  "controlAddress": "/showLabel"
+                },
+                {
+                  "value": "3",
+                  "controlAddress": "/customText",
+                  "enabled": true
+                },
+                {
+                  "value": false,
+                  "controlAddress": "/showValue"
+                },
+                {
+                  "value": [
+                    0.1954745054244995,
+                    0.4758705794811249,
+                    0.7058823704719543,
+                    1.0
+                  ],
+                  "controlAddress": "/foregroundColor",
+                  "enabled": true
+                },
+                {
+                  "value": "Rotary Slider",
+                  "controlAddress": "/style"
+                },
+                {
+                  "value": "",
+                  "controlAddress": "/toggleImage",
+                  "enabled": false
+                }
+              ],
+              "niceName": "Item 30",
+              "hideInEditor": true,
+              "type": "DashboardParameterItem",
+              "ghostAddress": "/modules/oxipital/parameters/orbGroups/orbGroup1/dancer/dancerSize/macroWeight2",
+              "controllable": "/modules/oxipital/parameters/orbGroups/orbGroup1/dancer/dancerSize/macroWeight3"
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    -720.0,
+                    -140.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    20.0,
+                    20.0
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": true,
+                  "controlAddress": "/isVisible"
+                },
+                {
+                  "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/appearance/particleSize/macroWeight1",
+                  "controlAddress": "/target"
+                },
+                {
+                  "value": false,
+                  "controlAddress": "/showLabel"
+                },
+                {
+                  "value": "1",
+                  "controlAddress": "/customText",
+                  "enabled": true
+                },
+                {
+                  "value": false,
+                  "controlAddress": "/showValue"
+                },
+                {
+                  "value": "Rotary Slider",
+                  "controlAddress": "/style"
+                },
+                {
+                  "value": "",
+                  "controlAddress": "/toggleImage",
+                  "enabled": false
+                }
+              ],
+              "niceName": "Item 33",
+              "hideInEditor": true,
+              "type": "DashboardParameterItem",
+              "ghostAddress": "/modules/oxipital/parameters/orbGroups/orbGroup1/dancer/dancerSize/macroWeight1",
+              "controllable": "/modules/oxipital/parameters/orbGroups/orbGroup1/appearance/particleSize/macroWeight1"
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    -700.0,
+                    -140.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    20.0,
+                    20.0
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/appearance/particleSize/macroWeight2",
+                  "controlAddress": "/target"
+                },
+                {
+                  "value": false,
+                  "controlAddress": "/showLabel"
+                },
+                {
+                  "value": "2",
+                  "controlAddress": "/customText",
+                  "enabled": true
+                },
+                {
+                  "value": false,
+                  "controlAddress": "/showValue"
+                },
+                {
+                  "value": "Rotary Slider",
+                  "controlAddress": "/style"
+                },
+                {
+                  "value": "",
+                  "controlAddress": "/toggleImage",
+                  "enabled": false
+                }
+              ],
+              "niceName": "Item 34",
+              "hideInEditor": true,
+              "type": "DashboardParameterItem",
+              "ghostAddress": "/modules/oxipital/parameters/orbGroups/orbGroup1/appearance/particleSize/macroWeight1",
+              "controllable": "/modules/oxipital/parameters/orbGroups/orbGroup1/appearance/particleSize/macroWeight2"
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    -720.0,
+                    -120.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    20.0,
+                    20.0
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/appearance/particleSize/macroWeight3",
+                  "controlAddress": "/target"
+                },
+                {
+                  "value": false,
+                  "controlAddress": "/showLabel"
+                },
+                {
+                  "value": "5",
+                  "controlAddress": "/customText",
+                  "enabled": true
+                },
+                {
+                  "value": false,
+                  "controlAddress": "/showValue"
+                },
+                {
+                  "value": "Rotary Slider",
+                  "controlAddress": "/style"
+                },
+                {
+                  "value": "",
+                  "controlAddress": "/toggleImage",
+                  "enabled": false
+                }
+              ],
+              "niceName": "Item 35",
+              "hideInEditor": true,
+              "type": "DashboardParameterItem",
+              "ghostAddress": "/modules/oxipital/parameters/orbGroups/orbGroup1/appearance/particleSize/macroWeight1",
+              "controllable": "/modules/oxipital/parameters/orbGroups/orbGroup1/appearance/particleSize/macroWeight3"
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    -700.0,
+                    -120.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    20.0,
+                    20.0
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/appearance/particleSize/macroWeight4",
+                  "controlAddress": "/target"
+                },
+                {
+                  "value": false,
+                  "controlAddress": "/showLabel"
+                },
+                {
+                  "value": "4",
+                  "controlAddress": "/customText",
+                  "enabled": true
+                },
+                {
+                  "value": false,
+                  "controlAddress": "/showValue"
+                },
+                {
+                  "value": "Rotary Slider",
+                  "controlAddress": "/style"
+                },
+                {
+                  "value": "",
+                  "controlAddress": "/toggleImage",
+                  "enabled": false
+                }
+              ],
+              "niceName": "Item 36",
+              "hideInEditor": true,
+              "type": "DashboardParameterItem",
+              "ghostAddress": "/modules/oxipital/parameters/orbGroups/orbGroup1/appearance/particleSize/macroWeight1",
+              "controllable": "/modules/oxipital/parameters/orbGroups/orbGroup1/appearance/particleSize/macroWeight4"
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    -620.0,
+                    -220.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    20.0,
+                    20.0
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": "/modules/oxipital/parameters/orbGroups/orbGroup1/dancer/dancerSize/macroWeight4",
+                  "controlAddress": "/target"
+                },
+                {
+                  "value": false,
+                  "controlAddress": "/showLabel"
+                },
+                {
+                  "value": "4",
+                  "controlAddress": "/customText",
+                  "enabled": true
+                },
+                {
+                  "value": false,
+                  "controlAddress": "/showValue"
+                },
+                {
+                  "value": [
+                    0.4696588218212128,
+                    0.1384627372026443,
+                    0.7058823704719543,
+                    1.0
+                  ],
+                  "controlAddress": "/foregroundColor",
+                  "enabled": true
+                },
+                {
+                  "value": "Rotary Slider",
+                  "controlAddress": "/style"
+                },
+                {
+                  "value": "",
+                  "controlAddress": "/toggleImage",
+                  "enabled": false
+                }
+              ],
+              "niceName": "Item 31",
+              "hideInEditor": true,
+              "type": "DashboardParameterItem",
+              "ghostAddress": "/modules/oxipital/parameters/orbGroups/orbGroup1/dancer/dancerSize/macroWeight4",
+              "controllable": "/modules/oxipital/parameters/orbGroups/orbGroup1/dancer/dancerSize/macroWeight4"
+            },
+            {
+              "parameters": [
+                {
+                  "value": [
+                    -800.0,
+                    -210.0
+                  ],
+                  "controlAddress": "/viewUIPosition"
+                },
+                {
+                  "value": [
+                    160.0,
+                    10.0
+                  ],
+                  "controlAddress": "/viewUISize"
+                },
+                {
+                  "value": "/modules/oxipital/values/Ballet/Orb_Groups/Orb_Group_1/OrbGroup/dancerSize",
+                  "controlAddress": "/target"
+                },
+                {
+                  "value": false,
+                  "controlAddress": "/showLabel"
+                },
+                {
+                  "value": true,
+                  "controlAddress": "/readOnly"
+                },
+                {
+                  "value": false,
+                  "controlAddress": "/showValue"
+                },
+                {
+                  "value": [
+                    0.7058823704719543,
+                    0.4528470635414124,
+                    0.04343921318650246,
+                    1.0
+                  ],
+                  "controlAddress": "/foregroundColor",
+                  "enabled": true
+                },
+                {
+                  "value": "",
+                  "controlAddress": "/toggleImage",
+                  "enabled": false
+                }
+              ],
+              "niceName": "Item 32",
+              "hideInEditor": true,
+              "type": "DashboardParameterItem",
+              "ghostAddress": "/modules/oxipital/values/Ballet/Orb_Groups/Orb_Group_1/OrbGroup/dancerSize",
+              "controllable": "/modules/oxipital/values/Ballet/Orb_Groups/Orb_Group_1/OrbGroup/dancerSize"
+            }
+          ],
+          "viewOffset": [
+            1067,
+            271
+          ],
+          "viewZoom": 1.53125
+        },
+        "editing": true
+      },
+      {
         "niceName": "Dashboard",
         "type": "BaseItem",
         "itemManager": {
@@ -65,220 +1931,12 @@
               "enabled": false
             }
           ],
-          "items": [
-            {
-              "parameters": [
-                {
-                  "value": [
-                    -233.0,
-                    -270.0
-                  ],
-                  "controlAddress": "/viewUIPosition"
-                },
-                {
-                  "value": [
-                    311.0,
-                    35.0
-                  ],
-                  "controlAddress": "/viewUISize"
-                },
-                {
-                  "value": "/customVariables/orbControl/variables/orb1CVControl/orb1CVControl",
-                  "controlAddress": "/target"
-                },
-                {
-                  "value": "",
-                  "controlAddress": "/toggleImage",
-                  "enabled": false
-                }
-              ],
-              "niceName": "Item",
-              "hideInEditor": true,
-              "type": "DashboardParameterItem",
-              "ghostAddress": "/customVariables/orbControl/variables/orb1CVControl/orb1CVControl",
-              "controllable": "/customVariables/orbControl/variables/orb1CVControl/orb1CVControl"
-            },
-            {
-              "parameters": [
-                {
-                  "value": [
-                    -247.0,
-                    -196.0
-                  ],
-                  "controlAddress": "/viewUIPosition"
-                },
-                {
-                  "value": [
-                    311.0,
-                    36.0
-                  ],
-                  "controlAddress": "/viewUISize"
-                },
-                {
-                  "value": "/customVariables/orbControl/variables/cvLoadTime/cvLoadTime",
-                  "controlAddress": "/target"
-                },
-                {
-                  "value": "",
-                  "controlAddress": "/toggleImage",
-                  "enabled": false
-                }
-              ],
-              "niceName": "Item 1",
-              "hideInEditor": true,
-              "type": "DashboardParameterItem",
-              "ghostAddress": "/customVariables/orbControl/variables/cvLoadTime/cvLoadTime",
-              "controllable": "/customVariables/orbControl/variables/cvLoadTime/cvLoadTime"
-            },
-            {
-              "parameters": [
-                {
-                  "value": [
-                    200.0,
-                    40.0
-                  ],
-                  "controlAddress": "/viewUISize"
-                },
-                {
-                  "value": "/customVariables/orbPresets/presets/preset/load",
-                  "controlAddress": "/target"
-                },
-                {
-                  "value": "P1",
-                  "controlAddress": "/customText",
-                  "enabled": true
-                },
-                {
-                  "value": "",
-                  "controlAddress": "/customImage",
-                  "enabled": false
-                }
-              ],
-              "niceName": "Item 2",
-              "hideInEditor": true,
-              "type": "DashboardTriggerItem",
-              "ghostAddress": "/customVariables/orbPresets/presets/preset/load",
-              "controllable": "/customVariables/orbPresets/presets/preset/load"
-            },
-            {
-              "parameters": [
-                {
-                  "value": [
-                    0.0,
-                    50.0
-                  ],
-                  "controlAddress": "/viewUIPosition"
-                },
-                {
-                  "value": [
-                    200.0,
-                    40.0
-                  ],
-                  "controlAddress": "/viewUISize"
-                },
-                {
-                  "value": "/customVariables/orbPresets/presets/preset1/load",
-                  "controlAddress": "/target"
-                },
-                {
-                  "value": "P2",
-                  "controlAddress": "/customText",
-                  "enabled": true
-                },
-                {
-                  "value": "",
-                  "controlAddress": "/customImage",
-                  "enabled": false
-                }
-              ],
-              "niceName": "Item 3",
-              "hideInEditor": true,
-              "type": "DashboardTriggerItem",
-              "ghostAddress": "/customVariables/orbPresets/presets/preset1/load",
-              "controllable": "/customVariables/orbPresets/presets/preset1/load"
-            },
-            {
-              "parameters": [
-                {
-                  "value": [
-                    0.0,
-                    100.0
-                  ],
-                  "controlAddress": "/viewUIPosition"
-                },
-                {
-                  "value": [
-                    200.0,
-                    40.0
-                  ],
-                  "controlAddress": "/viewUISize"
-                },
-                {
-                  "value": "/customVariables/orbPresets/presets/preset2/load",
-                  "controlAddress": "/target"
-                },
-                {
-                  "value": "P3",
-                  "controlAddress": "/customText",
-                  "enabled": true
-                },
-                {
-                  "value": "",
-                  "controlAddress": "/customImage",
-                  "enabled": false
-                }
-              ],
-              "niceName": "Item 4",
-              "hideInEditor": true,
-              "type": "DashboardTriggerItem",
-              "ghostAddress": "/customVariables/orbPresets/presets/preset2/load",
-              "controllable": "/customVariables/orbPresets/presets/preset2/load"
-            },
-            {
-              "parameters": [
-                {
-                  "value": [
-                    0.0,
-                    150.0
-                  ],
-                  "controlAddress": "/viewUIPosition"
-                },
-                {
-                  "value": [
-                    200.0,
-                    40.0
-                  ],
-                  "controlAddress": "/viewUISize"
-                },
-                {
-                  "value": "/customVariables/orbPresets/presets/preset3/load",
-                  "controlAddress": "/target"
-                },
-                {
-                  "value": "P4",
-                  "controlAddress": "/customText",
-                  "enabled": true
-                },
-                {
-                  "value": "",
-                  "controlAddress": "/customImage",
-                  "enabled": false
-                }
-              ],
-              "niceName": "Item 5",
-              "hideInEditor": true,
-              "type": "DashboardTriggerItem",
-              "ghostAddress": "/customVariables/orbPresets/presets/preset3/load",
-              "controllable": "/customVariables/orbPresets/presets/preset3/load"
-            }
-          ],
           "viewOffset": [
             0,
             0
           ],
           "viewZoom": 1.0
-        },
-        "editing": true
+        }
       }
     ],
     "viewOffset": [
@@ -407,23 +2065,39 @@
                   "controlAddress": "/numForceGroups"
                 },
                 {
-                  "value": 1,
+                  "value": 4,
                   "hexMode": false,
                   "controlAddress": "/numMacros"
                 }
               ]
             },
             "macros": {
+              "parameters": [
+                {
+                  "value": 0.03936973586678505,
+                  "minValue": 0.0,
+                  "maxValue": 1.0,
+                  "default": 0.0,
+                  "controlAddress": "/macro1"
+                }
+              ]
             },
             "orbGroups": {
-              "editorIsCollapsed": true,
               "containers": {
                 "orbGroup1": {
-                  "editorIsCollapsed": true,
                   "containers": {
                     "patterns": {
                       "containers": {
                         "count": {
+                          "parameters": [
+                            {
+                              "value": 3.214285612106323,
+                              "minValue": 1.0,
+                              "maxValue": 10.0,
+                              "default": 1.0,
+                              "controlAddress": "/baseValue"
+                            }
+                          ],
                           "owned": true,
                           "niceName": "Count"
                         },
@@ -449,14 +2123,41 @@
                           "niceName": "Pattern Axis Spread"
                         },
                         "linePatternWeight": {
+                          "parameters": [
+                            {
+                              "value": 0.329464316368103,
+                              "minValue": 0.0,
+                              "maxValue": 1.0,
+                              "default": 0.0,
+                              "controlAddress": "/baseValue"
+                            }
+                          ],
                           "owned": true,
                           "niceName": "Line Pattern Weight"
                         },
                         "circlePatternWeight": {
+                          "parameters": [
+                            {
+                              "value": 0.3214285969734192,
+                              "minValue": 0.0,
+                              "maxValue": 1.0,
+                              "default": 1.0,
+                              "controlAddress": "/baseValue"
+                            }
+                          ],
                           "owned": true,
                           "niceName": "Circle Pattern Weight"
                         },
                         "nBodyPatternWeight": {
+                          "parameters": [
+                            {
+                              "value": 0.3937499523162842,
+                              "minValue": 0.0,
+                              "maxValue": 1.0,
+                              "default": 0.0,
+                              "controlAddress": "/baseValue"
+                            }
+                          ],
                           "owned": true,
                           "niceName": "NBody Pattern Weight"
                         }
@@ -467,14 +2168,41 @@
                     "animation": {
                       "containers": {
                         "patternSpeed": {
+                          "parameters": [
+                            {
+                              "value": 0.3375000357627869,
+                              "minValue": -1.0,
+                              "maxValue": 1.0,
+                              "default": 0.1000000014901161,
+                              "controlAddress": "/baseValue"
+                            }
+                          ],
                           "owned": true,
                           "niceName": "Pattern Speed"
                         },
                         "patternSpeedRandom": {
+                          "parameters": [
+                            {
+                              "value": 0.6428571939468384,
+                              "minValue": 0.0,
+                              "maxValue": 1.0,
+                              "default": 0.0,
+                              "controlAddress": "/baseValue"
+                            }
+                          ],
                           "owned": true,
                           "niceName": "Pattern Speed Random"
                         },
                         "patternTimeOffset": {
+                          "parameters": [
+                            {
+                              "value": 0.2812499701976776,
+                              "minValue": 0.0,
+                              "maxValue": 1.0,
+                              "default": 0.0,
+                              "controlAddress": "/baseValue"
+                            }
+                          ],
                           "owned": true,
                           "niceName": "Pattern Time Offset"
                         },
@@ -493,14 +2221,69 @@
                     "dancer": {
                       "containers": {
                         "dancerSize": {
+                          "parameters": [
+                            {
+                              "value": 5.022321224212646,
+                              "minValue": 0.0,
+                              "maxValue": 20.0,
+                              "default": 1.0,
+                              "controlAddress": "/baseValue"
+                            },
+                            {
+                              "value": 0.2285707559385081,
+                              "minValue": -1.0,
+                              "maxValue": 1.0,
+                              "default": 0.0,
+                              "controlAddress": "/macroWeight1"
+                            },
+                            {
+                              "value": 0.5785712413642478,
+                              "minValue": -1.0,
+                              "maxValue": 1.0,
+                              "default": 0.0,
+                              "controlAddress": "/macroWeight2"
+                            },
+                            {
+                              "value": 0.0,
+                              "minValue": -1.0,
+                              "maxValue": 1.0,
+                              "default": 0.0,
+                              "controlAddress": "/macroWeight3"
+                            },
+                            {
+                              "value": 0.0,
+                              "minValue": -1.0,
+                              "maxValue": 1.0,
+                              "default": 0.0,
+                              "controlAddress": "/macroWeight4"
+                            }
+                          ],
                           "owned": true,
                           "niceName": "Dancer Size"
                         },
                         "dancerHyperSize": {
+                          "parameters": [
+                            {
+                              "value": 0.0,
+                              "minValue": 0.0,
+                              "maxValue": 1.0,
+                              "default": 0.0,
+                              "controlAddress": "/baseValue"
+                            }
+                          ],
                           "owned": true,
                           "niceName": "Dancer Hyper Size"
                         },
                         "dancerSizeSpread": {
+                          "parameters": [
+                            {
+                              "value": 0.0,
+                              "minValue": 0.0,
+                              "maxValue": 1.0,
+                              "default": 0.0,
+                              "controlAddress": "/baseValue"
+                            }
+                          ],
                           "owned": true,
                           "niceName": "Dancer Size Spread"
                         },
@@ -509,6 +2292,15 @@
                           "niceName": "Dancer Weight Size Factor"
                         },
                         "dancerIntensity": {
+                          "parameters": [
+                            {
+                              "value": 0.0,
+                              "minValue": 0.0,
+                              "maxValue": 1.0,
+                              "default": 1.0,
+                              "controlAddress": "/baseValue"
+                            }
+                          ],
                           "owned": true,
                           "niceName": "Dancer Intensity"
                         },
@@ -521,10 +2313,29 @@
                           "niceName": "Dancer Rotation"
                         },
                         "dancerLookAt": {
+                          "parameters": [
+                            {
+                              "value": [
+                                1.700000047683716,
+                                2.5,
+                                0.1000000014901161
+                              ],
+                              "controlAddress": "/baseValue"
+                            }
+                          ],
                           "owned": true,
                           "niceName": "Dancer Look At"
                         },
                         "dancerLookAtMode": {
+                          "parameters": [
+                            {
+                              "value": 0.1084821373224258,
+                              "minValue": 0.0,
+                              "maxValue": 2.0,
+                              "default": 0.0,
+                              "controlAddress": "/baseValue"
+                            }
+                          ],
                           "owned": true,
                           "niceName": "Dancer Look At Mode"
                         }
@@ -566,14 +2377,43 @@
                     "appearance": {
                       "containers": {
                         "color": {
+                          "parameters": [
+                            {
+                              "value": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                1.0
+                              ],
+                              "controlAddress": "/baseValue"
+                            }
+                          ],
                           "owned": true,
                           "niceName": "Color"
                         },
                         "alpha": {
+                          "parameters": [
+                            {
+                              "value": 0.0,
+                              "minValue": 0.0,
+                              "maxValue": 1.0,
+                              "default": 0.2000000029802322,
+                              "controlAddress": "/baseValue"
+                            }
+                          ],
                           "owned": true,
                           "niceName": "Alpha"
                         },
                         "hdrMultiplier": {
+                          "parameters": [
+                            {
+                              "value": 1.0,
+                              "minValue": 0.0,
+                              "maxValue": 1.0,
+                              "default": 0.0,
+                              "controlAddress": "/baseValue"
+                            }
+                          ],
                           "owned": true,
                           "niceName": "HDR Multiplier"
                         },
@@ -586,6 +2426,43 @@
                           "niceName": "Texture Opacity"
                         },
                         "particleSize": {
+                          "parameters": [
+                            {
+                              "value": 0.0,
+                              "minValue": 0.0,
+                              "maxValue": 1.0,
+                              "default": 0.0,
+                              "controlAddress": "/baseValue"
+                            },
+                            {
+                              "value": -0.2892859665230595,
+                              "minValue": -1.0,
+                              "maxValue": 1.0,
+                              "default": 0.0,
+                              "controlAddress": "/macroWeight1"
+                            },
+                            {
+                              "value": 0.5785712413642476,
+                              "minValue": -1.0,
+                              "maxValue": 1.0,
+                              "default": 0.0,
+                              "controlAddress": "/macroWeight2"
+                            },
+                            {
+                              "value": -0.2892859665230594,
+                              "minValue": -1.0,
+                              "maxValue": 1.0,
+                              "default": 0.0,
+                              "controlAddress": "/macroWeight3"
+                            },
+                            {
+                              "value": -0.3857141609094987,
+                              "minValue": -1.0,
+                              "maxValue": 1.0,
+                              "default": 0.0,
+                              "controlAddress": "/macroWeight4"
+                            }
+                          ],
                           "owned": true,
                           "niceName": "Particle Size"
                         }
@@ -2368,10 +4245,8 @@
           "viewZoom": 1.0
         },
         "values": {
-          "editorIsCollapsed": true,
           "containers": {
             "Ballet": {
-              "editorIsCollapsed": true,
               "containers": {
                 "Transform": {
                   "parameters": [
@@ -2394,7 +4269,6 @@
                   "niceName": "Ballet"
                 },
                 "Orb_Groups": {
-                  "editorIsCollapsed": true,
                   "containers": {
                     "Transform": {
                       "parameters": [
@@ -2417,10 +4291,17 @@
                       "niceName": "OrbManager"
                     },
                     "Orb_Group_1": {
-                      "editorIsCollapsed": true,
                       "containers": {
                         "Transform": {
                           "parameters": [
+                            {
+                              "value": [
+                                0.6000000238418579,
+                                4.400000095367432,
+                                0.0
+                              ],
+                              "controlAddress": "/position"
+                            },
                             {
                               "value": [
                                 1.0,
@@ -2430,7 +4311,6 @@
                               "controlAddress": "/localScale"
                             }
                           ],
-                          "editorIsCollapsed": true,
                           "owned": true,
                           "niceName": "Transform"
                         },
@@ -2446,23 +4326,27 @@
                             },
                             {
                               "value": [
-                                0.1106509789824486,
-                                0.145513728260994,
-                                0.4230784475803375,
+                                0.0,
+                                0.0,
+                                0.0,
                                 1.0
                               ],
                               "controlAddress": "/color"
                             },
                             {
-                              "value": 0.8138279914855957,
+                              "value": 0.0,
                               "controlAddress": "/alpha"
+                            },
+                            {
+                              "value": 1.0,
+                              "controlAddress": "/hdrMultiplier"
                             },
                             {
                               "value": 0.1326315850019455,
                               "controlAddress": "/alphaSpeedThreshold"
                             },
                             {
-                              "value": 0.1939291656017303,
+                              "value": 0.0,
                               "controlAddress": "/particleSize"
                             },
                             {
@@ -2474,23 +4358,50 @@
                               "controlAddress": "/patternSize"
                             },
                             {
-                              "value": 0.1462633609771729,
+                              "value": 0.3375000357627869,
                               "controlAddress": "/patternSpeed"
                             },
                             {
-                              "value": 0.4266442358493805,
+                              "value": 0.6428571939468384,
+                              "controlAddress": "/patternSpeedRandom"
+                            },
+                            {
+                              "value": 0.2812499701976776,
+                              "controlAddress": "/patternTimeOffset"
+                            },
+                            {
+                              "value": 5.202296629976056,
                               "controlAddress": "/dancerSize"
                             },
                             {
+                              "value": 0.0,
+                              "controlAddress": "/dancerHyperSize"
+                            },
+                            {
+                              "value": 0.0,
+                              "controlAddress": "/dancerSizeSpread"
+                            },
+                            {
+                              "value": 0.0,
+                              "controlAddress": "/dancerIntensity"
+                            },
+                            {
                               "value": [
-                                0.0,
-                                1.0,
-                                0.0
+                                1.700000047683716,
+                                2.5,
+                                0.1000000014901161
                               ],
                               "controlAddress": "/dancerLookAt"
+                            },
+                            {
+                              "value": 0.1084821373224258,
+                              "controlAddress": "/dancerLookAtMode"
+                            },
+                            {
+                              "value": 3.214285612106323,
+                              "controlAddress": "/count"
                             }
                           ],
-                          "editorIsCollapsed": true,
                           "owned": true,
                           "niceName": "OrbGroup"
                         },
@@ -2501,7 +4412,7 @@
                               "controlAddress": "/blendMode"
                             },
                             {
-                              "value": 0.0,
+                              "value": 0.329464316368103,
                               "controlAddress": "/weight"
                             }
                           ],
@@ -2514,6 +4425,10 @@
                             {
                               "value": "Add",
                               "controlAddress": "/blendMode"
+                            },
+                            {
+                              "value": 0.3214285969734192,
+                              "controlAddress": "/weight"
                             }
                           ],
                           "editorIsCollapsed": true,
@@ -2525,6 +4440,10 @@
                             {
                               "value": "Add",
                               "controlAddress": "/blendMode"
+                            },
+                            {
+                              "value": 0.3937499523162842,
+                              "controlAddress": "/weight"
                             }
                           ],
                           "editorIsCollapsed": true,
@@ -11814,6 +13733,36 @@
           }
         },
         "hasListenExtension": true
+      },
+      {
+        "niceName": "Signal",
+        "type": "Signal",
+        "scripts": {
+          "viewOffset": [
+            0,
+            0
+          ],
+          "viewZoom": 1.0
+        },
+        "params": {
+          "parameters": [
+            {
+              "value": [
+                0.0,
+                0.1000000014901161
+              ],
+              "controlAddress": "/range"
+            }
+          ]
+        },
+        "templates": {
+          "hideInEditor": true,
+          "viewOffset": [
+            0,
+            0
+          ],
+          "viewZoom": 1.0
+        }
       }
     ],
     "viewOffset": [
@@ -11894,7 +13843,7 @@
             {
               "parameters": [
                 {
-                  "value": 2.0,
+                  "value": 3.465045690536499,
                   "minValue": 0.0,
                   "maxValue": 10.0,
                   "default": 0.0,
@@ -11915,7 +13864,7 @@
             {
               "parameters": [
                 {
-                  "value": 0.0,
+                  "value": 0.5227963924407959,
                   "minValue": -1,
                   "maxValue": 1,
                   "default": 0.0,
@@ -11957,7 +13906,7 @@
             {
               "parameters": [
                 {
-                  "value": 0.0,
+                  "value": 16.59574508666992,
                   "minValue": 0.0,
                   "maxValue": 60.0,
                   "default": 0.0,
@@ -11978,7 +13927,7 @@
             {
               "parameters": [
                 {
-                  "value": 0.5220994353294373,
+                  "value": 0.0,
                   "minValue": 0,
                   "maxValue": 1,
                   "default": 0.0,
@@ -11999,7 +13948,7 @@
             {
               "parameters": [
                 {
-                  "value": 0.0,
+                  "value": 0.1945288777351379,
                   "minValue": 0,
                   "maxValue": 1,
                   "default": 0.0,
@@ -12020,7 +13969,7 @@
             {
               "parameters": [
                 {
-                  "value": 0.0,
+                  "value": 0.1884498447179794,
                   "minValue": 0,
                   "maxValue": 1,
                   "default": 0.0,
@@ -12041,7 +13990,7 @@
             {
               "parameters": [
                 {
-                  "value": 0.0,
+                  "value": 0.2036474198102951,
                   "minValue": 0,
                   "maxValue": 1,
                   "default": 0.0,
@@ -12083,7 +14032,7 @@
             {
               "parameters": [
                 {
-                  "value": 0.9254143238067627,
+                  "value": 0.7598784565925598,
                   "minValue": 0.0,
                   "maxValue": 5.0,
                   "default": 0.0,
@@ -12104,7 +14053,7 @@
             {
               "parameters": [
                 {
-                  "value": 0.0,
+                  "value": 0.1550152003765106,
                   "minValue": 0,
                   "maxValue": 1,
                   "default": 0.0,
@@ -12125,7 +14074,7 @@
             {
               "parameters": [
                 {
-                  "value": 1.0,
+                  "value": 0.0,
                   "minValue": 0.0,
                   "maxValue": 10.0,
                   "default": 0.0,
@@ -12146,7 +14095,7 @@
             {
               "parameters": [
                 {
-                  "value": 0.0,
+                  "value": 0.1854103356599808,
                   "minValue": 0,
                   "maxValue": 1,
                   "default": 0.0,
@@ -12167,7 +14116,7 @@
             {
               "parameters": [
                 {
-                  "value": 0.0,
+                  "value": 0.2127659618854523,
                   "minValue": 0,
                   "maxValue": 1,
                   "default": 0.0,
@@ -12188,7 +14137,7 @@
             {
               "parameters": [
                 {
-                  "value": 0.0,
+                  "value": 0.1702127605676651,
                   "minValue": 0,
                   "maxValue": 1,
                   "default": 0.0,
@@ -12209,7 +14158,7 @@
             {
               "parameters": [
                 {
-                  "value": 0.0,
+                  "value": 0.5410334467887878,
                   "minValue": 0.0,
                   "maxValue": 2.0,
                   "default": 0.0,
@@ -12261,7 +14210,7 @@
             {
               "parameters": [
                 {
-                  "value": 0.0,
+                  "value": 0.2917933166027069,
                   "minValue": 0,
                   "maxValue": 1,
                   "default": 0.0,
@@ -12282,7 +14231,7 @@
             {
               "parameters": [
                 {
-                  "value": 0.0,
+                  "value": 0.2765957415103912,
                   "minValue": 0,
                   "maxValue": 1,
                   "default": 0.0,
@@ -12303,7 +14252,7 @@
             {
               "parameters": [
                 {
-                  "value": 0.0,
+                  "value": 0.1550152003765106,
                   "minValue": 0,
                   "maxValue": 1,
                   "default": 0.0,
@@ -12324,7 +14273,7 @@
             {
               "parameters": [
                 {
-                  "value": 0.0,
+                  "value": 0.5349544286727905,
                   "minValue": 0,
                   "maxValue": 1,
                   "default": 0.0,
@@ -12345,7 +14294,7 @@
             {
               "parameters": [
                 {
-                  "value": 0.2095104306936264,
+                  "value": 0.06686930358409882,
                   "minValue": 0,
                   "maxValue": 1,
                   "default": 0.0,
@@ -12366,7 +14315,7 @@
             {
               "parameters": [
                 {
-                  "value": 0.0,
+                  "value": 0.09118541330099106,
                   "minValue": 0,
                   "maxValue": 1,
                   "default": 0.0,
@@ -12387,7 +14336,7 @@
             {
               "parameters": [
                 {
-                  "value": 0.0,
+                  "value": 0.2249240130186081,
                   "minValue": 0,
                   "maxValue": 1,
                   "default": 0.0,
@@ -12408,7 +14357,7 @@
             {
               "parameters": [
                 {
-                  "value": 0.0,
+                  "value": 0.1367781162261963,
                   "minValue": 0,
                   "maxValue": 1,
                   "default": 0.0,
@@ -12429,7 +14378,7 @@
             {
               "parameters": [
                 {
-                  "value": 1.0,
+                  "value": 0.0,
                   "minValue": 0,
                   "maxValue": 1,
                   "default": 0.0,
@@ -12492,7 +14441,7 @@
             {
               "parameters": [
                 {
-                  "value": 0.02494802512228489,
+                  "value": 0.0,
                   "minValue": 0,
                   "maxValue": 1,
                   "default": 0.0,
@@ -12647,21 +14596,6 @@
                     "owned": true,
                     "niceName": "Intensity"
                   },
-                  "color": {
-                    "parameters": [
-                      {
-                        "value": [
-                          0.0,
-                          0.0,
-                          0.0,
-                          1.0
-                        ],
-                        "controlAddress": "/color"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Color"
-                  },
                   "hdrMultiplier": {
                     "parameters": [
                       {
@@ -12681,6 +14615,16 @@
                     ],
                     "owned": true,
                     "niceName": "Life"
+                  },
+                  "particleSize": {
+                    "parameters": [
+                      {
+                        "value": 1.0,
+                        "controlAddress": "/particleSize"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Particle Size"
                   },
                   "alpha": {
                     "parameters": [
@@ -12782,44 +14726,6 @@
                     "owned": true,
                     "niceName": "Orb Weight Size Factor"
                   },
-                  "particleSize": {
-                    "parameters": [
-                      {
-                        "value": 1.0,
-                        "controlAddress": "/particleSize"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Particle Size"
-                  },
-                  "orbRotation": {
-                    "parameters": [
-                      {
-                        "value": [
-                          0.0,
-                          2.100000143051147,
-                          0.0
-                        ],
-                        "controlAddress": "/orbRotation"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Orb Rotation"
-                  },
-                  "orbLookAt": {
-                    "parameters": [
-                      {
-                        "value": [
-                          0.0,
-                          0.9000000953674316,
-                          0.0
-                        ],
-                        "controlAddress": "/orbLookAt"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Orb Look At"
-                  },
                   "orbLookAtMode": {
                     "parameters": [
                       {
@@ -12869,16 +14775,6 @@
                     ],
                     "owned": true,
                     "niceName": "Texture Opacity"
-                  },
-                  "activateCollision": {
-                    "parameters": [
-                      {
-                        "value": false,
-                        "controlAddress": "/activateCollision"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Activate Collision"
                   },
                   "forceWeight": {
                     "parameters": [
@@ -12979,6 +14875,59 @@
                     ],
                     "owned": true,
                     "niceName": "Pattern Time Offset"
+                  },
+                  "color": {
+                    "parameters": [
+                      {
+                        "value": [
+                          0.0,
+                          0.0,
+                          0.0,
+                          1.0
+                        ],
+                        "controlAddress": "/color"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Color"
+                  },
+                  "orbRotation": {
+                    "parameters": [
+                      {
+                        "value": [
+                          0.0,
+                          2.100000143051147,
+                          0.0
+                        ],
+                        "controlAddress": "/orbRotation"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Orb Rotation"
+                  },
+                  "orbLookAt": {
+                    "parameters": [
+                      {
+                        "value": [
+                          0.0,
+                          0.9000000953674316,
+                          0.0
+                        ],
+                        "controlAddress": "/orbLookAt"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Orb Look At"
+                  },
+                  "activateCollision": {
+                    "parameters": [
+                      {
+                        "value": false,
+                        "controlAddress": "/activateCollision"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Activate Collision"
                   }
                 }
               }
@@ -13019,21 +14968,6 @@
                     "owned": true,
                     "niceName": "Intensity"
                   },
-                  "color": {
-                    "parameters": [
-                      {
-                        "value": [
-                          0.0,
-                          0.0,
-                          0.0,
-                          1.0
-                        ],
-                        "controlAddress": "/color"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Color"
-                  },
                   "hdrMultiplier": {
                     "parameters": [
                       {
@@ -13053,6 +14987,16 @@
                     ],
                     "owned": true,
                     "niceName": "Life"
+                  },
+                  "particleSize": {
+                    "parameters": [
+                      {
+                        "value": 1.0,
+                        "controlAddress": "/particleSize"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Particle Size"
                   },
                   "alpha": {
                     "parameters": [
@@ -13154,44 +15098,6 @@
                     "owned": true,
                     "niceName": "Orb Weight Size Factor"
                   },
-                  "particleSize": {
-                    "parameters": [
-                      {
-                        "value": 1.0,
-                        "controlAddress": "/particleSize"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Particle Size"
-                  },
-                  "orbRotation": {
-                    "parameters": [
-                      {
-                        "value": [
-                          0.0,
-                          0.0,
-                          0.0
-                        ],
-                        "controlAddress": "/orbRotation"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Orb Rotation"
-                  },
-                  "orbLookAt": {
-                    "parameters": [
-                      {
-                        "value": [
-                          0.0,
-                          0.0,
-                          0.0
-                        ],
-                        "controlAddress": "/orbLookAt"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Orb Look At"
-                  },
                   "orbLookAtMode": {
                     "parameters": [
                       {
@@ -13241,16 +15147,6 @@
                     ],
                     "owned": true,
                     "niceName": "Texture Opacity"
-                  },
-                  "activateCollision": {
-                    "parameters": [
-                      {
-                        "value": false,
-                        "controlAddress": "/activateCollision"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Activate Collision"
                   },
                   "forceWeight": {
                     "parameters": [
@@ -13351,6 +15247,59 @@
                     ],
                     "owned": true,
                     "niceName": "Pattern Time Offset"
+                  },
+                  "color": {
+                    "parameters": [
+                      {
+                        "value": [
+                          0.0,
+                          0.0,
+                          0.0,
+                          1.0
+                        ],
+                        "controlAddress": "/color"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Color"
+                  },
+                  "orbRotation": {
+                    "parameters": [
+                      {
+                        "value": [
+                          0.0,
+                          0.0,
+                          0.0
+                        ],
+                        "controlAddress": "/orbRotation"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Orb Rotation"
+                  },
+                  "orbLookAt": {
+                    "parameters": [
+                      {
+                        "value": [
+                          0.0,
+                          0.0,
+                          0.0
+                        ],
+                        "controlAddress": "/orbLookAt"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Orb Look At"
+                  },
+                  "activateCollision": {
+                    "parameters": [
+                      {
+                        "value": false,
+                        "controlAddress": "/activateCollision"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Activate Collision"
                   }
                 }
               }
@@ -13391,21 +15340,6 @@
                     "owned": true,
                     "niceName": "Intensity"
                   },
-                  "color": {
-                    "parameters": [
-                      {
-                        "value": [
-                          0.0,
-                          0.0,
-                          0.0,
-                          1.0
-                        ],
-                        "controlAddress": "/color"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Color"
-                  },
                   "hdrMultiplier": {
                     "parameters": [
                       {
@@ -13425,6 +15359,16 @@
                     ],
                     "owned": true,
                     "niceName": "Life"
+                  },
+                  "particleSize": {
+                    "parameters": [
+                      {
+                        "value": 1.0,
+                        "controlAddress": "/particleSize"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Particle Size"
                   },
                   "alpha": {
                     "parameters": [
@@ -13526,44 +15470,6 @@
                     "owned": true,
                     "niceName": "Orb Weight Size Factor"
                   },
-                  "particleSize": {
-                    "parameters": [
-                      {
-                        "value": 1.0,
-                        "controlAddress": "/particleSize"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Particle Size"
-                  },
-                  "orbRotation": {
-                    "parameters": [
-                      {
-                        "value": [
-                          0.0,
-                          0.0,
-                          0.0
-                        ],
-                        "controlAddress": "/orbRotation"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Orb Rotation"
-                  },
-                  "orbLookAt": {
-                    "parameters": [
-                      {
-                        "value": [
-                          0.0,
-                          0.0,
-                          0.0
-                        ],
-                        "controlAddress": "/orbLookAt"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Orb Look At"
-                  },
                   "orbLookAtMode": {
                     "parameters": [
                       {
@@ -13613,16 +15519,6 @@
                     ],
                     "owned": true,
                     "niceName": "Texture Opacity"
-                  },
-                  "activateCollision": {
-                    "parameters": [
-                      {
-                        "value": false,
-                        "controlAddress": "/activateCollision"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Activate Collision"
                   },
                   "forceWeight": {
                     "parameters": [
@@ -13723,6 +15619,59 @@
                     ],
                     "owned": true,
                     "niceName": "Pattern Time Offset"
+                  },
+                  "color": {
+                    "parameters": [
+                      {
+                        "value": [
+                          0.0,
+                          0.0,
+                          0.0,
+                          1.0
+                        ],
+                        "controlAddress": "/color"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Color"
+                  },
+                  "orbRotation": {
+                    "parameters": [
+                      {
+                        "value": [
+                          0.0,
+                          0.0,
+                          0.0
+                        ],
+                        "controlAddress": "/orbRotation"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Orb Rotation"
+                  },
+                  "orbLookAt": {
+                    "parameters": [
+                      {
+                        "value": [
+                          0.0,
+                          0.0,
+                          0.0
+                        ],
+                        "controlAddress": "/orbLookAt"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Orb Look At"
+                  },
+                  "activateCollision": {
+                    "parameters": [
+                      {
+                        "value": false,
+                        "controlAddress": "/activateCollision"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Activate Collision"
                   }
                 }
               }
@@ -13763,21 +15712,6 @@
                     "owned": true,
                     "niceName": "Intensity"
                   },
-                  "color": {
-                    "parameters": [
-                      {
-                        "value": [
-                          0.0,
-                          0.0,
-                          0.0,
-                          1.0
-                        ],
-                        "controlAddress": "/color"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Color"
-                  },
                   "hdrMultiplier": {
                     "parameters": [
                       {
@@ -13797,6 +15731,16 @@
                     ],
                     "owned": true,
                     "niceName": "Life"
+                  },
+                  "particleSize": {
+                    "parameters": [
+                      {
+                        "value": 1.0,
+                        "controlAddress": "/particleSize"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Particle Size"
                   },
                   "alpha": {
                     "parameters": [
@@ -13898,44 +15842,6 @@
                     "owned": true,
                     "niceName": "Orb Weight Size Factor"
                   },
-                  "particleSize": {
-                    "parameters": [
-                      {
-                        "value": 1.0,
-                        "controlAddress": "/particleSize"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Particle Size"
-                  },
-                  "orbRotation": {
-                    "parameters": [
-                      {
-                        "value": [
-                          0.0,
-                          0.0,
-                          0.0
-                        ],
-                        "controlAddress": "/orbRotation"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Orb Rotation"
-                  },
-                  "orbLookAt": {
-                    "parameters": [
-                      {
-                        "value": [
-                          0.0,
-                          0.0,
-                          0.0
-                        ],
-                        "controlAddress": "/orbLookAt"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Orb Look At"
-                  },
                   "orbLookAtMode": {
                     "parameters": [
                       {
@@ -13985,16 +15891,6 @@
                     ],
                     "owned": true,
                     "niceName": "Texture Opacity"
-                  },
-                  "activateCollision": {
-                    "parameters": [
-                      {
-                        "value": false,
-                        "controlAddress": "/activateCollision"
-                      }
-                    ],
-                    "owned": true,
-                    "niceName": "Activate Collision"
                   },
                   "forceWeight": {
                     "parameters": [
@@ -14095,6 +15991,59 @@
                     ],
                     "owned": true,
                     "niceName": "Pattern Time Offset"
+                  },
+                  "color": {
+                    "parameters": [
+                      {
+                        "value": [
+                          0.0,
+                          0.0,
+                          0.0,
+                          1.0
+                        ],
+                        "controlAddress": "/color"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Color"
+                  },
+                  "orbRotation": {
+                    "parameters": [
+                      {
+                        "value": [
+                          0.0,
+                          0.0,
+                          0.0
+                        ],
+                        "controlAddress": "/orbRotation"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Orb Rotation"
+                  },
+                  "orbLookAt": {
+                    "parameters": [
+                      {
+                        "value": [
+                          0.0,
+                          0.0,
+                          0.0
+                        ],
+                        "controlAddress": "/orbLookAt"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Orb Look At"
+                  },
+                  "activateCollision": {
+                    "parameters": [
+                      {
+                        "value": false,
+                        "controlAddress": "/activateCollision"
+                      }
+                    ],
+                    "owned": true,
+                    "niceName": "Activate Collision"
                   }
                 }
               }
@@ -15168,6 +17117,7 @@
                 }
               ],
               "niceName": "Preset",
+              "editorIsCollapsed": true,
               "type": "MorphTarget",
               "values": {
                 "containers": {
@@ -15683,6 +17633,7 @@
                 }
               ],
               "niceName": "Preset 1",
+              "editorIsCollapsed": true,
               "type": "MorphTarget",
               "values": {
                 "containers": {
@@ -16198,6 +18149,7 @@
                 }
               ],
               "niceName": "Preset 2",
+              "editorIsCollapsed": true,
               "type": "MorphTarget",
               "values": {
                 "containers": {
@@ -16713,6 +18665,7 @@
                 }
               ],
               "niceName": "Preset 3",
+              "editorIsCollapsed": true,
               "type": "MorphTarget",
               "values": {
                 "containers": {
@@ -17236,8 +19189,8 @@
         "parameters": [
           {
             "value": [
-              -236.0,
-              -313.0
+              -223.0,
+              -276.0
             ],
             "controlAddress": "/viewUIPosition"
           },
@@ -17260,7 +19213,7 @@
             {
               "parameters": [
                 {
-                  "value": 24.0,
+                  "value": 136.0,
                   "controlAddress": "/listSize"
                 },
                 {
@@ -17282,21 +19235,21 @@
                     {
                       "parameters": [
                         {
-                          "value": 0.8746803402900696,
+                          "value": 3.214285612106323,
                           "minValue": 0.0,
                           "maxValue": 10.0,
                           "default": 0.0,
                           "controlAddress": "/#1"
                         },
                         {
-                          "value": 5.0,
+                          "value": 0.0,
                           "minValue": 0.0,
-                          "maxValue": 10.0,
+                          "maxValue": 1.0,
                           "default": 0.0,
                           "controlAddress": "/#2"
                         },
                         {
-                          "value": 0.0,
+                          "value": 1.0,
                           "minValue": 0,
                           "maxValue": 1,
                           "default": 0.0,
@@ -17317,7 +19270,7 @@
                           "controlAddress": "/#5"
                         },
                         {
-                          "value": 1.0,
+                          "value": 0.0,
                           "minValue": 0,
                           "maxValue": 1,
                           "default": 0.0,
@@ -17332,7 +19285,7 @@
                         },
                         {
                           "value": 0.0,
-                          "minValue": -1,
+                          "minValue": 0,
                           "maxValue": 1,
                           "default": 0.0,
                           "controlAddress": "/#8"
@@ -17359,16 +19312,16 @@
                           "controlAddress": "/#11"
                         },
                         {
-                          "value": 0.0,
-                          "minValue": 0,
-                          "maxValue": 1,
+                          "value": 5.022321457309381,
+                          "minValue": 0.0,
+                          "maxValue": 10.0,
                           "default": 0.0,
                           "controlAddress": "/#12"
                         },
                         {
                           "value": 0.0,
-                          "minValue": 0.0,
-                          "maxValue": 10.0,
+                          "minValue": 0,
+                          "maxValue": 1,
                           "default": 0.0,
                           "controlAddress": "/#13"
                         },
@@ -17387,7 +19340,7 @@
                           "controlAddress": "/#15"
                         },
                         {
-                          "value": 0.0,
+                          "value": 0.1084821376843114,
                           "minValue": 0,
                           "maxValue": 1,
                           "default": 0.0,
@@ -17450,42 +19403,42 @@
                           "controlAddress": "/#24"
                         },
                         {
-                          "value": 0.0,
+                          "value": 0.3294643104015583,
                           "minValue": 0,
                           "maxValue": 1,
                           "default": 0.0,
                           "controlAddress": "/#25"
                         },
                         {
-                          "value": 0.0,
+                          "value": 0.3214285955137154,
                           "minValue": 0,
                           "maxValue": 1,
                           "default": 0.0,
                           "controlAddress": "/#26"
                         },
                         {
-                          "value": 0.0,
+                          "value": 0.3937499570846604,
                           "minValue": 0,
                           "maxValue": 1,
                           "default": 0.0,
                           "controlAddress": "/#27"
                         },
                         {
-                          "value": 0.0,
+                          "value": 0.3375000252894012,
                           "minValue": 0,
                           "maxValue": 1,
                           "default": 0.0,
                           "controlAddress": "/#28"
                         },
                         {
-                          "value": 0.0,
+                          "value": 0.6428571910274308,
                           "minValue": 0,
                           "maxValue": 1,
                           "default": 0.0,
                           "controlAddress": "/#29"
                         },
                         {
-                          "value": 0.0,
+                          "value": 0.2812499693461863,
                           "minValue": 0.0,
                           "maxValue": 5.0,
                           "default": 0.0,
@@ -17493,7 +19446,6 @@
                         }
                       ],
                       "niceName": "Orb 1 Source Parameters",
-                      "editorIsCollapsed": true,
                       "type": "Float",
                       "listSize": 30
                     },
@@ -17627,7 +19579,6 @@
                         }
                       ],
                       "niceName": "Orb 1 Targets",
-                      "editorIsCollapsed": true,
                       "type": "Target",
                       "listSize": 30,
                       "containerMode": false
@@ -17756,7 +19707,6 @@
                         }
                       ],
                       "niceName": "Orb 2 Targets",
-                      "editorIsCollapsed": true,
                       "type": "Target",
                       "listSize": 30,
                       "containerMode": false
@@ -17975,7 +19925,6 @@
                         }
                       ],
                       "niceName": "Smoothing Factors",
-                      "editorIsCollapsed": true,
                       "type": "Float",
                       "listSize": 30
                     },
@@ -18103,7 +20052,6 @@
                         }
                       ],
                       "niceName": "CV Values",
-                      "editorIsCollapsed": true,
                       "type": "Input Values",
                       "listSize": 30
                     }
@@ -18728,11 +20676,116 @@
           ],
           "viewZoom": 1.0
         }
+      },
+      {
+        "parameters": [
+          {
+            "value": [
+              -101.0,
+              -535.0
+            ],
+            "controlAddress": "/viewUIPosition"
+          },
+          {
+            "value": true,
+            "controlAddress": "/active"
+          }
+        ],
+        "niceName": "State 1",
+        "type": "State",
+        "processors": {
+          "items": [
+            {
+              "niceName": "Mapping",
+              "editorIsCollapsed": true,
+              "type": "Mapping",
+              "im": {
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": "/modules/signal/values/value",
+                        "controlAddress": "/inputValue"
+                      }
+                    ],
+                    "niceName": "Input Value",
+                    "type": "Input Value"
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "params": {
+                "parameters": [
+                  {
+                    "value": 50,
+                    "hexMode": false,
+                    "controlAddress": "/updateRate"
+                  }
+                ],
+                "editorIsCollapsed": true
+              },
+              "filters": {
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "outputs": {
+                "items": [
+                  {
+                    "niceName": "MappingOutput",
+                    "type": "BaseItem",
+                    "commandModule": "generic",
+                    "commandPath": "",
+                    "commandType": "Set Parameter Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/modules/oxipital/parameters/macros/macro1",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Equals",
+                          "controlAddress": "/operator"
+                        }
+                      ],
+                      "paramLinks": {
+                        "value": {
+                          "linkType": 1,
+                          "mappingValueIndex": 0
+                        }
+                      }
+                    }
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              }
+            }
+          ],
+          "viewOffset": [
+            0,
+            0
+          ],
+          "viewZoom": 1.0
+        }
       }
     ],
     "viewOffset": [
-      -7,
-      37
+      21,
+      377
     ],
     "viewZoom": 1.0,
     "transitions": {
@@ -18746,8 +20799,8 @@
     "comments": {
       "hideInEditor": true,
       "viewOffset": [
-        -7,
-        37
+        21,
+        377
       ],
       "viewZoom": 1.0
     }
