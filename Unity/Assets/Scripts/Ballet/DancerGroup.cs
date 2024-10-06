@@ -45,12 +45,6 @@ namespace Oxipital
         [Range(0, 1)]
         public float patternTimeOffset = 0; // offset phase
 
-
-        [Range(0, 10)]
-        public float patternSizeLFOFrequency;
-        [Range(0, 10)]
-        public float patternSizeLFOAmplitude;
-
         [Header("Dancer")]
         [Range(0, 10)]
         public float dancerSize = 1;
