@@ -18,6 +18,8 @@ var unityOrbsManager = null;
 var unityForceGroupsParam = null;
 var unityOrbGroupsParam = null;
 
+var lastSyncTime = 0;
+
 var danceGroupParameters = {
 	"Patterns": {
 		"Count": { "type": "float", "default": 1, "min": 1, "max": 10, "noMacro": true },
@@ -25,15 +27,17 @@ var danceGroupParameters = {
 		"Pattern Size Spread": { "type": "float", "default": 0, "min": 0, "max": 1 },
 		"Pattern Axis Spread": { "type": "float", "default": 0, "min": 0, "max": 1 },
 		"Line Pattern Weight": { "type": "float", "default": 0, "min": 0, "max": 1, "customComponent": "LineDancePattern/weight" },
+		"Line Pattern Speed Weight": { "type": "float", "default": 0, "min": 0, "max": 1, "customComponent": "LineDancePattern/speedWeight" },
 		"Circle Pattern Weight": { "type": "float", "default": 1, "min": 0, "max": 1, "customComponent": "CircleDancePattern/weight" },
+		"Circle Pattern Speed Weight": { "type": "float", "default": 1, "min": 0, "max": 1, "customComponent": "CircleDancePattern/speedWeight" },
 		"NBody Pattern Weight": { "type": "float", "default": 0, "min": 0, "max": 1, "customComponent": "NBodyProblemPattern/weight" },
+		"NBody Pattern Speed Weight": { "type": "float", "default": 0, "min": 0, "max": 1, "customComponent": "NBodyProblemPattern/speedWeight" }
 	},
 	"Animation": {
 		"Pattern Speed": { "type": "float", "default": 0.1, "min": -1, "max": 1 },
 		"Pattern Speed Random": { "type": "float", "default": 0, "min": 0, "max": 1 },
-		"Pattern Time Offset": { "type": "float", "default": 0, "min": 0, "max": 1 },
-		"Pattern Size LFO Frequency": { "type": "float", "default": 0, "min": 0, "max": 10 },
-		"Pattern Size LFO Amplitude": { "type": "float", "default": 0, "min": 0, "max": 10 }
+		"Pattern Time Offset": { "type": "float", "default": 0, "min": 0, "max": 1 }
+
 	},
 	"Dancer": {
 		"Dancer Size": { "type": "float", "default": 1, "min": 0, "max": 20 },
@@ -133,7 +137,21 @@ function init() {
 
 
 function moduleParameterChanged(param) {
-	if (param.is(numForceGroupsParam)) {
+
+	//Auto trigger sync when connected, and some timing safety because triggering sync data causes the module to disconnect / reconnect
+	if(param.is(local.parameters.syncData))
+	{
+		lastSyncTime = util.getTime();
+	}else if(param.is(local.parameters.isConnected))
+	{
+		if(local.parameters.isConnected.get())
+		{
+			if(util.getTime() > lastSyncTime + 2)
+			{
+				local.parameters.syncData.trigger();
+			}
+		}
+	}else if (param.is(numForceGroupsParam)) {
 		if (unityForceGroupsParam) unityForceGroupsParam.set(numForceGroupsParam.get());
 		setupForces();
 		linkArrays();
@@ -163,8 +181,6 @@ function moduleParameterChanged(param) {
 
 function dataStructureEvent() {
 	linkUnity();
-
-	// setup();
 }
 
 
@@ -426,6 +442,7 @@ function setupMacrosToItem(item) {
 			var numMacros = numMacrosParam.get();
 
 			var paramProp = getPropForParam(paramContainer);
+			if(paramProp.noMacro == true) numMacros = 0;
 
 			for (var k = paramCurrentMacros; k > numMacros; k--) paramContainer.removeParameter("Macro Weight " + k);
 
