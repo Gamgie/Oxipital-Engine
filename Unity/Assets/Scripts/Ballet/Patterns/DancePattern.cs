@@ -11,7 +11,8 @@ namespace Oxipital
 
         [Range(0, 1)]
         public float weight = 1;
-
+        [Range(0, 1)]
+        public float speedWeight = 1;
         public virtual void updatePattern<T>(DancerGroup<T> group) where T : Dancer
         {
             if (group.items.Count == 0) return;
@@ -46,8 +47,7 @@ namespace Oxipital
                 float pRelSize = Mathf.Lerp(1, rel, group.patternSizeSpread);
                 float pSize = Mathf.Lerp(0, group.patternSize, pRelSize);
 
-                float targetSize = pSize + Mathf.Sin(Time.time * group.patternSizeLFOFrequency) * group.patternSizeLFOAmplitude;
-                dancer.transform.localPosition = Vector3.Lerp(dancer.transform.localPosition, targetPos, smoothWeight) * targetSize;
+                dancer.transform.localPosition = Vector3.Lerp(dancer.transform.localPosition, targetPos, smoothWeight) * pSize;
             }
         }
 
