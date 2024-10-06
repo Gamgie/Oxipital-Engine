@@ -145,10 +145,6 @@ namespace Oxipital
         public float orthoaxialClockwise = 1;
 
 
-        protected override void OnEnable()
-        {
-            base.OnEnable();
-        }
         protected override Type getGroupType()
         {
             return GetType();

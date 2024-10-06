@@ -21,11 +21,6 @@ namespace Oxipital
             (items[items.Count - 1] as OrbGroup).kill(getKillTime()); 
         }
 
-        public override void kill(float time)
-        {
-            base.kill(time);
-            count = 0;
-        }
         protected override float getKillTime()
         {
             float result = 0;
