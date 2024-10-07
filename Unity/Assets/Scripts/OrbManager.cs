@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 namespace Oxipital
 {
@@ -11,6 +12,8 @@ namespace Oxipital
         OrbManager() : base("Orb Group")
         {
         }
+
+        
 
         protected override void addItem()
         {

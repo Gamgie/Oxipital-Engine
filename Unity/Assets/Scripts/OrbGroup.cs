@@ -68,7 +68,8 @@ namespace Oxipital
         }
     }
 
-    public class OrbGroup : DancerGroup<Orb>
+    [RequireComponent(typeof(VisualEffect))]
+    public class OrbGroup : DancerGroup<Dancer>
     {
         [Header("Emission")]
         [InBuffer(0)]
@@ -143,20 +144,26 @@ namespace Oxipital
         string lastMeshName = "";
 
         Mesh currentMesh;
+        internal VisualEffect vfx;
+
 
         protected override void OnEnable()
         {
             base.OnEnable();
             MeshLoader.loadMeshes();
+            vfx = GetComponent<VisualEffect>();
         }
 
         protected override void Update()
         {
             base.Update();
-            for (int i = 0; i < items.Count; i++)
-            {
-                items[i].setOrbBuffer(buffer, i);
-            }
+
+            bool isDying = killProgress > 0;
+            vfx.SetFloat("Emitter Intensity", isDying ? 0 : dancerIntensity);
+            vfx.SetFloat("Force Weight", GetComponentInParent<OrbGroup>().forceWeight);
+            vfx.SetGraphicsBuffer("Orb Buffer", buffer);
+
+            foreach (var item in items) item.debugColor = color;
 
             if(emitterShape != lastEmitterShape)
             {
@@ -175,41 +182,60 @@ namespace Oxipital
                 {
                     currentMesh = MeshLoader.getMesh(meshName.ToLower());
                     if (currentMesh == null) Debug.LogWarning("Could not find mesh for " + meshName);
-                    else foreach (Orb orb in items) orb.setMesh(currentMesh);
+                    else setMesh(currentMesh);
                     lastMeshName = meshName;
                 }
             }
 
         }
 
-        protected override void addItem()
+        internal void setForceBuffers(Dictionary<string, GraphicsBuffer> forceBuffers)
         {
-            base.addItem();
-            items[items.Count - 1].setMesh(currentMesh);
+            if (vfx == null) return;
+
+            foreach (var b in forceBuffers)
+            {
+                if (!vfx.HasGraphicsBuffer(b.Key))
+                {
+                    Debug.LogWarning(b.Key + " not found in VFX");
+                    continue;
+                }
+
+                vfx.SetGraphicsBuffer(b.Key, b.Value);
+            }
+
+            //Update intensity here as we need to pass it outside the GraphicsBuffer
+            //Discussion : https://discussions.unity.com/t/spawn-a-variable-amount-of-particles-from-graphics-buffer/899049/2
         }
 
-        public void setForceBuffers(Dictionary<string, GraphicsBuffer> forceBuffers)
+
+        internal void setMesh(Mesh m)
         {
-            foreach (Orb orb in items)
+            if (vfx == null) return;
+            if (m == null) return;
+
+            if (!vfx.HasMesh("Emitter Mesh"))
             {
-                orb.setForceBuffers(forceBuffers);
+                Debug.LogWarning("Emitter Mesh not found in VFX");
+                return;
             }
+
+            vfx.SetMesh("Emitter Mesh", m);
+            GetComponent<MeshToSDF>().mesh = m;
         }
+        public override void kill(float time)
+        {
+            base.kill(time);
+            if (vfx == null) return;
+            vfx.SetFloat("Emitter Intensity", 0);
+            count = 0;
+        }
+
         override protected Type getGroupType()
         {
             return GetType();
         }
 
-
-        override protected void killLastItem()
-        {
-            (items[items.Count - 1] as Orb).kill(getKillTime());
-        }
-        public override void kill(float time = 0)
-        {
-            base.kill(time);
-            count = 0;
-        }
 
         protected override float getKillTime()
         {

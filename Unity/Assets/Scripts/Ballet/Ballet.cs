@@ -9,6 +9,7 @@ namespace Oxipital
         OrbManager orbManager;
         StandardForceManager standardForceManager;
 
+        public float totalParticles;
         void OnEnable()
         {
             orbManager = GetComponentInChildren<OrbManager>();
@@ -24,10 +25,12 @@ namespace Oxipital
 				forceBuffers.Add(group.gameObject.name, group.buffer);
 			}
 
-			foreach (OrbGroup group in orbManager.items)
-			{
-				group.setForceBuffers(forceBuffers);
-			}
-		}
+            totalParticles = 0;
+            foreach (OrbGroup group in orbManager.items)
+            {
+                group.setForceBuffers(forceBuffers);
+                totalParticles += group.vfx.aliveParticleCount;
+            }
+        }
     }
 }
