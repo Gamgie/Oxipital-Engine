@@ -1,5 +1,6 @@
 
 script.setExecutionTimeout(20);
+script.setAutoRefreshEnvironment(false);
 
 var numForceGroupsParam;;
 var numOrbGroupsParam;;
@@ -365,10 +366,12 @@ function setupParameters(group, numParam, parameters, items, prefix, updateMacro
 function createItem(index, group, parameters, prefix) {
 	var item = group.addContainer(prefix + " " + (index + 1));
 	item.setCollapsed(true);
-
 	addParametersToItem(item, danceGroupParameters);
 	addParametersToItem(item, parameters);
 
+	script.refreshEnvironment();
+
+	item = group.addContainer(prefix + " " + (index + 1));
 	setupMacrosToItem(item, parameters);
 
 	return item;
