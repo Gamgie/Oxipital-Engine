@@ -75,6 +75,8 @@ public class MeshToSDF : MonoBehaviour
         if (outputRenderTexture != null) outputRenderTexture.Release();
         outputRenderTexture = null;
         fieldsChanged = true;
+
+        vfxOutput = GetComponent<VisualEffect>();
     }
 
     private void Start() {
