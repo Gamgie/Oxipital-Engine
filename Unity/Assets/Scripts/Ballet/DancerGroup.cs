@@ -10,10 +10,6 @@ using System;
 namespace Oxipital
 {
 
-    //public interface IDancerGroup<out T> where T : Dancer
-    //{
-    //    BaseManager<Dancer> getManager();
-    //}
 
     [DoNotExposeChildren]
     public class DancerGroup<T> : BaseManager<T> where T : Dancer
@@ -109,6 +105,8 @@ namespace Oxipital
 
             Type type = getGroupType();
 
+            // Prepare fieldInfo list. It will be used to populate buffer later.
+            // This is where we use custom attribute InBuffer to store at the right index the field in dictionary.
             int lastGroupFloatIndex = 0;
             foreach (FieldInfo f in type.GetFields())
             {
@@ -201,7 +199,9 @@ namespace Oxipital
 
             int itemsStartIndex = indexOffset + groupFixedDataSize - 1;
 
+            // Dancer Count
             list[0] = items.Count;
+            // Dancer Start Index
             list[1] = itemsStartIndex;
 
             //fill fixed data
