@@ -116,25 +116,26 @@ namespace Oxipital
 
         [Header("Physics")]
         [Range(0, 1)]
-        public float forceWeight = 1;
-
         [InBuffer(12)]
-        [Range(0, 1)]
-        public float drag = .5f;
+        public float forceWeight = 1;
 
         [InBuffer(13)]
         [Range(0, 1)]
-        public float velocityDrag = 0;
+        public float drag = .5f;
 
         [InBuffer(14)]
         [Range(0, 1)]
-        public float noisyDrag = 0;
+        public float velocityDrag = 0;
 
         [InBuffer(15)]
+        [Range(0, 1)]
+        public float noisyDrag = 0;
+
+        [InBuffer(16)]
         [Range(0, 5)]
         public float noisyDragFrequency = 0;
 
-        [InBuffer(16)]
+        [InBuffer(17)]
         public bool activateCollision = false;
 
         [Header("Debug")]
@@ -146,12 +147,16 @@ namespace Oxipital
         Mesh currentMesh;
         internal VisualEffect vfx;
 
+        MeshRenderer[] mRList;
+        MeshCollider[] mCList;
+
 
         protected override void OnEnable()
         {
             base.OnEnable();
             MeshLoader.loadMeshes();
             vfx = GetComponent<VisualEffect>();
+            updateMeshList();
         }
 
         protected override void Update()
@@ -178,12 +183,27 @@ namespace Oxipital
 
             if (MeshLoader.isLoaded)
             {
+                // Update mesh in case we change it
                 if (meshName != lastMeshName)
                 {
                     currentMesh = MeshLoader.getMesh(meshName.ToLower());
                     if (currentMesh == null) Debug.LogWarning("Could not find mesh for " + meshName);
                     else setMesh(currentMesh);
                     lastMeshName = meshName;
+                }
+
+                // Update mesh list in case items list changed
+                if (mRList == null || mRList.Length != items.Count)
+                    updateMeshList();
+
+                foreach (MeshRenderer mr in mRList)
+                {
+                    mr.enabled = showMesh;
+                }
+
+                foreach (MeshCollider mc in mCList)
+                {
+                    mc.enabled = activateCollision;
                 }
             }
 
@@ -208,7 +228,6 @@ namespace Oxipital
             //Discussion : https://discussions.unity.com/t/spawn-a-variable-amount-of-particles-from-graphics-buffer/899049/2
         }
 
-
         internal void setMesh(Mesh m)
         {
             if (vfx == null) return;
@@ -222,7 +241,34 @@ namespace Oxipital
 
             vfx.SetMesh("Emitter Mesh", m);
             GetComponent<MeshToSDF>().mesh = m;
+            foreach (var item in items)
+			{
+                MeshFilter mF;
+                MeshRenderer mR;
+                MeshCollider mC;
+                mF = item.GetComponent<MeshFilter>();
+                mR = item.GetComponent<MeshRenderer>();
+                mC = item.GetComponent<MeshCollider>();
+
+                if (mF == null)
+				{
+                    mF = item.gameObject.AddComponent<MeshFilter>();
+                    mR = item.gameObject.AddComponent<MeshRenderer>();
+                    mC = item.gameObject.AddComponent<MeshCollider>();
+                }
+
+
+                mF.mesh = m;
+                mC.sharedMesh = m;
+			}
         }
+
+        internal void updateMeshList()
+		{
+            mRList = GetComponentsInChildren<MeshRenderer>();
+            mCList = GetComponentsInChildren<MeshCollider>();
+        }
+
         public override void kill(float time)
         {
             base.kill(time);
