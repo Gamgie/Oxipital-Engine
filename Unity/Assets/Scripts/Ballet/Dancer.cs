@@ -42,6 +42,7 @@ namespace Oxipital
         {
             base.Update();
             lastPosition = transform.localPosition;
+            transform.localScale = new Vector3(size, size, size);
         }
 
         private void OnDrawGizmos()
