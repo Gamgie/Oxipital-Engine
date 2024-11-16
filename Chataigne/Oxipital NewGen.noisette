@@ -40160,8 +40160,7 @@
                           "value": 0.0,
                           "controlMode": 2,
                           "reference": {
-                            "value": "",
-                            "ghostValue": "/modules/gamepad/values/axes/axis6",
+                            "value": "/modules/gamepad/values/axes/axis6",
                             "controlAddress": "/reference"
                           },
                           "controlAddress": "/value"
@@ -40174,8 +40173,7 @@
                       "value": 0.0,
                       "controlMode": 2,
                       "reference": {
-                        "value": "",
-                        "ghostValue": "/modules/gamepad/values/axes/axis6",
+                        "value": "/modules/gamepad/values/axes/axis6",
                         "controlAddress": "/reference"
                       },
                       "controlAddress": "/states/spaceShiftControl/processors/verticalThrust_Unity/filters/addOppositeAxis/filterParams/value"
@@ -40324,7 +40322,32 @@
                 "items": [
                   {
                     "niceName": "MappingOutput",
-                    "type": "BaseItem"
+                    "type": "BaseItem",
+                    "commandModule": "generic",
+                    "commandPath": "",
+                    "commandType": "Set Parameter Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/modules/oxipital/values/Cameras/Spaceship_Camera_target/SpaceshipMovement/lateralThrust1D",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Equals",
+                          "controlAddress": "/operator"
+                        }
+                      ],
+                      "paramLinks": {
+                        "value": {
+                          "linkType": 1,
+                          "mappingValueIndex": 0
+                        }
+                      }
+                    }
                   }
                 ],
                 "viewOffset": [
@@ -40382,7 +40405,32 @@
                 "items": [
                   {
                     "niceName": "MappingOutput",
-                    "type": "BaseItem"
+                    "type": "BaseItem",
+                    "commandModule": "generic",
+                    "commandPath": "",
+                    "commandType": "Set Parameter Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/modules/oxipital/values/Cameras/Spaceship_Camera_target/SpaceshipMovement/pitch1D",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Equals",
+                          "controlAddress": "/operator"
+                        }
+                      ],
+                      "paramLinks": {
+                        "value": {
+                          "linkType": 1,
+                          "mappingValueIndex": 0
+                        }
+                      }
+                    }
                   }
                 ],
                 "viewOffset": [
@@ -40440,7 +40488,32 @@
                 "items": [
                   {
                     "niceName": "MappingOutput",
-                    "type": "BaseItem"
+                    "type": "BaseItem",
+                    "commandModule": "generic",
+                    "commandPath": "",
+                    "commandType": "Set Parameter Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/modules/oxipital/values/Cameras/Spaceship_Camera_target/SpaceshipMovement/yaw1D",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Equals",
+                          "controlAddress": "/operator"
+                        }
+                      ],
+                      "paramLinks": {
+                        "value": {
+                          "linkType": 1,
+                          "mappingValueIndex": 0
+                        }
+                      }
+                    }
                   }
                 ],
                 "viewOffset": [
@@ -40520,8 +40593,7 @@
                           "value": 0.0,
                           "controlMode": 2,
                           "reference": {
-                            "value": "",
-                            "ghostValue": "/modules/gamepad/values/axes/axis6",
+                            "value": "/modules/gamepad/values/axes/axis6",
                             "controlAddress": "/reference"
                           },
                           "controlAddress": "/value"
@@ -40534,8 +40606,7 @@
                       "value": 0.0,
                       "controlMode": 2,
                       "reference": {
-                        "value": "",
-                        "ghostValue": "/modules/gamepad/values/axes/axis6",
+                        "value": "/modules/gamepad/values/axes/axis6",
                         "controlAddress": "/reference"
                       },
                       "controlAddress": "/states/spaceShiftControl/processors/roll_Unity/filters/addOppositeAxis/filterParams/value"
@@ -40574,7 +40645,32 @@
                 "items": [
                   {
                     "niceName": "MappingOutput",
-                    "type": "BaseItem"
+                    "type": "BaseItem",
+                    "commandModule": "generic",
+                    "commandPath": "",
+                    "commandType": "Set Parameter Value",
+                    "command": {
+                      "parameters": [
+                        {
+                          "value": "/modules/oxipital/values/Cameras/Spaceship_Camera_target/SpaceshipMovement/roll1D",
+                          "controlAddress": "/target"
+                        },
+                        {
+                          "value": "All",
+                          "controlAddress": "/component"
+                        },
+                        {
+                          "value": "Equals",
+                          "controlAddress": "/operator"
+                        }
+                      ],
+                      "paramLinks": {
+                        "value": {
+                          "linkType": 1,
+                          "mappingValueIndex": 0
+                        }
+                      }
+                    }
                   }
                 ],
                 "viewOffset": [
@@ -40756,13 +40852,21 @@
                   {
                     "parameters": [
                       {
-                        "value": "",
-                        "ghostValue": "/modules/gamepad/values/buttons/button11",
+                        "value": "/modules/gamepad/values/buttons/button11",
                         "controlAddress": "/inputValue"
                       }
                     ],
                     "niceName": "From Input Value",
-                    "type": "From Input Value"
+                    "type": "From Input Value",
+                    "comparator": {
+                      "parameters": [
+                        {
+                          "value": true,
+                          "controlAddress": "/reference"
+                        }
+                      ],
+                      "hideInEditor": true
+                    }
                   }
                 ],
                 "viewOffset": [
@@ -40893,8 +40997,7 @@
                   {
                     "parameters": [
                       {
-                        "value": "",
-                        "ghostValue": "/modules/gamepad/values/axes/axis4",
+                        "value": "/modules/gamepad/values/axes/axis4",
                         "controlAddress": "/inputValue"
                       }
                     ],
@@ -40990,8 +41093,7 @@
                         {
                           "controlMode": 2,
                           "reference": {
-                            "value": "",
-                            "ghostValue": "/modules/gamepad/values/axes/axis4",
+                            "value": "/modules/gamepad/values/axes/axis4",
                             "controlAddress": "/reference"
                           },
                           "controlAddress": "/value"
@@ -41019,8 +41121,8 @@
       }
     ],
     "viewOffset": [
-      1095,
-      116
+      1004,
+      112
     ],
     "viewZoom": 1.0,
     "transitions": {
@@ -41034,8 +41136,8 @@
     "comments": {
       "hideInEditor": true,
       "viewOffset": [
-        1095,
-        116
+        1004,
+        112
       ],
       "viewZoom": 1.0
     }
