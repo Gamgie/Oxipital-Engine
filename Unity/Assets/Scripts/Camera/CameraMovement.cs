@@ -31,9 +31,17 @@ public abstract class CameraMovement : MonoBehaviour
 		return true;
 	}
 
-	public abstract void UpdateFOV(float fov);
+	public void UpdateFOV(float fov)
+	{
+		virtualCamera.m_Lens.FieldOfView = fov;
+	}
 
 	public abstract void UpdateZOffset(float offset);
+
+	public void UpdateOrthoSize(float size)
+	{
+		virtualCamera.m_Lens.OrthographicSize = size;
+	}
 
 	public virtual void SetActive(bool activate, float duration = 0)
 	{

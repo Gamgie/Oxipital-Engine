@@ -28,18 +28,8 @@ public class HandsMovement : CameraMovement
 	{
 	}
 
-	public override void UpdateFOV(float fov)
-	{
-		virtualCamera.m_Lens.FieldOfView = fov;
-	}
-
 	public override void UpdateZOffset(float offset)
 	{
-		// Control distance between target and camera
-		if (_transposer != null)
-		{
-			//_transposer.m_FollowOffset = new Vector3(0, 0, -offset);
-		}
 	}
 
 	public override bool UpdateMovement()

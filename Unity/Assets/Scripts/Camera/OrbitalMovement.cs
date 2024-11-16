@@ -64,11 +64,6 @@ public class OrbitalMovement : CameraMovement
 		transform.DORotate(Vector3.zero, duration);
 	}
 
-	public override void UpdateFOV(float fov)
-	{
-		virtualCamera.m_Lens.FieldOfView = fov;
-	}
-
 	public override void UpdateZOffset(float offset)
 	{
 		// Control distance between target and camera
