@@ -37,7 +37,7 @@
   "dashboardManager": {
     "parameters": [
       {
-        "value": true,
+        "value": false,
         "controlAddress": "/editMode"
       },
       {
@@ -3758,12 +3758,11 @@
             }
           ],
           "viewOffset": [
-            795,
-            -86
+            1127,
+            293
           ],
           "viewZoom": 1.4609375
-        },
-        "editing": true
+        }
       },
       {
         "niceName": "Camera",
@@ -10079,11 +10078,12 @@
             }
           ],
           "viewOffset": [
-            724,
-            256
+            769,
+            189
           ],
           "viewZoom": 1.033203125
-        }
+        },
+        "editing": true
       }
     ],
     "viewOffset": [
@@ -10132,6 +10132,15 @@
   "modules": {
     "items": [
       {
+        "parameters": [
+          {
+            "value": [
+              25.88897132873535,
+              0.0
+            ],
+            "controlAddress": "/viewUIPosition"
+          }
+        ],
         "niceName": "Oxipital",
         "type": "Oxipital",
         "scripts": {
@@ -10417,7 +10426,7 @@
                         "dancerIntensity": {
                           "parameters": [
                             {
-                              "value": 0.3166666626930237,
+                              "value": 0.75,
                               "minValue": 0.0,
                               "maxValue": 1.0,
                               "default": 1.0,
@@ -10514,7 +10523,6 @@
                       "niceName": "General"
                     },
                     "appearance": {
-                      "editorIsCollapsed": true,
                       "containers": {
                         "color": {
                           "parameters": [
@@ -10534,11 +10542,18 @@
                         "alpha": {
                           "parameters": [
                             {
-                              "value": 0.5833333730697632,
+                              "value": 0.07222221046686172,
                               "minValue": 0.0,
                               "maxValue": 1.0,
                               "default": 0.2000000029802322,
                               "controlAddress": "/baseValue"
+                            },
+                            {
+                              "value": 0.07633590698242188,
+                              "minValue": -1.0,
+                              "maxValue": 1.0,
+                              "default": 0.0,
+                              "controlAddress": "/macroWeight1"
                             }
                           ],
                           "owned": true,
@@ -10551,7 +10566,7 @@
                         "alphaSpeedThreshold": {
                           "parameters": [
                             {
-                              "value": 0.01500000804662704,
+                              "value": 0.0,
                               "minValue": 0.0,
                               "maxValue": 1.0,
                               "default": 0.0,
@@ -10577,39 +10592,18 @@
                         "particleSize": {
                           "parameters": [
                             {
-                              "value": 0.1318181753158569,
+                              "value": 0.1136363595724106,
                               "minValue": 0.0,
                               "maxValue": 1.0,
                               "default": 0.0,
                               "controlAddress": "/baseValue"
                             },
                             {
-                              "value": -0.2892859665230595,
+                              "value": 0.1564886569976807,
                               "minValue": -1.0,
                               "maxValue": 1.0,
                               "default": 0.0,
                               "controlAddress": "/macroWeight1"
-                            },
-                            {
-                              "value": 0.5785712413642476,
-                              "minValue": -1.0,
-                              "maxValue": 1.0,
-                              "default": 0.0,
-                              "controlAddress": "/macroWeight2"
-                            },
-                            {
-                              "value": -0.2892859665230594,
-                              "minValue": -1.0,
-                              "maxValue": 1.0,
-                              "default": 0.0,
-                              "controlAddress": "/macroWeight3"
-                            },
-                            {
-                              "value": -0.3857141609094987,
-                              "minValue": -1.0,
-                              "maxValue": 1.0,
-                              "default": 0.0,
-                              "controlAddress": "/macroWeight4"
                             }
                           ],
                           "owned": true,
@@ -10676,7 +10670,7 @@
                         "noisyDragFrequency": {
                           "parameters": [
                             {
-                              "value": 1.0,
+                              "value": 0.2250000089406967,
                               "minValue": 0.0,
                               "maxValue": 1.0,
                               "default": 0.0,
@@ -10896,7 +10890,6 @@
               }
             },
             "forceGroups": {
-              "editorIsCollapsed": true,
               "containers": {
                 "forceGroup1": {
                   "containers": {
@@ -11073,30 +11066,15 @@
                       "niceName": "Animation"
                     },
                     "dancer": {
-                      "editorIsCollapsed": true,
                       "containers": {
                         "dancerSize": {
                           "parameters": [
                             {
-                              "value": 9.999996185302734,
+                              "value": 7.0,
                               "minValue": 0.0,
                               "maxValue": 20.0,
                               "default": 1.0,
                               "controlAddress": "/baseValue"
-                            },
-                            {
-                              "value": 1.0,
-                              "minValue": -1.0,
-                              "maxValue": 1.0,
-                              "default": 0.0,
-                              "controlAddress": "/macroWeight1"
-                            },
-                            {
-                              "value": -0.0128205418586731,
-                              "minValue": -1.0,
-                              "maxValue": 1.0,
-                              "default": 0.0,
-                              "controlAddress": "/macroWeight2"
                             }
                           ],
                           "owned": true,
@@ -11105,7 +11083,7 @@
                         "dancerHyperSize": {
                           "parameters": [
                             {
-                              "value": 0.0,
+                              "value": 0.01999999955296516,
                               "minValue": 0.0,
                               "maxValue": 1.0,
                               "default": 0.0,
@@ -11142,7 +11120,7 @@
                               "controlAddress": "/baseValue"
                             },
                             {
-                              "value": 0.7179486751556396,
+                              "value": 0.2713837623596191,
                               "minValue": -1.0,
                               "maxValue": 1.0,
                               "default": 0.0,
@@ -11211,7 +11189,6 @@
                       "niceName": "Dancer"
                     },
                     "general": {
-                      "editorIsCollapsed": true,
                       "containers": {
                         "forceFactorInside": {
                           "parameters": [
@@ -11234,13 +11211,6 @@
                               "maxValue": 1.0,
                               "default": 0.0,
                               "controlAddress": "/baseValue"
-                            },
-                            {
-                              "value": -0.529914379119873,
-                              "minValue": -1.0,
-                              "maxValue": 1.0,
-                              "default": 0.0,
-                              "controlAddress": "/macroWeight1"
                             }
                           ],
                           "owned": true,
@@ -11251,7 +11221,6 @@
                       "niceName": "General"
                     },
                     "radial": {
-                      "editorIsCollapsed": true,
                       "containers": {
                         "radialIntensity": {
                           "parameters": [
@@ -11261,15 +11230,9 @@
                               "maxValue": 1.0,
                               "default": 0.0,
                               "controlAddress": "/baseValue"
-                            },
-                            {
-                              "value": 0.6410256624221802,
-                              "minValue": -1.0,
-                              "maxValue": 1.0,
-                              "default": 0.0,
-                              "controlAddress": "/macroWeight1"
                             }
                           ],
+                          "editorIsCollapsed": true,
                           "owned": true,
                           "niceName": "Radial Intensity"
                         },
@@ -11302,13 +11265,6 @@
                               "maxValue": 1.0,
                               "default": 0.0,
                               "controlAddress": "/baseValue"
-                            },
-                            {
-                              "value": 0.9273504018783569,
-                              "minValue": -1.0,
-                              "maxValue": 1.0,
-                              "default": 0.0,
-                              "controlAddress": "/macroWeight1"
                             }
                           ],
                           "owned": true,
@@ -11355,7 +11311,7 @@
                         "linearIntensity": {
                           "parameters": [
                             {
-                              "value": 0.2333333343267441,
+                              "value": 0.1166666597127914,
                               "minValue": 0.0,
                               "maxValue": 1.0,
                               "default": 0.0,
@@ -11380,13 +11336,6 @@
                               "maxValue": 1.0,
                               "default": 0.0,
                               "controlAddress": "/baseValue"
-                            },
-                            {
-                              "value": 0.6111111640930176,
-                              "minValue": -1.0,
-                              "maxValue": 1.0,
-                              "default": 0.0,
-                              "controlAddress": "/macroWeight1"
                             }
                           ],
                           "owned": true,
@@ -11400,13 +11349,6 @@
                               "maxValue": 1.0,
                               "default": 0.5,
                               "controlAddress": "/baseValue"
-                            },
-                            {
-                              "value": 0.495726466178894,
-                              "minValue": -1.0,
-                              "maxValue": 1.0,
-                              "default": 0.0,
-                              "controlAddress": "/macroWeight1"
                             }
                           ],
                           "owned": true,
@@ -11439,7 +11381,7 @@
                         "curlIntensity": {
                           "parameters": [
                             {
-                              "value": 0.0,
+                              "value": 0.2000000178813934,
                               "minValue": 0.0,
                               "maxValue": 1.0,
                               "default": 0.0,
@@ -11504,7 +11446,7 @@
                         "curlLacunarity": {
                           "parameters": [
                             {
-                              "value": 0.3466275632381439,
+                              "value": 0.7216275930404663,
                               "minValue": 0.0,
                               "maxValue": 1.0,
                               "default": 0.0,
@@ -11530,7 +11472,7 @@
                         "curlTranslation": {
                           "parameters": [
                             {
-                              "value": 0.4001608192920685,
+                              "value": 0.1001608073711395,
                               "minValue": 0.0,
                               "maxValue": 1.0,
                               "default": 0.0,
@@ -11550,7 +11492,7 @@
                         "perlinIntensity": {
                           "parameters": [
                             {
-                              "value": 0.0,
+                              "value": 0.05833333358168602,
                               "minValue": 0.0,
                               "maxValue": 1.0,
                               "default": 0.0,
@@ -11563,7 +11505,7 @@
                         "perlinFrequency": {
                           "parameters": [
                             {
-                              "value": 1.420940160751343,
+                              "value": 1.0,
                               "minValue": 0.0,
                               "maxValue": 5.0,
                               "default": 0.0,
@@ -11625,6 +11567,15 @@
                       "editorIsCollapsed": true,
                       "containers": {
                         "orthoaxialIntensity": {
+                          "parameters": [
+                            {
+                              "value": 0.0,
+                              "minValue": 0.0,
+                              "maxValue": 1.0,
+                              "default": 0.0,
+                              "controlAddress": "/baseValue"
+                            }
+                          ],
                           "owned": true,
                           "niceName": "Orthoaxial Intensity"
                         },
@@ -11983,7 +11934,6 @@
           "viewZoom": 1.0
         },
         "values": {
-          "editorIsCollapsed": true,
           "containers": {
             "Transform": {
               "parameters": [
@@ -12969,6 +12919,7 @@
               "niceName": "Cameras"
             },
             "Ballet": {
+              "editorIsCollapsed": true,
               "containers": {
                 "Transform": {
                   "parameters": [
@@ -13094,15 +13045,15 @@
                               "controlAddress": "/emitterShape"
                             },
                             {
-                              "value": 0.5833333730697632,
+                              "value": 0.07230444296684313,
                               "controlAddress": "/alpha"
                             },
                             {
-                              "value": 0.01500000804662704,
+                              "value": 0.0,
                               "controlAddress": "/alphaSpeedThreshold"
                             },
                             {
-                              "value": 0.1306103006898789,
+                              "value": 0.1138049362487395,
                               "controlAddress": "/particleSize"
                             },
                             {
@@ -13118,7 +13069,7 @@
                               "controlAddress": "/noisyDrag"
                             },
                             {
-                              "value": 1.0,
+                              "value": 0.2250000089406967,
                               "controlAddress": "/noisyDragFrequency"
                             },
                             {
@@ -13142,7 +13093,7 @@
                               "controlAddress": "/dancerSize"
                             },
                             {
-                              "value": 0.3166666626930237,
+                              "value": 0.75,
                               "controlAddress": "/dancerIntensity"
                             },
                             {
@@ -13539,7 +13490,7 @@
                           "parameters": [
                             {
                               "value": [
-                                11.0,
+                                10.0,
                                 1.5,
                                 0.0
                               ],
@@ -13568,11 +13519,11 @@
                               "controlAddress": "/forceFactorOutside"
                             },
                             {
-                              "value": 0.0,
+                              "value": 0.01878463487060622,
                               "controlAddress": "/radialIntensity"
                             },
                             {
-                              "value": 0.0,
+                              "value": 0.001698443966206817,
                               "controlAddress": "/axialIntensity"
                             },
                             {
@@ -13584,7 +13535,7 @@
                               "controlAddress": "/axisMultiplier"
                             },
                             {
-                              "value": 0.2333333343267441,
+                              "value": 0.1166666597127914,
                               "controlAddress": "/linearIntensity"
                             },
                             {
@@ -13592,7 +13543,7 @@
                               "controlAddress": "/orthoIntensity"
                             },
                             {
-                              "value": 0.1770698510739303,
+                              "value": 0.175000011920929,
                               "controlAddress": "/orthoInnerRadius"
                             },
                             {
@@ -13600,7 +13551,7 @@
                               "controlAddress": "/orthoFactor"
                             },
                             {
-                              "value": 0.0,
+                              "value": 0.2000000178813934,
                               "controlAddress": "/curlIntensity"
                             },
                             {
@@ -13620,7 +13571,7 @@
                               "controlAddress": "/curlRoughness"
                             },
                             {
-                              "value": 0.3466275632381439,
+                              "value": 0.7216275930404663,
                               "controlAddress": "/curlLacunarity"
                             },
                             {
@@ -13628,12 +13579,20 @@
                               "controlAddress": "/curlScale"
                             },
                             {
-                              "value": 0.4001608192920685,
+                              "value": 0.1001608073711395,
                               "controlAddress": "/curlTranslation"
                             },
                             {
-                              "value": 0.0,
+                              "value": 0.05833333358168602,
                               "controlAddress": "/perlinIntensity"
+                            },
+                            {
+                              "value": 1.0,
+                              "controlAddress": "/perlinFrequency"
+                            },
+                            {
+                              "value": 0.0,
+                              "controlAddress": "/orthoaxialIntensity"
                             },
                             {
                               "value": 0.0,
@@ -13656,11 +13615,11 @@
                               "controlAddress": "/patternTimeOffset"
                             },
                             {
-                              "value": 9.999996185302734,
+                              "value": 7.0,
                               "controlAddress": "/dancerSize"
                             },
                             {
-                              "value": 0.0,
+                              "value": 0.01999999955296516,
                               "controlAddress": "/dancerHyperSize"
                             },
                             {
@@ -13668,7 +13627,7 @@
                               "controlAddress": "/dancerSizeSpread"
                             },
                             {
-                              "value": 0.06000000238418579,
+                              "value": 0.0602923492772191,
                               "controlAddress": "/dancerIntensity"
                             },
                             {
@@ -13710,7 +13669,7 @@
                               "controlAddress": "/blendMode"
                             },
                             {
-                              "value": 0.09794712067386155,
+                              "value": 0.09978745713869373,
                               "controlAddress": "/weight"
                             }
                           ],
@@ -28749,6 +28708,78 @@
             }
           }
         }
+      },
+      {
+        "niceName": "Sound Card",
+        "type": "Sound Card",
+        "scripts": {
+          "viewOffset": [
+            0,
+            0
+          ],
+          "viewZoom": 1.0
+        },
+        "params": {
+          "containers": {
+            "inputVolumes": {
+            },
+            "outputVolumes": {
+              "editorIsCollapsed": true
+            },
+            "monitor": {
+              "parameters": [
+                {
+                  "value": false,
+                  "controlAddress": "/enabled"
+                }
+              ]
+            },
+            "fftAnalysis": {
+              "parameters": [
+                {
+                  "value": false,
+                  "controlAddress": "/enabled"
+                }
+              ],
+              "editorIsCollapsed": true,
+              "viewOffset": [
+                0,
+                0
+              ],
+              "viewZoom": 1.0
+            },
+            "ltc": {
+              "parameters": [
+                {
+                  "value": false,
+                  "controlAddress": "/enabled"
+                }
+              ]
+            }
+          }
+        },
+        "templates": {
+          "viewOffset": [
+            0,
+            0
+          ],
+          "viewZoom": 1.0
+        },
+        "audioSettings": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n\r\n<DEVICESETUP deviceType=\"Windows Audio\" audioOutputDeviceName=\"Speakers (2- HK GO + PLAY)\"\r\n             audioInputDeviceName=\"\" audioDeviceRate=\"44100.0\" audioDeviceBufferSize=\"480\"/>\r\n",
+        "analyzer": {
+          "parameters": [
+            {
+              "value": false,
+              "controlAddress": "/enabled"
+            }
+          ],
+          "editorIsCollapsed": true,
+          "viewOffset": [
+            0,
+            0
+          ],
+          "viewZoom": 1.0
+        }
       }
     ],
     "viewOffset": [
@@ -35272,7 +35303,7 @@
                           "controlAddress": "/#1"
                         },
                         {
-                          "value": 0.3166666626930237,
+                          "value": 0.75,
                           "minValue": 0.0,
                           "maxValue": 1.0,
                           "default": 0.0,
@@ -35293,14 +35324,14 @@
                           "controlAddress": "/#4"
                         },
                         {
-                          "value": 0.1318181753158569,
+                          "value": 0.1136363595724106,
                           "minValue": 0,
                           "maxValue": 1,
                           "default": 0.0,
                           "controlAddress": "/#5"
                         },
                         {
-                          "value": 0.5833333730697632,
+                          "value": 0.07222221046686172,
                           "minValue": 0,
                           "maxValue": 1,
                           "default": 0.0,
@@ -35328,14 +35359,14 @@
                           "controlAddress": "/#9"
                         },
                         {
-                          "value": 5.0,
-                          "minValue": 0.0,
-                          "maxValue": 5.0,
+                          "value": 0.2250000089406967,
+                          "minValue": 0,
+                          "maxValue": 1,
                           "default": 0.0,
                           "controlAddress": "/#10"
                         },
                         {
-                          "value": 0.01500000804662704,
+                          "value": 0.0,
                           "minValue": 0,
                           "maxValue": 1,
                           "default": 0.0,
@@ -37705,14 +37736,14 @@
                           "controlAddress": "/#2"
                         },
                         {
-                          "value": 10.0,
+                          "value": 7.0,
                           "minValue": 0.0,
                           "maxValue": 10.0,
                           "default": 0.0,
                           "controlAddress": "/#3"
                         },
                         {
-                          "value": 0.0,
+                          "value": 0.02,
                           "minValue": 0,
                           "maxValue": 1,
                           "default": 0.0,
@@ -37761,7 +37792,7 @@
                           "controlAddress": "/#10"
                         },
                         {
-                          "value": 0.2333333343267441,
+                          "value": 0.1166666597127914,
                           "minValue": 0,
                           "maxValue": 1,
                           "default": 0.0,
@@ -37824,7 +37855,7 @@
                           "controlAddress": "/#19"
                         },
                         {
-                          "value": 0.0,
+                          "value": 0.2000000178813934,
                           "minValue": 0,
                           "maxValue": 1,
                           "default": 0.0,
@@ -37859,7 +37890,7 @@
                           "controlAddress": "/#24"
                         },
                         {
-                          "value": 0.3466275632381439,
+                          "value": 0.7216275930404663,
                           "minValue": 0,
                           "maxValue": 1,
                           "default": 0.0,
@@ -37873,14 +37904,14 @@
                           "controlAddress": "/#26"
                         },
                         {
-                          "value": 0.4001608192920685,
+                          "value": 0.1001608073711395,
                           "minValue": 0,
                           "maxValue": 1,
                           "default": 0.0,
                           "controlAddress": "/#27"
                         },
                         {
-                          "value": 0.0,
+                          "value": 0.05833333358168602,
                           "minValue": 0,
                           "maxValue": 1,
                           "default": 0.0,
@@ -46138,6 +46169,762 @@
           ],
           "viewZoom": 1.0
         }
+      },
+      {
+        "parameters": [
+          {
+            "value": 383.02,
+            "controlAddress": "/totalTime"
+          },
+          {
+            "value": true,
+            "controlAddress": "/loop"
+          },
+          {
+            "value": 98.40457153320312,
+            "controlAddress": "/viewStartTime"
+          },
+          {
+            "value": 379.5005798339844,
+            "controlAddress": "/viewEndTime"
+          },
+          {
+            "value": "",
+            "controlAddress": "/ltcSyncModule",
+            "enabled": false
+          }
+        ],
+        "niceName": "Xibalba",
+        "type": "Sequence",
+        "layers": {
+          "hideInEditor": true,
+          "items": [
+            {
+              "parameters": [
+                {
+                  "value": 80.0,
+                  "controlAddress": "/listSize"
+                },
+                {
+                  "value": 80,
+                  "hexMode": false,
+                  "controlAddress": "/uiHeight"
+                }
+              ],
+              "niceName": "Audio",
+              "type": "Audio",
+              "clips": {
+                "hideInEditor": true,
+                "items": [
+                  {
+                    "parameters": [
+                      {
+                        "value": 0.0,
+                        "controlAddress": "/startTime"
+                      },
+                      {
+                        "value": "D:/Gamgie/Projets/Xibalba/Sound/Stellar Drift - Xibalba_V2.wav",
+                        "controlAddress": "/filePath"
+                      }
+                    ],
+                    "niceName": "AudioClip",
+                    "editorIsCollapsed": true,
+                    "type": "AudioClip"
+                  }
+                ],
+                "viewOffset": [
+                  0,
+                  0
+                ],
+                "viewZoom": 1.0
+              },
+              "channels": {
+                "parameters": [
+                  {
+                    "value": true,
+                    "controlAddress": "/channelOutLeft"
+                  },
+                  {
+                    "value": true,
+                    "controlAddress": "/channelOutRight"
+                  }
+                ]
+              },
+              "audioModule": "soundCard"
+            },
+            {
+              "parameters": [
+                {
+                  "value": 120.0,
+                  "controlAddress": "/listSize"
+                },
+                {
+                  "value": 120,
+                  "hexMode": false,
+                  "controlAddress": "/uiHeight"
+                }
+              ],
+              "niceName": "Macro 1",
+              "containers": {
+                "automation": {
+                  "parameters": [
+                    {
+                      "value": 383.0199890136719,
+                      "controlAddress": "/length"
+                    },
+                    {
+                      "value": 318.2200012207031,
+                      "controlAddress": "/position"
+                    },
+                    {
+                      "value": [
+                        0.0,
+                        1.0
+                      ],
+                      "controlAddress": "/viewValueRange"
+                    },
+                    {
+                      "value": [
+                        0.0,
+                        1.0
+                      ],
+                      "controlAddress": "/range",
+                      "enabled": true
+                    }
+                  ],
+                  "hideInEditor": true,
+                  "hideInRemoteControl": false,
+                  "items": [
+                    {
+                      "parameters": [
+                        {
+                          "value": 200.0734558105469,
+                          "controlAddress": "/position"
+                        },
+                        {
+                          "value": 0.0,
+                          "controlAddress": "/value"
+                        },
+                        {
+                          "value": "Bezier",
+                          "controlAddress": "/easingType"
+                        }
+                      ],
+                      "niceName": "Key",
+                      "containers": {
+                        "easing": {
+                          "parameters": [
+                            {
+                              "value": [
+                                14.90285873413086,
+                                0.0
+                              ],
+                              "controlAddress": "/anchor1"
+                            },
+                            {
+                              "value": [
+                                -14.90285873413086,
+                                0.0
+                              ],
+                              "controlAddress": "/anchor2"
+                            }
+                          ]
+                        }
+                      },
+                      "type": "Key"
+                    },
+                    {
+                      "parameters": [
+                        {
+                          "value": 235.8461761474609,
+                          "controlAddress": "/position"
+                        },
+                        {
+                          "value": 0.0166667103767395,
+                          "controlAddress": "/value"
+                        },
+                        {
+                          "value": "Bezier",
+                          "controlAddress": "/easingType"
+                        }
+                      ],
+                      "niceName": "Key 6",
+                      "containers": {
+                        "easing": {
+                          "parameters": [
+                            {
+                              "value": [
+                                2.640779256820679,
+                                0.0
+                              ],
+                              "controlAddress": "/anchor1"
+                            },
+                            {
+                              "value": [
+                                -2.640779256820679,
+                                0.0
+                              ],
+                              "controlAddress": "/anchor2"
+                            }
+                          ]
+                        }
+                      },
+                      "type": "Key"
+                    },
+                    {
+                      "parameters": [
+                        {
+                          "value": 245.0494842529297,
+                          "controlAddress": "/position"
+                        },
+                        {
+                          "value": 0.0,
+                          "controlAddress": "/value"
+                        },
+                        {
+                          "value": "Bezier",
+                          "controlAddress": "/easingType"
+                        }
+                      ],
+                      "niceName": "Key 5",
+                      "containers": {
+                        "easing": {
+                          "parameters": [
+                            {
+                              "value": [
+                                0.8027618527412415,
+                                0.0
+                              ],
+                              "controlAddress": "/anchor1"
+                            },
+                            {
+                              "value": [
+                                -0.8027618527412415,
+                                0.0
+                              ],
+                              "controlAddress": "/anchor2"
+                            }
+                          ]
+                        }
+                      },
+                      "type": "Key"
+                    },
+                    {
+                      "parameters": [
+                        {
+                          "value": 249.9544982910156,
+                          "controlAddress": "/position"
+                        },
+                        {
+                          "value": 0.0,
+                          "controlAddress": "/value"
+                        },
+                        {
+                          "value": "Bezier",
+                          "controlAddress": "/easingType"
+                        }
+                      ],
+                      "niceName": "Key 1",
+                      "containers": {
+                        "easing": {
+                          "parameters": [
+                            {
+                              "value": [
+                                0.07389221340417862,
+                                0.0
+                              ],
+                              "controlAddress": "/anchor1"
+                            },
+                            {
+                              "value": [
+                                -0.074951171875,
+                                5.960464477539062e-8
+                              ],
+                              "controlAddress": "/anchor2"
+                            }
+                          ]
+                        }
+                      },
+                      "type": "Key"
+                    },
+                    {
+                      "parameters": [
+                        {
+                          "value": 250.2875061035156,
+                          "controlAddress": "/position"
+                        },
+                        {
+                          "value": 1.0,
+                          "controlAddress": "/value"
+                        },
+                        {
+                          "value": "Bezier",
+                          "controlAddress": "/easingType"
+                        }
+                      ],
+                      "niceName": "Key 2",
+                      "containers": {
+                        "easing": {
+                          "parameters": [
+                            {
+                              "value": [
+                                0.074951171875,
+                                -5.960464477539062e-8
+                              ],
+                              "controlAddress": "/anchor1"
+                            },
+                            {
+                              "value": [
+                                -0.310546875,
+                                -0.008333325386047363
+                              ],
+                              "controlAddress": "/anchor2"
+                            }
+                          ]
+                        }
+                      },
+                      "type": "Key"
+                    },
+                    {
+                      "parameters": [
+                        {
+                          "value": 250.7248229980469,
+                          "controlAddress": "/position"
+                        },
+                        {
+                          "value": 0.09166663885116577,
+                          "controlAddress": "/value"
+                        },
+                        {
+                          "value": "Noise",
+                          "controlAddress": "/easingType"
+                        }
+                      ],
+                      "niceName": "Key 3",
+                      "containers": {
+                        "easing": {
+                          "parameters": [
+                            {
+                              "value": [
+                                3.920761108398438,
+                                0.09166669845581055
+                              ],
+                              "controlAddress": "/taper1"
+                            },
+                            {
+                              "value": [
+                                -7.462249755859375,
+                                0.0
+                              ],
+                              "controlAddress": "/taper2"
+                            }
+                          ]
+                        }
+                      },
+                      "type": "Key"
+                    },
+                    {
+                      "parameters": [
+                        {
+                          "value": 280.7235717773438,
+                          "controlAddress": "/position"
+                        },
+                        {
+                          "value": 0.8500000238418579,
+                          "controlAddress": "/value"
+                        },
+                        {
+                          "value": "Bezier",
+                          "controlAddress": "/easingType"
+                        }
+                      ],
+                      "niceName": "Key 4",
+                      "containers": {
+                        "easing": {
+                          "parameters": [
+                            {
+                              "value": [
+                                0.520550549030304,
+                                0.0
+                              ],
+                              "controlAddress": "/anchor1"
+                            },
+                            {
+                              "value": [
+                                -2.104827880859375,
+                                0.0
+                              ],
+                              "controlAddress": "/anchor2"
+                            }
+                          ]
+                        }
+                      },
+                      "type": "Key"
+                    },
+                    {
+                      "parameters": [
+                        {
+                          "value": 284.6805114746094,
+                          "controlAddress": "/position"
+                        },
+                        {
+                          "value": 0.008333325386047363,
+                          "controlAddress": "/value"
+                        },
+                        {
+                          "value": "Bezier",
+                          "controlAddress": "/easingType"
+                        }
+                      ],
+                      "niceName": "Key 7",
+                      "containers": {
+                        "easing": {
+                          "parameters": [
+                            {
+                              "value": [
+                                3.100189208984375,
+                                0.0
+                              ],
+                              "controlAddress": "/anchor1"
+                            },
+                            {
+                              "value": [
+                                -3.51226806640625,
+                                0.002322228625416756
+                              ],
+                              "controlAddress": "/anchor2"
+                            }
+                          ]
+                        }
+                      },
+                      "type": "Key"
+                    },
+                    {
+                      "parameters": [
+                        {
+                          "value": 295.2347106933594,
+                          "controlAddress": "/position"
+                        },
+                        {
+                          "value": 0.001232140348292887,
+                          "controlAddress": "/value"
+                        },
+                        {
+                          "value": "Bezier",
+                          "controlAddress": "/easingType"
+                        }
+                      ],
+                      "niceName": "Key 9",
+                      "containers": {
+                        "easing": {
+                          "parameters": [
+                            {
+                              "value": [
+                                0.295013427734375,
+                                -0.0001950541045516729
+                              ],
+                              "controlAddress": "/anchor1"
+                            },
+                            {
+                              "value": [
+                                -0.296539306640625,
+                                0.0001603183918632567
+                              ],
+                              "controlAddress": "/anchor2"
+                            }
+                          ]
+                        }
+                      },
+                      "type": "Key"
+                    },
+                    {
+                      "parameters": [
+                        {
+                          "value": 295.7555847167969,
+                          "controlAddress": "/position"
+                        },
+                        {
+                          "value": 0.2416666150093079,
+                          "controlAddress": "/value"
+                        },
+                        {
+                          "value": "Bezier",
+                          "controlAddress": "/easingType"
+                        }
+                      ],
+                      "niceName": "Key 11",
+                      "containers": {
+                        "easing": {
+                          "parameters": [
+                            {
+                              "value": [
+                                0.1205108687281609,
+                                0.0
+                              ],
+                              "controlAddress": "/anchor1"
+                            },
+                            {
+                              "value": [
+                                -0.1205108687281609,
+                                0.0
+                              ],
+                              "controlAddress": "/anchor2"
+                            }
+                          ]
+                        }
+                      },
+                      "type": "Key"
+                    },
+                    {
+                      "parameters": [
+                        {
+                          "value": 296.1184387207031,
+                          "controlAddress": "/position"
+                        },
+                        {
+                          "value": 0.03403234854340553,
+                          "controlAddress": "/value"
+                        },
+                        {
+                          "value": "Bezier",
+                          "controlAddress": "/easingType"
+                        }
+                      ],
+                      "niceName": "Key 10",
+                      "containers": {
+                        "easing": {
+                          "parameters": [
+                            {
+                              "value": [
+                                0.799774169921875,
+                                -0.0004324991605244577
+                              ],
+                              "controlAddress": "/anchor1"
+                            },
+                            {
+                              "value": [
+                                -0.732177734375,
+                                0.0
+                              ],
+                              "controlAddress": "/anchor2"
+                            }
+                          ]
+                        }
+                      },
+                      "type": "Key"
+                    },
+                    {
+                      "parameters": [
+                        {
+                          "value": 298.9302368164062,
+                          "controlAddress": "/position"
+                        },
+                        {
+                          "value": 0.01666665077209473,
+                          "controlAddress": "/value"
+                        },
+                        {
+                          "value": "Bezier",
+                          "controlAddress": "/easingType"
+                        }
+                      ],
+                      "niceName": "Key 8",
+                      "containers": {
+                        "easing": {
+                          "parameters": [
+                            {
+                              "value": [
+                                0.2672882080078125,
+                                0.0
+                              ],
+                              "controlAddress": "/anchor1"
+                            },
+                            {
+                              "value": [
+                                -0.2672882080078125,
+                                0.0
+                              ],
+                              "controlAddress": "/anchor2"
+                            }
+                          ]
+                        }
+                      },
+                      "type": "Key"
+                    },
+                    {
+                      "parameters": [
+                        {
+                          "value": 299.7917785644531,
+                          "controlAddress": "/position"
+                        },
+                        {
+                          "value": 0.2166666984558105,
+                          "controlAddress": "/value"
+                        },
+                        {
+                          "value": "Bezier",
+                          "controlAddress": "/easingType"
+                        }
+                      ],
+                      "niceName": "Key 12",
+                      "containers": {
+                        "easing": {
+                          "parameters": [
+                            {
+                              "value": [
+                                0.3046234250068665,
+                                0.0
+                              ],
+                              "controlAddress": "/anchor1"
+                            },
+                            {
+                              "value": [
+                                -0.3046234250068665,
+                                0.0
+                              ],
+                              "controlAddress": "/anchor2"
+                            }
+                          ]
+                        }
+                      },
+                      "type": "Key"
+                    },
+                    {
+                      "parameters": [
+                        {
+                          "value": 300.851318359375,
+                          "controlAddress": "/position"
+                        },
+                        {
+                          "value": 0.0,
+                          "controlAddress": "/value"
+                        },
+                        {
+                          "value": "Bezier",
+                          "controlAddress": "/easingType"
+                        }
+                      ],
+                      "niceName": "Key 13",
+                      "containers": {
+                        "easing": {
+                        }
+                      },
+                      "type": "Key"
+                    }
+                  ],
+                  "viewOffset": [
+                    0,
+                    0
+                  ],
+                  "viewZoom": 1.0
+                },
+                "recorder": {
+                  "parameters": [
+                    {
+                      "value": "",
+                      "controlAddress": "/inputValue"
+                    }
+                  ],
+                  "editorIsCollapsed": true
+                },
+                "mapping": {
+                  "niceName": "Mapping",
+                  "type": "Mapping",
+                  "im": {
+                    "hideInEditor": true,
+                    "items": [
+                      {
+                        "parameters": [
+                          {
+                            "value": "",
+                            "controlAddress": "/inputValue"
+                          }
+                        ],
+                        "niceName": "Input Value",
+                        "type": "Input Value"
+                      }
+                    ],
+                    "viewOffset": [
+                      0,
+                      0
+                    ],
+                    "viewZoom": 1.0
+                  },
+                  "params": {
+                    "parameters": [
+                      {
+                        "value": 50,
+                        "hexMode": false,
+                        "controlAddress": "/updateRate"
+                      }
+                    ],
+                    "editorIsCollapsed": true
+                  },
+                  "filters": {
+                    "viewOffset": [
+                      0,
+                      0
+                    ],
+                    "viewZoom": 1.0
+                  },
+                  "outputs": {
+                    "items": [
+                      {
+                        "niceName": "MappingOutput",
+                        "type": "BaseItem",
+                        "commandModule": "generic",
+                        "commandPath": "",
+                        "commandType": "Set Parameter Value",
+                        "command": {
+                          "parameters": [
+                            {
+                              "value": "/modules/oxipital/parameters/macros/macro1",
+                              "controlAddress": "/target"
+                            },
+                            {
+                              "value": "All",
+                              "controlAddress": "/component"
+                            },
+                            {
+                              "value": "Equals",
+                              "controlAddress": "/operator"
+                            }
+                          ],
+                          "paramLinks": {
+                            "value": {
+                              "linkType": 1,
+                              "mappingValueIndex": 0
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "viewOffset": [
+                      0,
+                      0
+                    ],
+                    "viewZoom": 1.0
+                  }
+                }
+              },
+              "type": "Mapping"
+            }
+          ],
+          "viewOffset": [
+            0,
+            0
+          ],
+          "viewZoom": 1.0
+        },
+        "cues": {
+          "hideInEditor": true,
+          "viewOffset": [
+            0,
+            0
+          ],
+          "viewZoom": 1.0
+        },
+        "editing": true
       }
     ],
     "viewOffset": [
