@@ -146,7 +146,7 @@ function moduleParameterChanged(param) {
 	{
 		if(local.parameters.isConnected.get())
 		{
-			if(util.getTime() > lastSyncTime + 2)
+			if(util.getTime() > lastSyncTime + 30)
 			{
 				local.parameters.syncData.trigger();
 			}
