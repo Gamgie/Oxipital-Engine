@@ -157,7 +157,8 @@ namespace Oxipital
 
                 float dancerSizeSpreadFactor = Mathf.Lerp(1, i / count, dancerSizeSpread);
                 d.size = dancerSize * dancerSizeSpreadFactor * Mathf.Lerp(1, d.weight, dancerWeightSizeFactor);
-                d.size = Mathf.Lerp(d.size, 100, dancerHyperSize);
+                d.size = d.size*(1 + 100*dancerHyperSize);
+                //d.size = Mathf.Lerp(d.size, 100, dancerHyperSize);
 
                 d.transform.localPosition = Vector3.zero;
 
