@@ -5,6 +5,7 @@ using UnityEngine.VFX;
 using System;
 using UnityEngine.VFX.SDF;
 using System.IO;
+using Augmenta;
 
 
 namespace Oxipital
@@ -76,7 +77,7 @@ namespace Oxipital
         [Range(0, 60)]
         public float life = 20;
 
-        public enum EmitterShape { Sphere, Plane, Torus, Cube, Pipe, Egg, Line, Circle, Merkaba, Pyramid, Custom }
+        public enum EmitterShape { Sphere, Plane, Torus, Cube, Pipe, Egg, Line, Circle, Merkaba, Pyramid, Custom, Augmenta}
 
         [InBuffer(1)]
         public EmitterShape emitterShape;
@@ -282,11 +283,23 @@ namespace Oxipital
             return GetType();
         }
 
-
         protected override float getKillTime()
         {
             return life;
         }
+
+        internal void SetAugmentaObject(AugmentaObject o)
+		{
+            PCLToGraphicsBuffer pcl = GetComponent<PCLToGraphicsBuffer>();
+
+            if (pcl == null)
+			{
+                Debug.LogError("No PCLToGraphicsBuffer found in " + this.name);
+                return;
+            }
+
+            pcl.pObject = o;
+		}
     }
 
 }
