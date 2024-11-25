@@ -109,6 +109,10 @@ var orbGroupParameters = {
 		"Emitter Shape": { "type": "enum", "default": "Sphere", "values": ["Sphere", "Plane", "Torus", "Cube", "Pipe", "Egg", "Line", "Circle", "Merkaba", "Pyramid", "Custom", "Augmenta"] },
 		"Emitter Surface Factor": { "type": "float", "default": 0, "min": 0, "max": 1 },
 		"Emitter Volume Factor": { "type": "float", "default": 0, "min": 0, "max": 1 },
+		"Emitter Position Noise": { "type": "float", "default": 0, "min": 0, "max": 1 },
+		"Emitter Position Noise Frequency": { "type": "float", "default": 1, "min": 0, "max": 5 },
+		"Emitter Position Noise Radius": { "type": "float", "default": 0.1, "min": 0, "max": 1 },
+		
 	},
 	"Appearance": {
 		"Color": { "type": "color", "default": [.8, 2, .05] },

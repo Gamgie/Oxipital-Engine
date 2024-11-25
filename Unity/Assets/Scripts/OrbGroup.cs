@@ -91,52 +91,64 @@ namespace Oxipital
         [Range(0, 1)]
         public float emitterVolumeFactor = 0;
 
-        [Header("Appearance")]
         [InBuffer(4)]
-        public Color color = Color.white;
+        [Range(0, 1)]
+        public float emitterPositionNoise = 0;
 
+        [InBuffer(5)]
+        [Range(0, 5)]
+        public float emitterPositionNoiseFrequency = 1;
+
+        [InBuffer(6)]
+        [Range(0, 1)]
+        public float emitterPositionNoiseRadius = 1;
+
+        [Header("Appearance")]
         [InBuffer(7)]
-        [Range(0, 1)]
-        public float alpha = .5f;
-
-        [InBuffer(8)]
-        [Range(0, 1)]
-        public float hdrMultiplier = 1;
-
-        [InBuffer(9)]
-        [Range(0, 1)]
-        public float alphaSpeedThreshold = 0;
+        public Color color = Color.white;
 
         [InBuffer(10)]
         [Range(0, 1)]
-        public float textureOpacity = 0;
+        public float alpha = .5f;
 
         [InBuffer(11)]
+        [Range(0, 1)]
+        public float hdrMultiplier = 1;
+
+        [InBuffer(12)]
+        [Range(0, 1)]
+        public float alphaSpeedThreshold = 0;
+
+        [InBuffer(13)]
+        [Range(0, 1)]
+        public float textureOpacity = 0;
+
+        [InBuffer(14)]
         [Range(0, 1)]
         public float particleSize = 0;
 
         [Header("Physics")]
         [Range(0, 1)]
-        [InBuffer(12)]
+        [InBuffer(15)]
         public float forceWeight = 1;
 
-        [InBuffer(13)]
+        [InBuffer(16)]
         [Range(0, 1)]
         public float drag = .5f;
 
-        [InBuffer(14)]
+        [InBuffer(17)]
         [Range(0, 1)]
         public float velocityDrag = 0;
 
-        [InBuffer(15)]
+        [InBuffer(18)]
         [Range(0, 1)]
         public float noisyDrag = 0;
 
-        [InBuffer(16)]
+        [InBuffer(19)]
         [Range(0, 5)]
         public float noisyDragFrequency = 0;
 
-        [InBuffer(17)]
+        [InBuffer(20)]
         public bool activateCollision = false;
 
         [Header("Debug")]
@@ -173,7 +185,7 @@ namespace Oxipital
 
             if(emitterShape != lastEmitterShape)
             {
-                if(emitterShape != EmitterShape.Line && emitterShape != EmitterShape.Circle && emitterShape != EmitterShape.Custom)
+                if(emitterShape != EmitterShape.Line && emitterShape != EmitterShape.Circle && emitterShape != EmitterShape.Custom && emitterShape != EmitterShape.Augmenta)
                 {
                     string shape = emitterShape.ToString().ToLower();
                     meshName = shape;
