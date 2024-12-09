@@ -37,7 +37,7 @@
   "dashboardManager": {
     "parameters": [
       {
-        "value": false,
+        "value": true,
         "controlAddress": "/editMode"
       },
       {
@@ -3991,8 +3991,8 @@
               "parameters": [
                 {
                   "value": [
-                    -130.0,
-                    -340.0
+                    -90.0,
+                    -420.0
                   ],
                   "controlAddress": "/viewUIPosition"
                 },
@@ -4018,49 +4018,13 @@
               "type": "DashboardParameterItem",
               "ghostAddress": "/customVariables/xibalbaParameters/variables/totalParticle/totalParticle",
               "controllable": "/customVariables/xibalbaParameters/variables/totalParticle/totalParticle"
-            },
-            {
-              "parameters": [
-                {
-                  "value": [
-                    -230.0,
-                    -340.0
-                  ],
-                  "controlAddress": "/viewUIPosition"
-                },
-                {
-                  "value": [
-                    70.0,
-                    430.0
-                  ],
-                  "controlAddress": "/viewUISize"
-                },
-                {
-                  "value": "/customVariables/xibalbaParameters/variables/volume/volume",
-                  "controlAddress": "/target"
-                },
-                {
-                  "value": "Vertical Slider",
-                  "controlAddress": "/style"
-                },
-                {
-                  "value": "",
-                  "controlAddress": "/toggleImage",
-                  "enabled": false
-                }
-              ],
-              "niceName": "Item 82",
-              "hideInEditor": true,
-              "type": "DashboardParameterItem",
-              "ghostAddress": "/customVariables/xibalbaParameters/variables/volume/volume",
-              "controllable": "/customVariables/xibalbaParameters/variables/volume/volume"
             }
           ],
           "viewOffset": [
-            443,
-            141
+            0,
+            -18
           ],
-          "viewZoom": 0.828125
+          "viewZoom": 0.943359375
         }
       },
       {
@@ -6174,8 +6138,8 @@
             }
           ],
           "viewOffset": [
-            381,
-            99
+            -72,
+            -47
           ],
           "viewZoom": 0.828125
         }
@@ -7422,122 +7386,6 @@
               "type": "DashboardParameterItem",
               "ghostAddress": "/sequences/timer/currentTime",
               "controllable": "/sequences/timer/currentTime"
-            },
-            {
-              "parameters": [
-                {
-                  "value": [
-                    -180.0,
-                    380.0
-                  ],
-                  "controlAddress": "/viewUIPosition"
-                },
-                {
-                  "value": [
-                    160.0,
-                    40.0
-                  ],
-                  "controlAddress": "/viewUISize"
-                },
-                {
-                  "value": "/states/davidStellarDrift/processors/startRecording/trigger",
-                  "controlAddress": "/target"
-                },
-                {
-                  "value": "Start Recording",
-                  "controlAddress": "/customText",
-                  "enabled": true
-                },
-                {
-                  "value": [
-                    1,
-                    0.5098039507865906,
-                    0.3411764800548553,
-                    0.6196078658103943
-                  ],
-                  "controlAddress": "/borderColor",
-                  "enabled": true
-                },
-                {
-                  "value": 1.0,
-                  "controlAddress": "/borderWidth"
-                },
-                {
-                  "value": [
-                    0.8196078538894653,
-                    0.2980392277240753,
-                    0.1411764770746231,
-                    0.364705890417099
-                  ],
-                  "controlAddress": "/backgroundColor",
-                  "enabled": true
-                },
-                {
-                  "value": "",
-                  "controlAddress": "/customImage",
-                  "enabled": true
-                }
-              ],
-              "niceName": "Item 24",
-              "hideInEditor": true,
-              "type": "DashboardTriggerItem",
-              "ghostAddress": "/states/davidStellarDrift/processors/startRecording/trigger"
-            },
-            {
-              "parameters": [
-                {
-                  "value": [
-                    -20.0,
-                    380.0
-                  ],
-                  "controlAddress": "/viewUIPosition"
-                },
-                {
-                  "value": [
-                    140.0,
-                    40.0
-                  ],
-                  "controlAddress": "/viewUISize"
-                },
-                {
-                  "value": "/states/davidStellarDrift/processors/stopRecording/trigger",
-                  "controlAddress": "/target"
-                },
-                {
-                  "value": "Stop Recording",
-                  "controlAddress": "/customText",
-                  "enabled": true
-                },
-                {
-                  "value": [
-                    1,
-                    0.5098039507865906,
-                    0.3411764800548553,
-                    0.6196078658103943
-                  ],
-                  "controlAddress": "/borderColor",
-                  "enabled": true
-                },
-                {
-                  "value": [
-                    0.8196078538894653,
-                    0.2980392277240753,
-                    0.1411764770746231,
-                    0.364705890417099
-                  ],
-                  "controlAddress": "/backgroundColor",
-                  "enabled": true
-                },
-                {
-                  "value": "",
-                  "controlAddress": "/customImage",
-                  "enabled": true
-                }
-              ],
-              "niceName": "Item 25",
-              "hideInEditor": true,
-              "type": "DashboardTriggerItem",
-              "ghostAddress": "/states/davidStellarDrift/processors/stopRecording/trigger"
             },
             {
               "parameters": [
@@ -9915,10 +9763,10 @@
             }
           ],
           "viewOffset": [
-            -38,
-            1
+            27,
+            20
           ],
-          "viewZoom": 1.037500023841858
+          "viewZoom": 1.006250023841858
         },
         "editing": true
       },
@@ -20978,6 +20826,10 @@
               "controlAddress": "/serverName"
             },
             {
+              "value": false,
+              "controlAddress": "/onlySyncFromSameName"
+            },
+            {
               "value": true,
               "controlAddress": "/isConnected"
             }
@@ -21202,7 +21054,7 @@
                         "dancerIntensity": {
                           "parameters": [
                             {
-                              "value": 0.2366737723350525,
+                              "value": 0.1111111119389534,
                               "minValue": 0.0,
                               "maxValue": 1.0,
                               "default": 1.0,
@@ -21247,7 +21099,7 @@
                         "life": {
                           "parameters": [
                             {
-                              "value": 12.49999141693115,
+                              "value": 3.499999284744263,
                               "minValue": 0.0,
                               "maxValue": 40.0,
                               "default": 20.0,
@@ -21260,7 +21112,7 @@
                         "emitterShape": {
                           "parameters": [
                             {
-                              "value": "Augmenta",
+                              "value": "Egg",
                               "controlAddress": "/baseValue"
                             }
                           ],
@@ -21348,7 +21200,7 @@
                         "alpha": {
                           "parameters": [
                             {
-                              "value": 0.1583333015441895,
+                              "value": 0.0,
                               "minValue": 0.0,
                               "maxValue": 1.0,
                               "default": 0.2000000029802322,
@@ -21391,7 +21243,7 @@
                         "particleSize": {
                           "parameters": [
                             {
-                              "value": 0.1000000163912773,
+                              "value": 0.03181818127632141,
                               "minValue": 0.0,
                               "maxValue": 1.0,
                               "default": 0.0,
@@ -21872,7 +21724,7 @@
                         "dancerIntensity": {
                           "parameters": [
                             {
-                              "value": 0.2132196128368378,
+                              "value": 0.0,
                               "minValue": 0.0,
                               "maxValue": 1.0,
                               "default": 1.0,
@@ -23556,11 +23408,7 @@
                     "CameraController": {
                       "parameters": [
                         {
-                          "value": true,
-                          "controlAddress": "/orthographic"
-                        },
-                        {
-                          "value": 28.3702564239502,
+                          "value": 93.62025451660156,
                           "controlAddress": "/fov"
                         },
                         {
@@ -23568,15 +23416,15 @@
                           "controlAddress": "/orthoSize"
                         },
                         {
-                          "value": 26.58104515075684,
+                          "value": 5.0,
                           "controlAddress": "/followZOffset"
                         },
                         {
-                          "value": 24.80002784729004,
+                          "value": 17.32502746582031,
                           "controlAddress": "/resetDuration"
                         },
                         {
-                          "value": "Spaceship",
+                          "value": "Orbital",
                           "controlAddress": "/cameraType"
                         },
                         {
@@ -24058,12 +23906,20 @@
                     "SpaceshipMovement": {
                       "parameters": [
                         {
+                          "value": false,
+                          "controlAddress": "/manualControl"
+                        },
+                        {
                           "value": [
-                            -4.349999904632568,
+                            -4.449999809265137,
                             1.340000033378601,
                             -4.199999809265137
                           ],
                           "controlAddress": "/cameraPosition"
+                        },
+                        {
+                          "value": 0.1076922416687012,
+                          "controlAddress": "/thrust1D"
                         },
                         {
                           "value": "Spaceship",
@@ -24169,7 +24025,7 @@
                       "controlAddress": "/listen"
                     },
                     {
-                      "value": 253267.0,
+                      "value": 39154.0,
                       "controlAddress": "/totalParticles"
                     }
                   ],
@@ -24221,11 +24077,11 @@
                         "OrbGroup": {
                           "parameters": [
                             {
-                              "value": 12.49999141693115,
+                              "value": 3.499999284744263,
                               "controlAddress": "/life"
                             },
                             {
-                              "value": "Augmenta",
+                              "value": "Egg",
                               "controlAddress": "/emitterShape"
                             },
                             {
@@ -24241,11 +24097,11 @@
                               "controlAddress": "/emitterPositionNoiseRadius"
                             },
                             {
-                              "value": 0.1583333015441895,
+                              "value": 0.0,
                               "controlAddress": "/alpha"
                             },
                             {
-                              "value": 0.1000000163912773,
+                              "value": 0.03181818127632141,
                               "controlAddress": "/particleSize"
                             },
                             {
@@ -24261,7 +24117,7 @@
                               "controlAddress": "/noisyDragFrequency"
                             },
                             {
-                              "value": 0.2366737723350525,
+                              "value": 0.1111111119389534,
                               "controlAddress": "/dancerIntensity"
                             }
                           ],
@@ -24495,10 +24351,6 @@
                             {
                               "value": 0.0,
                               "controlAddress": "/forceWeight"
-                            },
-                            {
-                              "value": 0.2132196128368378,
-                              "controlAddress": "/dancerIntensity"
                             }
                           ],
                           "editorIsCollapsed": true,
@@ -38962,6 +38814,12 @@
                   "niceName": "Pixel Sorting"
                 },
                 "Color": {
+                  "parameters": [
+                    {
+                      "value": 0.0,
+                      "controlAddress": "/Index"
+                    }
+                  ],
                   "editorIsCollapsed": true,
                   "owned": true,
                   "niceName": "Color"
@@ -39813,7 +39671,7 @@
                   "controlAddress": "/viewUIPosition"
                 },
                 {
-                  "value": 26.58104515075684,
+                  "value": 5.0,
                   "alwaysNotify": true,
                   "minValue": 0,
                   "maxValue": 30,
@@ -39835,7 +39693,7 @@
             {
               "parameters": [
                 {
-                  "value": 24.80002784729004,
+                  "value": 17.32502746582031,
                   "alwaysNotify": true,
                   "minValue": 0.1000000014901161,
                   "maxValue": 30,
@@ -39879,7 +39737,7 @@
             {
               "parameters": [
                 {
-                  "value": 28.3702564239502,
+                  "value": 93.62025451660156,
                   "alwaysNotify": true,
                   "minValue": 0,
                   "maxValue": 180,
@@ -44097,7 +43955,7 @@
             {
               "parameters": [
                 {
-                  "value": 0.4246713885136355,
+                  "value": 0.4246713817119598,
                   "minValue": 0,
                   "maxValue": 1,
                   "default": 0.0,
@@ -44118,7 +43976,7 @@
             {
               "parameters": [
                 {
-                  "value": 253.2669982910156,
+                  "value": 39.15399932861328,
                   "controlAddress": "/totalParticle",
                   "feedbackOnly": false,
                   "type": "Float",
@@ -44427,7 +44285,7 @@
             {
               "parameters": [
                 {
-                  "value": 24.0,
+                  "value": 240.0,
                   "controlAddress": "/listSize"
                 },
                 {
@@ -44456,7 +44314,7 @@
                           "controlAddress": "/#1"
                         },
                         {
-                          "value": 0.2366737723350525,
+                          "value": 0.1111111119389534,
                           "minValue": 0.0,
                           "maxValue": 1.0,
                           "default": 0.0,
@@ -44470,21 +44328,21 @@
                           "controlAddress": "/#3"
                         },
                         {
-                          "value": 12.49999904632568,
+                          "value": 3.499999284744263,
                           "minValue": 0.0,
                           "maxValue": 60.0,
                           "default": 0.0,
                           "controlAddress": "/#4"
                         },
                         {
-                          "value": 0.1000000163912773,
+                          "value": 0.03181818127632141,
                           "minValue": 0,
                           "maxValue": 1,
                           "default": 0.0,
                           "controlAddress": "/#5"
                         },
                         {
-                          "value": 0.1583333015441895,
+                          "value": 0.0,
                           "minValue": 0,
                           "maxValue": 1,
                           "default": 0.0,
@@ -44918,7 +44776,7 @@
                           "controlAddress": "/#1"
                         },
                         {
-                          "value": 0.2132196128368378,
+                          "value": 0.0,
                           "minValue": 0.0,
                           "maxValue": 1.0,
                           "default": 0.0,
@@ -47331,7 +47189,7 @@
             {
               "parameters": [
                 {
-                  "value": 24.0,
+                  "value": 162.0,
                   "controlAddress": "/listSize"
                 },
                 {
@@ -49449,7 +49307,7 @@
                           "controlAddress": "/targetPreset"
                         },
                         {
-                          "value": 24.80002784729004,
+                          "value": 17.32502746582031,
                           "controlMode": 2,
                           "reference": {
                             "value": "/customVariables/camera/variables/resetDuration/resetDuration",
@@ -57993,7 +57851,7 @@
             {
               "parameters": [
                 {
-                  "value": 24.0,
+                  "value": 162.0,
                   "controlAddress": "/listSize"
                 },
                 {
@@ -59752,7 +59610,7 @@
             {
               "parameters": [
                 {
-                  "value": 24.0,
+                  "value": 110.0,
                   "controlAddress": "/listSize"
                 },
                 {
@@ -60532,7 +60390,7 @@
             {
               "parameters": [
                 {
-                  "value": 110.0,
+                  "value": 24.0,
                   "controlAddress": "/listSize"
                 },
                 {
@@ -61629,7 +61487,7 @@
             {
               "parameters": [
                 {
-                  "value": 24.0,
+                  "value": 110.0,
                   "controlAddress": "/listSize"
                 },
                 {
@@ -62504,7 +62362,7 @@
             {
               "parameters": [
                 {
-                  "value": 110.0,
+                  "value": 24.0,
                   "controlAddress": "/listSize"
                 },
                 {
@@ -63307,7 +63165,7 @@
             {
               "parameters": [
                 {
-                  "value": 110.0,
+                  "value": 24.0,
                   "controlAddress": "/listSize"
                 },
                 {
@@ -64027,7 +63885,7 @@
             {
               "parameters": [
                 {
-                  "value": 24.0,
+                  "value": 110.0,
                   "controlAddress": "/listSize"
                 },
                 {
@@ -65288,7 +65146,7 @@
             {
               "parameters": [
                 {
-                  "value": 110.0,
+                  "value": 24.0,
                   "controlAddress": "/listSize"
                 },
                 {
@@ -66314,7 +66172,7 @@
             {
               "parameters": [
                 {
-                  "value": 24.0,
+                  "value": 110.0,
                   "controlAddress": "/listSize"
                 },
                 {
@@ -66854,8 +66712,8 @@
       }
     ],
     "viewOffset": [
-      12,
-      1006
+      -157,
+      984
     ],
     "viewZoom": 1.0,
     "transitions": {
@@ -66869,8 +66727,8 @@
     "comments": {
       "hideInEditor": true,
       "viewOffset": [
-        12,
-        1006
+        -157,
+        984
       ],
       "viewZoom": 1.0
     }
@@ -66924,6 +66782,10 @@
       {
         "parameters": [
           {
+            "value": false,
+            "controlAddress": "/enabled"
+          },
+          {
             "value": 383.02,
             "controlAddress": "/totalTime"
           },
@@ -66971,7 +66833,6 @@
                       }
                     ],
                     "niceName": "AudioClip",
-                    "editorIsCollapsed": true,
                     "type": "AudioClip"
                   }
                 ],
@@ -74626,8 +74487,7 @@
             0
           ],
           "viewZoom": 1.0
-        },
-        "editing": true
+        }
       }
     ],
     "viewOffset": [
