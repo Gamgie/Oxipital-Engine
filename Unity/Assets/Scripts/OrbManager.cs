@@ -14,10 +14,11 @@ namespace Oxipital
         {
         }
 
-        protected override void addItem()
+        protected override OrbGroup addItem()
         {
-            base.addItem();
+            OrbGroup g = base.addItem();
             if (items.Count == 1) items[0].dancerIntensity = firstItemIntensity;
+            return g;
         }
 
         override protected void killLastItem() { 

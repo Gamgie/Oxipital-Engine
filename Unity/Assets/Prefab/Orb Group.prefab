@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   count: 1
-  itemPrefab: {fileID: 2571879226783642111, guid: 233b1e6851bc36c44b2e088563956980,
+  itemPrefab: {fileID: 2571879226783642111, guid: 6c3335afc3105d24f8438dadb7190311,
     type: 3}
   patternSize: 1
   patternSizeSpread: 0
@@ -88,7 +88,7 @@ MonoBehaviour:
   noisyDrag: 0
   noisyDragFrequency: 0
   activateCollision: 0
-  showMesh: 0
+  meshOpacity: 0
   meshName: Sphere
 --- !u!114 &157857250213721860
 MonoBehaviour:
@@ -196,6 +196,7 @@ VFXRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_StaticBatchInfo:

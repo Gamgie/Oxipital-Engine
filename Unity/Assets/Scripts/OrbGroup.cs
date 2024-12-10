@@ -19,7 +19,7 @@ namespace Oxipital
 
         async public static void loadMeshes()
         {
-            if(shapeMeshMap != null) return;
+            if (shapeMeshMap != null) return;
             shapeMeshMap = new Dictionary<string, Mesh>();
 
             string emittersPath = Path.Combine(Application.streamingAssetsPath, "emitters");
@@ -75,7 +75,7 @@ namespace Oxipital
         [Range(0, 60)]
         public float life = 20;
 
-        public enum EmitterShape { Sphere, Plane, Torus, Cube, Pipe, Egg, Line, Circle, Merkaba, Pyramid, Custom, Augmenta}
+        public enum EmitterShape { Sphere, Plane, Torus, Cube, Pipe, Egg, Line, Circle, Merkaba, Pyramid, Custom, Augmenta }
 
         [InBuffer(1)]
         public EmitterShape emitterShape;
@@ -149,8 +149,9 @@ namespace Oxipital
         [InBuffer(20)]
         public bool activateCollision = false;
 
-        [Header("Debug")]
-        public bool showMesh = false;
+        [InBuffer(21)]
+        [Range(0, 1)]
+        public float meshOpacity = 0;
 
         [OSCQuery.DoNotExpose]
         public string meshName = "";
@@ -159,16 +160,11 @@ namespace Oxipital
         Mesh currentMesh;
         internal VisualEffect vfx;
 
-        MeshRenderer[] mRList;
-        MeshCollider[] mCList;
-
-
         protected override void OnEnable()
         {
             base.OnEnable();
             MeshLoader.loadMeshes();
             vfx = GetComponent<VisualEffect>();
-            updateMeshList();
         }
 
         protected override void Update()
@@ -182,14 +178,14 @@ namespace Oxipital
 
             foreach (var item in items) item.debugColor = color;
 
-            if(emitterShape != lastEmitterShape)
+            if (emitterShape != lastEmitterShape)
             {
-                if(emitterShape != EmitterShape.Line && emitterShape != EmitterShape.Circle && emitterShape != EmitterShape.Custom && emitterShape != EmitterShape.Augmenta)
+                if (emitterShape != EmitterShape.Line && emitterShape != EmitterShape.Circle && emitterShape != EmitterShape.Custom && emitterShape != EmitterShape.Augmenta)
                 {
                     string shape = emitterShape.ToString().ToLower();
                     meshName = shape;
                 }
-                
+
                 lastEmitterShape = emitterShape;
             }
 
@@ -202,20 +198,6 @@ namespace Oxipital
                     if (currentMesh == null) Debug.LogWarning("Could not find mesh for " + meshName);
                     else setMesh(currentMesh);
                     lastMeshName = meshName;
-                }
-
-                // Update mesh list in case items list changed
-                if (mRList == null || mRList.Length != items.Count)
-                    updateMeshList();
-
-                foreach (MeshRenderer mr in mRList)
-                {
-                    mr.enabled = showMesh;
-                }
-
-                foreach (MeshCollider mc in mCList)
-                {
-                    mc.enabled = activateCollision;
                 }
             }
 
@@ -235,17 +217,24 @@ namespace Oxipital
 
                 vfx.SetGraphicsBuffer(b.Key, b.Value);
 
-                if(!vfx.HasGraphicsBuffer(b.Key + "B"))
+                if (!vfx.HasGraphicsBuffer(b.Key + "B"))
                 {
                     Debug.LogWarning("B Buffer " + b.Key + " not found in VFX");
                     continue;
                 }
 
-                vfx.SetGraphicsBuffer(b.Key+ "B", b.Value);
+                vfx.SetGraphicsBuffer(b.Key + "B", b.Value);
             }
 
             //Update intensity here as we need to pass it outside the GraphicsBuffer
             //Discussion : https://discussions.unity.com/t/spawn-a-variable-amount-of-particles-from-graphics-buffer/899049/2
+        }
+
+        override protected Dancer addItem()
+        {
+            Dancer d = base.addItem();
+            d.GetComponent<MeshFilter>().sharedMesh = currentMesh;
+            return d;
         }
 
         internal void setMesh(Mesh m)
@@ -260,33 +249,9 @@ namespace Oxipital
             }
 
             vfx.SetMesh("Emitter Mesh", m);
-            foreach (var item in items)
-			{
-                MeshFilter mF;
-                MeshRenderer mR;
-                MeshCollider mC;
-                mF = item.GetComponent<MeshFilter>();
-                mR = item.GetComponent<MeshRenderer>();
-                mC = item.GetComponent<MeshCollider>();
-
-                if (mF == null)
-				{
-                    mF = item.gameObject.AddComponent<MeshFilter>();
-                    mR = item.gameObject.AddComponent<MeshRenderer>();
-                    mC = item.gameObject.AddComponent<MeshCollider>();
-                }
-
-
-                mF.mesh = m;
-                mC.sharedMesh = m;
-			}
+            foreach (var item in items) item.GetComponent<MeshFilter>().sharedMesh = m;
         }
 
-        internal void updateMeshList()
-		{
-            mRList = GetComponentsInChildren<MeshRenderer>();
-            mCList = GetComponentsInChildren<MeshCollider>();
-        }
 
         public override void kill(float time)
         {

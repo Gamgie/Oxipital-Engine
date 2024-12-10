@@ -33,11 +33,13 @@ public class BaseManager<T> : BaseItem where T : BaseItem
         while (Mathf.Ceil(count) > items.Count) addItem();
     }
 
-    virtual protected void addItem()
+    virtual protected T addItem()
     {
         GameObject item = Instantiate(itemPrefab, transform);
         item.gameObject.name = itemName+" "+ (items.Count + 1);
-        items.Add(item.GetComponent<T>());
+        T result = item.GetComponent<T>();
+        items.Add(result);
+        return result;
 
     }
 
