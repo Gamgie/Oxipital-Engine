@@ -187,6 +187,7 @@ namespace Oxipital
                 Quaternion targetGroupRotatedRot = transform.rotation * targetPureRot;
 
                 d.targetRotation = Quaternion.Lerp(targetGroupRotatedRot, targetPureRot, lookAtWeight);
+                d.transform.rotation = d.targetRotation;
             }
 
             //Update buffer with new data
