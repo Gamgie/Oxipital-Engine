@@ -21,7 +21,7 @@ public class CameraController : MonoBehaviour
 
     [Header("Camera type")]
     public CameraMovementType cameraType;
-    [Range(0,20)]
+    [Range(0, 20)]
     public float cameraTransitionDuration;
 
     public OrbitalMovement orbitalCamera;
@@ -35,15 +35,13 @@ public class CameraController : MonoBehaviour
     [Header("Xwing")]
     public bool showXwing;
     public GameObject xWing;
-    
-    private Camera _cameraFeedback;
+
     private List<CameraMovement> _cameraList;
     private CameraMovement _activeCamera;
     private CinemachineBrain _cinemachineBrain;
 
     private void OnEnable()
     {
-        _cameraFeedback = camera.transform.GetChild(0).GetComponent<Camera>();
 
         _cameraList = new List<CameraMovement>();
         _cameraList.Add(orbitalCamera);
@@ -64,63 +62,38 @@ public class CameraController : MonoBehaviour
     void Update()
     {
         // Switch camera type here
-        if(_activeCamera != null && cameraType != _activeCamera.type)
-		{
+        if (_activeCamera != null && cameraType != _activeCamera.type)
+        {
             SwitchCamera(cameraType);
-		}
-
-        // Check pointer
-        if (_cameraFeedback == null)
-            return;
-        
-        // Update ortho 
-        if(_cameraFeedback.orthographic != orthographic)
-		{
-            _cameraFeedback.orthographic = orthographic;
-            camera.orthographic = orthographic;
-
         }
 
-        // update ortho size or FOV on cameras
-        if(orthographic)
-		{
-            _cameraFeedback.orthographicSize = orthoSize;
-        }
-        else
-		{
-            _cameraFeedback.fieldOfView = fov;
-        }
-            
 
-        if(renderMainWindow != _cameraFeedback.enabled)
-		{
-            _cameraFeedback.enabled = renderMainWindow;
-            GameObject o = GameObject.FindGameObjectWithTag("Tools Manager");
-            if(o != null)
-            {
-                ToolsManager toolsMngr = o.GetComponent<ToolsManager>();
-                if (toolsMngr != null)
-                    toolsMngr.activateGraphy = renderMainWindow;
-            }     
+
+        GameObject o = GameObject.FindGameObjectWithTag("Tools Manager");
+        if (o != null)
+        {
+            ToolsManager toolsMngr = o.GetComponent<ToolsManager>();
+            if (toolsMngr != null)
+                toolsMngr.activateGraphy = renderMainWindow;
         }
-        
+
 
         xWing.SetActive(showXwing);
 
         // Update camera transition duration
-        if(_cinemachineBrain != null)
+        if (_cinemachineBrain != null)
             _cinemachineBrain.m_DefaultBlend.m_Time = cameraTransitionDuration;
 
         // Update noise parameters in all camera
-        foreach(CameraMovement c in _cameraList)
-		{
+        foreach (CameraMovement c in _cameraList)
+        {
             c.UpdateNoiseParameter(cameraNoiseGain, cameraNoiseFrequency);
-		}
+        }
     }
 
     // Movement need physics so we need to update 
-	private void FixedUpdate()
-	{
+    private void FixedUpdate()
+    {
         // Update our active camera
         foreach (CameraMovement c in _cameraList)
         {
@@ -134,20 +107,20 @@ public class CameraController : MonoBehaviour
                     c.UpdateOrthoSize(orthoSize);
                 }
                 else
-				{
+                {
                     c.UpdateFOV(fov);
                 }
             }
         }
     }
 
-	void SwitchCamera(CameraMovementType type)
-	{
+    void SwitchCamera(CameraMovementType type)
+    {
         Vector3 cameraPosition = Vector3.zero;
         Quaternion cameraRotation = Quaternion.identity;
 
         if (_activeCamera)
-		{
+        {
             cameraPosition = _activeCamera.virtualCamera.transform.position;
             cameraRotation = _activeCamera.virtualCamera.transform.rotation;
             _activeCamera.SetActive(false);
@@ -155,7 +128,7 @@ public class CameraController : MonoBehaviour
 
         // Activate the selected camera
         switch (type)
-		{
+        {
             case CameraMovementType.Hands:
                 _activeCamera = handsCamera;
                 break;
