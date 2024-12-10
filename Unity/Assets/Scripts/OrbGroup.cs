@@ -5,8 +5,6 @@ using UnityEngine.VFX;
 using System;
 using UnityEngine.VFX.SDF;
 using System.IO;
-using Augmenta;
-
 
 namespace Oxipital
 {
@@ -236,6 +234,14 @@ namespace Oxipital
                 }
 
                 vfx.SetGraphicsBuffer(b.Key, b.Value);
+
+                if(!vfx.HasGraphicsBuffer(b.Key + "B"))
+                {
+                    Debug.LogWarning("B Buffer " + b.Key + " not found in VFX");
+                    continue;
+                }
+
+                vfx.SetGraphicsBuffer(b.Key+ "B", b.Value);
             }
 
             //Update intensity here as we need to pass it outside the GraphicsBuffer
@@ -300,18 +306,6 @@ namespace Oxipital
             return life;
         }
 
-        internal void SetAugmentaObject(AugmentaObject o)
-		{
-            PCLToGraphicsBuffer pcl = GetComponent<PCLToGraphicsBuffer>();
-
-            if (pcl == null)
-			{
-                Debug.LogError("No PCLToGraphicsBuffer found in " + this.name);
-                return;
-            }
-
-            pcl.pObject = o;
-		}
     }
 
 }

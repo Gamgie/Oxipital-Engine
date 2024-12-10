@@ -35,6 +35,8 @@ void StandardForce(inout VFXAttributes attributes, in StructuredBuffer<float> bu
         innerRadius = 0.01;
     }
 	
+    float totalInfluence = 0;
+    
     for (int i = 0; i < dancerCount; ++i)
     {
         float3 rotation = GetDVector(i, 3);
@@ -55,6 +57,7 @@ void StandardForce(inout VFXAttributes attributes, in StructuredBuffer<float> bu
 
         // compute force influence linked to radius limit
         float forceInfluence = computeForceInfluence(distanceToCenter, buffer, forceInfluenceCurve, i);
+        totalInfluence += forceInfluence;
 
         float3 radialForce = radialIntensity * (1 / (distanceToCenter + 1)) * 2.5 * normalizedToCenterVector;
         
@@ -96,6 +99,7 @@ void StandardForce(inout VFXAttributes attributes, in StructuredBuffer<float> bu
 
     // Update velocity
     attributes.velocity += totalForce * globalMultiplier * deltaTime; // * deltaTime;
+    attributes.forceInfluence = totalInfluence;
 }
 
 

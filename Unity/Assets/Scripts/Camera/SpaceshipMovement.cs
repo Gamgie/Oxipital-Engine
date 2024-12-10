@@ -100,8 +100,8 @@ public class SpaceshipMovement : CameraMovement
 			_rigidbody.AddRelativeTorque(Vector3.up * yaw1D * yawTorque * Time.deltaTime);
 
 
-			_rigidbody.drag = directionnalDrag;
-			_rigidbody.angularDrag= angularDrag;
+			_rigidbody.linearDamping = directionnalDrag;
+			_rigidbody.angularDamping= angularDrag;
 
 		}
 

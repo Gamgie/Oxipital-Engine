@@ -1,4 +1,3 @@
-using Augmenta;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,8 +10,6 @@ namespace Oxipital
         
         public float firstItemIntensity = .5f;
 
-        AugmentaObject augmentaObject;
-
         OrbManager() : base("Orb Group")
         {
         }
@@ -21,9 +18,8 @@ namespace Oxipital
         {
             base.addItem();
             if (items.Count == 1) items[0].dancerIntensity = firstItemIntensity;
-
-            SetAugmentaObject();
         }
+
         override protected void killLastItem() { 
             (items[items.Count - 1] as OrbGroup).kill(getKillTime()); 
         }
@@ -33,21 +29,6 @@ namespace Oxipital
             float result = 0;
             foreach (OrbGroup orbGroup in items) result = Mathf.Max(orbGroup.life);
             return result;
-        }
-
-        public void OnObjectCreated(AugmentaObject o)
-		{
-            augmentaObject = o;
-
-            SetAugmentaObject();
-        }
-
-        internal void SetAugmentaObject()
-		{
-            if (augmentaObject == null)
-                return;
-
-            foreach (OrbGroup orbGroup in items) orbGroup.SetAugmentaObject(augmentaObject);
         }
     }
 }
