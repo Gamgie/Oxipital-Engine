@@ -253,7 +253,6 @@ namespace Oxipital
             }
 
             vfx.SetMesh("Emitter Mesh", m);
-            GetComponent<MeshToSDF>().mesh = m;
             foreach (var item in items)
 			{
                 MeshFilter mF;
