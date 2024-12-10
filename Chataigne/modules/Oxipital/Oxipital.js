@@ -18,8 +18,6 @@ var unityOrbsManager = null;
 var unityForceGroupsParam = null;
 var unityOrbGroupsParam = null;
 
-var lastSyncTime = 0;
-
 var danceGroupParameters = {
 	"Patterns": {
 		"Count": { "type": "float", "default": 1, "min": 1, "max": 10, "noMacro": true },
@@ -142,20 +140,7 @@ function init() {
 
 function moduleParameterChanged(param) {
 
-	//Auto trigger sync when connected, and some timing safety because triggering sync data causes the module to disconnect / reconnect
-	if(param.is(local.parameters.syncData))
-	{
-		lastSyncTime = util.getTime();
-	}else if(param.is(local.parameters.isConnected))
-	{
-		if(local.parameters.isConnected.get())
-		{
-			if(util.getTime() > lastSyncTime + 30)
-			{
-				local.parameters.syncData.trigger();
-			}
-		}
-	}else if (param.is(numForceGroupsParam)) {
+	if (param.is(numForceGroupsParam)) {
 		if (unityForceGroupsParam) unityForceGroupsParam.set(numForceGroupsParam.get());
 		setupForces();
 		linkArrays();

@@ -154,6 +154,7 @@ namespace Oxipital
         [Header("Debug")]
         public bool showMesh = false;
 
+        [OSCQuery.DoNotExpose]
         public string meshName = "";
         string lastMeshName = "";
 
