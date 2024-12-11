@@ -3,7 +3,7 @@
 	"type": "OSCQuery",
 	"path": "Software",
 	"version": "1.0.0",
-	"description": "Control Oxipital. This requires an additional OSCQuery module connected to the Oxipital Engine.",
+	"description": "Control Oxipital.",
 	"url": "",
 	"downloadURL": "",
 	"hasInput": true,
@@ -18,7 +18,53 @@
 	},
 	"parameters": {
 		"Setup": {
-			"type":"Container",
+			"type": "Container",
+			"Presets": {
+				"type": "Container",
+				"Preset Name" : {
+					"type": "String",
+					"default": "OxiPreset"
+				},
+				"Preset": {
+					"type": "Enum"
+				},
+				"Save New":
+				{
+					"type": "Trigger"
+				},
+				"Update Current": {
+					"type": "Trigger"
+				},
+				"Load": {
+					"type": "Trigger"
+				},
+				"Refresh":
+				{
+					"type": "Trigger"
+				},
+				"Delete": {
+					"type": "Trigger"
+				},
+				"Async Loading":
+				{
+					"type": "Boolean",
+					"default": true
+				},
+				"Loaded Values":
+				{
+					"type": "Container",
+					"collapsed":true,
+					"Macros": {
+						"type": "Container"
+					},
+					"Orb Groups": {
+						"type": "Container"
+					},
+					"Force Groups": {
+						"type": "Container"
+					}
+				}
+			},
 			"Num Orb Groups": {
 				"type": "Integer",
 				"min": 0,
@@ -52,13 +98,11 @@
 		"Oxipital.js"
 	],
 	"values": {},
-	"commands": 
-	{
+	"commands": {
 		"Reset": {
 			"args": []
 		},
-		"Set Macro Value":
-		{
+		"Set Macro Value": {
 			"args": [
 				{
 					"name": "Macro",
@@ -74,14 +118,15 @@
 				}
 			]
 		},
-
-		"Set Orb Group Value":
-		{
+		"Set Orb Group Value": {
 			"args": [
 				{
-					"name":"Type",
-					"type":"Enum",
-					"values":{ "Float":0, "Vector":1 }
+					"name": "Type",
+					"type": "Enum",
+					"values": {
+						"Float": 0,
+						"Vector": 1
+					}
 				},
 				{
 					"name": "Orb Group",

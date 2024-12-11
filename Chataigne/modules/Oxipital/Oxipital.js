@@ -7,6 +7,10 @@ var macrosGroup = local.parameters.macros;
 var forceGroupsGroup = local.parameters.forceGroups;
 var orbGroupsGroup = local.parameters.orbGroups;
 
+var presetsMacrosGroup = local.parameters.setup.presets.loadedValues.macros;
+var presetsForcesGroup = local.parameters.setup.presets.loadedValues.forceGroups;
+var presetsOrbsGroup = local.parameters.setup.presets.loadedValues.orbGroups;
+
 var forces = [];
 var orbGroups = [];
 var macros = [];
@@ -25,7 +29,7 @@ var danceGroupParameters = {
 		"Pattern Size Spread": { "type": "float", "default": 0, "min": 0, "max": 1 },
 		"Pattern Axis Spread": { "type": "float", "default": 0, "min": 0, "max": 1 },
 		"Line Pattern Weight": { "type": "float", "default": 0, "min": 0, "max": 1, "customComponent": "LineDancePattern/weight" },
-		"Line Pattern Speed Weight": { "type": "float", "default": 0, "min": 0, "max": 1, "customComponent": "LineDancePattern/speedWeight" },
+		"Line Pattern Speed Weight": { "type": "float", "default": 0, "amin": 0, "max": 1, "customComponent": "LineDancePattern/speedWeight" },
 		"Circle Pattern Weight": { "type": "float", "default": 1, "min": 0, "max": 1, "customComponent": "CircleDancePattern/weight" },
 		"Circle Pattern Speed Weight": { "type": "float", "default": 1, "min": 0, "max": 1, "customComponent": "CircleDancePattern/speedWeight" },
 		"NBody Pattern Weight": { "type": "float", "default": 0, "min": 0, "max": 1, "customComponent": "NBodyProblemPattern/weight" },
@@ -110,7 +114,7 @@ var orbGroupParameters = {
 		"Emitter Position Noise": { "type": "float", "default": 0, "min": 0, "max": 1 },
 		"Emitter Position Noise Frequency": { "type": "float", "default": 1, "min": 0, "max": 5 },
 		"Emitter Position Noise Radius": { "type": "float", "default": 0.1, "min": 0, "max": 1 },
-		
+
 	},
 	"Appearance": {
 		"Color": { "type": "color", "default": [.8, 2, .05] },
@@ -135,6 +139,7 @@ var orbGroupParameters = {
 function init() {
 	linkUnity();
 	setup();
+	refreshPresets();
 }
 
 
@@ -142,16 +147,34 @@ function moduleParameterChanged(param) {
 
 	if (param.is(numForceGroupsParam)) {
 		if (unityForceGroupsParam) unityForceGroupsParam.set(numForceGroupsParam.get());
-		setupForces();
+		setupForces(false);
+		if(local.parameters.setup.presets.asyncLoading.get()) setupForces(true);
 		linkArrays();
 	} else if (param.is(numOrbGroupsParam)) {
 		if (unityOrbGroupsParam) unityOrbGroupsParam.set(numOrbGroupsParam.get());
-		setupOrbs();
+		setupOrbs(false);
+		if(local.parameters.setup.presets.asyncLoading.get()) setupOrbs(true);
 		linkArrays();
 	} else if (param.is(numMacrosParam)) {
-		setupMacros();
+		setup();
+		if(local.parameters.setup.presets.asyncLoading.get()) setup(true);
 	} else if (param.getParent().is(macrosGroup)) {
 		updateAllParametersForMacro(param);
+	} else if (param.is(local.parameters.setup.presets.saveNew)) {
+		savePreset();
+	} else if (param.is(local.parameters.setup.presets.load)) {
+		loadPreset();
+	} else if (param.is(local.parameters.setup.presets.updateCurrent)) {
+		updateCurrentPreset();
+	} else if (param.is(local.parameters.setup.presets.refresh)) {
+		refreshPresets();
+	} else if (param.is(local.parameters.setup.presets.asyncLoading)) {
+		if (param.get()) setup(true);
+		else {
+			local.parameters.setup.presets.loadedValues.forceGroups.clear();
+			local.parameters.setup.presets.loadedValues.orbGroups.clear();
+			local.parameters.setup.presets.loadedValues.macros.clear();
+		}
 	} else {
 		var p4 = param.getParent(4);
 		if (p4 == forceGroupsGroup) {
@@ -241,12 +264,12 @@ function updateParam(index, groupName, paramName, sourceParam, parameters, items
 
 	if (paramMin != null && paramMax != null) finalValue = Math.min(paramMax, Math.max(paramMin, finalValue));
 
-	
+
 	var paramPath = "";
-	if(paramProps.customComponent != null) {
+	if (paramProps.customComponent != null) {
 		// script.log("Using custom component : " + paramProps.customComponent);
 		paramPath = paramProps.customComponent;
-	}else{
+	} else {
 		var unityComponentName = parameters == forceGroupParameters ? "StandardForceGroup" : "OrbGroup";
 		paramPath = unityComponentName + "/" + itemParamGroup.name;
 	}
@@ -272,12 +295,11 @@ function updateUnityParam(managerName, itemName, paramPath, value) {
 
 // SETUP
 
-function setup() {
-	setupMacros();
-	setupForces();
-	setupOrbs();
-
-	linkArrays();
+function setup(presetMode) {
+	if (!presetMode) presetMode = false;
+	script.log("Setting up, presetMode ", presetMode);
+	setupMacros(presetMode); //setupMacros sets up the other ones
+	if (!presetMode) linkArrays();
 }
 
 function clearItems(group) {
@@ -311,37 +333,44 @@ function linkUnity() {
 	if (unityForceGroupsParam) unityForceGroupsParam.set(numForceGroupsParam.get());
 }
 
-function setupMacros() {
-	if (macrosGroup.getControllables().length == numMacrosParam.get()) return;
+function setupMacros(presetMode) {
 
-	while (macrosGroup.getControllables().length > numMacrosParam.get()) {
-		macrosGroup.removeParameter("macro" + (macrosGroup.getControllables().length));
+	var group = presetMode ? presetsMacrosGroup : macrosGroup;
+
+	if (group.getControllables().length == numMacrosParam.get()) return;
+
+	while (group.getControllables().length > numMacrosParam.get()) {
+		group.removeParameter("macro" + (group.getControllables().length));
 	}
 
-	while (macrosGroup.getControllables().length < numMacrosParam.get()) {
-		var macro = macrosGroup.addFloatParameter("Macro " + (macrosGroup.getControllables().length + 1), "Macro value", 0, 0, 1);
+	while (group.getControllables().length < numMacrosParam.get()) {
+		var macro = group.addFloatParameter("Macro " + (group.getControllables().length + 1), "Macro value", 0, 0, 1);
 	}
 
-	macrosGroup = local.parameters.getChild("macros");
-	macros = macrosGroup.getControllables();
+	if (!presetMode) {
+		macrosGroup = local.parameters.getChild("macros");
+		macros = macrosGroup.getControllables();
+	}
 
-	setupForces();
-	setupOrbs();
+	setupForces(presetMode);
+	setupOrbs(presetMode);
 
-	linkArrays();
+	if (!presetMode) linkArrays();
 }
 
 function setupForces() {
 	if (numForceGroupsParam == null) return;
-	setupParameters(forceGroupsGroup, numForceGroupsParam, forceGroupParameters, forces, "Force Group");
+	var group = presetMode ? presetsForcesGroup : forceGroupsGroup;
+	setupParameters(group, numForceGroupsParam, forceGroupParameters, forces, "Force Group", false);
 }
 
 function setupOrbs() {
 	if (numOrbGroupsParam == null) return;
-	setupParameters(orbGroupsGroup, numOrbGroupsParam, orbGroupParameters, orbGroups, "Orb Group");
+	var group = presetMode ? presetsOrbsGroup : orbGroupsGroup;
+	setupParameters(group, numOrbGroupsParam, orbGroupParameters, orbGroups, "Orb Group", false);
 }
 
-function setupParameters(group, numParam, parameters, items, prefix) {
+function setupParameters(group, numParam, parameters, items, prefix, presetMode) {
 
 	var numItems = numParam.get();
 
@@ -362,7 +391,7 @@ function setupParameters(group, numParam, parameters, items, prefix) {
 		createItem(i, group, parameters, prefix);
 	}
 
-	items = group.getContainers();
+	if (!presetMode) items = group.getContainers();
 }
 
 function createItem(index, group, parameters, prefix) {
@@ -431,7 +460,7 @@ function setupMacrosToItem(item) {
 			var numMacros = numMacrosParam.get();
 
 			var paramProp = getPropForParam(paramContainer);
-			if(paramProp.noMacro == true) numMacros = 0;
+			if (paramProp.noMacro == true) numMacros = 0;
 
 			for (var k = paramCurrentMacros; k > numMacros; k--) paramContainer.removeParameter("Macro Weight " + k);
 
@@ -457,4 +486,98 @@ function getPropForParam(param) {
 	var items = isDanceGroup ? danceGroupParameters : (group.is(forceGroupsGroup) ? forceGroupParameters : orbGroupParameters);
 
 	return items[paramGroupName][paramName];
+}
+
+
+
+
+// PRESETS
+
+function savePreset() {
+	var data = {
+		"numMacros": numMacrosParam.get(),
+		"numForceGroups": numForceGroupsParam.get(),
+		"numOrbGroups": numOrbGroupsParam.get(),
+		"forces": local.parameters.forceGroups.getJSONData(),
+		"orbs": local.parameters.orbGroups.getJSONData(),
+		"macros": local.parameters.macros.getJSONData()
+	};
+
+	if (!util.directoryExists("oxipitalPresets")) {
+		script.log("Creating directory");
+		util.createDirectory("oxipitalPresets");
+	}
+	var filePath = util.getNonExistentFile("oxipitalPresets", local.parameters.setup.presets.presetName.get() + ".oxi");
+	var result = util.writeFile(filePath, data);
+
+	if (result) {
+		script.log("Saved preset to " + filePath);
+		refreshPresets();
+
+		var fileName = util.getFileName(filePath, false);
+		script.log("name no ext : " + fileName);
+		local.parameters.setup.presets.preset.set(fileName);
+	} else {
+		script.logError("Failed to save preset to " + filePath);
+	}
+}
+
+function loadPreset() {
+	var presetFile = local.parameters.setup.presets.preset.get();
+	var filePath = "oxipitalPresets/" + presetFile;
+	var data = util.readFile(filePath, true);
+
+	script.log("Loading preset", filePath, data);
+
+	if (data) {
+		numMacrosParam.set(data.numMacros);
+		numForceGroupsParam.set(data.numForceGroups);
+		numOrbGroupsParam.set(data.numOrbGroups);
+
+		if (local.parameters.setup.presets.asyncLoading.get()) {
+			local.parameters.setup.presets.loadedValues.forceGroups.loadJSONData(data.forces);
+			local.parameters.setup.presets.loadedValues.orbGroups.loadJSONData(data.orbs);
+			local.parameters.setup.presets.loadedValues.macros.loadJSONData(data.macros);
+		} else {
+			local.parameters.forceGroups.loadJSONData(data.forces);
+			local.parameters.orbGroups.loadJSONData(data.orbs);
+			local.parameters.macros.loadJSONData(data.macros);
+		}
+
+	} else {
+		script.logError("Failed to load preset from " + filePath);
+	}
+
+}
+
+function updateCurrentPreset() {
+	script.log("Updating current preset");
+	var presetFile = local.parameters.setup.presets.preset.get();
+	var filePath = "oxipitalPresets/" + presetFile;
+	var data = {
+		"numMacros": numMacrosParam.get(),
+		"numForceGroups": numForceGroupsParam.get(),
+		"numOrbGroups": numOrbGroupsParam.get(),
+		"forces": local.parameters.forceGroups.getJSONData(),
+		"orbs": local.parameters.orbGroups.getJSONData(),
+		"macros": local.parameters.macros.getJSONData()
+	};
+
+	var result = util.writeFile(filePath, data, true);
+
+	script.log("Updated preset", filePath, data);
+}
+
+function refreshPresets() {
+	script.log("Refreshing presets");
+
+	var files = util.listFiles("oxipitalPresets", false, true);
+	var options = {};
+	for (var i = 0; i < files.length; i++) {
+		var fileNoExt = files[i].split(".")[0];
+		options[fileNoExt] = files[i];
+	}
+
+	local.parameters.setup.presets.preset.setOptions(options);
+
 }
