@@ -23,6 +23,11 @@ var unityForceGroupsParam = null;
 var unityOrbGroupsParam = null;
 
 var danceGroupParameters = {
+	"Transform":
+	{
+		"Position": { "type": "p3d", "default": [0, 0, 0] },
+		"Rotation": { "type": "p3d", "default": [0, 0, 0] },
+	},
 	"Patterns": {
 		"Count": { "type": "float", "default": 1, "min": 1, "max": 10, "noMacro": true },
 		"Pattern Size": { "type": "float", "default": 1, "min": 0, "max": 20 },
@@ -139,6 +144,7 @@ var orbGroupParameters = {
 function init() {
 	linkUnity();
 	setup();
+	if (local.parameters.setup.presets.asyncLoading.get()) setup(true);
 	refreshPresets();
 }
 
@@ -148,16 +154,16 @@ function moduleParameterChanged(param) {
 	if (param.is(numForceGroupsParam)) {
 		if (unityForceGroupsParam) unityForceGroupsParam.set(numForceGroupsParam.get());
 		setupForces(false);
-		if(local.parameters.setup.presets.asyncLoading.get()) setupForces(true);
+		if (local.parameters.setup.presets.asyncLoading.get()) setupForces(true);
 		linkArrays();
 	} else if (param.is(numOrbGroupsParam)) {
 		if (unityOrbGroupsParam) unityOrbGroupsParam.set(numOrbGroupsParam.get());
 		setupOrbs(false);
-		if(local.parameters.setup.presets.asyncLoading.get()) setupOrbs(true);
+		if (local.parameters.setup.presets.asyncLoading.get()) setupOrbs(true);
 		linkArrays();
 	} else if (param.is(numMacrosParam)) {
 		setup();
-		if(local.parameters.setup.presets.asyncLoading.get()) setup(true);
+		if (local.parameters.setup.presets.asyncLoading.get()) setup(true);
 	} else if (param.getParent().is(macrosGroup)) {
 		updateAllParametersForMacro(param);
 	} else if (param.is(local.parameters.setup.presets.saveNew)) {
