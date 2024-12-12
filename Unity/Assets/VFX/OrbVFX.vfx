@@ -196,9 +196,6 @@ MonoBehaviour:
     - model: {fileID: 8926484042661615840}
       id: 0
       isStickyNote: 0
-    - model: {fileID: 8926484042661615557}
-      id: 0
-      isStickyNote: 0
   stickyNoteInfos: []
   categories:
   - name: Orb
@@ -5668,7 +5665,7 @@ MonoBehaviour:
   m_Parent: {fileID: 114350483966674976}
   m_Children:
   - {fileID: 8926484042661615557}
-  m_UIPosition: {x: 682, y: 2466}
+  m_UIPosition: {x: 611, y: 2494}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -5738,10 +5735,14 @@ MonoBehaviour:
           - _AlphaDstBlend
           - _BlendMode
           - _DstBlend
+          - _SrcBlend
+          - _Surface
           - _ZTest
           m_PropertyValues:
           - 1
           - 1
+          - 1
+          - 5
           - 1
           - 4
           renderQueue: 3000
@@ -7198,7 +7199,7 @@ MonoBehaviour:
   m_Parent: {fileID: 114350483966674976}
   m_Children:
   - {fileID: 8926484042661615792}
-  m_UIPosition: {x: 694, y: 2853}
+  m_UIPosition: {x: 694, y: 2854}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
