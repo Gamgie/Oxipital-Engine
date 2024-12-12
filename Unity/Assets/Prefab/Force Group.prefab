@@ -57,8 +57,6 @@ MonoBehaviour:
   patternSpeedRandom: 0
   patternTime: 0
   patternTimeOffset: 0
-  patternSizeLFOFrequency: 0
-  patternSizeLFOAmplitude: 0
   dancerSize: 1
   dancerHyperSize: 0
   dancerSizeSpread: 0
@@ -68,6 +66,30 @@ MonoBehaviour:
   dancerRotation: {x: 0, y: 0, z: 0}
   dancerLookAt: {x: 0, y: 0, z: 0}
   dancerLookAtMode: 0
+  countDeadZone:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.3
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.7
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   forceFactorInside: 1
   forceFactorOutside: 0
   radialIntensity: 0
@@ -113,6 +135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blendMode: 0
   weight: 0
+  speedWeight: 1
 --- !u!114 &7940719435544600441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,6 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blendMode: 0
   weight: 0
+  speedWeight: 1
 --- !u!114 &8785756600143155599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,6 +165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blendMode: 0
   weight: 0
+  speedWeight: 1
   G: 1
   bodyMass: 1
   prevPositions: []

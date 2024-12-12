@@ -105,9 +105,10 @@ namespace Oxipital
         [InBuffer(7)]
         public Color color = Color.white;
 
-        [InBuffer(10)]
+        [InBuffer(10, true)]
         [Range(0, 1)]
         public float alpha = .5f;
+        public AnimationCurve alphaCurve;
 
         [InBuffer(11)]
         [Range(0, 1)]
@@ -159,6 +160,8 @@ namespace Oxipital
 
         Mesh currentMesh;
         internal VisualEffect vfx;
+
+
 
         protected override void OnEnable()
         {
@@ -271,7 +274,12 @@ namespace Oxipital
             return life;
         }
 
-    }
+		protected override object getBufferValueAtIndex(int index)
+		{
+            if (index == 12) return (Single)alphaCurve.Evaluate(alpha);
+			return base.getBufferValueAtIndex(index);
+		}
+	}
 
 }
 

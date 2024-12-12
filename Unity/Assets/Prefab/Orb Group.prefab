@@ -53,22 +53,46 @@ MonoBehaviour:
   count: 1
   itemPrefab: {fileID: 2571879226783642111, guid: 6c3335afc3105d24f8438dadb7190311,
     type: 3}
-  patternSize: 1
+  patternSize: 1.83
   patternSizeSpread: 0
   patternAxisSpread: 0
   patternSpeed: 0
   patternSpeedRandom: 0
   patternTime: 0
   patternTimeOffset: 0
-  dancerSize: 1
+  dancerSize: 1.06
   dancerHyperSize: 0
   dancerSizeSpread: 0
-  dancerWeightSizeFactor: 0
-  dancerIntensity: 0
+  dancerWeightSizeFactor: 0.25
+  dancerIntensity: 1
   dancerWeightIntensityFactor: 0
   dancerRotation: {x: 0, y: 0, z: 0}
   dancerLookAt: {x: 0, y: 0, z: 0}
   dancerLookAtMode: 0
+  countDeadZone:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.15
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.85
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   life: 0.6
   emitterShape: 0
   emitterSurfaceFactor: 1
@@ -77,10 +101,34 @@ MonoBehaviour:
   emitterPositionNoiseFrequency: 1
   emitterPositionNoiseRadius: 1
   color: {r: 1, g: 1, b: 1, a: 1}
-  alpha: 0.159
-  hdrMultiplier: 0
+  alpha: 0.606
+  alphaCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  hdrMultiplier: 0.12
   alphaSpeedThreshold: 0
-  textureOpacity: 0
+  textureOpacity: 0.019
   particleSize: 0.5
   forceWeight: 1
   drag: 0.5

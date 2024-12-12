@@ -57,5 +57,8 @@ public class BaseManager<T> : BaseItem where T : BaseItem
     //Virtual to override by child classes
     protected virtual float getKillTime() { return .1f; }
 
-  
+    public virtual float getCount()
+	{
+        return count;
+	}
 }

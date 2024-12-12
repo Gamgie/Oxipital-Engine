@@ -13,6 +13,7 @@ namespace Oxipital
             int fullDancerCount = group.getFullDancersCount(); //count of full dancers
             int dancerCount = group.items.Count; //count of all dancers, potential one more than full if count is not a whole number
             float relativeProgression = group.getCountRelativeProgression(); //progression between full dancers
+            float groupCount = group.getCount();
 
             Random.InitState(1);
             for (int i = 0; i < dancerCount; i++)
@@ -20,7 +21,7 @@ namespace Oxipital
                 float tAtFull = fullDancerCount == 0 ? 0 : (float)i / fullDancerCount;
                 float tAtNextFull = (float)(i) / dancerCount;
 
-                float rel = i * 1f / group.count;
+                float rel = i * 1f / groupCount;
                 float initT = Mathf.Lerp(tAtFull, tAtNextFull, relativeProgression) + group.patternTimeOffset * rel;
                 float normalT = initT + group.patternTime;
                 float randomT = initT + group.items[i].localPatternTime;
