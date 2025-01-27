@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using DG.Tweening;
-using System;
 
 public class OrbitalMovement : CameraMovement
 {
@@ -110,22 +109,13 @@ public class OrbitalMovement : CameraMovement
 
 	public void RandomView()
 	{
-		transform.DORotate(new Vector3(UnityEngine.Random.Range(-180, 180), UnityEngine.Random.Range(-180, 180), UnityEngine.Random.Range(-180, 180)), moveToDuration);
-	}
+		Random.InitState(Time.frameCount);
+		float xRandom = Random.Range(-180, 180);
+		float yRandom = Random.Range(-180, 180);
+		float zRandom = Random.Range(-180, 180);
+		Debug.Log(xRandom + " , " + yRandom + " , " + zRandom);
 
-	public OrbitalMovementData StoreData()
-	{
-		OrbitalMovementData data = new OrbitalMovementData();
-		data.positionTarget = positionTarget;
-		data.moveToDuration = moveToDuration;
-
-		return data;
-	}
-
-	public void LoadData(OrbitalMovementData data)
-	{
-		positionTarget = data.positionTarget;
-		moveToDuration = data.moveToDuration;
+		transform.DORotate(new Vector3(xRandom, yRandom, zRandom), moveToDuration); 
 	}
 
 	public override void SetActive(bool activate, float duration = 0)
@@ -142,11 +132,4 @@ public class OrbitalMovement : CameraMovement
 		virtualCamera.transform.position = position;
 		virtualCamera.transform.rotation = rotation;
 	}
-}
-
-[System.Serializable]
-public class OrbitalMovementData
-{
-	public Vector3 positionTarget;
-	public float moveToDuration;
 }
