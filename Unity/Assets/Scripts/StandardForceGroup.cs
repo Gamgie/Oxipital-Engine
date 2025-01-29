@@ -18,6 +18,7 @@ namespace Oxipital
         [Range(0, 1)]
         [InBuffer(1)]
         public float forceFactorOutside = 0;
+        
 
         [Header("Radial")]
         [Range(0, 1)]
@@ -28,58 +29,57 @@ namespace Oxipital
         [InBuffer(3)]
         public float radialFrequency;
 
+        [Range(0, 1)]
+        [InBuffer(4)]
+        public float radialInOut;
+
 
         [Header("Axial")]
         [Range(0, 1)]
-        [InBuffer(4)]
+        [InBuffer(5)]
         public float axialIntensity;
 
-
         [Range(1, 3)]
-        [InBuffer(5)]
+        [InBuffer(6)]
         public float axialFactor;
 
-        [InBuffer(6)]
+        [InBuffer(7)]
         public Vector3 axisMultiplier = Vector3.up;
-        [InBuffer(9)]
+        [InBuffer(10)]
         public Vector3 axialFrequency;
 
         [Header("Linear")]
         [Range(0, 1)]
-        [InBuffer(12)]
+        [InBuffer(13)]
         public float linearIntensity;
 
 
         [Header("Orthoradial")]
         [Range(0, 1)]
-        [InBuffer(13)]
+        [InBuffer(14)]
         public float orthoIntensity;
 
         [Range(0, 1)]
-        [InBuffer(14)]
+        [InBuffer(15)]
         public float orthoInnerRadius = 0.5f;
 
         [Range(1, 3)]
-        [InBuffer(15)]
+        [InBuffer(16)]
         public float orthoFactor = 2;
 
         [Range(-1, 1)]
-        [InBuffer(16)]
+        [InBuffer(17)]
         public float orthoClockwise;
 
 
         [Header("Turbulence Curl")]
         [Range(0, 1)]
-        [InBuffer(17)]
+        [InBuffer(18)]
         public float curlIntensity;
 
         [Range(0, 5)]
-        [InBuffer(18)]
-        public float curlFrequency;
-
-        [Range(0, 1)]
         [InBuffer(19)]
-        public float curlDrag;
+        public float curlFrequency;
 
         [InBuffer(20)]
         public float curlOctaves;

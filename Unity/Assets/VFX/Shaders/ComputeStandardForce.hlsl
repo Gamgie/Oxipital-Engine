@@ -11,22 +11,29 @@ void StandardForce(inout VFXAttributes attributes, in StructuredBuffer<float> bu
     // Radial Force is attracting towards the center
     float radialIntensity = GetFloat(2);
     float radialFrequency = GetFloat(3);
+    float radialInOut = GetFloat(4);
 
     // Axial Parameters
-    float axialIntensity = GetFloat(4);
-    float axialFactor = GetFloat(5);
-    float3 axisMultiplier = GetVector(6)
-    float3 axialFrequency = GetVector(9);
+    float axialIntensity = GetFloat(5);
+    float axialFactor = GetFloat(6);
+    float3 axisMultiplier = GetVector(7)
+    float3 axialFrequency = GetVector(10);
 
     // Linear Force is attracting towards the same direction
-    float linearForceIntensity = GetFloat(12);
+    float linearForceIntensity = GetFloat(13);
 
     // Orthoradial Force is pushing particle on the orthogonal vector of the center vector
-    float orthoIntensity = GetFloat(13);
-    float innerRadius = GetFloat(14);
-    int orthoFactor = GetFloat(15);
-    float clockWise = GetFloat(16);
+    float orthoIntensity = GetFloat(14);
+    float innerRadius = GetFloat(15);
+    int orthoFactor = GetFloat(16);
+    float clockWise = GetFloat(17);
     
+    // Ortho Axial
+    float orthoAxialIntensity = GetFloat(31);
+    float orthoAxialinnerRadius = GetFloat(32);
+    int orthoAxialFactor = GetFloat(33);
+    float orthoAxialclockWise = GetFloat(34);
+
     // Spiral Force
     // float spiralForceIntensity = GetFloat(13);
 
@@ -59,8 +66,8 @@ void StandardForce(inout VFXAttributes attributes, in StructuredBuffer<float> bu
         float forceInfluence = computeForceInfluence(distanceToCenter, buffer, forceInfluenceCurve, i);
         totalInfluence += forceInfluence;
 
-        float3 radialForce = radialIntensity * (1 / (distanceToCenter + 1)) * 2.5 * normalizedToCenterVector;
-        
+        float radialInOutRemap = remapFloat(radialInOut,0,1,1,-1);
+        float3 radialForce = radialInOutRemap * radialIntensity * (1 / (distanceToCenter + 1)) * 2.5 * normalizedToCenterVector;
         
         float3 axialForce = 0;
         float3 orthogonalVector = 0;

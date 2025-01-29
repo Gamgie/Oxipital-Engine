@@ -147,7 +147,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: -195
     y: -378
-    width: 1778
+    width: 1779
     height: 852
 --- !u!114 &4
 MonoBehaviour:
@@ -318,7 +318,6 @@ MonoBehaviour:
   m_InputSlots:
   - {fileID: 305}
   - {fileID: 318}
-  - {fileID: 377}
   - {fileID: 320}
   - {fileID: 321}
   - {fileID: 322}
@@ -326,7 +325,7 @@ MonoBehaviour:
   m_OutputSlots: []
   m_Disabled: 0
   m_ActivationSlot: {fileID: 324}
-  Mode: 1
+  Mode: 0
   NoiseType: 1
 --- !u!114 &305
 MonoBehaviour:
@@ -982,41 +981,6 @@ MonoBehaviour:
   m_Direction: 0
   m_LinkedSlots:
   - {fileID: 571}
---- !u!114 &377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f780aa281814f9842a7c076d436932e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_UIIgnoredErrors: []
-  m_Parent: {fileID: 0}
-  m_Children: []
-  m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 1
-  m_UISuperCollapsed: 0
-  m_MasterSlot: {fileID: 377}
-  m_MasterData:
-    m_Owner: {fileID: 304}
-    m_Value:
-      m_Type:
-        m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
-          PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 1
-    m_Space: -1
-  m_Property:
-    name: Drag
-    m_serializedType:
-      m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-  m_Direction: 0
-  m_LinkedSlots:
-  - {fileID: 566}
 --- !u!114 &396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1270,7 +1234,7 @@ MonoBehaviour:
   - {fileID: 454}
   m_ExposedName: Radius Curve
   m_Exposed: 1
-  m_Order: 1
+  m_Order: 2
   m_Category: 
   m_Min:
     m_Type:
@@ -1428,7 +1392,7 @@ MonoBehaviour:
   - {fileID: 478}
   m_ExposedName: Global Multiplier
   m_Exposed: 0
-  m_Order: 2
+  m_Order: 3
   m_Category: 
   m_Min:
     m_Type:
@@ -1509,7 +1473,7 @@ MonoBehaviour:
   - {fileID: 480}
   m_ExposedName: Weight
   m_Exposed: 1
-  m_Order: 3
+  m_Order: 4
   m_Category: 
   m_Min:
     m_Type:
@@ -2736,8 +2700,7 @@ MonoBehaviour:
       m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
   m_Direction: 1
-  m_LinkedSlots:
-  - {fileID: 377}
+  m_LinkedSlots: []
 --- !u!114 &567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2971,7 +2934,7 @@ MonoBehaviour:
   - {fileID: 577}
   m_ExposedName: Buffer B
   m_Exposed: 1
-  m_Order: 0
+  m_Order: 1
   m_Category: 
   m_Min:
     m_Type:
