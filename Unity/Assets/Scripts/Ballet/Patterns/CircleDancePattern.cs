@@ -26,9 +26,9 @@ namespace Oxipital
                 float normalT = initT + group.patternTime;
                 float randomT = initT + group.items[i].localPatternTime;
 
-                Vector3 zeroPos = new Vector3(Mathf.Cos(initT * Mathf.PI * 2), 0, Mathf.Sin(initT * Mathf.PI * 2));
-                Vector3 normalPos = new Vector3(Mathf.Cos(normalT * Mathf.PI * 2), 0, Mathf.Sin(normalT * Mathf.PI * 2));
-                Vector3 randomPos = new Vector3(Mathf.Cos(randomT * Mathf.PI * 2), 0, Mathf.Sin(randomT * Mathf.PI * 2));
+                Vector3 zeroPos = new Vector3(Mathf.Cos(initT * Mathf.PI * 2), Mathf.Sin(initT * Mathf.PI * 2), 0);
+                Vector3 normalPos = new Vector3(Mathf.Cos(normalT * Mathf.PI * 2), Mathf.Sin(normalT * Mathf.PI * 2), 0);
+                Vector3 randomPos = new Vector3(Mathf.Cos(randomT * Mathf.PI * 2), Mathf.Sin(randomT * Mathf.PI * 2), 0);
 
                 Vector3 animPos = Vector3.Lerp(normalPos, randomPos, group.patternSpeedRandom);
                 Vector3 targetPos = Vector3.Lerp(zeroPos, animPos, speedWeight);
