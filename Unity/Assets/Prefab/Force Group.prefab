@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4030837406312384054}
   - component: {fileID: 1483635194092843799}
   - component: {fileID: 7940719435544600441}
-  - component: {fileID: 8785756600143155599}
+  - component: {fileID: 5949178644392962515}
   m_Layer: 0
   m_Name: Force Group
   m_TagString: Untagged
@@ -94,6 +94,7 @@ MonoBehaviour:
   forceFactorOutside: 0
   radialIntensity: 0
   radialFrequency: 0
+  radialInOut: 0
   axialIntensity: 0
   axialFactor: 1
   axisMultiplier: {x: 0, y: 1, z: 0}
@@ -105,7 +106,6 @@ MonoBehaviour:
   orthoClockwise: 1
   curlIntensity: 0
   curlFrequency: 1
-  curlDrag: 1
   curlOctaves: 2
   curlRoughness: 0.5
   curlLacunarity: 0.2
@@ -151,7 +151,7 @@ MonoBehaviour:
   blendMode: 0
   weight: 0
   speedWeight: 1
---- !u!114 &8785756600143155599
+--- !u!114 &5949178644392962515
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -160,12 +160,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5986827384119583656}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9abcf7b8dab6894bb2725b616b9ab55, type: 3}
+  m_Script: {fileID: 11500000, guid: 8c928c1d30af8044bad904dc28470459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   blendMode: 0
-  weight: 0
+  weight: 1
   speedWeight: 1
-  G: 1
-  bodyMass: 1
-  prevPositions: []
+  dancersPosition: []

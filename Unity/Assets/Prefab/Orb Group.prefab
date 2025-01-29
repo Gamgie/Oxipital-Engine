@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 920900145592058759}
   - component: {fileID: 157857250213721860}
   - component: {fileID: 396338098739613877}
-  - component: {fileID: -2678854857940927042}
+  - component: {fileID: -3297190094130006309}
   - component: {fileID: 4243732981965979390}
   - component: {fileID: 2828817334102105444}
   - component: {fileID: 4676014088361587612}
@@ -102,30 +102,6 @@ MonoBehaviour:
   emitterPositionNoiseRadius: 1
   color: {r: 1, g: 1, b: 1, a: 1}
   alpha: 0.606
-  alphaCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
   hdrMultiplier: 0.12
   alphaSpeedThreshold: 0
   textureOpacity: 0.019
@@ -168,7 +144,7 @@ MonoBehaviour:
   blendMode: 0
   weight: 0
   speedWeight: 1
---- !u!114 &-2678854857940927042
+--- !u!114 &-3297190094130006309
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -177,15 +153,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 5956691939429203287}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9abcf7b8dab6894bb2725b616b9ab55, type: 3}
+  m_Script: {fileID: 11500000, guid: 8c928c1d30af8044bad904dc28470459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   blendMode: 0
-  weight: 0
+  weight: 1
   speedWeight: 1
-  G: 1
-  bodyMass: 1
-  prevPositions: []
+  dancersPosition: []
 --- !u!2083052967 &4243732981965979390
 VisualEffect:
   m_ObjectHideFlags: 0
