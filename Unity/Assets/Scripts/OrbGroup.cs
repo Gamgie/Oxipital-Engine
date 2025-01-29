@@ -203,6 +203,15 @@ namespace Oxipital
                 }
             }
 
+            MeshRenderer[] renderers = GetComponentsInChildren<MeshRenderer>();
+            foreach(MeshRenderer r in renderers)
+			{
+                Color c = r.material.color;
+                c.a = meshOpacity;
+                r.material.color = c;
+
+            }
+
         }
 
         internal void setForceBuffers(Dictionary<string, GraphicsBuffer> forceBuffers)
