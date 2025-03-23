@@ -281,6 +281,12 @@ namespace Oxipital
         {
             return life;
         }
+
+        public void killAllParticle()
+        {
+            vfx.Reinit();
+        }
+
 	}
 
 }

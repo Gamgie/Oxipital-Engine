@@ -31,5 +31,10 @@ namespace Oxipital
             foreach (OrbGroup orbGroup in items) result = Mathf.Max(orbGroup.life);
             return result;
         }
+
+        public void KillAllParticles()
+        {
+            foreach (OrbGroup orbGroup in items) orbGroup.killAllParticle();
+        }
     }
 }
