@@ -104,10 +104,13 @@ public class CameraController : MonoBehaviour
 
                 if (orthographic)
                 {
+                    camera.orthographic = true;
                     c.UpdateOrthoSize(orthoSize);
+
                 }
                 else
                 {
+                    camera.orthographic = false;
                     c.UpdateFOV(fov);
                 }
             }
