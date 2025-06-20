@@ -5,6 +5,7 @@ using UnityEngine.VFX;
 using System;
 using UnityEngine.VFX.SDF;
 using System.IO;
+using Augmenta;
 
 namespace Oxipital
 {
@@ -160,13 +161,15 @@ namespace Oxipital
         Mesh currentMesh;
         internal VisualEffect vfx;
 
-
+        PCLToGraphicsBuffer pclGraphics;
+        public AugmentaObject augmentaObject;
 
         protected override void OnEnable()
         {
             base.OnEnable();
             MeshLoader.loadMeshes();
             vfx = GetComponent<VisualEffect>();
+            pclGraphics = GetComponent<PCLToGraphicsBuffer>();
         }
 
         protected override void Update()
@@ -191,6 +194,13 @@ namespace Oxipital
                 lastEmitterShape = emitterShape;
             }
 
+            if(emitterShape == EmitterShape.Augmenta)
+            {
+                if (augmentaObject != null)
+                {
+                    pclGraphics.pObject = augmentaObject;
+                }
+            }
             if (MeshLoader.isLoaded)
             {
                 // Update mesh in case we change it
