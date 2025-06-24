@@ -25,6 +25,7 @@
 4. Launch Chataigne
 5. In the Chataigne interface, click on the **Camera** tab
 6. Click the "OXIPITAL EXE" button to start the program
+7. Use Spout to use Oxipital in whatever other software
 
 ## 📖 User Guide
 
