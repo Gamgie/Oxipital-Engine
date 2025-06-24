@@ -25,8 +25,8 @@ var unityOrbGroupsParam = null;
 var danceGroupParameters = {
 	"Transform":
 	{
-		"Position": { "type": "p3d", "default": [0, 0, 0] },
-		"Rotation": { "type": "p3d", "default": [0, 0, 0] },
+		"Position": { "type": "p3d", "default": [0, 0, 0], "customComponent": "Transform/position" },
+		"Rotation": { "type": "p3d", "default": [0, 0, 0], "customComponent": "Transform/rotation" },
 	},
 	"Patterns": {
 		"Count": { "type": "float", "default": 1, "min": 1, "max": 10, "noMacro": true },
@@ -37,8 +37,7 @@ var danceGroupParameters = {
 		"Line Pattern Speed Weight": { "type": "float", "default": 0, "amin": 0, "max": 1, "customComponent": "LineDancePattern/speedWeight" },
 		"Circle Pattern Weight": { "type": "float", "default": 1, "min": 0, "max": 1, "customComponent": "CircleDancePattern/weight" },
 		"Circle Pattern Speed Weight": { "type": "float", "default": 1, "min": 0, "max": 1, "customComponent": "CircleDancePattern/speedWeight" },
-		"NBody Pattern Weight": { "type": "float", "default": 0, "min": 0, "max": 1, "customComponent": "NBodyProblemPattern/weight" },
-		"NBody Pattern Speed Weight": { "type": "float", "default": 0, "min": 0, "max": 1, "customComponent": "NBodyProblemPattern/speedWeight" }
+		"Manual Pattern Weight": { "type": "float", "default": 0, "min": 0, "max": 1, "customComponent": "ManualDancePattern/weight" }
 	},
 	"Animation": {
 		"Pattern Speed": { "type": "float", "default": 0.1, "min": -1, "max": 1 },
@@ -66,7 +65,8 @@ var forceGroupParameters = {
 	},
 	"Radial": {
 		"Radial Intensity": { "type": "float", "default": 0, "min": 0, "max": 1 },
-		"Radial Frequency": { "type": "float", "default": 0, "min": 0, "max": 1 }
+		"Radial Frequency": { "type": "float", "default": 0, "min": 0, "max": 1 },
+		"Radial InOut": { "type": "float", "default": 0, "min": 0, "max": 1 }
 	},
 	"Axial": {
 		"Axial Intensity": { "type": "float", "default": 0, "min": 0, "max": 1 },
@@ -474,7 +474,8 @@ function setupMacrosToItem(item) {
 				if (paramProp.noMacro == true) continue;
 				if (paramProp.type == "float" || paramProp.type == "int" && (paramProp.min != null && paramProp.min != null)) {
 					for (var k = 0; k < numMacrosParam.get(); k++) {
-						paramContainer.addFloatParameter("Macro Weight " + (k + 1), "Macro influence for this parameter, relative to the parameters range if it has any", 0, -1, 1);
+						var p = paramContainer.addFloatParameter("Macro Weight " + (k + 1), "Macro influence for this parameter, relative to the parameters range if it has any", 0, -1, 1);
+						p.set(0);
 					}
 				}
 			}
