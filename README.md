@@ -84,8 +84,10 @@ The Ballet system allows positioning objects in 3D space:
 
 #### Placement Parameters
 - **Count** - Number of orbs to place
-- **Speed** - Distance between emitters
-- **Rotation** - Pattern orientation
+- **Speed** - Pattern movement speed
+- **Rot** - Pattern orientation
+- **Dancer Rotation** - rotation of an element of the ballet
+- **Look At Mode** - either look at center,  position or the dancer rotation
 - **Pattern Size** - Overall formation size
 
 ### 🌊 Forces
