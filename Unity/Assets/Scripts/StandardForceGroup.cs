@@ -33,115 +33,131 @@ namespace Oxipital
         [InBuffer(4)]
         public float radialInOut;
 
+        [Range(0, 1)]
+        [InBuffer(5)]
+        public float radialSpeedWave;
+
+        [Range(0, 1)]
+        [InBuffer(6)]
+        public float radialAmplitudeWave;
+
 
         [Header("Axial")]
         [Range(0, 1)]
-        [InBuffer(5)]
+        [InBuffer(7)]
         public float axialIntensity;
 
         [Range(1, 3)]
-        [InBuffer(6)]
+        [InBuffer(8)]
         public float axialFactor;
 
-        [InBuffer(7)]
+        [InBuffer(9)]
         public Vector3 axisMultiplier = Vector3.up;
-        [InBuffer(10)]
+        [InBuffer(12)]
         public Vector3 axialFrequency;
+
+        [Range(0, 1)]
+        [InBuffer(15)]
+        public float axialSpeedWave;
+
+        [Range(0, 1)]
+        [InBuffer(16)]
+        public float axialAmplitudeWave;
 
         [Header("Linear")]
         [Range(0, 1)]
-        [InBuffer(13)]
+        [InBuffer(17)]
         public float linearIntensity;
 
 
         [Header("Orthoradial")]
         [Range(0, 1)]
-        [InBuffer(14)]
+        [InBuffer(18)]
         public float orthoIntensity;
 
         [Range(0, 1)]
-        [InBuffer(15)]
+        [InBuffer(19)]
         public float orthoInnerRadius = 0.5f;
 
         [Range(1, 3)]
-        [InBuffer(16)]
+        [InBuffer(20)]
         public float orthoFactor = 2;
 
         [Range(-1, 1)]
-        [InBuffer(17)]
+        [InBuffer(21)]
         public float orthoClockwise;
 
 
         [Header("Turbulence Curl")]
         [Range(0, 1)]
-        [InBuffer(18)]
+        [InBuffer(22)]
         public float curlIntensity;
 
         [Range(0, 5)]
-        [InBuffer(19)]
+        [InBuffer(23)]
         public float curlFrequency;
 
-        [InBuffer(20)]
+        [InBuffer(24)]
         public float curlOctaves;
 
         [Range(0, 1)]
-        [InBuffer(21)]
+        [InBuffer(25)]
         public float curlRoughness;
 
         [Range(0, 1)]
-        [InBuffer(22)]
+        [InBuffer(26)]
         public float curlLacunarity;
 
         [Range(0, 1)]
-        [InBuffer(23)]
+        [InBuffer(27)]
         public float curlScale;
 
         [Range(0, 1)]
-        [InBuffer(24)]
+        [InBuffer(28)]
         public float curlTranslation;
 
 
         [Header("Perlin")]
         [Range(0, 1)]
-        [InBuffer(25)]
+        [InBuffer(29)]
         public float perlinIntensity;
 
         [Range(0, 5)]
-        [InBuffer(26)]
+        [InBuffer(30)]
         public float perlinFrequency;
 
         [Range(1, 8)]
-        [InBuffer(27)]
+        [InBuffer(31)]
         public float perlinOctaves;
 
         [Range(0, 1)]
-        [InBuffer(28)]
+        [InBuffer(32)]
         public float perlinRoughness;
 
         [Range(0, 1)]
-        [InBuffer(29)]
+        [InBuffer(33)]
         public float perlinLacunarity;
 
         [Range(0, 1)]
-        [InBuffer(30)]
+        [InBuffer(34)]
         public float perlinTranslationSpeed;
 
 
         [Header("Orthoaxial")]
         [Range(0, 1)]
-        [InBuffer(31)]
+        [InBuffer(35)]
         public float orthoaxialIntensity;
 
         [Range(0, 1)]
-        [InBuffer(32)]
+        [InBuffer(36)]
         public float orthoaxialInnerRadius;
 
         [Range(1, 3)]
-        [InBuffer(33)]
+        [InBuffer(37)]
         public float orthoaxialFactor;
 
         [Range(-1, 1)]
-        [InBuffer(34)]
+        [InBuffer(38)]
         public float orthoaxialClockwise = 1;
 
 
