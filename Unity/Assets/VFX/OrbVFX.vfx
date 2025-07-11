@@ -89,7 +89,7 @@ MonoBehaviour:
       x: -159
       y: -676
       width: 1339
-      height: 3804
+      height: 3417
     contents:
     - model: {fileID: 114023846229194376}
       id: 0
@@ -177,7 +177,7 @@ MonoBehaviour:
     x: -159
     y: -676
     width: 1339
-    height: 3804
+    height: 3417
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1601,7 +1601,7 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 8926484042661614722}
       inputSlot: {fileID: 8926484042661615861}
-    position: {x: 235, y: 3035}
+    position: {x: 389, y: 2618}
     expandedSlots: []
     expanded: 0
     supecollapsed: 0
@@ -3276,8 +3276,7 @@ MonoBehaviour:
       m_SerializableType: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
   m_Direction: 0
-  m_LinkedSlots:
-  - {fileID: 8926484042661615853}
+  m_LinkedSlots: []
 --- !u!114 &8926484042661615438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4347,7 +4346,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0
+      m_SerializableObject: 2
     m_Space: -1
   m_Property:
     name: AugmentaPositionCount
@@ -4355,7 +4354,8 @@ MonoBehaviour:
       m_SerializableType: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
   m_Direction: 0
-  m_LinkedSlots: []
+  m_LinkedSlots:
+  - {fileID: 8926484042661615853}
 --- !u!114 &8926484042661615541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6048,8 +6048,6 @@ MonoBehaviour:
     - outputSlot: {fileID: 8926484042661615853}
       inputSlot: {fileID: 8926484042661615538}
     - outputSlot: {fileID: 8926484042661615853}
-      inputSlot: {fileID: 8926484042661615437}
-    - outputSlot: {fileID: 8926484042661615853}
       inputSlot: {fileID: 8926484042661615542}
     - outputSlot: {fileID: 8926484042661615853}
       inputSlot: {fileID: 8926484042661615544}
@@ -6059,6 +6057,8 @@ MonoBehaviour:
       inputSlot: {fileID: 8926484042661615550}
     - outputSlot: {fileID: 8926484042661615853}
       inputSlot: {fileID: 8926484042661615546}
+    - outputSlot: {fileID: 8926484042661615853}
+      inputSlot: {fileID: 8926484042661615540}
     position: {x: 76, y: 564}
     expandedSlots: []
     expanded: 1
@@ -6099,12 +6099,12 @@ MonoBehaviour:
   m_LinkedSlots:
   - {fileID: 8926484042661615536}
   - {fileID: 8926484042661615538}
-  - {fileID: 8926484042661615437}
   - {fileID: 8926484042661615542}
   - {fileID: 8926484042661615544}
   - {fileID: 8926484042661615548}
   - {fileID: 8926484042661615550}
   - {fileID: 8926484042661615546}
+  - {fileID: 8926484042661615540}
 --- !u!114 &8926484042661615854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6346,7 +6346,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0.5
+      m_SerializableObject: 0.92
     m_Space: -1
   m_Property:
     name: alphaThreshold
