@@ -71,7 +71,7 @@ void StandardForce(inout VFXAttributes attributes, in StructuredBuffer<float> bu
         totalInfluence += forceInfluence;
 
         float radialInOutRemap = remapFloat(radialInOut,0,1,1,-1);
-        float radialSinWave = radialAmplitudeWave * 3 * sin(2.0f * 3.14159f * (radialFrequency*3) * distanceToCenter + totalTime * radialSpeedWave * 5);
+        float radialSinWave = radialAmplitudeWave * 3 * sin(2.0f * 3.14159f * (radialFrequency*6) * distanceToCenter + totalTime * radialSpeedWave * 5);
         if(radialAmplitudeWave == 0 || radialFrequency == 0) 
         {
             radialSinWave = 1;
