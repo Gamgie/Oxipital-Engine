@@ -92,7 +92,7 @@ void StandardForce(inout VFXAttributes attributes, in StructuredBuffer<float> bu
             if (clockWise != 0)
             {
                 orthogonalVector = normalize(cross(normalizedToCenterVector, axis) * clockWise);
-                orthoradialForce = (abs(clockWise) * orthoIntensity * orthogonalVector) / (pow(abs(normalizedDistance), abs(orthoFactor)));
+                orthoradialForce = 0.1 * (abs(clockWise) * orthoIntensity * orthogonalVector) / (pow(abs(normalizedDistance), abs(orthoFactor)));
             }
             
             linearForce = linearForceIntensity * normalize(axis);
