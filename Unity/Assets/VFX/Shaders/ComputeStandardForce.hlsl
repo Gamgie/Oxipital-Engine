@@ -52,7 +52,7 @@ void StandardForce(inout VFXAttributes attributes, in StructuredBuffer<float> bu
     {
         float3 rotation = GetDVector(i, 3);
         
-        float3 axis = ComputeForwardVectorFromRotation(rotation);
+        float3 axis = ComputeForwardVectorFromRotation(rotation); 
         
         float radius = GetDFloat(i, 7);
 
@@ -98,6 +98,22 @@ void StandardForce(inout VFXAttributes attributes, in StructuredBuffer<float> bu
             linearForce = linearForceIntensity * normalize(axis);
         }
         
+        
+        // lorentz 
+        float sigma = 10;
+        float rho = 28;
+        float beta = 8.0/3.0;
+        float lorentzX = sigma * (attributes.position.y - attributes.position.x);
+        float lorentzY = (-attributes.position.x * attributes.position.z) + rho * attributes.position.x - attributes.position.y;
+        float lorentzZ = (attributes.position.x * attributes.position.y - beta * attributes.position.z);
+        totalForce += float3(lorentzX, lorentzY, lorentzZ) * 0.005 ;
+        
+        float a = 2.07;
+        float b = 1.79;
+        float sprottX = 10 + attributes.position.y + a * attributes.position.x * attributes.position.y + attributes.position.x * attributes.position.z;
+        float sprottY = 1 - b * attributes.position.x * attributes.position.x + attributes.position.y * attributes.position.z;
+        float sprottZ = attributes.position.x - attributes.position.x * attributes.position.x - attributes.position.y * attributes.position.y;
+        totalForce += float3(sprottX, sprottY, sprottZ) * 0.01;
             
         
         // Total force contribution from this center
@@ -110,9 +126,11 @@ void StandardForce(inout VFXAttributes attributes, in StructuredBuffer<float> bu
         if (linearForceIntensity > 0)
             totalForce += linearForce * forceInfluence;
         
+   
     }
-	
-
+	   
+ 
+    
     // Update velocity
     attributes.velocity += totalForce * globalMultiplier * deltaTime;
     attributes.forceInfluence = totalInfluence;
