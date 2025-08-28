@@ -23,17 +23,17 @@ def ClosestPointOnLine(a, b, p):
     result = a + dot(ap,ab)/dot(ab,ab) * ab
     return result
 */
-#ifndef VFX_COMMON_H
-#define VFX_COMMON_H
+#ifndef VFX_HELPER_H
+#define VFX_HELPER_H
 
-float3 ClosestPointOnALine(float3 pos, float3 axis, float3 center)
+float3 ClosestPointOnALine(float3 pos, float3 axis, float3 origin)
 {
     float3 result;
 
-    float3 PA = center - pos;
-    float3 AP = pos - center;
+    float3 PA = origin- pos;
+    float3 AP = pos - origin;
     
-    result = PA + (dot(AP,axis)/dot(axis, axis)) * axis;
+    result = PA + dot(AP, axis) * axis;
 
     return result;
 }
@@ -102,7 +102,6 @@ float3 ComputeUpVectorFromRotation(float3 rotationDegrees)
     return normalize(upVector);
 }
 
-
 float4 QuaternionFromEulerDegrees(float3 euler)
 {
     float3 eulerRadians = radians(euler);
@@ -129,4 +128,5 @@ float4 QuaternionFromEulerDegrees(float3 euler)
 
     return q;
 }
-#endif // VFX_COMMON_H
+
+#endif // VFX_HELPER_H
