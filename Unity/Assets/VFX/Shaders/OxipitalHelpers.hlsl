@@ -1,4 +1,4 @@
-#include "VFXCommon.hlsl"
+#include "VFXHelper.hlsl"
 
 #ifndef OXIPITAL_HELPERS
 #define OXIPITAL_HELPERS
@@ -43,6 +43,5 @@ float computeForceInfluence(in float distancetocenter, in StructuredBuffer<float
 
     return forceremap;
 }
-
 
 #endif 
