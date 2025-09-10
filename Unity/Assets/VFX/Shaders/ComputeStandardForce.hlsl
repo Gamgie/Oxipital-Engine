@@ -92,7 +92,7 @@ void StandardForce(inout VFXAttributes attributes, in StructuredBuffer<float> bu
             if (clockWise != 0)
             {
                 orthogonalVector = normalize(cross(normalizedToCenterVector, axis) * clockWise);
-                orthoradialForce = 0.1 * (abs(clockWise) * orthoIntensity * orthogonalVector) / (pow(abs(normalizedDistance), abs(orthoFactor)));
+                orthoradialForce = 0.1 * (abs(clockWise) * orthoIntensity * orthogonalVector) / (pow(abs(normalizedDistance), abs(orthoFactor)) / 2);
             }
             
             linearForce = linearForceIntensity * normalize(axis);
@@ -106,14 +106,14 @@ void StandardForce(inout VFXAttributes attributes, in StructuredBuffer<float> bu
         float lorentzX = sigma * (attributes.position.y - attributes.position.x);
         float lorentzY = (-attributes.position.x * attributes.position.z) + rho * attributes.position.x - attributes.position.y;
         float lorentzZ = (attributes.position.x * attributes.position.y - beta * attributes.position.z);
-        totalForce += float3(lorentzX, lorentzY, lorentzZ) * 0.005 ;
+        //totalForce += float3(lorentzX, lorentzY, lorentzZ) * 0.005 ;
         
         float a = 2.07;
         float b = 1.79;
         float sprottX = 10 + attributes.position.y + a * attributes.position.x * attributes.position.y + attributes.position.x * attributes.position.z;
         float sprottY = 1 - b * attributes.position.x * attributes.position.x + attributes.position.y * attributes.position.z;
         float sprottZ = attributes.position.x - attributes.position.x * attributes.position.x - attributes.position.y * attributes.position.y;
-        totalForce += float3(sprottX, sprottY, sprottZ) * 0.01;
+        //totalForce += float3(sprottX, sprottY, sprottZ) * 0.01;
             
         
         // Total force contribution from this center
