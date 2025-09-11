@@ -129,4 +129,69 @@ float4 QuaternionFromEulerDegrees(float3 euler)
     return q;
 }
 
+float3 ComputeLocalPositionfromRotation(float3 centerPosition, float3 rotation, float3 scale, float3 particlePosition)
+{
+    float4x4 trsMatrix = GetTRSMatrix(centerPosition, rotation, scale);
+    float4x4 invTRS = VFXInverseTRSMatrix(trsMatrix);
+    float4 worldPos = float4(particlePosition, 1.0);
+    float4 localPos = mul(invTRS, worldPos);
+    return localPos.xyz;
+}
+
+float3 GetScaffoldPosition(float theta, int wing)
+{
+    float A = wing;
+    float B = 0.5;
+    float N = 4;
+    
+    float r = A / (log(B * tan(theta / (2 * N))));
+    float GX = r * cos(theta);
+    float GY = r * sin(theta);
+    float GZ = 0;
+    return float3(GX, GY, GZ);
+}
+
+float HashSpace(uint n)
+{
+    n = (n << 13u) ^ n;
+    return 1.0 - float((n * (n * n * 15731u + 789221u) + 1376312589u) & 0x7fffffffu) / 2147483648.0;
+}
+
+float3 GetClosestPointOnASpiral(float3 position, int wing, uint seed)
+{
+    float thetaMin = 0.0f;
+    float thetaMax = 2*UNITY_PI;
+    float minDist = 10000;
+    float3 result = 0;
+    int step = 100;
+    
+    for (int i = 10; i < step ; i++)
+    {
+        float interpolate = (float) i / (float) step;
+        float t = lerp(thetaMin, thetaMax, pow(interpolate,1));
+        float3 curveAtT = GetScaffoldPosition(t, wing);
+        
+        float distance = length(curveAtT - position);
+        
+        if(distance < minDist)
+        {
+            minDist = distance;
+            
+            float interpolateF = (float) (max(i-step*0.05, 0)) / (float) step;
+            float tFurther = lerp(thetaMin, thetaMax, pow(interpolateF,1));
+            result = GetScaffoldPosition(tFurther, wing);
+        }
+    }
+    
+    float randScaleOffset = 0.5;
+    float randPositionOffset = 0.5;
+    float3 randPosition = float3((HashSpace(seed) * 2.0f - 1.0f) * randPositionOffset, (HashSpace(seed + 1) * 2.0f - 1.0f) * randPositionOffset, 0);
+    float randScale = 1 + (HashSpace(seed) * 2.0f - 1.0f) * randScaleOffset;
+    
+    return (randPosition + result) * randScale;
+}
+
+
+
+
 #endif // VFX_HELPER_H
