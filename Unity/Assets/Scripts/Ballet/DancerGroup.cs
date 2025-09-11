@@ -158,7 +158,16 @@ namespace Oxipital
 				d.weight = i <= curCount - 1 ? 1 : getCountRelativeProgression();
 				d.intensity = dancerIntensity * Mathf.Lerp(1, d.weight, dancerWeightIntensityFactor);
 
-				float dancerSizeSpreadFactor = Mathf.Lerp(1, i / curCount, dancerSizeSpread);
+				float dancerSizeSpreadFactor = 0;
+                if (items.Count > 1)
+				{
+                    dancerSizeSpreadFactor = Mathf.Lerp(1, i / Mathf.Max(curCount - 1, 1), dancerSizeSpread * 0.99f); // if size is 0, particle glitch, so we avoid to reach a full 0 size
+                }
+				else
+				{
+					dancerSizeSpreadFactor = 1;
+                }
+					
 				d.size = dancerSize * dancerSizeSpreadFactor * Mathf.Lerp(1, d.weight, dancerWeightSizeFactor);
 				d.size = d.size * (1 + 100 * dancerHyperSize);
 
