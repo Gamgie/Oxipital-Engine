@@ -104,6 +104,7 @@ namespace Oxipital
 
         [Header("Appearance")]
         [InBuffer(7)]
+        [ColorUsage(true, true)]
         public Color color = Color.white;
 
         [InBuffer(10)]
