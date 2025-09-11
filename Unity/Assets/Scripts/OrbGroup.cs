@@ -298,6 +298,10 @@ namespace Oxipital
             vfx.Reinit();
         }
 
+        public new void ResetPattern()
+        {
+            base.ResetPattern();
+        }
 	}
 
 }

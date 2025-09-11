@@ -318,5 +318,16 @@ namespace Oxipital
 		protected virtual object getBufferValueAtIndex(int index) { 
 			return 0; 
 		}
+
+		public void ResetPattern()
+		{
+			patternTime = 0;
+
+            for (int i = 0; i < items.Count; i++)
+            {
+                Dancer d = items[i];
+                d.localPatternTime = 0;
+            }
+        }
 	}
 }

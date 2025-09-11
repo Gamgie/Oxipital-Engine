@@ -165,5 +165,10 @@ namespace Oxipital
         {
             return GetType();
         }
+
+        public new void ResetPattern()
+        {
+            base.ResetPattern();
+        }
     }
 }
