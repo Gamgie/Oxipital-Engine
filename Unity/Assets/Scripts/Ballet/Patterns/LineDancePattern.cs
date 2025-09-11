@@ -26,10 +26,10 @@ namespace Oxipital
 				float tAtFull = fullDancerCount == 1 ? 0 : (float)i / (fullDancerCount - 1);
 				float tAtNextFull = fullDancerCount == 1 ? 0 : (float)(i) / (dancerCount - 1);
 
-				float rel = i / groupCount;
+				float rel = i / Mathf.Max(1,(groupCount-1)) * Mathf.PI;
 				float initT = Mathf.Lerp(tAtFull, tAtNextFull, relativeProgression) + group.patternTimeOffset * rel;
-				float normalT = initT + group.patternTime;
-				float randomT = initT + group.items[i].localPatternTime;
+				float normalT = group.patternTime;
+				float randomT = group.items[i].localPatternTime;
 
 				//Vector3 zeroFullPos = fullDancerCount == 1 ? Vector3.zero : Vector3.Lerp(Vector3.down, Vector3.up, Mathf.Cos(Mathf.PI*tAtFull));
 				//Vector3 zeroNextPos = Vector3.Lerp(Vector3.down, Vector3.up, tAtNextFull);
@@ -39,11 +39,11 @@ namespace Oxipital
 				//Vector3 randomPos = Vector3.Lerp(Vector3.down, Vector3.up, Mathf.Cos(randomT * Mathf.PI * 2) * .5f + .5f);
 				//Vector3 oscPos = Vector3.Lerp(normalPos, randomPos, group.patternSpeedRandom);
 				//Vector3 targetPos = Vector3.Lerp(zeroPos, oscPos, Mathf.Abs(group.patternSpeed * speedWeight));
-				Vector3 oscPos = Vector3.Lerp(Vector3.down, Vector3.up, Mathf.Cos(2*Mathf.PI*(rel + normalT)) * .5f + .5f);
-                Vector3 randomOscPos = Vector3.Lerp(Vector3.down, Vector3.up, Mathf.Cos(2 * Mathf.PI * (rel + randomT)) * .5f + .5f);
+				Vector3 oscPos = Vector3.Lerp(Vector3.down, Vector3.up, Mathf.Cos(2*Mathf.PI*normalT + rel) * .5f + .5f);
+                Vector3 randomOscPos = Vector3.Lerp(Vector3.down, Vector3.up, Mathf.Cos(2 * Mathf.PI * randomT + rel) * .5f + .5f);
                 Vector3 targetPos = Vector3.Lerp(oscPos, randomOscPos, group.patternSpeedRandom); ;
 
-                positions.Add(targetPos);
+                positions.Add(targetPos); 
 			}
 
 			return positions;
