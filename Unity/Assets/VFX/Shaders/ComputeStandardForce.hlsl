@@ -100,7 +100,7 @@ void StandardForce(inout VFXAttributes attributes, in StructuredBuffer<float> bu
         if (length(axis) > 0)
         {
             axialForce = axialIntensity * ComputeAxialForce(localPosition, attributes.position, rotation, normalizedDistance, centerPosition, axialFrequency, axialFactor, axisMultiplier);
-            axialForce *= 2; //to normalize strength feeling compared to other forces
+            axialForce *= 1; //to normalize strength feeling compared to other forces
             
        	    // Orthoradial force (inversely proportional to the distance)
             if (clockWise != 0)
@@ -120,7 +120,7 @@ void StandardForce(inout VFXAttributes attributes, in StructuredBuffer<float> bu
             //float r = RAND;
             spiralForceIntensity = 0.5f;
             spiralForce = spiralForceIntensity * ComputeSpiralForce(localPosition, rotation, centerPosition, orthoAxialFactor, radius, 1, axis, attributes.seed * (uint) randomPerParticle);
-            totalForce += spiralForce * forceInfluence;
+            //totalForce += spiralForce * forceInfluence;
             
         }
         
