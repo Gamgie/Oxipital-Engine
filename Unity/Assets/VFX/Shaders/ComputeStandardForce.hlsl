@@ -106,7 +106,7 @@ void StandardForce(inout VFXAttributes attributes, in StructuredBuffer<float> bu
             if (clockWise != 0)
             {
                 orthogonalVector = normalize(cross(normalizedToCenterVector, axis) * clockWise);
-                orthoradialForce = 0.1 * (abs(clockWise) * orthoIntensity * orthogonalVector) / (pow(abs(normalizedDistance), abs(orthoFactor)) / 2);
+                orthoradialForce = 0.8f * (abs(clockWise) * orthoIntensity * orthogonalVector) / (pow(abs(normalizedDistance), abs(orthoFactor)) / 2);
             }
             
             linearForce = linearForceIntensity * normalize(axis);
@@ -115,6 +115,7 @@ void StandardForce(inout VFXAttributes attributes, in StructuredBuffer<float> bu
             if (orthoAxialclockWise != 0)
             {
                 orthoAxialForce = orthoAxialIntensity * abs(orthoAxialclockWise) * ComputeOrthoAxialForce(attributes.position, rotation, centerPosition, orthoAxialFactor, radius * orthoAxialinnerRadius, orthoAxialclockWise);
+                orthoAxialForce *= 15.0f;
             }
             
             //float r = RAND;
