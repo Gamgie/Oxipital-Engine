@@ -23,8 +23,8 @@ void StandardForce(inout VFXAttributes attributes, in StructuredBuffer<float> bu
     float axialFactor = GetFloat(8);
     float3 axisMultiplier = GetVector(9)
     float3 axialFrequency = GetVector(12);
-    float axialSpeedWave = GetVector(15);
-    float axialAmplitudeWave = GetVector(16);
+    float axialSpeedWave = GetFloat(15);
+    float axialAmplitudeWave = GetFloat(16);
 
     // Linear Force is attracting towards the same direction
     float linearForceIntensity = GetFloat(17);
@@ -41,9 +41,9 @@ void StandardForce(inout VFXAttributes attributes, in StructuredBuffer<float> bu
     int orthoAxialFactor = GetFloat(37);
     float3 orthoAxisMultiplier = GetVector(9)
     float orthoAxialclockWise = GetFloat(38);
-    float orthoAxialFrequency = GetVector(12);
-    float orthoAxialSpeedWave = GetVector(15);
-    float orthoAxialAmplitudeWave = GetVector(16);
+    float orthoAxialFrequency = GetFloat(12);
+    float orthoAxialSpeedWave = GetFloat(15);
+    float orthoAxialAmplitudeWave = GetFloat(16);
 
     // Spiral Force
      float spiralForceIntensity = GetFloat(40);
