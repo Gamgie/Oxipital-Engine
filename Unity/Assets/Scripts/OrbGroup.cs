@@ -13,7 +13,14 @@ namespace Oxipital
     {
         public static bool isLoaded = false;
 
-        static Dictionary<string, Mesh> shapeMeshMap;
+        public struct MeshTextured
+        {
+            public Texture2D texture;
+            public Mesh mesh;
+        }
+            
+
+        static Dictionary<string, MeshTextured> shapeMeshMap;
         public MeshLoader()
         {
         }
@@ -21,7 +28,7 @@ namespace Oxipital
         async public static void loadMeshes()
         {
             if (shapeMeshMap != null) return;
-            shapeMeshMap = new Dictionary<string, Mesh>();
+            shapeMeshMap = new Dictionary<string, MeshTextured>();
 
             string emittersPath = Path.Combine(Application.streamingAssetsPath, "emitters");
             string[] files = Directory.GetFiles(emittersPath, "*.glb");
@@ -43,8 +50,14 @@ namespace Oxipital
                             return;
                         }
 
+                        var text = gltfI.GetTexture(0);
+
+                        MeshTextured mt = new MeshTextured();
+                        mt.mesh = m;
+                        mt.texture = text;
+
                         var fileWithoutExtension = Path.GetFileNameWithoutExtension(file);
-                        shapeMeshMap.Add(fileWithoutExtension, m);
+                        shapeMeshMap.Add(fileWithoutExtension.ToLower(), mt);
                         Debug.Log("Loaded mesh " + fileWithoutExtension);
                     }
                     else
@@ -62,10 +75,11 @@ namespace Oxipital
             isLoaded = true;
         }
 
-        public static Mesh getMesh(string name)
+        public static MeshTextured getMesh(string name)
         {
             return shapeMeshMap[name];
         }
+
     }
 
     [RequireComponent(typeof(VisualEffect))]
@@ -155,6 +169,8 @@ namespace Oxipital
         [Range(0, 1)]
         public float meshOpacity = 0;
 
+        public string customMeshName = string.Empty;
+
         [OSCQuery.DoNotExpose]
         public string meshName = "";
         string lastMeshName = "";
@@ -195,6 +211,7 @@ namespace Oxipital
                 lastEmitterShape = emitterShape;
             }
 
+            // Load Augmenta Point Clouds
             if(emitterShape == EmitterShape.Augmenta)
             {
                 if (augmentaObject != null)
@@ -202,14 +219,34 @@ namespace Oxipital
                     pclGraphics.pObject = augmentaObject;
                 }
             }
+
+            // Load custom mesh
+            if(emitterShape == EmitterShape.Custom)
+            {
+                meshName = customMeshName;
+            }
+
             if (MeshLoader.isLoaded)
             {
                 // Update mesh in case we change it
                 if (meshName != lastMeshName)
                 {
-                    currentMesh = MeshLoader.getMesh(meshName.ToLower());
+                    currentMesh = MeshLoader.getMesh(meshName.ToLower()).mesh;
+                    Texture2D texture = MeshLoader.getMesh(meshName.ToLower()).texture;
+
                     if (currentMesh == null) Debug.LogWarning("Could not find mesh for " + meshName);
                     else setMesh(currentMesh);
+
+                    if (texture == null)
+                    {
+                        Debug.LogWarning("Could not find texture for " + meshName);
+                        setColor(Texture2D.whiteTexture);   
+                    }
+                    else
+                    {
+                        setColor(texture);
+                    }
+                    
                     lastMeshName = meshName;
                 }
             }
@@ -272,6 +309,19 @@ namespace Oxipital
 
             vfx.SetMesh("Emitter Mesh", m);
             foreach (var item in items) item.GetComponent<MeshFilter>().sharedMesh = m;
+        }
+
+        internal void setColor(Texture2D texture)
+        {
+            if (vfx == null) return;
+            if (texture == null) return;
+
+            if(!vfx.HasTexture("Emitter Color"))
+            {
+                Debug.LogWarning("Emitter Color not found in VFX");
+                return;
+            }
+            vfx.SetTexture("Emitter Color", texture);
         }
 
 
