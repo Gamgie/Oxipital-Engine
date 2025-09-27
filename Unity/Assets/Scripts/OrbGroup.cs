@@ -91,6 +91,7 @@ namespace Oxipital
         public float life = 20;
 
         public enum EmitterShape { Sphere, Plane, Torus, Cube, Pipe, Egg, Line, Circle, Merkaba, Pyramid, Custom, Augmenta }
+        public enum RenderType { UnlitOpaque, UnlitAdditive, LitQuad, LitMesh}
 
         [InBuffer(1)]
         public EmitterShape emitterShape;
@@ -141,33 +142,38 @@ namespace Oxipital
         [Range(0, 1)]
         public float particleSize = 0;
 
-        [Header("Physics")]
-        [Range(0, 1)]
         [InBuffer(15)]
-        public float forceWeight = 1;
+        public RenderType renderType = RenderType.UnlitAdditive;
 
         [InBuffer(16)]
         [Range(0, 1)]
-        public float drag = .5f;
+        public float meshOpacity = 0;
 
+        [Header("Physics")]
         [InBuffer(17)]
         [Range(0, 1)]
-        public float velocityDrag = 0;
+        public float forceWeight = 1;
 
         [InBuffer(18)]
         [Range(0, 1)]
-        public float noisyDrag = 0;
+        public float drag = .5f;
 
         [InBuffer(19)]
+        [Range(0, 1)]
+        public float velocityDrag = 0;
+
+        [InBuffer(20)]
+        [Range(0, 1)]
+        public float noisyDrag = 0;
+
+        [InBuffer(21)]
         [Range(0, 5)]
         public float noisyDragFrequency = 0;
 
-        [InBuffer(20)]
+        [InBuffer(22)]
         public bool activateCollision = false;
 
-        [InBuffer(21)]
-        [Range(0, 1)]
-        public float meshOpacity = 0;
+        
 
         public string customMeshName = string.Empty;
 
@@ -195,7 +201,6 @@ namespace Oxipital
 
             bool isDying = killProgress > 0;
             vfx.SetFloat("Emitter Intensity", isDying ? 0 : dancerIntensity);
-            vfx.SetFloat("Force Weight", GetComponentInParent<OrbGroup>().forceWeight);
             vfx.SetGraphicsBuffer("Orb Buffer", buffer);
 
             foreach (var item in items) item.debugColor = color;
