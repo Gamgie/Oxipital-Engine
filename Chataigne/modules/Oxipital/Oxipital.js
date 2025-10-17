@@ -1,4 +1,3 @@
-
 var numForceGroupsParam = local.parameters.setup.numForceGroups;
 var numOrbGroupsParam = local.parameters.setup.numOrbGroups;
 var numMacrosParam = local.parameters.setup.numMacros;
@@ -21,6 +20,7 @@ var unityForcesManager = null;
 var unityOrbsManager = null;
 var unityForceGroupsParam = null;
 var unityOrbGroupsParam = null;
+var macroUpdateTimestamp = null; // Used to update macro when they stop moving 
 
 var danceGroupParameters = {
 	"Transform":
@@ -66,13 +66,17 @@ var forceGroupParameters = {
 	"Radial": {
 		"Radial Intensity": { "type": "float", "default": 0, "min": 0, "max": 1 },
 		"Radial Frequency": { "type": "float", "default": 0, "min": 0, "max": 1 },
-		"Radial InOut": { "type": "float", "default": 0, "min": 0, "max": 1 }
+		"Radial InOut": { "type": "float", "default": 0, "min": 0, "max": 1 },
+		"Radial Speed Wave": { "type": "float", "default": 0, "min": 0, "max": 1 },
+		"Radial Amplitude Wave": { "type": "float", "default": 0, "min": 0, "max": 1 }
 	},
 	"Axial": {
 		"Axial Intensity": { "type": "float", "default": 0, "min": 0, "max": 1 },
 		"Axis Multiplier": { "type": "p3d", "default": [0, 1, 0] },
 		"Axial Factor": { "type": "float", "default": 1, "min": 1, "max": 3 },
-		"Axial Frequency": { "type": "p3d", "default": [0, 0, 0] }
+		"Axial Frequency": { "type": "p3d", "default": [0, 0, 0] },
+		"Axial Speed Wave": { "type": "float", "default": 0, "min": 0, "max": 1 },
+		"Axial Amplitude Wave": { "type": "float", "default": 0, "min": 0, "max": 1 }
 	},
 	"Linear": {
 		"Linear Intensity": { "type": "float", "default": 0, "min": 0, "max": 1 }
@@ -105,7 +109,7 @@ var forceGroupParameters = {
 		"Orthoaxial Intensity": { "type": "float", "default": 0, "min": 0, "max": 1 },
 		"Orthoaxial Inner Radius": { "type": "float", "default": 0, "min": 0, "max": 1 },
 		"Orthoaxial Factor": { "type": "float", "default": 1, "min": 1, "max": 3 },
-		"Orthoaxial Clockwise": { "type": "float", "default": 0, "min": 0, "max": 1 }
+		"Orthoaxial Clockwise": { "type": "float", "default": 0, "min": -1, "max": 1 }
 	}
 };
 
@@ -114,12 +118,13 @@ var orbGroupParameters = {
 	"General": {
 		"Life": { "type": "float", "default": 20, "min": 0, "max": 40 },
 		"Emitter Shape": { "type": "enum", "default": "Sphere", "values": ["Sphere", "Plane", "Torus", "Cube", "Pipe", "Egg", "Line", "Circle", "Merkaba", "Pyramid", "Custom", "Augmenta"] },
+		"Render Type": {"type": "enum", "default" : "UnlitAdditive", "values":["UnlitOpaque", "UnlitAdditive", "LitQuad", "LitMesh"]},
 		"Emitter Surface Factor": { "type": "float", "default": 0, "min": 0, "max": 1 },
 		"Emitter Volume Factor": { "type": "float", "default": 0, "min": 0, "max": 1 },
 		"Emitter Position Noise": { "type": "float", "default": 0, "min": 0, "max": 1 },
 		"Emitter Position Noise Frequency": { "type": "float", "default": 1, "min": 0, "max": 5 },
 		"Emitter Position Noise Radius": { "type": "float", "default": 0.1, "min": 0, "max": 1 },
-
+		"Custom Mesh Name":{"type":"string", "default":"sphere"},
 	},
 	"Appearance": {
 		"Color": { "type": "color", "default": [.8, 2, .05] },
@@ -146,6 +151,14 @@ function init() {
 	setup();
 	if (local.parameters.setup.presets.asyncLoading.get()) setup(true);
 	refreshPresets();
+
+
+	macroUpdateTimestamp = util.getTimestamp();
+}
+
+function update(deltaTime)
+{
+
 }
 
 
@@ -166,6 +179,7 @@ function moduleParameterChanged(param) {
 		if (local.parameters.setup.presets.asyncLoading.get()) setup(true);
 	} else if (param.getParent().is(macrosGroup)) {
 		updateAllParametersForMacro(param);
+		macroUpdateTimestamp = util.getTimestamp();
 	} else if (param.is(local.parameters.setup.presets.saveNew)) {
 		savePreset();
 	} else if (param.is(local.parameters.setup.presets.load)) {
@@ -174,6 +188,8 @@ function moduleParameterChanged(param) {
 		updateCurrentPreset();
 	} else if (param.is(local.parameters.setup.presets.refresh)) {
 		refreshPresets();
+	} else if (param.is(local.parameters.setup.presets.refreshNow)) {
+		refreshPresets();
 	} else if (param.is(local.parameters.setup.presets.asyncLoading)) {
 		if (param.get()) setup(true);
 		else {
@@ -181,7 +197,11 @@ function moduleParameterChanged(param) {
 			local.parameters.setup.presets.loadedValues.orbGroups.clear();
 			local.parameters.setup.presets.loadedValues.macros.clear();
 		}
-	} else {
+	} 
+	else if (param.is(local.parameters.setup.resetAllMacro)) {
+		resetGroupMacro(orbGroups);
+		resetGroupMacro(forces);
+	}else {
 		var p4 = param.getParent(4);
 		if (p4 == forceGroupsGroup) {
 			var forceIndex = parseInt(param.getParent(3).niceName.split(" ")[2]) - 1;
@@ -233,18 +253,18 @@ function updateAllParameters(index, items, parameters) {
 }
 
 function updateParam(index, groupName, paramName, sourceParam, parameters, items) {
-	if (sourceParam != null) {
+	/*if (sourceParam != null) {
 		var macroIndex = sourceParam.getParent().getControllables().indexOf(sourceParam);
 		if (macroIndex > 0 && macros[macroIndex - 1].get() == 0) {
 			return;
 		}
-	}
+	}*/
 
 	var targetParams = danceGroupParameters[groupName] ? danceGroupParameters : parameters;
 
 	var paramProps = targetParams[groupName][paramName];
 
-	// script.log("Updating " + groupName + " " + paramName + " for " + items + "," + index);
+	
 
 	var item = items[index];
 	var itemGroup = item.getChild(groupName);
@@ -252,6 +272,8 @@ function updateParam(index, groupName, paramName, sourceParam, parameters, items
 	var itemParam = itemParamGroup.getChild("baseValue");
 	var paramMin = paramProps.min;
 	var paramMax = paramProps.max;
+
+	//script.log("Updating " + groupName + "/" + paramName + " for " + item.niceName + "," + index);
 
 	var managerName = item.getParent().niceName;
 
@@ -448,6 +470,8 @@ function addParametersToItem(item, parameters) {
 				}
 			} else if (paramType == "bool") {
 				paramContainer.addBoolParameter("Base Value", "Base value for this parameter", paramDefault);
+			} else if (paramType == "string") {
+				paramContainer.addStringParameter("Base Value", "Base value for this parameter", paramDefault);
 			}
 		}
 	}
@@ -495,6 +519,31 @@ function getPropForParam(param) {
 	return items[paramGroupName][paramName];
 }
 
+function resetGroupMacro(groups) {
+	script.log("Resetting all macros");
+
+	for (var i = 0; i < groups.length; i++) { // Orb or Force Groups
+		var group = groups[i];
+		var groupContainers = group.getContainers();
+
+		for (var j = 0; j < groupContainers.length; j++) { // Parameter containers
+			var groupContainer = groupContainers[j];
+			var groupChildren = groupContainer.getContainers();
+
+			for( var k = 0; k < groupChildren.length; k++) { // Item in each parameter container
+				var itemParamGroup = groupChildren[k];
+				var itemParamChildren = itemParamGroup.getControllables();
+
+				if (itemParamChildren.length <= 1) continue; // no macro param	
+
+				for( var l = 1; l < itemParamChildren.length; l++) { // Macro weight params
+					var macroWeightParam = itemParamChildren[l];
+					if (macroWeightParam) macroWeightParam.set(0);
+				}
+			}
+		}
+	}
+}
 
 
 
