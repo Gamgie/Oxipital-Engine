@@ -13,17 +13,17 @@ public class SpaceshipMovement : CameraMovement
 	public Vector3 cameraRotation;
 
 	[Header("Translation")]
-	[Range(0, 100)]
+	[Range(0, 200)]
 	public float thrust;
 	[Range(-1,1)]
 	public float thrust1D;
 
-	[Range(0, 100)]
+	[Range(0, 200)]
 	public float lateralThrust;
 	[Range(-1, 1)]
 	public float lateralThrust1D;
 
-	[Range(0, 100)]
+	[Range(0, 200)]
 	public float verticalThrust;
 	[Range(-1, 1)]
 	public float verticalThrust1D;

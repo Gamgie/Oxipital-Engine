@@ -17,7 +17,7 @@ float3 ComputeOrthoAxialForce(in float3 pos, in float3 rotation, in float3 cente
     float axialXDistance = length(ClosestPointOnALine(pos, xAxis, center)) / normalizedRadius;
     float curve = (axialXDistance);//+ sin(2 * 3.14 * axialXDistance);
 
-    orthoAxialForce =  (1 / pow(axialZDistance + 1, abs(axialFactor))) * normalize(orthoAxialDepthVector);
+    orthoAxialForce = (1 / pow(abs(axialZDistance + 1), abs(axialFactor))) * normalize(orthoAxialDepthVector);
 	
     // Total force contribution from this center
     return orthoAxialForce;
