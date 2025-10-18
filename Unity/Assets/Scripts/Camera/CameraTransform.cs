@@ -3,7 +3,7 @@ using UnityEngine;
 public class CameraTransform : MonoBehaviour
 {
     public Transform targetObject;
-    [Range(0f, 5f)]
+    [Range(0f, 20f)]
     public float offset;
     public Vector3 position;
     public Vector3 rotation;
