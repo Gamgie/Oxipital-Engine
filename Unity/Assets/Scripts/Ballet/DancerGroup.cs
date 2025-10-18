@@ -53,8 +53,9 @@ namespace Oxipital
 		public float dancerWeightSizeFactor = 0;
 		[Range(0, 1)]
 		public float dancerIntensity = 1;
+		[HideInInspector]
 		[Range(0, 1)]
-		public float dancerWeightIntensityFactor = 0;
+		public float dancerWeightIntensityFactor = 1;
 
 		public Vector3 dancerRotation = Vector3.zero;
 		public Vector3 dancerLookAt = Vector3.up;
@@ -81,6 +82,7 @@ namespace Oxipital
 		override protected void OnEnable()
 		{
 			init();
+			dancerWeightIntensityFactor = 1;
 		}
 
 		virtual protected void OnDisable()
