@@ -39,7 +39,7 @@ namespace Oxipital
 				//Vector3 randomPos = Vector3.Lerp(Vector3.down, Vector3.up, Mathf.Cos(randomT * Mathf.PI * 2) * .5f + .5f);
 				//Vector3 oscPos = Vector3.Lerp(normalPos, randomPos, group.patternSpeedRandom);
 				//Vector3 targetPos = Vector3.Lerp(zeroPos, oscPos, Mathf.Abs(group.patternSpeed * speedWeight));
-				Vector3 oscPos = Vector3.Lerp(Vector3.down, Vector3.up, Mathf.Cos(2*Mathf.PI*normalT + rel) * .5f + .5f);
+				Vector3 oscPos = Vector3.Lerp(Vector3.left, Vector3.right, Mathf.Cos(2*Mathf.PI*normalT + rel) * .5f + .5f);
                 Vector3 randomOscPos = Vector3.Lerp(Vector3.down, Vector3.up, Mathf.Cos(2 * Mathf.PI * randomT + rel) * .5f + .5f);
                 Vector3 targetPos = Vector3.Lerp(oscPos, randomOscPos, group.patternSpeedRandom); ;
 
