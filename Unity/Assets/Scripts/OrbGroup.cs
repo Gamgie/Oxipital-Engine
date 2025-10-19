@@ -148,6 +148,11 @@ namespace Oxipital
         [InBuffer(16)]
         [Range(0, 1)]
         public float meshOpacity = 0;
+        [Range(0, 1)]
+        public float meshColorIntensity = 0;
+        [Range(0, 1)]
+        public float lightIntensity = 0;
+
 
         [Header("Physics")]
         [InBuffer(17)]
@@ -260,10 +265,18 @@ namespace Oxipital
             foreach(MeshRenderer r in renderers)
 			{
                 Color c = r.material.color;
+                c = Color.Lerp(Color.black, color, meshColorIntensity);
                 c.a = meshOpacity;
                 r.material.color = c;
-
             }
+
+            Light[] lights = GetComponentsInChildren<Light>();
+            foreach(Light l in lights)
+			{
+                l.intensity = Unity.Mathematics.math.remap(0, 1, 0, 1000, lightIntensity);
+                l.shadowStrength = 100;
+                l.color = color;
+			}
 
         }
 
