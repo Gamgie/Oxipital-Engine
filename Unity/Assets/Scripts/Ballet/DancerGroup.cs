@@ -53,9 +53,6 @@ namespace Oxipital
 		public float dancerWeightSizeFactor = 0;
 		[Range(0, 1)]
 		public float dancerIntensity = 1;
-		[HideInInspector]
-		[Range(0, 1)]
-		public float dancerWeightIntensityFactor = 1;
 
 		public Vector3 dancerRotation = Vector3.zero;
 		public Vector3 dancerLookAt = Vector3.up;
@@ -82,7 +79,6 @@ namespace Oxipital
 		override protected void OnEnable()
 		{
 			init();
-			dancerWeightIntensityFactor = 1;
 		}
 
 		virtual protected void OnDisable()
@@ -158,7 +154,7 @@ namespace Oxipital
 			{
 				Dancer d = items[i];
 				d.weight = i <= curCount - 1 ? 1 : getCountRelativeProgression();
-				d.intensity = dancerIntensity * Mathf.Lerp(1, d.weight, dancerWeightIntensityFactor);
+				d.intensity = dancerIntensity * d.weight;
 
 				float dancerSizeSpreadFactor = 0;
                 if (items.Count > 1)
