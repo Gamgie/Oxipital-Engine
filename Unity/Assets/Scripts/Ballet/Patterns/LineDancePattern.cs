@@ -31,7 +31,7 @@ namespace Oxipital
 				float tAtFull = fullDancerCount == 1 ? 0 : (float)i / (fullDancerCount - 1);
 				float tAtNextFull = fullDancerCount == 1 ? 0 : (float)(i) / (dancerCount - 1);
 
-				float rel = Mathf.Acos( (2*i / Mathf.Max(1,(groupCount-1))) - 1.0f);
+				float rel = Mathf.Acos( Mathf.Clamp(((2*i / Mathf.Max(1,(groupCount-1))) - 1.0f),-1.0f,1.0f));
 				float initT = Mathf.Lerp(tAtFull, tAtNextFull, relativeProgression) + group.patternTimeOffset * rel;
 				float normalT = group.patternTime;
 				float randomT = group.items[i].localPatternTime;
