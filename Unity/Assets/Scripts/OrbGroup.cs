@@ -274,7 +274,7 @@ namespace Oxipital
             foreach(Light l in lights)
 			{
                 l.intensity = Unity.Mathematics.math.remap(0, 1, 0, 1000, lightIntensity);
-                l.shadowStrength = 100;
+                l.shadowStrength = 1;
                 l.color = color;
 			}
 
