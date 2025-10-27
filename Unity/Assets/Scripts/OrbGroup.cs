@@ -91,7 +91,7 @@ namespace Oxipital
         public float life = 20;
 
         public enum EmitterShape { Sphere, Plane, Torus, Cube, Pipe, Egg, Line, Circle, Merkaba, Pyramid, Custom, Augmenta }
-        public enum RenderType { UnlitOpaque, UnlitAdditive, LitQuad, LitMesh}
+        public enum RenderType { UnlitOpaque, UnlitAdditive, LitQuad, LitMesh }
 
         [InBuffer(1)]
         public EmitterShape emitterShape;
@@ -122,30 +122,50 @@ namespace Oxipital
         [ColorUsage(true, true)]
         public Color color = Color.white;
 
-        [InBuffer(10)]
+        public Color colorLife = Color.black;
+        [Range(0, 1)]
+        public float colorLifeRange = 1;
+        public Gradient colorOverLife;
+		[InBuffer(10)]
+		[Range(0, 1)]
+		public float colorLifeBlend = 0;
+
+		public Color colorSpeed = Color.black;
+		[Range(0, 1)]
+		public float colorSpeedRange = 1;
+		public Gradient colorOverSpeed;
+		[InBuffer(11)]
+		[Range(0, 1)]
+		public float colorSpeedBlend = 0;
+
+		[InBuffer(12)]
+		[Range(0, 1)]
+		public float colorMaxSpeed = 1;
+
+		[InBuffer(13)]
         [Range(0, 1)]
         public float alpha = .5f;
 
-        [InBuffer(11)]
+        [InBuffer(14)]
         [Range(0, 1)]
         public float hdrMultiplier = 1;
 
-        [InBuffer(12)]
+        [InBuffer(15)]
         [Range(0, 1)]
         public float alphaSpeedThreshold = 0;
 
-        [InBuffer(13)]
+        [InBuffer(16)]
         [Range(0, 1)]
         public float textureOpacity = 0;
 
-        [InBuffer(14)]
+        [InBuffer(17)]
         [Range(0, 1)]
         public float particleSize = 0;
 
-        [InBuffer(15)]
+        [InBuffer(18)]
         public RenderType renderType = RenderType.UnlitAdditive;
 
-        [InBuffer(16)]
+        [InBuffer(19)]
         [Range(0, 1)]
         public float meshOpacity = 0;
         [Range(0, 1)]
@@ -155,30 +175,30 @@ namespace Oxipital
 
 
         [Header("Physics")]
-        [InBuffer(17)]
+        [InBuffer(20)]
         [Range(0, 1)]
         public float forceWeight = 1;
 
-        [InBuffer(18)]
+        [InBuffer(21)]
         [Range(0, 1)]
         public float drag = .5f;
 
-        [InBuffer(19)]
+        [InBuffer(22)]
         [Range(0, 1)]
         public float velocityDrag = 0;
 
-        [InBuffer(20)]
+        [InBuffer(23)]
         [Range(0, 1)]
         public float noisyDrag = 0;
 
-        [InBuffer(21)]
+        [InBuffer(24)]
         [Range(0, 5)]
         public float noisyDragFrequency = 0;
 
-        [InBuffer(22)]
+        [InBuffer(25)]
         public bool activateCollision = false;
 
-        
+
 
         public string customMeshName = string.Empty;
 
@@ -204,11 +224,16 @@ namespace Oxipital
         {
             base.Update();
 
-            bool isDying = killProgress > 0;
+            colorOverLife = CreateGradient(color, colorLife, 0, 1, colorLifeRange);
+            colorOverSpeed = CreateGradient(Color.white, colorSpeed, 0, 1, colorSpeedRange);
+
+			bool isDying = killProgress > 0;
             vfx.SetFloat("Emitter Intensity", isDying ? 0 : dancerIntensity);
             vfx.SetGraphicsBuffer("Orb Buffer", buffer);
+            vfx.SetGradient("Color Over Life", colorOverLife);
+            vfx.SetGradient("Color Over Speed", colorOverSpeed);
 
-            foreach (var item in items) item.debugColor = color;
+			foreach (var item in items) item.debugColor = color;
 
             if (emitterShape != lastEmitterShape)
             {
@@ -222,7 +247,7 @@ namespace Oxipital
             }
 
             // Load Augmenta Point Clouds
-            if(emitterShape == EmitterShape.Augmenta)
+            if (emitterShape == EmitterShape.Augmenta)
             {
                 if (augmentaObject != null)
                 {
@@ -231,7 +256,7 @@ namespace Oxipital
             }
 
             // Load custom mesh
-            if(emitterShape == EmitterShape.Custom)
+            if (emitterShape == EmitterShape.Custom)
             {
                 meshName = customMeshName;
             }
@@ -250,20 +275,20 @@ namespace Oxipital
                     if (texture == null)
                     {
                         Debug.LogWarning("Could not find texture for " + meshName);
-                        setColor(Texture2D.whiteTexture);   
+                        setColor(Texture2D.whiteTexture);
                     }
                     else
                     {
                         setColor(texture);
                     }
-                    
+
                     lastMeshName = meshName;
                 }
             }
 
             MeshRenderer[] renderers = GetComponentsInChildren<MeshRenderer>();
-            foreach(MeshRenderer r in renderers)
-			{
+            foreach (MeshRenderer r in renderers)
+            {
                 Color c = r.material.color;
                 c = Color.Lerp(Color.black, color, meshColorIntensity);
                 c.a = meshOpacity;
@@ -271,12 +296,12 @@ namespace Oxipital
             }
 
             Light[] lights = GetComponentsInChildren<Light>();
-            foreach(Light l in lights)
-			{
+            foreach (Light l in lights)
+            {
                 l.intensity = Unity.Mathematics.math.remap(0, 1, 0, 1000, lightIntensity);
                 l.shadowStrength = 1;
                 l.color = color;
-			}
+            }
 
         }
 
@@ -334,7 +359,7 @@ namespace Oxipital
             if (vfx == null) return;
             if (texture == null) return;
 
-            if(!vfx.HasTexture("Emitter Color"))
+            if (!vfx.HasTexture("Emitter Color"))
             {
                 Debug.LogWarning("Emitter Color not found in VFX");
                 return;
@@ -370,7 +395,28 @@ namespace Oxipital
         {
             base.ResetPattern();
         }
-	}
+
+        public Gradient CreateGradient(Color colorA, Color colorB, float alphaKeyA, float alphaKeyB, float time)
+        {
+            if (time == 0)
+                time = 0.001f;
+
+			Gradient result = new Gradient();
+            GradientColorKey[] colorKeys = new GradientColorKey[2];
+            colorKeys[0].color = colorA * (float)Math.Pow(2,hdrMultiplier*5);
+            colorKeys[0].time = 0.0f;
+            colorKeys[1].color = colorB * (float)Math.Pow(2, hdrMultiplier * 5);
+            colorKeys[1].time = time;
+            GradientAlphaKey[] alphaKeys = new GradientAlphaKey[2];
+            alphaKeys[0].alpha = alphaKeyA;
+            alphaKeys[0].time = 0.0f;
+            alphaKeys[1].alpha = alphaKeyB;
+            alphaKeys[1].time = time;
+            result.SetKeys(colorKeys, alphaKeys);
+
+            return result;
+        }
+    }
 
 }
 
