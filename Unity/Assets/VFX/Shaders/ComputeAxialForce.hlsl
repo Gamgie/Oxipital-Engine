@@ -24,8 +24,8 @@ float3 ComputeAxialForce(in float3 pos, in float3 worldPosition, in float3 rotat
 
 		if(axialFrequency.x != 0)
         {
-			//waveX = sin(2*PI*axialFrequency.x*pos.y) * cos(PI*axialFrequency.x*pos.x);
-            waveX = sin(2 * PI * axialFrequency.x * pos.x);
+			waveX = sin(2*PI*axialFrequency.x*pos.y) * cos(PI*axialFrequency.x*pos.x);
+            //waveX = sin(2 * PI * axialFrequency.x * pos.x);
         }
 		else
         {
@@ -45,7 +45,8 @@ float3 ComputeAxialForce(in float3 pos, in float3 worldPosition, in float3 rotat
 
 		if(axialFrequency.y != 0)
         {
-            waveY = sin(2 * PI * axialFrequency.y * pos.y);
+            waveY = sin(2 * PI * axialFrequency.y * pos.x) * cos(PI * axialFrequency.y * pos.y);
+            //waveY = sin(2 * PI * axialFrequency.y * pos.y);
         }
 		else
         {
@@ -64,7 +65,8 @@ float3 ComputeAxialForce(in float3 pos, in float3 worldPosition, in float3 rotat
 
 		if(axialFrequency.z != 0)
         {
-            waveZ = sin(2 * PI * axialFrequency.z * pos.z);
+            //waveZ = sin(2 * PI * axialFrequency.z * pos.z);
+            waveZ = sin(2 * PI * axialFrequency.z * pos.z) * cos(PI * axialFrequency.z * pos.y);
         }
 		else
         {
