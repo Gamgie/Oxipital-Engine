@@ -224,8 +224,8 @@ namespace Oxipital
         {
             base.Update();
 
-            colorOverLife = CreateGradient(color, colorLife, 0, 1, colorLifeRange);
-            colorOverSpeed = CreateGradient(Color.white, colorSpeed, 0, 1, colorSpeedRange);
+            colorOverLife = CreateGradient(color, colorLife, 0, 1, 0, colorLifeRange);
+            colorOverSpeed = CreateGradient(Color.black, colorSpeed, 1, 1, (1-colorSpeedRange), 1);
 
 			bool isDying = killProgress > 0;
             vfx.SetFloat("Emitter Intensity", isDying ? 0 : dancerIntensity);
@@ -396,22 +396,22 @@ namespace Oxipital
             base.ResetPattern();
         }
 
-        public Gradient CreateGradient(Color colorA, Color colorB, float alphaKeyA, float alphaKeyB, float time)
+        public Gradient CreateGradient(Color colorA, Color colorB, float alphaKeyA, float alphaKeyB, float timeA, float timeB)
         {
-            if (time == 0)
-                time = 0.001f;
+            if (timeA == 0)
+                timeA = 0.001f;
 
 			Gradient result = new Gradient();
             GradientColorKey[] colorKeys = new GradientColorKey[2];
             colorKeys[0].color = colorA * (float)Math.Pow(2,hdrMultiplier*5);
-            colorKeys[0].time = 0.0f;
+            colorKeys[0].time = timeA;
             colorKeys[1].color = colorB * (float)Math.Pow(2, hdrMultiplier * 5);
-            colorKeys[1].time = time;
+            colorKeys[1].time = timeB;
             GradientAlphaKey[] alphaKeys = new GradientAlphaKey[2];
             alphaKeys[0].alpha = alphaKeyA;
-            alphaKeys[0].time = 0.0f;
+            alphaKeys[0].time = timeA;
             alphaKeys[1].alpha = alphaKeyB;
-            alphaKeys[1].time = time;
+            alphaKeys[1].time = timeB;
             result.SetKeys(colorKeys, alphaKeys);
 
             return result;
