@@ -90,7 +90,7 @@ MonoBehaviour:
       x: -242
       y: -1030
       width: 1731
-      height: 4404
+      height: 4408
     contents:
     - model: {fileID: 114023846229194376}
       id: 0
@@ -185,6 +185,9 @@ MonoBehaviour:
     - model: {fileID: 8926484042661616134}
       id: 1
       isStickyNote: 0
+    - model: {fileID: 8926484042661616146}
+      id: 0
+      isStickyNote: 0
   stickyNoteInfos: []
   categories:
   - name: Orb
@@ -238,6 +241,7 @@ MonoBehaviour:
   - {fileID: 8926484042661616108}
   - {fileID: 8926484042661616134}
   - {fileID: 8926484042661616136}
+  - {fileID: 8926484042661616146}
   m_UIPosition: {x: 0, y: 0}
   m_UICollapsed: 1
   m_UISuperCollapsed: 0
@@ -302,6 +306,22 @@ MonoBehaviour:
         m_SerializableType: UnityEngine.Mesh, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
       m_SerializableObject: 
+    min: -Infinity
+    max: Infinity
+    enumValues: []
+    descendantCount: 0
+  - name: Emitter Mesh Color
+    path: Emitter Mesh Color
+    tooltip: 
+    space: -1
+    spaceable: 0
+    sheetType: m_NamedObject
+    realType: Texture2D
+    defaultValue:
+      m_Type:
+        m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      m_SerializableObject: '{"obj":{"fileID":2800000,"guid":"276d9e395ae18fe40a9b4988549f2349","type":3}}'
     min: -Infinity
     max: Infinity
     enumValues: []
@@ -734,7 +754,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615273}
   - {fileID: 8926484042661615269}
   - {fileID: 8926484042661615001}
-  m_UIPosition: {x: 629, y: 1484}
+  m_UIPosition: {x: 613, y: 1617}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots: []
@@ -1220,7 +1240,7 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 8926484042661614596}
       inputSlot: {fileID: 8926484042661614726}
-    position: {x: 36, y: 1534}
+    position: {x: 53, y: 1754}
     expandedSlots: []
     expanded: 0
     supecollapsed: 0
@@ -1374,7 +1394,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614716}
   m_ExposedName: Force Group 3B
   m_Exposed: 1
-  m_Order: 14
+  m_Order: 15
   m_Category: Forces
   m_Min:
     m_Type:
@@ -1393,7 +1413,7 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 8926484042661614716}
       inputSlot: {fileID: 8926484042661615612}
-    position: {x: 208, y: 1839}
+    position: {x: 225, y: 2059}
     expandedSlots: []
     expanded: 0
     supecollapsed: 0
@@ -1455,7 +1475,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614718}
   m_ExposedName: Force Group 4
   m_Exposed: 1
-  m_Order: 15
+  m_Order: 16
   m_Category: Forces
   m_Min:
     m_Type:
@@ -1474,7 +1494,7 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 8926484042661614718}
       inputSlot: {fileID: 8926484042661615270}
-    position: {x: 25, y: 1942}
+    position: {x: 42, y: 2162}
     expandedSlots: []
     expanded: 0
     supecollapsed: 0
@@ -1536,7 +1556,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614720}
   m_ExposedName: Force Group 4B
   m_Exposed: 1
-  m_Order: 16
+  m_Order: 17
   m_Category: Forces
   m_Min:
     m_Type:
@@ -1555,7 +1575,7 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 8926484042661614720}
       inputSlot: {fileID: 8926484042661615613}
-    position: {x: 193, y: 1968}
+    position: {x: 210, y: 2188}
     expandedSlots: []
     expanded: 0
     supecollapsed: 0
@@ -1654,7 +1674,7 @@ MonoBehaviour:
       inputSlot: {fileID: 8926484042661616062}
     - outputSlot: {fileID: 8926484042661614722}
       inputSlot: {fileID: 8926484042661616070}
-    position: {x: 41, y: -111}
+    position: {x: 38, y: 100}
     expandedSlots: []
     expanded: 0
     supecollapsed: 0
@@ -1670,7 +1690,7 @@ MonoBehaviour:
       inputSlot: {fileID: 8926484042661615945}
     - outputSlot: {fileID: 8926484042661614722}
       inputSlot: {fileID: 8926484042661615944}
-    position: {x: 46, y: 2083}
+    position: {x: 63, y: 2303}
     expandedSlots: []
     expanded: 0
     supecollapsed: 0
@@ -1836,7 +1856,7 @@ MonoBehaviour:
       inputSlot: {fileID: 8926484042661616063}
     - outputSlot: {fileID: 8926484042661614737}
       inputSlot: {fileID: 8926484042661616071}
-    position: {x: 6, y: 584}
+    position: {x: 25, y: 433}
     expandedSlots: []
     expanded: 0
     supecollapsed: 0
@@ -1907,7 +1927,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614803}
   m_ExposedName: Emitter Intensity
   m_Exposed: 1
-  m_Order: 7
+  m_Order: 8
   m_Category: Orb
   m_Min:
     m_Type:
@@ -2124,7 +2144,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614983}
   m_ExposedName: Camera Position
   m_Exposed: 1
-  m_Order: 4
+  m_Order: 5
   m_Category: 
   m_Min:
     m_Type:
@@ -2698,6 +2718,7 @@ MonoBehaviour:
   m_UISuperCollapsed: 0
   m_InputSlots:
   - {fileID: 8926484042661615419}
+  - {fileID: 8926484042661616158}
   - {fileID: 8926484042661615420}
   - {fileID: 8926484042661615871}
   - {fileID: 8926484042661615421}
@@ -2866,6 +2887,7 @@ MonoBehaviour:
   m_UISuperCollapsed: 0
   m_InputSlots:
   - {fileID: 8926484042661615430}
+  - {fileID: 8926484042661616159}
   - {fileID: 8926484042661615431}
   - {fileID: 8926484042661615872}
   - {fileID: 8926484042661615432}
@@ -3034,6 +3056,7 @@ MonoBehaviour:
   m_UISuperCollapsed: 0
   m_InputSlots:
   - {fileID: 8926484042661615435}
+  - {fileID: 8926484042661616160}
   - {fileID: 8926484042661615436}
   - {fileID: 8926484042661615873}
   - {fileID: 8926484042661615437}
@@ -3202,6 +3225,7 @@ MonoBehaviour:
   m_UISuperCollapsed: 0
   m_InputSlots:
   - {fileID: 8926484042661615440}
+  - {fileID: 8926484042661616161}
   - {fileID: 8926484042661615441}
   - {fileID: 8926484042661615874}
   - {fileID: 8926484042661615442}
@@ -3370,6 +3394,7 @@ MonoBehaviour:
   m_UISuperCollapsed: 0
   m_InputSlots:
   - {fileID: 8926484042661615445}
+  - {fileID: 8926484042661616162}
   - {fileID: 8926484042661615446}
   - {fileID: 8926484042661615875}
   - {fileID: 8926484042661615447}
@@ -3538,6 +3563,7 @@ MonoBehaviour:
   m_UISuperCollapsed: 0
   m_InputSlots:
   - {fileID: 8926484042661615450}
+  - {fileID: 8926484042661616163}
   - {fileID: 8926484042661615451}
   - {fileID: 8926484042661615876}
   - {fileID: 8926484042661615452}
@@ -3706,6 +3732,7 @@ MonoBehaviour:
   m_UISuperCollapsed: 0
   m_InputSlots:
   - {fileID: 8926484042661615455}
+  - {fileID: 8926484042661616164}
   - {fileID: 8926484042661615456}
   - {fileID: 8926484042661615877}
   - {fileID: 8926484042661615457}
@@ -3874,6 +3901,7 @@ MonoBehaviour:
   m_UISuperCollapsed: 0
   m_InputSlots:
   - {fileID: 8926484042661615460}
+  - {fileID: 8926484042661616165}
   - {fileID: 8926484042661615461}
   - {fileID: 8926484042661615878}
   - {fileID: 8926484042661615462}
@@ -4744,7 +4772,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615594}
   m_ExposedName: Force Group 1B
   m_Exposed: 1
-  m_Order: 8
+  m_Order: 10
   m_Category: Forces
   m_Min:
     m_Type:
@@ -4763,7 +4791,7 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 8926484042661615594}
       inputSlot: {fileID: 8926484042661615607}
-    position: {x: 209, y: 1568}
+    position: {x: 226, y: 1788}
     expandedSlots: []
     expanded: 1
     supecollapsed: 0
@@ -4825,7 +4853,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615598}
   m_ExposedName: Force Group 2
   m_Exposed: 1
-  m_Order: 11
+  m_Order: 12
   m_Category: Forces
   m_Min:
     m_Type:
@@ -4844,7 +4872,7 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 8926484042661615598}
       inputSlot: {fileID: 8926484042661615262}
-    position: {x: 26, y: 1700}
+    position: {x: 43, y: 1920}
     expandedSlots: []
     expanded: 1
     supecollapsed: 0
@@ -4906,7 +4934,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615600}
   m_ExposedName: Force Group 2B
   m_Exposed: 1
-  m_Order: 12
+  m_Order: 13
   m_Category: Forces
   m_Min:
     m_Type:
@@ -4925,7 +4953,7 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 8926484042661615600}
       inputSlot: {fileID: 8926484042661615611}
-    position: {x: 202, y: 1731}
+    position: {x: 219, y: 1951}
     expandedSlots: []
     expanded: 1
     supecollapsed: 0
@@ -4987,7 +5015,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615602}
   m_ExposedName: Force Group 3
   m_Exposed: 1
-  m_Order: 13
+  m_Order: 14
   m_Category: Forces
   m_Min:
     m_Type:
@@ -5006,7 +5034,7 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 8926484042661615602}
       inputSlot: {fileID: 8926484042661615274}
-    position: {x: 33, y: 1815}
+    position: {x: 50, y: 2035}
     expandedSlots: []
     expanded: 1
     supecollapsed: 0
@@ -5208,7 +5236,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615851}
   m_ExposedName: Augmenta Positions
   m_Exposed: 1
-  m_Order: 10
+  m_Order: 11
   m_Category: Orb
   m_Min:
     m_Type:
@@ -5243,7 +5271,7 @@ MonoBehaviour:
       inputSlot: {fileID: 8926484042661616066}
     - outputSlot: {fileID: 8926484042661615851}
       inputSlot: {fileID: 8926484042661616074}
-    position: {x: 2, y: 128}
+    position: {x: -12, y: 214}
     expandedSlots: []
     expanded: 1
     supecollapsed: 0
@@ -5350,7 +5378,7 @@ MonoBehaviour:
       inputSlot: {fileID: 8926484042661616067}
     - outputSlot: {fileID: 8926484042661615853}
       inputSlot: {fileID: 8926484042661616075}
-    position: {x: -29, y: 281}
+    position: {x: -44, y: 330}
     expandedSlots: []
     expanded: 1
     supecollapsed: 0
@@ -5633,7 +5661,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 93, y: 1409}
+  m_UIPosition: {x: 110, y: 1629}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -5736,7 +5764,7 @@ MonoBehaviour:
   m_InputSlots: []
   m_OutputSlots:
   - {fileID: 8926484042661615870}
-  m_ExposedName: Emitter Color
+  m_ExposedName: Emitter Mesh Color
   m_Exposed: 1
   m_Order: 3
   m_Category: Orb
@@ -5775,7 +5803,7 @@ MonoBehaviour:
       inputSlot: {fileID: 8926484042661616064}
     - outputSlot: {fileID: 8926484042661615870}
       inputSlot: {fileID: 8926484042661616072}
-    position: {x: 8, y: 697}
+    position: {x: -8, y: 533}
     expandedSlots: []
     expanded: 1
     supecollapsed: 0
@@ -6793,6 +6821,7 @@ MonoBehaviour:
   m_UISuperCollapsed: 0
   m_InputSlots:
   - {fileID: 8926484042661616062}
+  - {fileID: 8926484042661616166}
   - {fileID: 8926484042661616063}
   - {fileID: 8926484042661616064}
   - {fileID: 8926484042661616065}
@@ -7066,6 +7095,7 @@ MonoBehaviour:
   m_UISuperCollapsed: 0
   m_InputSlots:
   - {fileID: 8926484042661616070}
+  - {fileID: 8926484042661616167}
   - {fileID: 8926484042661616071}
   - {fileID: 8926484042661616072}
   - {fileID: 8926484042661616073}
@@ -8307,7 +8337,7 @@ MonoBehaviour:
   - {fileID: 8926484042661616135}
   m_ExposedName: Color Over Life
   m_Exposed: 1
-  m_Order: 5
+  m_Order: 6
   m_Category: Orb
   m_Min:
     m_Type:
@@ -8397,7 +8427,7 @@ MonoBehaviour:
   - {fileID: 8926484042661616137}
   m_ExposedName: Color Over Speed
   m_Exposed: 1
-  m_Order: 6
+  m_Order: 7
   m_Category: Orb
   m_Min:
     m_Type:
@@ -8604,3 +8634,461 @@ MonoBehaviour:
   m_Direction: 0
   m_LinkedSlots:
   - {fileID: 8926484042661616135}
+--- !u!114 &8926484042661616146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 330e0fca1717dde4aaa144f48232aa64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UIIgnoredErrors: []
+  m_Parent: {fileID: 114350483966674976}
+  m_Children: []
+  m_UIPosition: {x: 0, y: 0}
+  m_UICollapsed: 1
+  m_UISuperCollapsed: 0
+  m_InputSlots: []
+  m_OutputSlots:
+  - {fileID: 8926484042661616147}
+  m_ExposedName: Emitter Color
+  m_Exposed: 1
+  m_Order: 4
+  m_Category: Orb
+  m_Min:
+    m_Type:
+      m_SerializableType: 
+    m_SerializableObject: 
+  m_Max:
+    m_Type:
+      m_SerializableType: 
+    m_SerializableObject: 
+  m_IsOutput: 0
+  m_EnumValues: []
+  m_ValueFilter: 0
+  m_Tooltip: 
+  m_Nodes:
+  - m_Id: 0
+    linkedSlots:
+    - outputSlot: {fileID: 8926484042661616147}
+      inputSlot: {fileID: 8926484042661616158}
+    - outputSlot: {fileID: 8926484042661616147}
+      inputSlot: {fileID: 8926484042661616159}
+    - outputSlot: {fileID: 8926484042661616147}
+      inputSlot: {fileID: 8926484042661616160}
+    - outputSlot: {fileID: 8926484042661616147}
+      inputSlot: {fileID: 8926484042661616161}
+    - outputSlot: {fileID: 8926484042661616147}
+      inputSlot: {fileID: 8926484042661616162}
+    - outputSlot: {fileID: 8926484042661616147}
+      inputSlot: {fileID: 8926484042661616163}
+    - outputSlot: {fileID: 8926484042661616147}
+      inputSlot: {fileID: 8926484042661616164}
+    - outputSlot: {fileID: 8926484042661616147}
+      inputSlot: {fileID: 8926484042661616165}
+    - outputSlot: {fileID: 8926484042661616147}
+      inputSlot: {fileID: 8926484042661616166}
+    - outputSlot: {fileID: 8926484042661616147}
+      inputSlot: {fileID: 8926484042661616167}
+    position: {x: 26, y: 628}
+    expandedSlots: []
+    expanded: 1
+    supecollapsed: 0
+--- !u!114 &8926484042661616147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70a331b1d86cc8d4aa106ccbe0da5852, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UIIgnoredErrors: []
+  m_Parent: {fileID: 0}
+  m_Children: []
+  m_UIPosition: {x: 0, y: 0}
+  m_UICollapsed: 1
+  m_UISuperCollapsed: 0
+  m_MasterSlot: {fileID: 8926484042661616147}
+  m_MasterData:
+    m_Owner: {fileID: 8926484042661616146}
+    m_Value:
+      m_Type:
+        m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      m_SerializableObject: '{"obj":{"fileID":2800000,"guid":"276d9e395ae18fe40a9b4988549f2349","type":3}}'
+    m_Space: -1
+  m_Property:
+    name: o
+    m_serializedType:
+      m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+  m_Direction: 1
+  m_LinkedSlots:
+  - {fileID: 8926484042661616158}
+  - {fileID: 8926484042661616159}
+  - {fileID: 8926484042661616160}
+  - {fileID: 8926484042661616161}
+  - {fileID: 8926484042661616162}
+  - {fileID: 8926484042661616163}
+  - {fileID: 8926484042661616164}
+  - {fileID: 8926484042661616165}
+  - {fileID: 8926484042661616166}
+  - {fileID: 8926484042661616167}
+--- !u!114 &8926484042661616158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70a331b1d86cc8d4aa106ccbe0da5852, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UIIgnoredErrors: []
+  m_Parent: {fileID: 0}
+  m_Children: []
+  m_UIPosition: {x: 0, y: 0}
+  m_UICollapsed: 1
+  m_UISuperCollapsed: 0
+  m_MasterSlot: {fileID: 8926484042661616158}
+  m_MasterData:
+    m_Owner: {fileID: 8926484042661615418}
+    m_Value:
+      m_Type:
+        m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      m_SerializableObject: '{"obj":{"fileID":2800000,"guid":"276d9e395ae18fe40a9b4988549f2349","type":3}}'
+    m_Space: -1
+  m_Property:
+    name: Emitter Color
+    m_serializedType:
+      m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+  m_Direction: 0
+  m_LinkedSlots:
+  - {fileID: 8926484042661616147}
+--- !u!114 &8926484042661616159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70a331b1d86cc8d4aa106ccbe0da5852, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UIIgnoredErrors: []
+  m_Parent: {fileID: 0}
+  m_Children: []
+  m_UIPosition: {x: 0, y: 0}
+  m_UICollapsed: 1
+  m_UISuperCollapsed: 0
+  m_MasterSlot: {fileID: 8926484042661616159}
+  m_MasterData:
+    m_Owner: {fileID: 8926484042661615429}
+    m_Value:
+      m_Type:
+        m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      m_SerializableObject: '{"obj":{"fileID":2800000,"guid":"276d9e395ae18fe40a9b4988549f2349","type":3}}'
+    m_Space: -1
+  m_Property:
+    name: Emitter Color
+    m_serializedType:
+      m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+  m_Direction: 0
+  m_LinkedSlots:
+  - {fileID: 8926484042661616147}
+--- !u!114 &8926484042661616160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70a331b1d86cc8d4aa106ccbe0da5852, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UIIgnoredErrors: []
+  m_Parent: {fileID: 0}
+  m_Children: []
+  m_UIPosition: {x: 0, y: 0}
+  m_UICollapsed: 1
+  m_UISuperCollapsed: 0
+  m_MasterSlot: {fileID: 8926484042661616160}
+  m_MasterData:
+    m_Owner: {fileID: 8926484042661615434}
+    m_Value:
+      m_Type:
+        m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      m_SerializableObject: '{"obj":{"fileID":2800000,"guid":"276d9e395ae18fe40a9b4988549f2349","type":3}}'
+    m_Space: -1
+  m_Property:
+    name: Emitter Color
+    m_serializedType:
+      m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+  m_Direction: 0
+  m_LinkedSlots:
+  - {fileID: 8926484042661616147}
+--- !u!114 &8926484042661616161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70a331b1d86cc8d4aa106ccbe0da5852, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UIIgnoredErrors: []
+  m_Parent: {fileID: 0}
+  m_Children: []
+  m_UIPosition: {x: 0, y: 0}
+  m_UICollapsed: 1
+  m_UISuperCollapsed: 0
+  m_MasterSlot: {fileID: 8926484042661616161}
+  m_MasterData:
+    m_Owner: {fileID: 8926484042661615439}
+    m_Value:
+      m_Type:
+        m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      m_SerializableObject: '{"obj":{"fileID":2800000,"guid":"276d9e395ae18fe40a9b4988549f2349","type":3}}'
+    m_Space: -1
+  m_Property:
+    name: Emitter Color
+    m_serializedType:
+      m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+  m_Direction: 0
+  m_LinkedSlots:
+  - {fileID: 8926484042661616147}
+--- !u!114 &8926484042661616162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70a331b1d86cc8d4aa106ccbe0da5852, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UIIgnoredErrors: []
+  m_Parent: {fileID: 0}
+  m_Children: []
+  m_UIPosition: {x: 0, y: 0}
+  m_UICollapsed: 1
+  m_UISuperCollapsed: 0
+  m_MasterSlot: {fileID: 8926484042661616162}
+  m_MasterData:
+    m_Owner: {fileID: 8926484042661615444}
+    m_Value:
+      m_Type:
+        m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      m_SerializableObject: '{"obj":{"fileID":2800000,"guid":"276d9e395ae18fe40a9b4988549f2349","type":3}}'
+    m_Space: -1
+  m_Property:
+    name: Emitter Color
+    m_serializedType:
+      m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+  m_Direction: 0
+  m_LinkedSlots:
+  - {fileID: 8926484042661616147}
+--- !u!114 &8926484042661616163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70a331b1d86cc8d4aa106ccbe0da5852, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UIIgnoredErrors: []
+  m_Parent: {fileID: 0}
+  m_Children: []
+  m_UIPosition: {x: 0, y: 0}
+  m_UICollapsed: 1
+  m_UISuperCollapsed: 0
+  m_MasterSlot: {fileID: 8926484042661616163}
+  m_MasterData:
+    m_Owner: {fileID: 8926484042661615449}
+    m_Value:
+      m_Type:
+        m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      m_SerializableObject: '{"obj":{"fileID":2800000,"guid":"276d9e395ae18fe40a9b4988549f2349","type":3}}'
+    m_Space: -1
+  m_Property:
+    name: Emitter Color
+    m_serializedType:
+      m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+  m_Direction: 0
+  m_LinkedSlots:
+  - {fileID: 8926484042661616147}
+--- !u!114 &8926484042661616164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70a331b1d86cc8d4aa106ccbe0da5852, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UIIgnoredErrors: []
+  m_Parent: {fileID: 0}
+  m_Children: []
+  m_UIPosition: {x: 0, y: 0}
+  m_UICollapsed: 1
+  m_UISuperCollapsed: 0
+  m_MasterSlot: {fileID: 8926484042661616164}
+  m_MasterData:
+    m_Owner: {fileID: 8926484042661615454}
+    m_Value:
+      m_Type:
+        m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      m_SerializableObject: '{"obj":{"fileID":2800000,"guid":"276d9e395ae18fe40a9b4988549f2349","type":3}}'
+    m_Space: -1
+  m_Property:
+    name: Emitter Color
+    m_serializedType:
+      m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+  m_Direction: 0
+  m_LinkedSlots:
+  - {fileID: 8926484042661616147}
+--- !u!114 &8926484042661616165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70a331b1d86cc8d4aa106ccbe0da5852, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UIIgnoredErrors: []
+  m_Parent: {fileID: 0}
+  m_Children: []
+  m_UIPosition: {x: 0, y: 0}
+  m_UICollapsed: 1
+  m_UISuperCollapsed: 0
+  m_MasterSlot: {fileID: 8926484042661616165}
+  m_MasterData:
+    m_Owner: {fileID: 8926484042661615459}
+    m_Value:
+      m_Type:
+        m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      m_SerializableObject: '{"obj":{"fileID":2800000,"guid":"276d9e395ae18fe40a9b4988549f2349","type":3}}'
+    m_Space: -1
+  m_Property:
+    name: Emitter Color
+    m_serializedType:
+      m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+  m_Direction: 0
+  m_LinkedSlots:
+  - {fileID: 8926484042661616147}
+--- !u!114 &8926484042661616166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70a331b1d86cc8d4aa106ccbe0da5852, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UIIgnoredErrors: []
+  m_Parent: {fileID: 0}
+  m_Children: []
+  m_UIPosition: {x: 0, y: 0}
+  m_UICollapsed: 1
+  m_UISuperCollapsed: 0
+  m_MasterSlot: {fileID: 8926484042661616166}
+  m_MasterData:
+    m_Owner: {fileID: 8926484042661616061}
+    m_Value:
+      m_Type:
+        m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      m_SerializableObject: '{"obj":{"fileID":2800000,"guid":"276d9e395ae18fe40a9b4988549f2349","type":3}}'
+    m_Space: -1
+  m_Property:
+    name: Emitter Color
+    m_serializedType:
+      m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+  m_Direction: 0
+  m_LinkedSlots:
+  - {fileID: 8926484042661616147}
+--- !u!114 &8926484042661616167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70a331b1d86cc8d4aa106ccbe0da5852, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UIIgnoredErrors: []
+  m_Parent: {fileID: 0}
+  m_Children: []
+  m_UIPosition: {x: 0, y: 0}
+  m_UICollapsed: 1
+  m_UISuperCollapsed: 0
+  m_MasterSlot: {fileID: 8926484042661616167}
+  m_MasterData:
+    m_Owner: {fileID: 8926484042661616069}
+    m_Value:
+      m_Type:
+        m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      m_SerializableObject: '{"obj":{"fileID":2800000,"guid":"276d9e395ae18fe40a9b4988549f2349","type":3}}'
+    m_Space: -1
+  m_Property:
+    name: Emitter Color
+    m_serializedType:
+      m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+  m_Direction: 0
+  m_LinkedSlots:
+  - {fileID: 8926484042661616147}

@@ -172,9 +172,11 @@ namespace Oxipital
         public float meshColorIntensity = 0;
         [Range(0, 1)]
         public float lightIntensity = 0;
+        public string textureFolderPath = "";
+        public string textureName = "";
 
 
-        [Header("Physics")]
+		[Header("Physics")]
         [InBuffer(20)]
         [Range(0, 1)]
         public float forceWeight = 1;
@@ -212,13 +214,18 @@ namespace Oxipital
         PCLToGraphicsBuffer pclGraphics;
         public AugmentaObject augmentaObject;
 
+        private bool textureLoaded = false;
+        private string lastTexturePath = "";
+
         protected override void OnEnable()
         {
             base.OnEnable();
             MeshLoader.loadMeshes();
             vfx = GetComponent<VisualEffect>();
             pclGraphics = GetComponent<PCLToGraphicsBuffer>();
-        }
+            textureLoaded = false;
+
+		}
 
         protected override void Update()
         {
@@ -275,18 +282,35 @@ namespace Oxipital
                     if (texture == null)
                     {
                         Debug.LogWarning("Could not find texture for " + meshName);
-                        setColor(Texture2D.whiteTexture);
+                        setColor(Texture2D.whiteTexture, "Emitter Mesh Color");
                     }
                     else
                     {
-                        setColor(texture);
+                        setColor(texture, "Emitter Mesh Color");
                     }
 
                     lastMeshName = meshName;
                 }
             }
 
-            MeshRenderer[] renderers = GetComponentsInChildren<MeshRenderer>();
+			// Load 2D Texture
+			string fullPath = Path.Combine(textureFolderPath, textureName);
+            if (fullPath != lastTexturePath) textureLoaded = false;
+
+			if (textureFolderPath != "" && textureName != "" && textureLoaded == false)
+            {
+                Texture2D tex = LoadTextureFromPath(fullPath);
+                if (tex != null)
+                {
+                    setColor(tex, "Emitter Color");
+                    textureLoaded = true;
+                    lastTexturePath = fullPath;
+
+				}
+			}
+
+
+			MeshRenderer[] renderers = GetComponentsInChildren<MeshRenderer>();
             foreach (MeshRenderer r in renderers)
             {
                 Color c = r.material.color;
@@ -354,17 +378,17 @@ namespace Oxipital
             foreach (var item in items) item.GetComponent<MeshFilter>().sharedMesh = m;
         }
 
-        internal void setColor(Texture2D texture)
+        internal void setColor(Texture2D texture, string name)
         {
             if (vfx == null) return;
             if (texture == null) return;
 
-            if (!vfx.HasTexture("Emitter Color"))
+            if (!vfx.HasTexture(name))
             {
-                Debug.LogWarning("Emitter Color not found in VFX");
+                Debug.LogWarning(name + " not found in VFX");
                 return;
             }
-            vfx.SetTexture("Emitter Color", texture);
+            vfx.SetTexture(name, texture);
         }
 
 
@@ -416,7 +440,21 @@ namespace Oxipital
 
             return result;
         }
-    }
+
+        public Texture2D LoadTextureFromPath(string path)
+        {
+            if (File.Exists(path))
+            {
+                byte[] fileData = File.ReadAllBytes(path);
+                Texture2D tex = new Texture2D(2, 2);
+                if (tex.LoadImage(fileData))
+                {
+                    return tex;
+                }
+            }
+            return null;
+		}
+	}
 
 }
 
