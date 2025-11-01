@@ -239,6 +239,7 @@ namespace Oxipital
             vfx.SetGraphicsBuffer("Orb Buffer", buffer);
             vfx.SetGradient("Color Over Life", colorOverLife);
             vfx.SetGradient("Color Over Speed", colorOverSpeed);
+            vfx.SetVector3("Source Position", transform.position);
 
 			foreach (var item in items) item.debugColor = color;
 

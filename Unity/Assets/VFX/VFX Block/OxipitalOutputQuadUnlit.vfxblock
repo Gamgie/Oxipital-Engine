@@ -7339,7 +7339,9 @@ MonoBehaviour:
   m_Tooltip: 
   m_Nodes:
   - m_Id: 0
-    linkedSlots: []
+    linkedSlots:
+    - outputSlot: {fileID: 730}
+      inputSlot: {fileID: 742}
     position: {x: 1358, y: 2495}
     expandedSlots: []
     expanded: 1
@@ -7377,7 +7379,8 @@ MonoBehaviour:
       m_SerializableType: UnityEngine.Gradient, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
   m_Direction: 1
-  m_LinkedSlots: []
+  m_LinkedSlots:
+  - {fileID: 742}
 --- !u!114 &734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7543,7 +7546,8 @@ MonoBehaviour:
       m_SerializableType: UnityEngine.Gradient, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
   m_Direction: 0
-  m_LinkedSlots: []
+  m_LinkedSlots:
+  - {fileID: 730}
 --- !u!114 &743
 MonoBehaviour:
   m_ObjectHideFlags: 0
