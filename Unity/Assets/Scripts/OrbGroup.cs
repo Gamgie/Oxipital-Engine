@@ -174,6 +174,8 @@ namespace Oxipital
         public float lightIntensity = 0;
         public string textureFolderPath = "";
         public string textureName = "";
+        public bool useSpoutTexture = false;
+        public RenderTexture spoutTexture;
 
 
 		[Header("Physics")]
@@ -216,15 +218,16 @@ namespace Oxipital
 
         private bool textureLoaded = false;
         private string lastTexturePath = "";
+        private Texture2D spoutTexture2D;
 
         protected override void OnEnable()
         {
             base.OnEnable();
             MeshLoader.loadMeshes();
             vfx = GetComponent<VisualEffect>();
-            pclGraphics = GetComponent<PCLToGraphicsBuffer>();
+            pclGraphics = GetComponent<PCLToGraphicsBuffer>(); 
             textureLoaded = false;
-
+			spoutTexture2D = new Texture2D(spoutTexture.width, spoutTexture.height, TextureFormat.RGBAFloat, false);
 		}
 
         protected override void Update()
@@ -308,6 +311,13 @@ namespace Oxipital
                     lastTexturePath = fullPath;
 
 				}
+			}
+
+            if(useSpoutTexture)
+            {
+				Graphics.ConvertTexture(spoutTexture, spoutTexture2D);
+				//Texture2D newTexture = toTexture2D(spoutTexture);
+				setColor(spoutTexture2D, "Emitter Color");
 			}
 
 
@@ -454,6 +464,17 @@ namespace Oxipital
                 }
             }
             return null;
+		}
+
+		Texture2D toTexture2D(RenderTexture rTex)
+		{
+			Texture2D tex = new Texture2D(rTex.width, rTex.height, TextureFormat.RGBA32, false);
+			RenderTexture currentActiveRT = RenderTexture.active; // Store the currently active RenderTexture
+			RenderTexture.active = rTex; // Set the target RenderTexture as active
+			tex.ReadPixels(new Rect(0, 0, rTex.width, rTex.height), 0, 0); // Read pixels
+			tex.Apply(); // Apply changes
+			RenderTexture.active = currentActiveRT; // Restore the previously active RenderTexture
+			return tex;
 		}
 	}
 
