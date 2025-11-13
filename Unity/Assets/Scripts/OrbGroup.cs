@@ -328,6 +328,15 @@ namespace Oxipital
                 c = Color.Lerp(Color.black, color, meshColorIntensity);
                 c.a = meshOpacity;
                 r.material.color = c;
+
+                if (useSpoutTexture)
+                {
+                    r.material.mainTexture = spoutTexture;
+				}
+                else
+                {
+                    r.material.mainTexture = null;
+				}
             }
 
             Light[] lights = GetComponentsInChildren<Light>();
