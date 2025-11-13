@@ -333,6 +333,10 @@ namespace Oxipital
                 {
                     r.material.mainTexture = spoutTexture;
 				}
+                else
+                {
+                    r.material.mainTexture = null;
+				}
             }
 
             Light[] lights = GetComponentsInChildren<Light>();
