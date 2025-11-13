@@ -77,7 +77,14 @@ namespace Oxipital
 
         public static MeshTextured getMesh(string name)
         {
-            return shapeMeshMap[name];
+            if(name == "")
+            {
+                return shapeMeshMap["sphere"];
+            }
+            else 
+            {
+                return shapeMeshMap[name];
+            }
         }
 
     }
