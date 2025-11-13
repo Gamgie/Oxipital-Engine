@@ -6,6 +6,11 @@ public class PostProcessingController : MonoBehaviour
 {
 
     public Volume postProcessVolume;
+	[Range(0, 1)]
+	public float postProcessWeight;
+    public Volume outdoorScene;
+	[Range(0, 1)]
+	public float outdoorWeight;
     
     private Bloom bloom;
 
@@ -22,5 +27,7 @@ public class PostProcessingController : MonoBehaviour
     void Update()
     {
 		bloom.intensity.value = bloomIntensity;
-    }
+        outdoorScene.weight = outdoorWeight;
+        postProcessVolume.weight = postProcessWeight;
+	}
 }
