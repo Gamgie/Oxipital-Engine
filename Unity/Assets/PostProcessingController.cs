@@ -27,7 +27,7 @@ public class PostProcessingController : MonoBehaviour
     void Update()
     {
 		bloom.intensity.value = bloomIntensity;
-        outdoorScene.weight = outdoorWeight;
+        outdoorScene.weight = 1-postProcessWeight;
         postProcessVolume.weight = postProcessWeight;
 	}
 }
