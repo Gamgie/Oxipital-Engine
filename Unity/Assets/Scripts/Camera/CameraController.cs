@@ -36,6 +36,10 @@ public class CameraController : MonoBehaviour
     public bool showXwing;
     public GameObject xWing;
 
+    [Header("Full Dome Controller")]
+    public bool isFullDome = false;
+    public GameObject domeCameraRig;
+
     private List<CameraMovement> _cameraList;
     private CameraMovement _activeCamera;
     private CinemachineBrain _cinemachineBrain;
@@ -102,16 +106,19 @@ public class CameraController : MonoBehaviour
                 c.UpdateMovement();
                 c.UpdateZOffset(followZOffset);
 
-                if (orthographic)
+                if(!isFullDome)
                 {
-                    camera.orthographic = true;
-                    c.UpdateOrthoSize(orthoSize);
+                    if (orthographic)
+                    {
+                        camera.orthographic = true;
+                        c.UpdateOrthoSize(orthoSize);
 
-                }
-                else
-                {
-                    camera.orthographic = false;
-                    c.UpdateFOV(fov);
+                    }
+                    else
+                    {
+                        camera.orthographic = false;
+                        c.UpdateFOV(fov);
+                    }
                 }
             }
         }
