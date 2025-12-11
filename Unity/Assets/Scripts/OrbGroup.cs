@@ -326,9 +326,13 @@ namespace Oxipital
 				//Texture2D newTexture = toTexture2D(spoutTexture);
 				setColor(spoutTexture2D, "Emitter Color");
 			}
+            else
+            {
+                setColor(Texture2D.whiteTexture, "Emitter Color");
+            }
 
 
-			MeshRenderer[] renderers = GetComponentsInChildren<MeshRenderer>();
+                MeshRenderer[] renderers = GetComponentsInChildren<MeshRenderer>();
             foreach (MeshRenderer r in renderers)
             {
                 Color c = r.material.color;
