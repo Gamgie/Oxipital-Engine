@@ -146,6 +146,11 @@ namespace Oxipital
 			base.Update();
 			if (buffer == null || !buffer.IsValid()) init();
 
+			if (Math.Abs(patternSpeed) < 0.01f)
+			{
+				patternSpeed = 0;
+			}
+
 			patternTime += Time.deltaTime * patternSpeed;
 
 			float curCount = getCount();
