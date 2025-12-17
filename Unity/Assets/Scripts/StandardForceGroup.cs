@@ -160,6 +160,22 @@ namespace Oxipital
         [InBuffer(38)]
         public float orthoaxialClockwise = 1;
 
+        [Header("Spiral")]
+        [Range(0, 1)]
+        [InBuffer(39)]
+        public float spiralIntensity;
+
+        [Range(0, 3)]
+        [InBuffer(40)]
+        public float spiralFrequency = 1.0f;
+
+        [Range(0, 1)]
+        [InBuffer(41)]
+        public float spiralVerticalForce = 0.5f;
+
+        [Range(0, 1)]
+        [InBuffer(42)]
+        public float spiralDirection = 0f;
 
         protected override Type getGroupType()
         {

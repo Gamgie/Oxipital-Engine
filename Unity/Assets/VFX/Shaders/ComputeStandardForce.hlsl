@@ -46,7 +46,10 @@ void StandardForce(inout VFXAttributes attributes, in StructuredBuffer<float> bu
     float orthoAxialAmplitudeWave = GetFloat(16);
 
     // Spiral Force
-     float spiralForceIntensity = GetFloat(40);
+    float spiralForceIntensity = GetFloat(39);
+    float spiralFrequency = GetFloat(40);
+    float spiralVerticalForce = GetFloat(41);
+    float spiralDirection = GetFloat(42);
 
     if (innerRadius == 0)
     {
@@ -99,7 +102,7 @@ void StandardForce(inout VFXAttributes attributes, in StructuredBuffer<float> bu
         
         if (length(axis) > 0)
         {
-            axialForce = axialIntensity * ComputeAxialForce(localPosition, attributes.position, rotation, normalizedDistance, centerPosition, axialFrequency, axialFactor, axisMultiplier);
+            axialForce = axialIntensity * ComputeAxialForce(localPosition, attributes.position, rotation, centerPosition, axialFrequency, axialFactor, axisMultiplier);
             axialForce *= 3; //to normalize strength feeling compared to other forces
             
        	    // Orthoradial force (inversely proportional to the distance)
@@ -118,29 +121,12 @@ void StandardForce(inout VFXAttributes attributes, in StructuredBuffer<float> bu
                 orthoAxialForce *= 2.0f;
             }
             
-            //float r = RAND;
-            spiralForceIntensity = 0.5f;
-            spiralForce = spiralForceIntensity * ComputeSpiralForce(localPosition, rotation, centerPosition, orthoAxialFactor, radius, 1, axis, attributes.seed * (uint) randomPerParticle);
-            //totalForce += spiralForce * forceInfluence;
+            // Spiral Force
+            spiralForce = spiralForceIntensity * ComputeSpiralForce(localPosition, attributes.position, rotation, centerPosition, axis, spiralFrequency, spiralVerticalForce, spiralDirection);
+            spiralForce *= 2;
+            totalForce += spiralForce * forceInfluence;
             
         }
-        
-        // lorentz 
-        //float sigma = 10 * 0.1;
-        //float rho = 28 * 0.1;
-        //float beta = 8.0 / 3.0 * 0.1;
-        //float3 p = attributes.position;
-        //float lorentzX = sigma * (p.y - p.x);
-        //float lorentzY = (-p.x * p.z) + rho * p.x - p.y;
-        //float lorentzZ = (p.x * p.y - beta * p.z);
-        //totalForce += float3(lorentzX, lorentzY, lorentzZ) * 0.001 ;
-        
-        //float a = 2.07;
-        //float b = 1.79;
-        //float sprottX = 10 + attributes.position.y + a * attributes.position.x * attributes.position.y + attributes.position.x * attributes.position.z;
-        //float sprottY = 1 - b * attributes.position.x * attributes.position.x + attributes.position.y * attributes.position.z;
-        //float sprottZ = attributes.position.x - attributes.position.x * attributes.position.x - attributes.position.y * attributes.position.y;
-        //totalForce += float3(sprottX, sprottY, sprottZ) * 0.01;
 
         
         // Total force contribution from this center
