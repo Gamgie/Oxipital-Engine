@@ -4,7 +4,7 @@
 #include "VFXHelper.hlsl"
 
 
-float3 ComputeAxialForce(in float3 pos, in float3 worldPosition, in float3 rotation, in float normalizedDistance, in float3 center, in float3 axialFrequency, in float axialFactor, in float3 axisMultiplier)
+float3 ComputeAxialForce(in float3 pos, in float3 worldPosition, in float3 rotation, in float3 center, in float3 axialFrequency, in float axialFactor, in float3 axisMultiplier)
 {
     // Axial force is attracting towards axis
     // F = Intensity / pow(( R + 1 ),axialFactor)
