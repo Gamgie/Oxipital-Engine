@@ -62,7 +62,6 @@ MonoBehaviour:
   dancerSizeSpread: 0
   dancerWeightSizeFactor: 0
   dancerIntensity: 1
-  dancerWeightIntensityFactor: 0
   dancerRotation: {x: 0, y: 0, z: 0}
   dancerLookAt: {x: 0, y: 0, z: 0}
   dancerLookAtMode: 0
@@ -125,6 +124,10 @@ MonoBehaviour:
   orthoaxialInnerRadius: 0.5
   orthoaxialFactor: 1
   orthoaxialClockwise: 1
+  spiralIntensity: 0
+  spiralFrequency: 1
+  spiralVerticalForce: 0.5
+  spiralDirection: 0
 --- !u!114 &1483635194092843799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,6 +143,8 @@ MonoBehaviour:
   blendMode: 0
   weight: 0
   speedWeight: 1
+  oscilatingDirection: 0
+  oscilatingSize: 1
 --- !u!114 &7940719435544600441
 MonoBehaviour:
   m_ObjectHideFlags: 0
