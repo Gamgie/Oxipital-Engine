@@ -6,6 +6,7 @@ using System;
 using UnityEngine.VFX.SDF;
 using System.IO;
 using Augmenta;
+using UnityEngine.Rendering;
 
 namespace Oxipital
 {
@@ -184,6 +185,9 @@ namespace Oxipital
         public bool useSpoutTexture = false;
         public RenderTexture spoutTexture;
 
+        public Material transparentMaterial;
+        public Material opaqueMaterial;
+
 
 		[Header("Physics")]
         [InBuffer(20)]
@@ -332,9 +336,24 @@ namespace Oxipital
             }
 
 
-                MeshRenderer[] renderers = GetComponentsInChildren<MeshRenderer>();
+            MeshRenderer[] renderers = GetComponentsInChildren<MeshRenderer>();
             foreach (MeshRenderer r in renderers)
             {
+                if (meshOpacity == 1)
+                {
+                    if (r.material.renderQueue > (int)RenderQueue.GeometryLast)
+                    {
+                        r.material = opaqueMaterial;
+                    }
+                }
+                else
+                {
+                    if (r.material.renderQueue < (int)RenderQueue.GeometryLast)
+                    {
+                        r.material = transparentMaterial;
+                    }
+                }
+
                 Color c = r.material.color;
                 c = Color.Lerp(Color.black, color, meshColorIntensity);
                 c.a = meshOpacity;
@@ -348,6 +367,7 @@ namespace Oxipital
                 {
                     r.material.mainTexture = null;
 				}
+
             }
 
             Light[] lights = GetComponentsInChildren<Light>();
