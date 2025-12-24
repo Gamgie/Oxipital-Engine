@@ -33,7 +33,7 @@ namespace Oxipital
 
 				float rel = Mathf.Acos( Mathf.Clamp(((2*i / Mathf.Max(1,(groupCount-1))) - 1.0f),-1.0f,1.0f));
 				float initT = Mathf.Lerp(tAtFull, tAtNextFull, relativeProgression) + group.patternTimeOffset * rel;
-				float normalT = group.patternTime;
+				float normalT = group.GetPatternTime();
 				float randomT = group.items[i].localPatternTime;
 
 				// We compute the line and each element position

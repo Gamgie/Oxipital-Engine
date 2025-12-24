@@ -33,10 +33,9 @@ namespace Oxipital
 		[Range(0, 1)]
 		public float patternSpeedRandom = 0;
 
-		//[DoNotExpose]
 		[HideInInspector]
 		[DoNotExpose]
-		public float patternTime = 0;
+		private float patternTime = 0;
 
 		[Range(0, 1)]
 		public float patternTimeOffset = 0; // offset phase
@@ -332,5 +331,10 @@ namespace Oxipital
                 d.localPatternTime = 0;
             }
         }
-	}
+
+		public float GetPatternTime()
+		{
+			return patternTime;
+        }
+    }
 }

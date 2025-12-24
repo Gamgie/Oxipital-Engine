@@ -23,7 +23,7 @@ namespace Oxipital
 
                 float rel = i * 1f / groupCount;
                 float initT = Mathf.Lerp(tAtFull, tAtNextFull, relativeProgression) + group.patternTimeOffset * rel;
-                float normalT = initT + group.patternTime;
+                float normalT = initT + group.GetPatternTime();
                 float randomT = initT + group.items[i].localPatternTime;
 
                 Vector3 zeroPos = new Vector3(Mathf.Cos(initT * Mathf.PI * 2), Mathf.Sin(initT * Mathf.PI * 2), 0);
