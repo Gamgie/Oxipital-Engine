@@ -62,6 +62,11 @@ public class RecordScene : MonoBehaviour
         // Record this frame
         if (m_isRecording)
         {
+            if(m_Recorder == null)
+            {
+                InitRecorder();
+            }
+
             // Take a snapshot and record all the bindings values for this frame.
             m_Recorder.TakeSnapshot(Time.deltaTime);
         }
@@ -79,7 +84,7 @@ public class RecordScene : MonoBehaviour
 
     }
 
-    void LateStart()
+    void InitRecorder()
     {
         // Create recorder and record the script GameObject.
         m_Recorder = new GameObjectRecorder(gameObject);
