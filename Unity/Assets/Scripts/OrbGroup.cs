@@ -505,17 +505,6 @@ namespace Oxipital
             }
             return null;
 		}
-
-		Texture2D toTexture2D(RenderTexture rTex)
-		{
-			Texture2D tex = new Texture2D(rTex.width, rTex.height, TextureFormat.RGBA32, false);
-			RenderTexture currentActiveRT = RenderTexture.active; // Store the currently active RenderTexture
-			RenderTexture.active = rTex; // Set the target RenderTexture as active
-			tex.ReadPixels(new Rect(0, 0, rTex.width, rTex.height), 0, 0); // Read pixels
-			tex.Apply(); // Apply changes
-			RenderTexture.active = currentActiveRT; // Restore the previously active RenderTexture
-			return tex;
-		}
 	}
 
 }
