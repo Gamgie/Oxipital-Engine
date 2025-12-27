@@ -1,22 +1,27 @@
+using Augmenta;
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.VFX;
-using System;
-using UnityEngine.VFX.SDF;
 using System.IO;
-using Augmenta;
+using System.Security.Cryptography;
+using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.Rendering;
+using UnityEngine.VFX;
+using UnityEngine.VFX.SDF;
 
 namespace Oxipital
 {
     public class MeshLoader
     {
         public static bool isLoaded = false;
+        
+        MeshToSDFBaker m_Baker;
 
         public struct MeshTextured
         {
             public Texture2D texture;
+            public Texture collisionSDF;
             public Mesh mesh;
         }
             
@@ -31,6 +36,7 @@ namespace Oxipital
             if (shapeMeshMap != null) return;
             shapeMeshMap = new Dictionary<string, MeshTextured>();
 
+            // Get files from StreamingAssets/emitters
             string emittersPath = Path.Combine(Application.streamingAssetsPath, "emitters");
             string[] files = Directory.GetFiles(emittersPath, "*.glb");
 
@@ -58,7 +64,22 @@ namespace Oxipital
                         mt.texture = text;
 
                         var fileWithoutExtension = Path.GetFileNameWithoutExtension(file);
-                        shapeMeshMap.Add(fileWithoutExtension.ToLower(), mt);
+                        string meshNameLower = fileWithoutExtension.ToLower();
+
+                        // Generate SDF for the mesh
+                        RenderTexture sdfTexture = GenerateSDFForMesh(m, fileWithoutExtension);
+                        if (sdfTexture != null)
+                        {
+                            mt.collisionSDF = sdfTexture;
+                            Debug.Log($"Generated SDF for {fileWithoutExtension}");
+                        }
+                        else
+                        {
+                            Debug.LogWarning($"Failed to generate SDF for {fileWithoutExtension}");
+                        }
+
+                        shapeMeshMap.Add(meshNameLower, mt);
+
                         Debug.Log("Loaded mesh " + fileWithoutExtension);
                     }
                     else
@@ -85,6 +106,41 @@ namespace Oxipital
             else 
             {
                 return shapeMeshMap[name];
+            }
+        }
+
+        private static RenderTexture GenerateSDFForMesh(Mesh mesh, string meshName)
+        {
+            try
+            {
+                // Create a temporary GameObject with the mesh
+                GameObject tempObject = new GameObject("TempSDFBaker_" + meshName);
+                MeshFilter meshFilter = tempObject.AddComponent<MeshFilter>();
+                meshFilter.mesh = mesh;
+
+                int maxResolution = 64;
+                Vector3 center = Vector3.zero;
+                Vector3 sizeBox = Vector3.one * 1.8F;
+
+                MeshToSDFBaker baker = new MeshToSDFBaker(sizeBox, center, maxResolution, mesh);
+
+                // Bake the SDF
+                baker.BakeSDF();
+
+                // Get the resulting texture
+                RenderTexture sdfTexture = baker.SdfTexture;
+
+                // Clean up
+                UnityEngine.Object.DestroyImmediate(tempObject);
+
+                //baker.Dispose();
+
+                return sdfTexture;
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError($"Error generating SDF for mesh {meshName}: {e.Message}");
+                return null;
             }
         }
 
@@ -290,9 +346,14 @@ namespace Oxipital
                 {
                     currentMesh = MeshLoader.getMesh(meshName.ToLower()).mesh;
                     Texture2D texture = MeshLoader.getMesh(meshName.ToLower()).texture;
+                    Texture sdfTexture = MeshLoader.getMesh(meshName.ToLower()).collisionSDF;
 
                     if (currentMesh == null) Debug.LogWarning("Could not find mesh for " + meshName);
-                    else setMesh(currentMesh);
+                    else
+                    {
+                        setMesh(currentMesh);
+                        SetSDFtexture(sdfTexture);
+                    }
 
                     if (texture == null)
                     {
@@ -427,6 +488,18 @@ namespace Oxipital
 
             vfx.SetMesh("Emitter Mesh", m);
             foreach (var item in items) item.GetComponent<MeshFilter>().sharedMesh = m;
+        }
+
+        internal void SetSDFtexture(Texture texture)
+        {
+            if (vfx == null) return;
+            if (texture == null) return;
+            if (!vfx.HasTexture("Collision SDF"))
+            {
+                Debug.LogWarning("Collision SDF not found in VFX");
+                return;
+            }
+            vfx.SetTexture("Collision SDF", texture);
         }
 
         internal void setColor(Texture2D texture, string name)
