@@ -19,7 +19,12 @@ namespace Oxipital
         // Update is called once per frame
         void Update()
         {
-            // Gather all force buffer
+            if(standardForceManager == null || orbManager == null)
+            {
+                return;
+			}
+
+			// Gather all force buffer
 			Dictionary<string, GraphicsBuffer> forceBuffers = new Dictionary<string, GraphicsBuffer>(standardForceManager.items.Count);
 			foreach (StandardForceGroup group in standardForceManager.items)
 			{
