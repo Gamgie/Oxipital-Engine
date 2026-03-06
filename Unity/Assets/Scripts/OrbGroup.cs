@@ -70,7 +70,7 @@ namespace Oxipital
                         RenderTexture sdfTexture = GenerateSDFForMesh(m, fileWithoutExtension);
                         if (sdfTexture != null)
                         {
-                            mt.collisionSDF = sdfTexture;
+                            //mt.collisionSDF = sdfTexture;
                             Debug.Log($"Generated SDF for {fileWithoutExtension}");
                         }
                         else
@@ -352,7 +352,7 @@ namespace Oxipital
                     else
                     {
                         setMesh(currentMesh);
-                        SetSDFtexture(sdfTexture);
+                        //SetSDFtexture(sdfTexture);
                     }
 
                     if (texture == null)
