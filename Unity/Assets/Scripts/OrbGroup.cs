@@ -154,35 +154,38 @@ namespace Oxipital
         [Range(0, 60)]
         public float life = 20;
 
-        public enum EmitterShape { Sphere, Plane, Torus, Cube, Pipe, Egg, Line, Circle, Merkaba, Pyramid, Custom, Augmenta }
+		[InBuffer(1)]
+		public bool infiniteLife = false;
+
+		public enum EmitterShape { Sphere, Plane, Torus, Cube, Pipe, Egg, Line, Circle, Merkaba, Pyramid, Custom, Augmenta }
         public enum RenderType { UnlitOpaque, UnlitAdditive, LitQuad, LitMesh }
 
-        [InBuffer(1)]
+        [InBuffer(2)]
         public EmitterShape emitterShape;
         EmitterShape lastEmitterShape;
 
-        [InBuffer(2)]
+        [InBuffer(3)]
         [Range(0, 1)]
         public float emitterSurfaceFactor = 0;
 
-        [InBuffer(3)]
+        [InBuffer(4)]
         [Range(0, 1)]
         public float emitterVolumeFactor = 0;
 
-        [InBuffer(4)]
+        [InBuffer(5)]
         [Range(0, 1)]
         public float emitterPositionNoise = 0;
 
-        [InBuffer(5)]
+        [InBuffer(6)]
         [Range(0, 5)]
         public float emitterPositionNoiseFrequency = 1;
 
-        [InBuffer(6)]
+        [InBuffer(7)]
         [Range(0, 1)]
         public float emitterPositionNoiseRadius = 1;
 
         [Header("Appearance")]
-        [InBuffer(7)]
+        [InBuffer(8)]
         [ColorUsage(true, true)]
         public Color color = Color.white;
 
@@ -190,7 +193,7 @@ namespace Oxipital
         [Range(0, 1)]
         public float colorLifeRange = 1;
         public Gradient colorOverLife;
-		[InBuffer(10)]
+		[InBuffer(11)]
 		[Range(0, 1)]
 		public float colorLifeBlend = 0;
 
@@ -198,45 +201,46 @@ namespace Oxipital
 		[Range(0, 1)]
 		public float colorSpeedRange = 1;
 		public Gradient colorOverSpeed;
-		[InBuffer(11)]
+		[InBuffer(12)]
 		[Range(0, 1)]
 		public float colorSpeedBlend = 0;
 
-		[InBuffer(12)]
+		[InBuffer(13)]
 		[Range(0, 1)]
 		public float colorMaxSpeed = 1;
 
-		[InBuffer(13)]
+		[InBuffer(14)]
         [Range(0, 1)]
         public float alpha = .5f;
 
-        [InBuffer(14)]
+        [InBuffer(15)]
         [Range(0, 1)]
         public float hdrMultiplier = 1;
 
-        [InBuffer(15)]
+        [InBuffer(16)]
         [Range(0, 1)]
         public float alphaSpeedThreshold = 0;
 
-        [InBuffer(16)]
+        [InBuffer(17)]
         [Range(0, 1)]
         public float textureOpacity = 0;
 
-        [InBuffer(17)]
+        [InBuffer(18)]
         [Range(0, 1)]
         public float particleSize = 0;
 
-        [InBuffer(18)]
+        [InBuffer(19)]
         public RenderType renderType = RenderType.UnlitAdditive;
 
-        [InBuffer(19)]
+        [InBuffer(20)]
         [Range(0, 1)]
         public float meshOpacity = 0;
         [Range(0, 1)]
         public float meshColorIntensity = 0;
         [Range(0, 1)]
         public float lightIntensity = 0;
-        public string textureFolderPath = "";
+        public bool loadFromStreamingAssets = false;
+		public string textureFolderPath = "";
         public string textureName = "";
         public bool useSpoutTexture = false;
         public RenderTexture spoutTexture;
@@ -246,27 +250,27 @@ namespace Oxipital
 
 
 		[Header("Physics")]
-        [InBuffer(20)]
+        [InBuffer(21)]
         [Range(0, 1)]
         public float forceWeight = 1;
 
-        [InBuffer(21)]
+        [InBuffer(22)]
         [Range(0, 1)]
         public float drag = .5f;
 
-        [InBuffer(22)]
+        [InBuffer(23)]
         [Range(0, 1)]
         public float velocityDrag = 0;
 
-        [InBuffer(23)]
+        [InBuffer(24)]
         [Range(0, 1)]
         public float noisyDrag = 0;
 
-        [InBuffer(24)]
+        [InBuffer(25)]
         [Range(0, 5)]
         public float noisyDragFrequency = 0;
 
-        [InBuffer(25)]
+        [InBuffer(26)]
         public bool activateCollision = false;
 
 
@@ -369,13 +373,33 @@ namespace Oxipital
                 }
             }
 
-			// Load 2D Texture
+            // Load 2D Texture
+            if (loadFromStreamingAssets)
+                textureFolderPath = Application.streamingAssetsPath + "/Textures/";
+
 			string fullPath = Path.Combine(textureFolderPath, textureName);
-            if (fullPath != lastTexturePath) textureLoaded = false;
+
+			// Check if the texture path has changed, if yes we need to load the new texture
+			if (fullPath != lastTexturePath) textureLoaded = false;
 
 			if (textureFolderPath != "" && textureName != "" && textureLoaded == false)
             {
+                // try to load texture
                 Texture2D tex = LoadTextureFromPath(fullPath);
+
+                // it didn't work so try with a png extension
+                if(tex == null)
+                {
+                    string fullPathPNG = fullPath + ".png";
+					tex = LoadTextureFromPath(fullPathPNG);
+				}
+
+                if(tex == null)
+                {
+					string fullPathjpg = fullPath + ".jpg";
+					tex = LoadTextureFromPath(fullPathjpg);
+				}
+
                 if (tex != null)
                 {
                     setColor(tex, "Emitter Color");
@@ -383,15 +407,17 @@ namespace Oxipital
                     lastTexturePath = fullPath;
 
 				}
+
 			}
 
             if(useSpoutTexture)
             {
 				Graphics.ConvertTexture(spoutTexture, spoutTexture2D);
-				//Texture2D newTexture = toTexture2D(spoutTexture);
 				setColor(spoutTexture2D, "Emitter Color");
 			}
-            else
+
+            // if no spout or textule loaded then fallback to white
+            if(!useSpoutTexture && !textureLoaded)
             {
                 setColor(Texture2D.whiteTexture, "Emitter Color");
             }
