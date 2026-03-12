@@ -13,16 +13,21 @@ public class CameraSpoutManager : MonoBehaviour
     public int width;
     public int height;
     public RenderTextureFormat rtFormat;
-    #endregion
+    public bool loadFromPlayerPrefs = true;
+	#endregion
 
-    #region Private members
-    RenderTexture m_renderTexture;
+	#region Private members
+	RenderTexture m_renderTexture;
     #endregion
 
     private void OnEnable()
     {
-        width = PlayerPrefs.GetInt("SpoutWidth", 1920);
-        height = PlayerPrefs.GetInt("SpoutHeight", 1080);
+        if(loadFromPlayerPrefs)
+        {
+			width = PlayerPrefs.GetInt("SpoutWidth", 1920);
+			height = PlayerPrefs.GetInt("SpoutHeight", 1080);
+		}
+        
 
         // Handle multi platform
         if (Application.platform == RuntimePlatform.OSXPlayer || Application.platform == RuntimePlatform.OSXEditor)
@@ -84,7 +89,10 @@ public class CameraSpoutManager : MonoBehaviour
 
 	private void OnDestroy()
 	{
-        PlayerPrefs.SetInt("SpoutWidth", width);
-        PlayerPrefs.SetInt("SpoutHeight", height);
+        if (loadFromPlayerPrefs)
+        {
+            PlayerPrefs.SetInt("SpoutWidth", width);
+            PlayerPrefs.SetInt("SpoutHeight", height);
+        }
     }
 }
