@@ -333,7 +333,7 @@ namespace Oxipital
             {
                 if (augmentaObject != null)
                 {
-                    pclGraphics.pObject = augmentaObject;
+                    //pclGraphics.pObject = augmentaObject;
                 }
             }
 
