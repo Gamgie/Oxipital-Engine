@@ -32,17 +32,23 @@ public class CameraSpoutManager : MonoBehaviour
         // Handle multi platform
         if (Application.platform == RuntimePlatform.OSXPlayer || Application.platform == RuntimePlatform.OSXEditor)
         {
-            // Enable syphon
-            syphonServer.enabled = true;
-            // Disable spout
-            spoutSender.enabled = false;
+			// Enable syphon
+			if (syphonServer != null)
+                syphonServer.enabled = true;
+
+			// Disable spout
+			if (spoutSender != null)
+				spoutSender.enabled = false;
         }
         else if (Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor)
         {
-            // Disable syphon
-            syphonServer.enabled = false;
-            // Enable spout
-            spoutSender.enabled = true;
+			// Disable syphon
+			if (syphonServer != null)
+				syphonServer.enabled = false;
+
+			// Enable spout
+			if (spoutSender != null)
+				spoutSender.enabled = true;
         }
     }
 
