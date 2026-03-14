@@ -7,7 +7,7 @@ namespace Oxipital
 {
     public class OrbManager : BaseManager<OrbGroup>
     {
-        
+
         public float firstItemIntensity = .5f;
 
         OrbManager() : base("Orb Group")
@@ -18,11 +18,13 @@ namespace Oxipital
         {
             OrbGroup g = base.addItem();
             if (items.Count == 1) items[0].dancerIntensity = firstItemIntensity;
+            g.SetGroupId(items.Count);
             return g;
         }
 
-        override protected void killLastItem() { 
-            (items[items.Count - 1] as OrbGroup).kill(getKillTime()); 
+        override protected void killLastItem()
+        {
+            (items[items.Count - 1] as OrbGroup).kill(getKillTime());
         }
 
         protected override float getKillTime()
@@ -35,6 +37,16 @@ namespace Oxipital
         public void KillAllParticles()
         {
             foreach (OrbGroup orbGroup in items) orbGroup.killAllParticle();
+        }
+
+        public OrbGroup GetOrbById(int id)
+        {
+            foreach (OrbGroup orbGroup in items)
+            {
+                int orbID = orbGroup.GetGroupId();
+                if (orbID == id) return orbGroup;
+            }
+            return null;
         }
     }
 }
