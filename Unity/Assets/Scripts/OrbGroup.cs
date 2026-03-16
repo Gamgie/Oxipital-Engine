@@ -290,6 +290,7 @@ namespace Oxipital
         private bool textureLoaded = false;
         private string lastTexturePath = "";
         private Texture2D spoutTexture2D;
+        private bool internalInfiniteLife;
 
         protected override void OnEnable()
         {
@@ -299,6 +300,8 @@ namespace Oxipital
             pclGraphics = GetComponent<PCLToGraphicsBuffer>(); 
             textureLoaded = false;
 			spoutTexture2D = new Texture2D(spoutTexture.width, spoutTexture.height, TextureFormat.RGBAFloat, false);
+            internalInfiniteLife = infiniteLife;
+			vfx.SetBool("Infinite Life", infiniteLife);
 		}
 
         protected override void Update()
@@ -314,6 +317,15 @@ namespace Oxipital
             vfx.SetGradient("Color Over Life", colorOverLife);
             vfx.SetGradient("Color Over Speed", colorOverSpeed);
             vfx.SetVector3("Source Position", transform.position);
+
+            // We change life parameter so we need to reset graph
+            if(internalInfiniteLife != infiniteLife)
+            {
+
+                internalInfiniteLife = infiniteLife;
+                vfx.SetBool("Infinite Life", infiniteLife);
+                killAllParticle();
+			}
 
 			foreach (var item in items) item.debugColor = color;
 
