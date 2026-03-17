@@ -12,10 +12,6 @@ VisualEffectResource:
     m_RendererSettings:
       motionVectorGenerationMode: 0
       shadowCastingMode: 0
-      rayTracingMode: 0
-      receiveShadows: 0
-      reflectionProbeUsage: 0
-      lightProbeUsage: 0
     m_CullingFlags: 3
     m_UpdateMode: 0
     m_PreWarmDeltaTime: 0.05
@@ -90,7 +86,6 @@ MonoBehaviour:
   - {fileID: 1189}
   - {fileID: 1211}
   - {fileID: 1218}
-  - {fileID: 1237}
   - {fileID: 1261}
   - {fileID: 1300}
   - {fileID: 1307}
@@ -126,22 +121,6 @@ MonoBehaviour:
     max: Infinity
     enumValues: []
     descendantCount: 0
-  - name: Emitter Color
-    path: Emitter Color
-    tooltip: 
-    space: -1
-    spaceable: 0
-    sheetType: m_NamedObject
-    realType: Texture2D
-    defaultValue:
-      m_Type:
-        m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"obj":{"fileID":2800000,"guid":"276d9e395ae18fe40a9b4988549f2349","type":3}}'
-    min: -Infinity
-    max: Infinity
-    enumValues: []
-    descendantCount: 0
   - name: Emitter Mesh
     path: Emitter Mesh
     tooltip: 
@@ -154,22 +133,6 @@ MonoBehaviour:
         m_SerializableType: UnityEngine.Mesh, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
       m_SerializableObject: '{"obj":{"fileID":10208,"guid":"0000000000000000e000000000000000","type":0}}'
-    min: -Infinity
-    max: Infinity
-    enumValues: []
-    descendantCount: 0
-  - name: Emitter Mesh color
-    path: Emitter Mesh color
-    tooltip: 
-    space: -1
-    spaceable: 0
-    sheetType: m_NamedObject
-    realType: Texture2D
-    defaultValue:
-      m_Type:
-        m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"obj":{"fileID":2800000,"guid":"276d9e395ae18fe40a9b4988549f2349","type":3}}'
     min: -Infinity
     max: Infinity
     enumValues: []
@@ -221,6 +184,38 @@ MonoBehaviour:
     max: Infinity
     enumValues: []
     descendantCount: 0
+  - name: Emitter Mesh color
+    path: Emitter Mesh color
+    tooltip: 
+    space: -1
+    spaceable: 0
+    sheetType: m_NamedObject
+    realType: Texture2D
+    defaultValue:
+      m_Type:
+        m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      m_SerializableObject: '{"obj":{"fileID":2800000,"guid":"276d9e395ae18fe40a9b4988549f2349","type":3}}'
+    min: -Infinity
+    max: Infinity
+    enumValues: []
+    descendantCount: 0
+  - name: Emitter Color
+    path: Emitter Color
+    tooltip: 
+    space: -1
+    spaceable: 0
+    sheetType: m_NamedObject
+    realType: Texture2D
+    defaultValue:
+      m_Type:
+        m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      m_SerializableObject: '{"obj":{"fileID":2800000,"guid":"276d9e395ae18fe40a9b4988549f2349","type":3}}'
+    min: -Infinity
+    max: Infinity
+    enumValues: []
+    descendantCount: 0
   - name: Source Position
     path: 
     tooltip: 
@@ -252,23 +247,8 @@ MonoBehaviour:
     max: Infinity
     enumValues: []
     descendantCount: 0
-  - name: Buffer 1
-    path: 
-    tooltip: 
-    space: -1
-    spaceable: 0
-    sheetType: 
-    realType: GraphicsBuffer
-    defaultValue:
-      m_Type:
-        m_SerializableType: 
-      m_SerializableObject: 
-    min: -Infinity
-    max: Infinity
-    enumValues: []
-    descendantCount: 0
   m_ImportDependencies: []
-  m_GraphVersion: 18
+  m_GraphVersion: 19
   m_ResourceVersion: 1
   m_SubgraphDependencies:
   - {fileID: 5371698745253816930, guid: 339146dc0ea393749be5879b8d19d964, type: 3}
@@ -1393,7 +1373,7 @@ MonoBehaviour:
   - {fileID: 236}
   m_ExposedName: Emitter Mesh
   m_Exposed: 1
-  m_Order: 2
+  m_Order: 1
   m_Category: 
   m_Min:
     m_Type:
@@ -2371,7 +2351,7 @@ MonoBehaviour:
   - {fileID: 349}
   m_ExposedName: Orb Index
   m_Exposed: 1
-  m_Order: 4
+  m_Order: 2
   m_Category: 
   m_Min:
     m_Type:
@@ -4204,7 +4184,7 @@ MonoBehaviour:
   - {fileID: 612}
   m_ExposedName: AugmentaPositions
   m_Exposed: 1
-  m_Order: 5
+  m_Order: 3
   m_Category: 
   m_Min:
     m_Type:
@@ -4285,7 +4265,7 @@ MonoBehaviour:
   - {fileID: 614}
   m_ExposedName: AugmentaPositionCount
   m_Exposed: 1
-  m_Order: 6
+  m_Order: 4
   m_Category: 
   m_Min:
     m_Type:
@@ -6440,7 +6420,7 @@ MonoBehaviour:
   - {fileID: 719}
   m_ExposedName: Orb Index Offset
   m_Exposed: 0
-  m_Order: 7
+  m_Order: 5
   m_Category: 
   m_Min:
     m_Type:
@@ -10314,7 +10294,7 @@ MonoBehaviour:
   - {fileID: 1066}
   m_ExposedName: Emitter Mesh color
   m_Exposed: 1
-  m_Order: 3
+  m_Order: 6
   m_Category: 
   m_Min:
     m_Type:
@@ -11736,7 +11716,7 @@ MonoBehaviour:
   - {fileID: 1212}
   m_ExposedName: Emitter Color
   m_Exposed: 1
-  m_Order: 1
+  m_Order: 7
   m_Category: 
   m_Min:
     m_Type:
@@ -12258,78 +12238,6 @@ MonoBehaviour:
       m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
   m_Direction: 0
-  m_LinkedSlots: []
---- !u!114 &1237
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 330e0fca1717dde4aaa144f48232aa64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_UIIgnoredErrors: []
-  m_Parent: {fileID: 2}
-  m_Children: []
-  m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 1
-  m_UISuperCollapsed: 0
-  m_InputSlots: []
-  m_OutputSlots:
-  - {fileID: 1238}
-  m_ExposedName: Buffer 1
-  m_Exposed: 1
-  m_Order: 9
-  m_Category: 
-  m_Min:
-    m_Type:
-      m_SerializableType: 
-    m_SerializableObject: 
-  m_Max:
-    m_Type:
-      m_SerializableType: 
-    m_SerializableObject: 
-  m_IsOutput: 0
-  m_EnumValues: []
-  m_ValueFilter: 0
-  m_Tooltip: 
-  m_Nodes: []
---- !u!114 &1238
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5ff4abdfc4ddb54992e15a0636f5d0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_UIIgnoredErrors: []
-  m_Parent: {fileID: 0}
-  m_Children: []
-  m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 1
-  m_UISuperCollapsed: 0
-  m_MasterSlot: {fileID: 1238}
-  m_MasterData:
-    m_Owner: {fileID: 1237}
-    m_Value:
-      m_Type:
-        m_SerializableType: UnityEngine.GraphicsBuffer, UnityEngine.CoreModule, Version=0.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: 
-    m_Space: -1
-  m_Property:
-    name: o
-    m_serializedType:
-      m_SerializableType: UnityEngine.GraphicsBuffer, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-  m_Direction: 1
   m_LinkedSlots: []
 --- !u!114 &1254
 MonoBehaviour:
@@ -13577,7 +13485,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: False
+      m_SerializableObject: True
     m_Space: -1
   m_Property:
     name: _vfx_enabled
@@ -15638,7 +15546,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: False
+      m_SerializableObject: True
     m_Space: -1
   m_Property:
     name: _vfx_enabled
