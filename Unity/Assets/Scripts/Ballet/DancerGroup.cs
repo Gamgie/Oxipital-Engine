@@ -116,6 +116,7 @@ namespace Oxipital
 				fieldInfos[inBufferAttribute.index] = f;
 
 				int fieldNumFloats = 1;
+				if (f.FieldType == typeof(Vector2)) fieldNumFloats = 2;
 				if (f.FieldType == typeof(Vector3)) fieldNumFloats = 3;
 				if (f.FieldType == typeof(Vector4)) fieldNumFloats = 4;
 				if (f.FieldType == typeof(Color)) fieldNumFloats = 3;
@@ -240,7 +241,13 @@ namespace Oxipital
 					val = f.Value.GetValue(this);
 
 
-				if (f.Value.FieldType == typeof(Vector3))
+				if (f.Value.FieldType == typeof(Vector2))
+				{
+					Vector2 v = (Vector2)val;
+					list[index] = v.x;
+					list[index + 1] = v.y;
+				}
+				else if (f.Value.FieldType == typeof(Vector3))
 				{
 					Vector3 v = (Vector3)val;
 					list[index] = v.x;
