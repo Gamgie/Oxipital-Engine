@@ -157,7 +157,7 @@ namespace Oxipital
 		[InBuffer(1)]
 		public bool infiniteLife = false;
 
-		public enum EmitterShape { Sphere, Plane, Torus, Cube, Pipe, Egg, Line, Circle, Merkaba, Pyramid, Custom, Augmenta }
+		public enum EmitterShape { Sphere, Plane, Torus, Cube, Pipe, Egg, Line, Circle, Merkaba, Pyramid, Custom, Augmenta, Grid }
         public enum RenderType { UnlitOpaque, UnlitAdditive, LitQuad, LitMesh }
 
         [InBuffer(2)]
@@ -184,8 +184,15 @@ namespace Oxipital
         [Range(0, 1)]
         public float emitterPositionNoiseRadius = 1;
 
+		[InBuffer(8)]
+		public Vector3 gridDimension;
+
+		[InBuffer(11)]
+		[Range(0, 1)]
+		public float gridDensity;
+
         [Header("Appearance")]
-        [InBuffer(8)]
+        [InBuffer(12)]
         [ColorUsage(true, true)]
         public Color color = Color.white;
 
@@ -193,7 +200,7 @@ namespace Oxipital
         [Range(0, 1)]
         public float colorLifeRange = 1;
         public Gradient colorOverLife;
-		[InBuffer(11)]
+		[InBuffer(15)]
 		[Range(0, 1)]
 		public float colorLifeBlend = 0;
 
@@ -201,38 +208,38 @@ namespace Oxipital
 		[Range(0, 1)]
 		public float colorSpeedRange = 1;
 		public Gradient colorOverSpeed;
-		[InBuffer(12)]
+		[InBuffer(16)]
 		[Range(0, 1)]
 		public float colorSpeedBlend = 0;
 
-		[InBuffer(13)]
+		[InBuffer(17)]
 		[Range(0, 1)]
 		public float colorMaxSpeed = 1;
 
-		[InBuffer(14)]
+		[InBuffer(18)]
         [Range(0, 1)]
         public float alpha = .5f;
 
-        [InBuffer(15)]
+        [InBuffer(19)]
         [Range(0, 1)]
         public float hdrMultiplier = 1;
 
-        [InBuffer(16)]
+        [InBuffer(20)]
         [Range(0, 1)]
         public float alphaSpeedThreshold = 0;
 
-        [InBuffer(17)]
+        [InBuffer(21)]
         [Range(0, 1)]
         public float textureOpacity = 0;
 
-        [InBuffer(18)]
+        [InBuffer(22)]
         [Range(0, 1)]
         public float particleSize = 0;
 
-        [InBuffer(19)]
+        [InBuffer(23)]
         public RenderType renderType = RenderType.UnlitAdditive;
 
-        [InBuffer(20)]
+        [InBuffer(24)]
         [Range(0, 1)]
         public float meshOpacity = 0;
         [Range(0, 1)]
@@ -250,27 +257,27 @@ namespace Oxipital
 
 
 		[Header("Physics")]
-        [InBuffer(21)]
+        [InBuffer(25)]
         [Range(0, 1)]
         public float forceWeight = 1;
 
-        [InBuffer(22)]
+        [InBuffer(26)]
         [Range(0, 1)]
         public float drag = .5f;
 
-        [InBuffer(23)]
+        [InBuffer(27)]
         [Range(0, 1)]
         public float velocityDrag = 0;
 
-        [InBuffer(24)]
+        [InBuffer(28)]
         [Range(0, 1)]
         public float noisyDrag = 0;
 
-        [InBuffer(25)]
+        [InBuffer(29)]
         [Range(0, 5)]
         public float noisyDragFrequency = 0;
 
-        [InBuffer(26)]
+        [InBuffer(30)]
         public bool activateCollision = false;
 
 
@@ -331,7 +338,7 @@ namespace Oxipital
 
             if (emitterShape != lastEmitterShape)
             {
-                if (emitterShape != EmitterShape.Line && emitterShape != EmitterShape.Circle && emitterShape != EmitterShape.Custom && emitterShape != EmitterShape.Augmenta)
+                if (emitterShape != EmitterShape.Line && emitterShape != EmitterShape.Circle && emitterShape != EmitterShape.Custom && emitterShape != EmitterShape.Augmenta && emitterShape != EmitterShape.Grid)
                 {
                     string shape = emitterShape.ToString().ToLower();
                     meshName = shape;
@@ -399,17 +406,10 @@ namespace Oxipital
                 // try to load texture
                 Texture2D tex = LoadTextureFromPath(fullPath);
 
-                // it didn't work so try with a png extension
+                // it didn't work so raise a warning.
                 if(tex == null)
                 {
-                    string fullPathPNG = fullPath + ".png";
-					tex = LoadTextureFromPath(fullPathPNG);
-				}
-
-                if(tex == null)
-                {
-					string fullPathjpg = fullPath + ".jpg";
-					tex = LoadTextureFromPath(fullPathjpg);
+                    Debug.LogWarning("Could not load texture from " + fullPath);
 				}
 
                 if (tex != null)
