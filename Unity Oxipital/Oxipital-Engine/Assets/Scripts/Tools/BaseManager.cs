@@ -13,6 +13,7 @@ public class BaseManager<T> : BaseItem where T : BaseItem
 
     public GameObject itemPrefab;
     internal List<T> items;
+    internal int id;
 
     string itemName = "Item";
 
@@ -60,5 +61,14 @@ public class BaseManager<T> : BaseItem where T : BaseItem
     public virtual float getCount()
 	{
         return count;
+	}
+	public int getID()
+	{
+		return id;
+	}
+
+	internal void setID(int id)
+	{
+		this.id = id;
 	}
 }

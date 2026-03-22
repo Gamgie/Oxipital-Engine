@@ -11,10 +11,21 @@ namespace Oxipital
         {
         }
 
-        protected override StandardForceGroup addItem()
+		protected override void OnEnable()
+		{
+			base.OnEnable();
+
+			for (int i = 0; i < items.Count; i++)
+			{
+				StandardForceGroup o = items[i];
+				o.setID(i+1);
+			}
+		}
+
+		protected override StandardForceGroup addItem()
         {
             StandardForceGroup g = base.addItem();
-            g.SetGroupId(items.Count);
+            g.setID(items.Count);
             return g;
 		}
 
@@ -22,7 +33,7 @@ namespace Oxipital
 		{
 			foreach (StandardForceGroup forceGroup in items)
 			{
-				int orbID = forceGroup.GetGroupId();
+				int orbID = forceGroup.getID();
 				if (orbID == id) return forceGroup;
 			}
 			return null;

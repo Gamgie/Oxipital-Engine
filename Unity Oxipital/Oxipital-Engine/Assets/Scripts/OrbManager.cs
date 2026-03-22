@@ -14,11 +14,23 @@ namespace Oxipital
         {
         }
 
-        protected override OrbGroup addItem()
+        protected override void OnEnable()
+        {
+			base.OnEnable();
+
+            for(int i = 0; i < items.Count; i++)
+            {
+                OrbGroup o = items[i];
+                o.setID(i+1);
+            }
+		}
+
+
+		protected override OrbGroup addItem()
         {
             OrbGroup g = base.addItem();
             if (items.Count == 1) items[0].dancerIntensity = firstItemIntensity;
-            g.SetGroupId(items.Count);
+            g.setID(items.Count);
             return g;
         }
 
@@ -43,7 +55,7 @@ namespace Oxipital
         {
             foreach (OrbGroup orbGroup in items)
             {
-                int orbID = orbGroup.GetGroupId();
+                int orbID = orbGroup.getID();
                 if (orbID == id) return orbGroup;
             }
             return null;

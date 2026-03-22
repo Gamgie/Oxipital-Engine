@@ -60,9 +60,6 @@ namespace Oxipital
 
 		List<DancePattern> patterns;
 
-		internal int groupId;
-
-		//Graphics buffer
 
 		public GraphicsBuffer buffer;
 
@@ -345,16 +342,6 @@ namespace Oxipital
 		{
 			return patternTime;
         }
-
-		public int GetGroupId()
-		{
-			return groupId;
-		}
-
-		internal void SetGroupId(int id)
-		{
-			groupId = id;
-		}
 
 	}
 }
