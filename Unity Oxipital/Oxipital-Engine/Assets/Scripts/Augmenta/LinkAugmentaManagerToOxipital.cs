@@ -54,7 +54,7 @@ public class LinkAugmentaManagerToOxipital : MonoBehaviour
 				{
 					int orbId = orbIdList[i];
 					OrbGroup orbGroup = orbManager.GetOrbById(orbId);
-					orbGroup.count = augmentaManager.augmentaObjects.Count-1; // Set the count of the orb group to the number of augmenta objectsS
+					orbGroup.count = augmentaManager.augmentaObjects.Count; // Set the count of the orb group to the number of augmenta objectsS
 					ManualDancePattern orbManualDancePattern = orbGroup.GetComponent<ManualDancePattern>();
 					ApplyDataOnManualPattern(oid, orbManualDancePattern, augmentaObjectPosition);
 				}
@@ -63,9 +63,24 @@ public class LinkAugmentaManagerToOxipital : MonoBehaviour
 				{
 					int forceId = forceIdList[i];
 					StandardForceGroup forceGroup = forceManager.GetForceById(forceId);
-					forceGroup.count = augmentaManager.augmentaObjects.Count-1; // Set the count of the force group to the number of augmenta objects
+					forceGroup.count = augmentaManager.augmentaObjects.Count; // Set the count of the force group to the number of augmenta objects
 					ManualDancePattern forceManualDancePattern = forceGroup.GetComponent<ManualDancePattern>();
 					ApplyDataOnManualPattern(oid, forceManualDancePattern, augmentaObjectPosition);
+				}
+			}
+
+			if(augmentaManager.augmentaObjects.Count == 0)
+			{
+				// If there is no augmenta object, we set the count of the forces and orbs to 0 to hide them
+				foreach (int orbId in orbIdList)
+				{
+					OrbGroup orbGroup = orbManager.GetOrbById(orbId);
+					orbGroup.count = 0;
+				}
+				foreach (int forceId in forceIdList)
+				{
+					StandardForceGroup forceGroup = forceManager.GetForceById(forceId);
+					forceGroup.count = 0;
 				}
 			}
 		}
