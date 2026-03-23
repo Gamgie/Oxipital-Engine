@@ -54,6 +54,7 @@ public class LinkAugmentaManagerToOxipital : MonoBehaviour
 				{
 					int orbId = orbIdList[i];
 					OrbGroup orbGroup = orbManager.GetOrbById(orbId);
+					orbGroup.count = augmentaManager.augmentaObjects.Count-1; // Set the count of the orb group to the number of augmenta objectsS
 					ManualDancePattern orbManualDancePattern = orbGroup.GetComponent<ManualDancePattern>();
 					ApplyDataOnManualPattern(oid, orbManualDancePattern, augmentaObjectPosition);
 				}
@@ -62,7 +63,7 @@ public class LinkAugmentaManagerToOxipital : MonoBehaviour
 				{
 					int forceId = forceIdList[i];
 					StandardForceGroup forceGroup = forceManager.GetForceById(forceId);
-					forceGroup.count = augmentaManager.augmentaObjects.Count; // Set the count of the force group to the number of augmenta objects
+					forceGroup.count = augmentaManager.augmentaObjects.Count-1; // Set the count of the force group to the number of augmenta objects
 					ManualDancePattern forceManualDancePattern = forceGroup.GetComponent<ManualDancePattern>();
 					ApplyDataOnManualPattern(oid, forceManualDancePattern, augmentaObjectPosition);
 				}
