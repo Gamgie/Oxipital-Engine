@@ -24,8 +24,8 @@ public class CameraSpoutManager : MonoBehaviour
     {
         if(loadFromPlayerPrefs)
         {
-			int tempWidth = PlayerPrefs.GetInt("SpoutWidth", 0);
-			int tempHeight = PlayerPrefs.GetInt("SpoutHeight", 0);
+			int tempWidth = PlayerPrefs.GetInt(spoutSender.name + "_SpoutWidth", 0);
+			int tempHeight = PlayerPrefs.GetInt(spoutSender.name + "_SpoutHeight", 0);
 
             if (tempHeight != 0 && tempWidth != 0)
             {
@@ -103,8 +103,8 @@ public class CameraSpoutManager : MonoBehaviour
 	{
         if (loadFromPlayerPrefs)
         {
-            PlayerPrefs.SetInt("SpoutWidth", width);
-            PlayerPrefs.SetInt("SpoutHeight", height);
+            PlayerPrefs.SetInt(spoutSender.name + "_SpoutWidth", width);
+            PlayerPrefs.SetInt(spoutSender.name + "_SpoutHeight", height);
         }
     }
 }
