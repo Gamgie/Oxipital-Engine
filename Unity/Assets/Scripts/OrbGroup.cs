@@ -67,16 +67,16 @@ namespace Oxipital
                         string meshNameLower = fileWithoutExtension.ToLower();
 
                         // Generate SDF for the mesh
-                        RenderTexture sdfTexture = GenerateSDFForMesh(m, fileWithoutExtension);
-                        if (sdfTexture != null)
-                        {
-                            mt.collisionSDF = sdfTexture;
-                            Debug.Log($"Generated SDF for {fileWithoutExtension}");
-                        }
-                        else
-                        {
-                            Debug.LogWarning($"Failed to generate SDF for {fileWithoutExtension}");
-                        }
+                        //RenderTexture sdfTexture = GenerateSDFForMesh(m, fileWithoutExtension);
+                        //if (sdfTexture != null)
+                        //{
+                        //    mt.collisionSDF = sdfTexture;
+                        //    Debug.Log($"Generated SDF for {fileWithoutExtension}");
+                        //}
+                        //else
+                        //{
+                        //    Debug.LogWarning($"Failed to generate SDF for {fileWithoutExtension}");
+                        //}
 
                         shapeMeshMap.Add(meshNameLower, mt);
 

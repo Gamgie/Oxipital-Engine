@@ -321,6 +321,53 @@ MonoBehaviour:
     max: Infinity
     enumValues: []
     descendantCount: 0
+  - name: Emitter Intensity
+    path: Emitter Intensity
+    tooltip: 
+    space: -1
+    spaceable: 0
+    sheetType: m_Float
+    realType: Single
+    defaultValue:
+      m_Type:
+        m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089
+      m_SerializableObject: 0
+    min: -Infinity
+    max: Infinity
+    enumValues: []
+    descendantCount: 0
+  - name: Augmenta Positions
+    path: 
+    tooltip: 
+    space: -1
+    spaceable: 0
+    sheetType: 
+    realType: GraphicsBuffer
+    defaultValue:
+      m_Type:
+        m_SerializableType: 
+      m_SerializableObject: 
+    min: -Infinity
+    max: Infinity
+    enumValues: []
+    descendantCount: 0
+  - name: Augmenta Position Count
+    path: Augmenta Position Count
+    tooltip: 
+    space: -1
+    spaceable: 0
+    sheetType: m_Int
+    realType: Int32
+    defaultValue:
+      m_Type:
+        m_SerializableType: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089
+      m_SerializableObject: 0
+    min: -Infinity
+    max: Infinity
+    enumValues: []
+    descendantCount: 0
   - name: Emitter Mesh Color
     path: Emitter Mesh Color
     tooltip: 
@@ -333,38 +380,6 @@ MonoBehaviour:
         m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
       m_SerializableObject: '{"obj":{"fileID":2800000,"guid":"276d9e395ae18fe40a9b4988549f2349","type":3}}'
-    min: -Infinity
-    max: Infinity
-    enumValues: []
-    descendantCount: 0
-  - name: Emitter Color
-    path: Emitter Color
-    tooltip: 
-    space: -1
-    spaceable: 0
-    sheetType: m_NamedObject
-    realType: Texture2D
-    defaultValue:
-      m_Type:
-        m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"obj":{"fileID":2800000,"guid":"276d9e395ae18fe40a9b4988549f2349","type":3}}'
-    min: -Infinity
-    max: Infinity
-    enumValues: []
-    descendantCount: 0
-  - name: Collision SDF
-    path: Collision SDF
-    tooltip: 
-    space: -1
-    spaceable: 0
-    sheetType: m_NamedObject
-    realType: Texture3D
-    defaultValue:
-      m_Type:
-        m_SerializableType: UnityEngine.Texture3D, UnityEngine.CoreModule, Version=0.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"obj":{"fileID":11700000,"guid":"08937e3134903c5488be506a2dac71e9","type":2}}'
     min: -Infinity
     max: Infinity
     enumValues: []
@@ -401,18 +416,18 @@ MonoBehaviour:
     max: Infinity
     enumValues: []
     descendantCount: 0
-  - name: Emitter Intensity
-    path: Emitter Intensity
+  - name: Emitter Color
+    path: Emitter Color
     tooltip: 
     space: -1
     spaceable: 0
-    sheetType: m_Float
-    realType: Single
+    sheetType: m_NamedObject
+    realType: Texture2D
     defaultValue:
       m_Type:
-        m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
-          PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0
+        m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      m_SerializableObject: '{"obj":{"fileID":2800000,"guid":"276d9e395ae18fe40a9b4988549f2349","type":3}}'
     min: -Infinity
     max: Infinity
     enumValues: []
@@ -433,33 +448,18 @@ MonoBehaviour:
     max: Infinity
     enumValues: []
     descendantCount: 0
-  - name: Augmenta Positions
-    path: 
+  - name: Collision SDF
+    path: Collision SDF
     tooltip: 
     space: -1
     spaceable: 0
-    sheetType: 
-    realType: GraphicsBuffer
+    sheetType: m_NamedObject
+    realType: Texture3D
     defaultValue:
       m_Type:
-        m_SerializableType: 
-      m_SerializableObject: 
-    min: -Infinity
-    max: Infinity
-    enumValues: []
-    descendantCount: 0
-  - name: Augmenta Position Count
-    path: Augmenta Position Count
-    tooltip: 
-    space: -1
-    spaceable: 0
-    sheetType: m_Int
-    realType: Int32
-    defaultValue:
-      m_Type:
-        m_SerializableType: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
-          PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0
+        m_SerializableType: UnityEngine.Texture3D, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      m_SerializableObject: '{"obj":{"fileID":11700000,"guid":"08937e3134903c5488be506a2dac71e9","type":2}}'
     min: -Infinity
     max: Infinity
     enumValues: []
@@ -480,6 +480,51 @@ MonoBehaviour:
     enumValues: []
     descendantCount: 0
   - name: Force Group 1
+    path: 
+    tooltip: 
+    space: -1
+    spaceable: 0
+    sheetType: 
+    realType: GraphicsBuffer
+    defaultValue:
+      m_Type:
+        m_SerializableType: 
+      m_SerializableObject: 
+    min: -Infinity
+    max: Infinity
+    enumValues: []
+    descendantCount: 0
+  - name: Force Group 3B
+    path: 
+    tooltip: 
+    space: -1
+    spaceable: 0
+    sheetType: 
+    realType: GraphicsBuffer
+    defaultValue:
+      m_Type:
+        m_SerializableType: 
+      m_SerializableObject: 
+    min: -Infinity
+    max: Infinity
+    enumValues: []
+    descendantCount: 0
+  - name: Force Group 4
+    path: 
+    tooltip: 
+    space: -1
+    spaceable: 0
+    sheetType: 
+    realType: GraphicsBuffer
+    defaultValue:
+      m_Type:
+        m_SerializableType: 
+      m_SerializableObject: 
+    min: -Infinity
+    max: Infinity
+    enumValues: []
+    descendantCount: 0
+  - name: Force Group 4B
     path: 
     tooltip: 
     space: -1
@@ -554,53 +599,8 @@ MonoBehaviour:
     max: Infinity
     enumValues: []
     descendantCount: 0
-  - name: Force Group 3B
-    path: 
-    tooltip: 
-    space: -1
-    spaceable: 0
-    sheetType: 
-    realType: GraphicsBuffer
-    defaultValue:
-      m_Type:
-        m_SerializableType: 
-      m_SerializableObject: 
-    min: -Infinity
-    max: Infinity
-    enumValues: []
-    descendantCount: 0
-  - name: Force Group 4
-    path: 
-    tooltip: 
-    space: -1
-    spaceable: 0
-    sheetType: 
-    realType: GraphicsBuffer
-    defaultValue:
-      m_Type:
-        m_SerializableType: 
-      m_SerializableObject: 
-    min: -Infinity
-    max: Infinity
-    enumValues: []
-    descendantCount: 0
-  - name: Force Group 4B
-    path: 
-    tooltip: 
-    space: -1
-    spaceable: 0
-    sheetType: 
-    realType: GraphicsBuffer
-    defaultValue:
-      m_Type:
-        m_SerializableType: 
-      m_SerializableObject: 
-    min: -Infinity
-    max: Infinity
-    enumValues: []
-    descendantCount: 0
   m_ImportDependencies: []
-  m_GraphVersion: 18
+  m_GraphVersion: 19
   m_ResourceVersion: 1
   m_SubgraphDependencies:
   - {fileID: 5371698748595113096, guid: 4a6ac412607bcf84c9a85d25e657f1fd, type: 3}
@@ -1021,10 +1021,6 @@ VisualEffectResource:
     m_RendererSettings:
       motionVectorGenerationMode: 0
       shadowCastingMode: 1
-      rayTracingMode: 0
-      receiveShadows: 0
-      reflectionProbeUsage: 0
-      lightProbeUsage: 0
     m_CullingFlags: 3
     m_UpdateMode: 0
     m_PreWarmDeltaTime: 0.05
@@ -1447,7 +1443,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614716}
   m_ExposedName: Force Group 3B
   m_Exposed: 1
-  m_Order: 17
+  m_Order: 1
   m_Category: Forces
   m_Min:
     m_Type:
@@ -1528,7 +1524,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614718}
   m_ExposedName: Force Group 4
   m_Exposed: 1
-  m_Order: 18
+  m_Order: 2
   m_Category: Forces
   m_Min:
     m_Type:
@@ -1609,7 +1605,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614720}
   m_ExposedName: Force Group 4B
   m_Exposed: 1
-  m_Order: 19
+  m_Order: 3
   m_Category: Forces
   m_Min:
     m_Type:
@@ -1690,7 +1686,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614722}
   m_ExposedName: Orb Buffer
   m_Exposed: 1
-  m_Order: 1
+  m_Order: 4
   m_Category: Orb
   m_Min:
     m_Type:
@@ -1908,7 +1904,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614737}
   m_ExposedName: Emitter Mesh
   m_Exposed: 1
-  m_Order: 2
+  m_Order: 5
   m_Category: Orb
   m_Min:
     m_Type:
@@ -2016,7 +2012,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614803}
   m_ExposedName: Emitter Intensity
   m_Exposed: 1
-  m_Order: 9
+  m_Order: 6
   m_Category: Orb
   m_Min:
     m_Type:
@@ -2233,7 +2229,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614983}
   m_ExposedName: Camera Position
   m_Exposed: 1
-  m_Order: 4
+  m_Order: 7
   m_Category: 
   m_Min:
     m_Type:
@@ -4869,7 +4865,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615594}
   m_ExposedName: Force Group 1B
   m_Exposed: 1
-  m_Order: 13
+  m_Order: 8
   m_Category: Forces
   m_Min:
     m_Type:
@@ -4950,7 +4946,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615598}
   m_ExposedName: Force Group 2
   m_Exposed: 1
-  m_Order: 14
+  m_Order: 9
   m_Category: Forces
   m_Min:
     m_Type:
@@ -5031,7 +5027,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615600}
   m_ExposedName: Force Group 2B
   m_Exposed: 1
-  m_Order: 15
+  m_Order: 10
   m_Category: Forces
   m_Min:
     m_Type:
@@ -5112,7 +5108,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615602}
   m_ExposedName: Force Group 3
   m_Exposed: 1
-  m_Order: 16
+  m_Order: 11
   m_Category: Forces
   m_Min:
     m_Type:
@@ -5333,7 +5329,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615851}
   m_ExposedName: Augmenta Positions
   m_Exposed: 1
-  m_Order: 11
+  m_Order: 12
   m_Category: Orb
   m_Min:
     m_Type:
@@ -5438,7 +5434,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615853}
   m_ExposedName: Augmenta Position Count
   m_Exposed: 1
-  m_Order: 12
+  m_Order: 13
   m_Category: Orb
   m_Min:
     m_Type:
@@ -5564,6 +5560,7 @@ MonoBehaviour:
   sortingPriority: 0
   m_SubOutputs:
   - {fileID: 8926484042661615857}
+  useBaseColorMap: 3
   colorMapping: 0
   uvMode: 0
   flipbookLayout: 0
@@ -5863,7 +5860,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615870}
   m_ExposedName: Emitter Mesh Color
   m_Exposed: 1
-  m_Order: 3
+  m_Order: 14
   m_Category: Orb
   m_Min:
     m_Type:
@@ -7490,6 +7487,7 @@ MonoBehaviour:
   sortingPriority: 0
   m_SubOutputs:
   - {fileID: 8926484042661616095}
+  useBaseColorMap: 3
   colorMapping: 0
   uvMode: 0
   flipbookLayout: 0
@@ -7515,7 +7513,6 @@ MonoBehaviour:
     m_PropertyNames: []
     m_PropertyValues: []
     renderQueue: -1
-  useBaseColorMap: 3
   useMaskMap: 0
   useNormalMap: 0
   useEmissiveMap: 0
@@ -8029,6 +8026,7 @@ MonoBehaviour:
   sortingPriority: 0
   m_SubOutputs:
   - {fileID: 8926484042661616111}
+  useBaseColorMap: 3
   colorMapping: 0
   uvMode: 0
   flipbookLayout: 0
@@ -8436,7 +8434,7 @@ MonoBehaviour:
   - {fileID: 8926484042661616135}
   m_ExposedName: Color Over Life
   m_Exposed: 1
-  m_Order: 7
+  m_Order: 15
   m_Category: Orb
   m_Min:
     m_Type:
@@ -8526,7 +8524,7 @@ MonoBehaviour:
   - {fileID: 8926484042661616137}
   m_ExposedName: Color Over Speed
   m_Exposed: 1
-  m_Order: 8
+  m_Order: 16
   m_Category: Orb
   m_Min:
     m_Type:
@@ -8756,7 +8754,7 @@ MonoBehaviour:
   - {fileID: 8926484042661616147}
   m_ExposedName: Emitter Color
   m_Exposed: 1
-  m_Order: 5
+  m_Order: 17
   m_Category: Orb
   m_Min:
     m_Type:
@@ -10924,7 +10922,7 @@ MonoBehaviour:
   - {fileID: 8926484042661616275}
   m_ExposedName: Source Position
   m_Exposed: 1
-  m_Order: 10
+  m_Order: 18
   m_Category: Orb
   m_Min:
     m_Type:
@@ -11134,7 +11132,7 @@ MonoBehaviour:
   - {fileID: 8926484042661616280}
   m_ExposedName: Collision SDF
   m_Exposed: 1
-  m_Order: 6
+  m_Order: 19
   m_Category: Orb
   m_Min:
     m_Type:
