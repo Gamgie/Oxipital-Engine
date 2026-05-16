@@ -13,6 +13,7 @@ public class CameraController : MonoBehaviour
     [Header("General Parameters")]
     public Transform lookAtTarget;
     public new Camera camera;
+    public CinemachineBrain cinemachineBrain;
     public bool orthographic = false;
     public float fov;
     public float orthoSize = 2;
@@ -42,7 +43,6 @@ public class CameraController : MonoBehaviour
 
     private List<CameraMovement> _cameraList;
     private CameraMovement _activeCamera;
-    private CinemachineBrain _cinemachineBrain;
 
     private void OnEnable()
     {
@@ -58,8 +58,6 @@ public class CameraController : MonoBehaviour
         }
 
         SwitchCamera(cameraType);
-
-        _cinemachineBrain = camera.GetComponent<CinemachineBrain>();
     }
 
     // Update is called once per frame
@@ -85,11 +83,11 @@ public class CameraController : MonoBehaviour
         xWing.SetActive(showXwing);
 
         // Update camera transition duration
-        if (_cinemachineBrain != null)
+        if (cinemachineBrain != null)
         {
-            var blend = _cinemachineBrain.DefaultBlend;
+            var blend = cinemachineBrain.DefaultBlend;
             blend.Time = cameraTransitionDuration;
-            _cinemachineBrain.DefaultBlend = blend;
+            cinemachineBrain.DefaultBlend = blend;
         }
 
         // Update noise parameters in all camera

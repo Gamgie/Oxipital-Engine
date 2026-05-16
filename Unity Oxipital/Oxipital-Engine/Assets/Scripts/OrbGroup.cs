@@ -150,7 +150,7 @@ namespace Oxipital
     {
         [Header("Emission")]
         [InBuffer(0)]
-        [Range(0, 60)]
+        [Range(0, 120)]
         public float life = 20;
 
         public enum EmitterShape { Sphere, Plane, Torus, Cube, Pipe, Egg, Line, Circle, Merkaba, Pyramid, Custom, Augmenta }
@@ -159,6 +159,8 @@ namespace Oxipital
         [InBuffer(1)]
         public EmitterShape emitterShape;
         EmitterShape lastEmitterShape;
+
+        
 
         [InBuffer(2)]
         [Range(0, 1)]
@@ -267,7 +269,9 @@ namespace Oxipital
 
         [InBuffer(25)]
         public bool activateCollision = false;
-
+        
+        [InBuffer(26)]
+        public Vector3 emitterScale = Vector3.one;
 
 
         public string customMeshName = string.Empty;
