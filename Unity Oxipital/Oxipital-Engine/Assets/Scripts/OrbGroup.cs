@@ -41,54 +41,65 @@ namespace Oxipital
 
             foreach (string file in files)
             {
-                var gltfI = new GLTFast.GltfImport();
-                var success = await gltfI.Load(file);
+                var fileWithoutExtension = Path.GetFileNameWithoutExtension(file);
 
-                if (success)
+                try
                 {
-                    var meshes = gltfI.Meshes;
-                    if (meshes.Count > 0)
+                    var gltfI = new GLTFast.GltfImport();
+                    var success = await gltfI.Load(file);
+
+                    if (success)
                     {
-                        Mesh m = System.Linq.Enumerable.First(meshes);
-                        if (m == null)
+                        var meshes = gltfI.Meshes;
+                        if (meshes.Count > 0)
                         {
-                            Debug.LogWarning(file + " loaded but no mesh found inside");
-                            return;
+                            Mesh m = System.Linq.Enumerable.First(meshes);
+                            if (m == null)
+                            {
+                                Debug.LogWarning(file + " loaded but no mesh found inside");
+                                continue;
+                            }
+
+                            var text = gltfI.GetTexture(0);
+
+                            MeshTextured mt = new MeshTextured();
+                            mt.mesh = m;
+                            mt.texture = text;
+
+                            string meshNameLower = fileWithoutExtension.ToLower();
+
+                            // Generate SDF for the mesh
+                            //RenderTexture sdfTexture = GenerateSDFForMesh(m, fileWithoutExtension);
+                            //if (sdfTexture != null)
+                            //{
+                            //    mt.collisionSDF = sdfTexture;
+                            //    Debug.Log($"Generated SDF for {fileWithoutExtension}");
+                            //}
+                            //else
+                            //{
+                            //    Debug.LogWarning($"Failed to generate SDF for {fileWithoutExtension}");
+                            //}
+
+                            shapeMeshMap.Add(meshNameLower, mt);
+
+                            Debug.Log("Loaded mesh " + fileWithoutExtension);
                         }
-
-                        var text = gltfI.GetTexture(0);
-
-                        MeshTextured mt = new MeshTextured();
-                        mt.mesh = m;
-                        mt.texture = text;
-
-                        var fileWithoutExtension = Path.GetFileNameWithoutExtension(file);
-                        string meshNameLower = fileWithoutExtension.ToLower();
-
-                        // Generate SDF for the mesh
-                        //RenderTexture sdfTexture = GenerateSDFForMesh(m, fileWithoutExtension);
-                        //if (sdfTexture != null)
-                        //{
-                        //    mt.collisionSDF = sdfTexture;
-                        //    Debug.Log($"Generated SDF for {fileWithoutExtension}");
-                        //}
-                        //else
-                        //{
-                        //    Debug.LogWarning($"Failed to generate SDF for {fileWithoutExtension}");
-                        //}
-
-                        shapeMeshMap.Add(meshNameLower, mt);
-
-                        Debug.Log("Loaded mesh " + fileWithoutExtension);
+                        else
+                        {
+                            Debug.LogWarning("No mesh found in glTF file: " + fileWithoutExtension);
+                        }
                     }
                     else
                     {
-                        Debug.LogWarning("No mesh found in glTF file");
+                        Debug.LogError("Loading glTF failed: " + fileWithoutExtension);
                     }
                 }
-                else
+                catch (Exception e)
                 {
-                    Debug.LogError("Loading glTF failed!");
+                    // Un mesh en échec (ex: NullReferenceException dans la génération de matériau
+                    // HDRP/glTFast côté build, shader manquant, etc.) ne doit pas bloquer le
+                    // chargement des autres meshes ni empêcher isLoaded de passer à true.
+                    Debug.LogError($"Failed to load glTF mesh '{fileWithoutExtension}': {e.Message}\n{e.StackTrace}");
                 }
             }
 
