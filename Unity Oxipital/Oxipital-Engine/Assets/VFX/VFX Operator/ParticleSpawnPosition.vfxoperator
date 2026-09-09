@@ -12,10 +12,6 @@ VisualEffectResource:
     m_RendererSettings:
       motionVectorGenerationMode: 0
       shadowCastingMode: 0
-      rayTracingMode: 0
-      receiveShadows: 0
-      reflectionProbeUsage: 0
-      lightProbeUsage: 0
     m_CullingFlags: 3
     m_UpdateMode: 0
     m_PreWarmDeltaTime: 0.05
@@ -144,7 +140,7 @@ MonoBehaviour:
     enumValues: []
     descendantCount: 0
   m_ImportDependencies: []
-  m_GraphVersion: 18
+  m_GraphVersion: 19
   m_ResourceVersion: 1
   m_SubgraphDependencies: []
   m_CategoryPath: 
@@ -189,10 +185,10 @@ MonoBehaviour:
   - title: Sample Mesh
     position:
       serializedVersion: 2
-      x: -382
+      x: -403
       y: 666
-      width: 1213
-      height: 1223
+      width: 1247
+      height: 1242
     contents:
     - model: {fileID: 114350483966675031}
       id: 0
@@ -274,15 +270,16 @@ MonoBehaviour:
       c, (t * 2f) - 1f);\r\n        }\nWe sample a curve to increase size around
       0.5 (and avoid glitch problem with chataigne)\nMIdi controller feedback avoid
       to reach an exact 0.5"
-    theme: Classic
+    theme: 
     textSize: Small
+    colorTheme: 1
   categories: []
   uiBounds:
     serializedVersion: 2
     x: -711
     y: -30
     width: 5942
-    height: 1919
+    height: 1938
 --- !u!114 &114350483966674978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3392,7 +3389,7 @@ MonoBehaviour:
   - {fileID: 114350483966675192}
   m_ExposedName: Emitter Surface Factor
   m_Exposed: 1
-  m_Order: 3
+  m_Order: 2
   m_Category: 
   m_Min:
     m_Type:
@@ -3473,7 +3470,7 @@ MonoBehaviour:
   - {fileID: 114350483966675194}
   m_ExposedName: Emitter Volume Factor
   m_Exposed: 1
-  m_Order: 4
+  m_Order: 3
   m_Category: 
   m_Min:
     m_Type:
@@ -6131,7 +6128,7 @@ MonoBehaviour:
   m_Children:
   - {fileID: 114350483966675281}
   m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 0
+  m_UICollapsed: 1
   m_UISuperCollapsed: 0
   m_MasterSlot: {fileID: 114350483966675280}
   m_MasterData:
@@ -6170,7 +6167,7 @@ MonoBehaviour:
   - {fileID: 114350483966675283}
   - {fileID: 114350483966675284}
   m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 0
+  m_UICollapsed: 1
   m_UISuperCollapsed: 0
   m_MasterSlot: {fileID: 114350483966675280}
   m_MasterData:
@@ -6643,7 +6640,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: -228, y: 1180}
+  m_UIPosition: {x: -378, y: 1164}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -9287,7 +9284,7 @@ MonoBehaviour:
   - {fileID: 114350483966675395}
   m_ExposedName: Emitter Mesh Color
   m_Exposed: 1
-  m_Order: 5
+  m_Order: 4
   m_Category: 
   m_Min:
     m_Type:
@@ -11101,7 +11098,7 @@ MonoBehaviour:
   m_OutputSlots: []
   m_ExposedName: Color
   m_Exposed: 0
-  m_Order: 2
+  m_Order: 5
   m_Category: 
   m_Min:
     m_Type:
