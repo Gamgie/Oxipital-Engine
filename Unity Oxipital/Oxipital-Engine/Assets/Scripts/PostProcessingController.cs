@@ -11,8 +11,11 @@ public class PostProcessingController : MonoBehaviour
     public Volume outdoorScene;
 	[Range(0, 1)]
 	public float outdoorWeight;
-    
+    [Range(0, 20)]
+    public float skyboxExposure;
+
     private Bloom bloom;
+    private HDRISky hdrSky;
 
     [Range(0,1)]
     public float bloomIntensity;
@@ -21,6 +24,7 @@ public class PostProcessingController : MonoBehaviour
     void Start()
     {
         postProcessVolume.profile.TryGet<Bloom>(out bloom);
+        postProcessVolume.profile.TryGet<HDRISky>(out hdrSky);
     }
 
     // Update is called once per frame
@@ -29,5 +33,6 @@ public class PostProcessingController : MonoBehaviour
 		bloom.intensity.value = bloomIntensity;
         outdoorScene.weight = 1-postProcessWeight;
         postProcessVolume.weight = postProcessWeight;
-	}
+        hdrSky.exposure.value = skyboxExposure;
+    }
 }
