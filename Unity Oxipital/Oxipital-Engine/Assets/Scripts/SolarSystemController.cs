@@ -1,19 +1,23 @@
 using UnityEngine;
+using UnityEngine.Rendering.HighDefinition;
 
 public class SolarSystemController : MonoBehaviour
 {
     public GameObject sun;
-    public GameObject[] moons;
+    public GameObject[] moonsSpace;
+    public GameObject[] moonsGaussian;
     public GameObject mainMoon;
     public GameObject earth;
 
     [Range(0, 1)] public float sunOpacity = 1.0f;
-    [Range(0, 1)] public float moonOpacity = 1.0f;
+    [Range(0, 1)] public float moonSpaceOpacity = 1.0f;
+    [Range(0, 1)] public float moonGaussianOpacity = 1.0f;
     [Range(0, 1)] public float mainMoonOpacity = 1.0f;
     [Range(0, 1)] public float earthOpacity = 1.0f;
 
     Renderer sunRenderer;
-    Renderer[] moonRenderers;
+    Renderer[] moonSpaceRenderers;
+    Renderer[] moonGaussianRenderers;
     Renderer mainMoonRenderer;
     Renderer earthRenderer;
 
@@ -21,7 +25,8 @@ public class SolarSystemController : MonoBehaviour
 
     // valeurs pr�c�dentes pour �viter les �critures inutiles
     float lastSunOpacity = -1f;
-    float lastMoonOpacity = -1f;
+    float lastMoonSpaceOpacity = -1f;
+    float lastMoonGaussianOpacity = -1f;
     float lastMainMoonOpacity = -1f;
     float lastEarthOpacity = -1f;
 
@@ -33,11 +38,18 @@ public class SolarSystemController : MonoBehaviour
         if (sun != null)
             sunRenderer = sun.GetComponent<Renderer>();
 
-        if (moons != null && moons.Length > 0)
+        if (moonsSpace != null && moonsSpace.Length > 0)
         {
-            moonRenderers = new Renderer[moons.Length];
-            for (int i = 0; i < moons.Length; i++)
-                moonRenderers[i] = moons[i].GetComponent<Renderer>();
+            moonSpaceRenderers = new Renderer[moonsSpace.Length];
+            for (int i = 0; i < moonsSpace.Length; i++)
+                moonSpaceRenderers[i] = moonsSpace[i].GetComponent<Renderer>();
+        }
+
+        if (moonsGaussian != null && moonsGaussian.Length > 0)
+        {
+            moonGaussianRenderers = new Renderer[moonsGaussian.Length];
+            for (int i = 0; i < moonsGaussian.Length; i++)
+                moonGaussianRenderers[i] = moonsGaussian[i].GetComponent<Renderer>();
         }
 
         if (mainMoon != null)
@@ -55,10 +67,16 @@ public class SolarSystemController : MonoBehaviour
             lastSunOpacity = sunOpacity;
         }
 
-        if (moonOpacity != lastMoonOpacity)
+        if (moonSpaceOpacity != lastMoonSpaceOpacity)
         {
-            SetMoonsOpacity(moonOpacity);
-            lastMoonOpacity = moonOpacity;
+            SetMoonsSpaceOpacity(moonSpaceOpacity);
+            lastMoonSpaceOpacity = moonSpaceOpacity;
+        }
+
+        if (moonGaussianOpacity != lastMoonGaussianOpacity)
+        {
+            SetMoonsGaussianOpacity(moonGaussianOpacity);
+            lastMoonGaussianOpacity = moonGaussianOpacity;
         }
 
         if (mainMoonOpacity != lastMainMoonOpacity)
@@ -73,12 +91,6 @@ public class SolarSystemController : MonoBehaviour
             lastEarthOpacity = earthOpacity;
         }
     }
-
-    // Valeurs de blend HDRP (UnityEngine.Rendering.BlendMode) : One = 1, Zero = 0, OneMinusSrcAlpha = 10.
-    // Ce sont les m�mes valeurs que celles d�j� pr�sentes dans les .mat (SrcBlend/DstBlend en mode Transparent).
-    const int BlendOne = 1;
-    const int BlendZero = 0;
-    const int BlendOneMinusSrcAlpha = 10;
 
     void SetOpacity(GameObject go, Renderer renderer, float opacity)
     {
@@ -105,33 +117,27 @@ public class SolarSystemController : MonoBehaviour
 
     void SetSurfaceOpaque(Material mat, bool opaque)
     {
-        if (opaque)
-        {
-            mat.SetFloat("_SurfaceType", 0f); // 0 = Opaque (HDRP Lit)
-            mat.SetOverrideTag("RenderType", "Opaque");
-            mat.SetInt("_SrcBlend", BlendOne);
-            mat.SetInt("_DstBlend", BlendZero);
-            mat.SetInt("_ZWrite", 1);
-            mat.DisableKeyword("_SURFACE_TYPE_TRANSPARENT");
-            mat.renderQueue = (int)UnityEngine.Rendering.RenderQueue.Geometry;
-        }
-        else
-        {
-            mat.SetFloat("_SurfaceType", 1f); // 1 = Transparent (HDRP Lit)
-            mat.SetOverrideTag("RenderType", "Transparent");
-            mat.SetInt("_SrcBlend", BlendOne);
-            mat.SetInt("_DstBlend", BlendOneMinusSrcAlpha);
-            mat.SetInt("_ZWrite", 0);
-            mat.EnableKeyword("_SURFACE_TYPE_TRANSPARENT");
-            mat.renderQueue = (int)UnityEngine.Rendering.RenderQueue.Transparent;
-        }
+        // Flipping _SurfaceType alone isn't enough for HDRP/Lit - it also needs its
+        // blend keywords, render pass and stencil bits (deferred lighting routing)
+        // rebuilt consistently, which is what HDMaterial.SetSurfaceType does. Doing
+        // this by hand (as before) left the stencil state stuck in "opaque" mode, so
+        // the transparent pass just never rendered the object instead of fading it.
+        HDMaterial.SetSurfaceType(mat, !opaque);
     }
 
-    void SetMoonsOpacity(float opacity)
+    void SetMoonsSpaceOpacity(float opacity)
     {
-        if (moons == null || moonRenderers == null) return;
+        if (moonsSpace == null || moonSpaceRenderers == null) return;
 
-        for (int i = 0; i < moons.Length; i++)
-            SetOpacity(moons[i], moonRenderers[i], opacity);
+        for (int i = 0; i < moonsSpace.Length; i++)
+            SetOpacity(moonsSpace[i], moonSpaceRenderers[i], opacity);
+    }
+
+    void SetMoonsGaussianOpacity(float opacity)
+    {
+        if (moonsGaussian == null || moonGaussianRenderers == null) return;
+
+        for (int i = 0; i < moonsGaussian.Length; i++)
+            SetOpacity(moonsGaussian[i], moonGaussianRenderers[i], opacity);
     }
 }
