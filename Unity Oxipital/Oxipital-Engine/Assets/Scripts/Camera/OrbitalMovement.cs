@@ -129,7 +129,19 @@ public class OrbitalMovement : CameraMovement
 
 	public override void SetCameraTransform(Vector3 position, Quaternion rotation)
 	{
-		virtualCamera.transform.position = position;
-		virtualCamera.transform.rotation = rotation;
+		// The virtual camera always looks at this rig's own position (Follow offset
+		// is applied behind the rig, Aim just copies the rig's rotation), so the rig
+		// must stay pinned to positionTarget - that's what keeps it centered on the
+		// pivot. Dragging the rig to the incoming camera's position would break that
+		// and make it look at empty space until the move-in tween finished.
+		// Only the rotation is handed off, so the orbit starts facing roughly where
+		// the previous camera was looking; Cinemachine's blend smooths out the
+		// resulting positional discontinuity.
+		transform.rotation = rotation;
+
+		Vector3 euler = rotation.eulerAngles;
+		rotateXAngle = euler.x;
+		rotateYAngle = euler.y;
+		rotateZAngle = euler.z;
 	}
 }

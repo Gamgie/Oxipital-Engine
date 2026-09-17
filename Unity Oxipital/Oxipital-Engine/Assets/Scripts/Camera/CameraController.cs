@@ -128,6 +128,7 @@ public class CameraController : MonoBehaviour
 
     void SwitchCamera(CameraMovementType type)
     {
+        bool hadActiveCamera = _activeCamera != null;
         Vector3 cameraPosition = Vector3.zero;
         Quaternion cameraRotation = Quaternion.identity;
 
@@ -146,13 +147,19 @@ public class CameraController : MonoBehaviour
                 break;
             case CameraMovementType.Orbital:
                 _activeCamera = orbitalCamera;
-
                 break;
             case CameraMovementType.Spaceship:
                 _activeCamera = spaceshipCamera;
-                _activeCamera.SetCameraTransform(cameraPosition, cameraRotation);
                 break;
         }
+
+        // Hand off the outgoing camera's pose to the incoming one so the
+        // Cinemachine blend starts from where the view actually was, instead
+        // of jumping to whatever stale transform the incoming camera had.
+        // Skip this on the very first activation so each camera keeps its
+        // designed starting pose instead of snapping to zero/identity.
+        if (hadActiveCamera)
+            _activeCamera.SetCameraTransform(cameraPosition, cameraRotation);
 
         _activeCamera.SetActive(true, cameraTransitionDuration);
     }
