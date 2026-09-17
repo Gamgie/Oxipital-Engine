@@ -58,6 +58,11 @@ public class CameraController : MonoBehaviour
         }
 
         SwitchCamera(cameraType);
+
+        if(isFullDome)
+        {
+            camera.enabled = false;
+        }
     }
 
     // Update is called once per frame

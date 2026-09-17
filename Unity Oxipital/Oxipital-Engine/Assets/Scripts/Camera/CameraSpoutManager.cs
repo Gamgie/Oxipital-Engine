@@ -39,6 +39,13 @@ public class CameraSpoutManager : MonoBehaviour
             // Enable spout
             spoutSender.enabled = true;
         }
+
+        if(mainCamera.GetComponent<CameraController>().isFullDome)
+        {
+            this.enabled = false;
+            spoutSender.enabled = false;
+            syphonServer.enabled = false;
+        }
     }
 
 	// Update is called once per frame
