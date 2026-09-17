@@ -17,6 +17,7 @@ public class CameraSpoutManager : MonoBehaviour
 
     #region Private members
     RenderTexture m_renderTexture;
+    CameraController m_cameraController;
     #endregion
 
     private void OnEnable()
@@ -40,7 +41,12 @@ public class CameraSpoutManager : MonoBehaviour
             spoutSender.enabled = true;
         }
 
-        if(mainCamera.GetComponent<CameraController>().isFullDome)
+        if (m_cameraController == null)
+        {
+            m_cameraController = FindFirstObjectByType<CameraController>();
+        }
+
+        if (m_cameraController != null && m_cameraController.isFullDome)
         {
             this.enabled = false;
             spoutSender.enabled = false;
