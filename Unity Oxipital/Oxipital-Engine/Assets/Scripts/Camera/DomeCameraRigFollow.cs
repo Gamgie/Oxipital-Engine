@@ -9,10 +9,15 @@ public class DomeCameraRigFollow : MonoBehaviour
     [Range(-2f,-0.01f)]
     public float offset = -0.2f;
 
+    // Tilts the physical dome rig itself (its own local frame, after the axis
+    // remap below), independent of the active camera movement mode.
+    [Range(-60f, 60f)]
+    public float rigTiltOffset = 0f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -24,5 +29,6 @@ public class DomeCameraRigFollow : MonoBehaviour
         transform.rotation = cameraTarget.transform.rotation;
         transform.Rotate(90,0,0);
         transform.Rotate(0,180,0);
+        transform.Rotate(rigTiltOffset, 0, 0);
 	}
 }
