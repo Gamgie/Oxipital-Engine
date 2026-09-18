@@ -63,6 +63,10 @@ public class CameraController : MonoBehaviour
         {
             camera.enabled = false;
         }
+        else
+        {
+            domeCameraRig.transform.parent.gameObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame
