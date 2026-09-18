@@ -1,0 +1,350 @@
+// Per-camera view projection (CSCalcViewData) and back-to-front depth sort for
+// OxiSplatRenderer, using a single-pass GPU counting/bucket sort (65536 depth buckets)
+// instead of a comparison sort - the same technique antimatter15/splat uses on CPU,
+// ported to GPU with InterlockedAdd for the histogram and scatter steps. This replaces
+// an earlier bitonic-sort version that was both far more expensive (O(n log^2 n), ~253
+// dispatches/frame at 2.6M splats) and, combined with throttled re-sorting, the likely
+// source of splats flickering in and out: a stale draw order colliding with per-frame
+// culling. Counting sort is O(n) plus a cheap O(numBuckets log numBuckets) prefix sum,
+// so it runs fully every frame - no throttling, no staleness.
+//
+// CSCalcViewData also fixes the off-axis (shifted-frustum) projection bug from the stock
+// GaussianSplatting package: it projects each splat's mean through the camera's actual
+// full view-projection matrix, and derives the covariance Jacobian's fx/fy straight from
+// the projection matrix with no symmetric-frustum clamp on view-space x/y.
+
+#pragma kernel CSClearHistogram
+#pragma kernel CSCalcViewData
+#pragma kernel CSScanStep
+#pragma kernel CSComputeOffsets
+#pragma kernel CSFillDefault
+#pragma kernel CSScatter
+
+// Splat colors are decoded from SH trained against sRGB-encoded photographs, so they're
+// effectively sRGB values, but need converting to linear before being written into HDRP's
+// linear HDR pipeline (see EvalSH below). Using Unity's own conversion here rather than a
+// hand-rolled pow() - it implements the precise piecewise sRGB EOTF rather than an
+// approximation, and is the same function every stock HDRP/URP shader uses for this.
+#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Color.hlsl"
+
+#define NUM_BUCKETS 65536u
+#define INVALID_BUCKET 0xFFFFFFFFu
+
+struct SplatCov
+{
+    float3 cov0; // m00, m01, m02
+    float3 cov1; // m11, m12, m22
+};
+
+struct ViewData
+{
+    float2 screenPos; // pixel space
+    float3 conic;     // inverse 2D covariance: a, b, c  (for [[a,b],[b,c]])
+    float2 radius;    // half-extent in pixels
+    float4 color;     // rgb + opacity
+    float4 clipPos;   // full clip-space position of the splat center, reused (with a
+                       // screen-space offset applied to x/y) for all 4 quad corners so
+                       // they depth-test correctly against the rest of the HDRP scene
+};
+
+StructuredBuffer<float3> _InPositions;
+StructuredBuffer<SplatCov> _InCov;
+StructuredBuffer<float4> _InColorOpacity; // rgb + opacity
+StructuredBuffer<float3> _InSH;           // splatCount * 15 entries, coefficient-major
+
+RWStructuredBuffer<ViewData> _OutViewData; // sized _SplatCount + 1 (last slot = always-invisible dummy)
+RWStructuredBuffer<uint> _SplatBucket;     // sized _SplatCount
+
+RWStructuredBuffer<uint> _Histogram; // sized NUM_BUCKETS, original counts (never modified by scan)
+RWStructuredBuffer<uint> _ScanSrc;
+RWStructuredBuffer<uint> _ScanDst;
+RWStructuredBuffer<uint> _BucketOffsets; // sized NUM_BUCKETS
+
+RWStructuredBuffer<uint> _SortedIndices; // sized _SplatCount
+
+uint _SplatCount; // the decimated (working) count, not the full asset splat count
+uint _DecimationStride;
+float4x4 _MatrixObjectToWorld;
+float4x4 _MatrixV;
+float4x4 _MatrixP;
+float4x4 _MatrixVP;
+float3 _CamPos;
+float2 _ScreenSize;
+float _SplatScale;
+float _MaxRadiusPx;
+float _NearClip;
+float _Brightness;
+float _BlackLevel;
+float _Fade;
+float _MinDepth;
+float _DepthScale; // (NUM_BUCKETS - 1) / (maxDepth - minDepth), precomputed on the CPU
+uint _ScanOffset;
+
+static const float SH_C0 = 0.28209479177387814;
+static const float SH_C1 = 0.4886025119029199;
+static const float SH_C2_0 = 1.0925484305920792;
+static const float SH_C2_1 = -1.0925484305920792;
+static const float SH_C2_2 = 0.31539156525252005;
+static const float SH_C2_3 = -1.0925484305920792;
+static const float SH_C2_4 = 0.5462742152960396;
+static const float SH_C3_0 = -0.5900435899266435;
+static const float SH_C3_1 = 2.890611442640554;
+static const float SH_C3_2 = -0.4570457994644658;
+static const float SH_C3_3 = 0.3731763325901154;
+static const float SH_C3_4 = -0.4570457994644658;
+static const float SH_C3_5 = 1.445305721320277;
+static const float SH_C3_6 = -0.5900435899266435;
+
+float3 EvalSH(float3 dc, uint shBase, float3 dir)
+{
+    float3 result = SH_C0 * dc;
+
+    float x = dir.x, y = dir.y, z = dir.z;
+    float3 sh0 = _InSH[shBase + 0];
+    float3 sh1 = _InSH[shBase + 1];
+    float3 sh2 = _InSH[shBase + 2];
+    result += SH_C1 * (-y * sh0 + z * sh1 - x * sh2);
+
+    float xx = x * x, yy = y * y, zz = z * z;
+    float xy = x * y, yz = y * z, xz = x * z;
+
+    float3 sh3 = _InSH[shBase + 3];
+    float3 sh4 = _InSH[shBase + 4];
+    float3 sh5 = _InSH[shBase + 5];
+    float3 sh6 = _InSH[shBase + 6];
+    float3 sh7 = _InSH[shBase + 7];
+    result += SH_C2_0 * xy * sh3
+            + SH_C2_1 * yz * sh4
+            + SH_C2_2 * (2 * zz - xx - yy) * sh5
+            + SH_C2_3 * xz * sh6
+            + SH_C2_4 * (xx - yy) * sh7;
+
+    float3 sh8 = _InSH[shBase + 8];
+    float3 sh9 = _InSH[shBase + 9];
+    float3 sh10 = _InSH[shBase + 10];
+    float3 sh11 = _InSH[shBase + 11];
+    float3 sh12 = _InSH[shBase + 12];
+    float3 sh13 = _InSH[shBase + 13];
+    float3 sh14 = _InSH[shBase + 14];
+    result += SH_C3_0 * y * (3 * xx - yy) * sh8
+            + SH_C3_1 * xy * z * sh9
+            + SH_C3_2 * y * (4 * zz - xx - yy) * sh10
+            + SH_C3_3 * z * (2 * zz - 3 * xx - 3 * yy) * sh11
+            + SH_C3_4 * x * (4 * zz - xx - yy) * sh12
+            + SH_C3_5 * z * (xx - yy) * sh13
+            + SH_C3_6 * x * (xx - 3 * yy) * sh14;
+
+    result += 0.5;
+    // Higher-order SH terms can push this above 1.0; unclamped HDR-bright values feeding
+    // Bloom would glow/wash out the result in exactly the "white and faded" way that
+    // doesn't show in a non-HDRP reference viewer with no bloom pass at all.
+    result = saturate(result);
+
+    // sRGB (training/display-referred) -> linear (HDRP's internal HDR color space).
+    // A prior attempt at this used a hand-rolled pow(result, _ColorGamma) here and, for
+    // reasons that were never confirmed, collapsed every splat to grayscale even with
+    // _ColorGamma verified non-zero in the Inspector. Using Unity's own SRGBToLinear
+    // instead - it's the exact function every stock HDRP shader uses for this conversion,
+    // so if this still misbehaves the problem is elsewhere, not in a hand-rolled formula.
+    result = SRGBToLinear(result);
+
+    // Brightness is applied here, in linear space, after the sRGB conversion above - this
+    // is the physically-correct place for it (equivalent to scaling light intensity), unlike
+    // multiplying before the conversion or in gamma/display space, which distorts hue and
+    // contrast rather than just brightening.
+    result *= _Brightness;
+
+    // Black level lift: raises the floor without touching the white point (0 -> _BlackLevel,
+    // 1 stays 1), for dome viewing comfort where true black in a night scene otherwise reads
+    // as "nothing there." Different from a black-point/contrast control - this lifts darks
+    // up rather than crushing them down.
+    result = result * (1.0 - _BlackLevel) + _BlackLevel;
+    return result;
+}
+
+[numthreads(256, 1, 1)]
+void CSClearHistogram(uint3 id : SV_DispatchThreadID)
+{
+    if (id.x >= NUM_BUCKETS)
+        return;
+    _Histogram[id.x] = 0;
+}
+
+void WriteCulled(uint i)
+{
+    ViewData zero = (ViewData)0;
+    _OutViewData[i] = zero;
+    _SplatBucket[i] = INVALID_BUCKET;
+}
+
+[numthreads(256, 1, 1)]
+void CSCalcViewData(uint3 id : SV_DispatchThreadID)
+{
+    uint i = id.x;
+    if (i > _SplatCount)
+        return;
+
+    // Decimation: i is the compact working index (0.._SplatCount, where _SplatCount here is
+    // the *decimated* count) used for all output buffers; readIdx is which of the original,
+    // full-resolution splats it samples from. Stride > 1 processes (and pays compute for)
+    // only every Nth splat - a direct, linear cost reduction when compute itself, not
+    // fill-rate, is the bottleneck (e.g. full SH evaluation across millions of splats).
+    uint readIdx = i * _DecimationStride;
+
+    // The dummy slot at index _SplatCount is a permanently-invisible draw target for
+    // unwritten scatter slots (see CSFillDefault) - keep it zeroed, no further work.
+    if (i == _SplatCount)
+    {
+        ViewData zero = (ViewData)0;
+        _OutViewData[i] = zero;
+        return;
+    }
+
+    float3 worldPos = mul(_MatrixObjectToWorld, float4(_InPositions[readIdx], 1)).xyz;
+    float3 viewPos = mul(_MatrixV, float4(worldPos, 1)).xyz;
+
+    if (viewPos.z > -_NearClip)
+    {
+        WriteCulled(i);
+        return;
+    }
+
+    float4 clipPos = mul(_MatrixVP, float4(worldPos, 1));
+    if (clipPos.w <= 0)
+    {
+        WriteCulled(i);
+        return;
+    }
+    float3 ndc = clipPos.xyz / clipPos.w;
+    float2 screenPos = (ndc.xy * 0.5 + 0.5) * _ScreenSize;
+
+    // Per-axis focal length read directly from the camera's actual projection matrix -
+    // correct for both symmetric and off-axis (shifted) frustums.
+    float fx = _ScreenSize.x * _MatrixP._m00 * 0.5;
+    float fy = _ScreenSize.y * _MatrixP._m11 * 0.5;
+
+    // Jacobian of the perspective projection at viewPos (EWA splatting, Zwicker et al. 2002).
+    // A pure off-axis shift only translates the projected mean (handled above via the full
+    // _MatrixVP transform) - it does not change this local derivative, so no shift term is
+    // needed here. Critically, viewPos.x/y are NOT clamped to any symmetric range: for a
+    // shifted frustum the true visible range is not centered on zero, and clamping here is
+    // exactly what corrupted every splat under the dome's off-axis camera.
+    float invZ = 1.0 / viewPos.z;
+    float invZ2 = invZ * invZ;
+    float3x3 J = float3x3(
+        fx * invZ, 0, -fx * viewPos.x * invZ2,
+        0, fy * invZ, -fy * viewPos.y * invZ2,
+        0, 0, 0
+    );
+
+    float3x3 W = mul((float3x3)_MatrixV, (float3x3)_MatrixObjectToWorld);
+    float3x3 T = mul(J, W);
+
+    SplatCov c = _InCov[readIdx];
+    float3x3 V = float3x3(
+        c.cov0.x, c.cov0.y, c.cov0.z,
+        c.cov0.y, c.cov1.x, c.cov1.y,
+        c.cov0.z, c.cov1.y, c.cov1.z
+    );
+
+    float3x3 covT = mul(T, mul(V, transpose(T)));
+
+    float covA = covT._m00 + 0.3;
+    float covB = covT._m01;
+    float covC = covT._m11 + 0.3;
+
+    float det = covA * covC - covB * covB;
+    if (det <= 0)
+    {
+        WriteCulled(i);
+        return;
+    }
+
+    float invDet = 1.0 / det;
+
+    float mid = 0.5 * (covA + covC);
+    float discriminant = max(0.1, mid * mid - det);
+    float lambda1 = mid + sqrt(discriminant);
+    float lambda2 = mid - sqrt(discriminant);
+    // Screen-space radius scales roughly as 1/viewPos.z: as the camera approaches a splat
+    // this is otherwise unbounded, and a handful of near-camera splats can balloon to cover
+    // the entire screen (massive overdraw, and the view goes white/blank flying through the
+    // cloud). Clamp the *unscaled* radius first - that's what caps the proximity blowup -
+    // then apply _SplatScale as a genuine multiplier on top, so it stays visibly effective
+    // instead of being masked whenever the clamp is the thing winning.
+    float naturalRadius = ceil(3.0 * sqrt(max(lambda1, lambda2)));
+    float radiusPx = min(naturalRadius, _MaxRadiusPx) * _SplatScale;
+
+    // Whenever the drawn quad ends up a different size than the covariance's natural
+    // (unclamped, unscaled) extent - from the clamp above, or from _SplatScale - the conic
+    // must be rescaled by 1/ratio^2 so the Gaussian falloff still spans the quad that's
+    // actually drawn. Without this, a clamped-down quad only ever samples the near-flat
+    // center of the true (much wider) bell curve, rendering as a hard-edged block instead
+    // of a soft ellipse.
+    float sizeRatio = (naturalRadius > 0.0001) ? (radiusPx / naturalRadius) : 1.0;
+    float conicAdjust = 1.0 / max(sizeRatio * sizeRatio, 0.0001);
+
+    ViewData vd;
+    vd.conic = float3(covC * invDet, -covB * invDet, covA * invDet) * conicAdjust;
+    vd.screenPos = screenPos;
+    vd.radius = float2(radiusPx, radiusPx);
+    vd.clipPos = clipPos;
+
+    float3 dir = normalize(worldPos - _CamPos);
+    float4 dcOpacity = _InColorOpacity[readIdx];
+    float3 rgb = EvalSH(dcOpacity.rgb, readIdx * 15, dir);
+    vd.color = float4(rgb, dcOpacity.a * _Fade);
+
+    _OutViewData[i] = vd;
+
+    uint bucket = (uint)clamp((viewPos.z - _MinDepth) * _DepthScale, 0.0, (float)(NUM_BUCKETS - 1));
+    _SplatBucket[i] = bucket;
+    uint dummy;
+    InterlockedAdd(_Histogram[bucket], 1, dummy);
+}
+
+[numthreads(256, 1, 1)]
+void CSScanStep(uint3 id : SV_DispatchThreadID)
+{
+    uint i = id.x;
+    if (i >= NUM_BUCKETS)
+        return;
+    uint v = _ScanSrc[i];
+    if (i >= _ScanOffset)
+        v += _ScanSrc[i - _ScanOffset];
+    _ScanDst[i] = v;
+}
+
+// _ScanSrc holds the final inclusive prefix sum after the last CSScanStep. Exclusive
+// offset (= sort-order start index for this bucket) is inclusive minus this bucket's own
+// original count.
+[numthreads(256, 1, 1)]
+void CSComputeOffsets(uint3 id : SV_DispatchThreadID)
+{
+    uint i = id.x;
+    if (i >= NUM_BUCKETS)
+        return;
+    _BucketOffsets[i] = _ScanSrc[i] - _Histogram[i];
+}
+
+[numthreads(256, 1, 1)]
+void CSFillDefault(uint3 id : SV_DispatchThreadID)
+{
+    if (id.x >= _SplatCount)
+        return;
+    _SortedIndices[id.x] = _SplatCount; // points at the always-invisible dummy ViewData slot
+}
+
+[numthreads(256, 1, 1)]
+void CSScatter(uint3 id : SV_DispatchThreadID)
+{
+    uint i = id.x;
+    if (i >= _SplatCount)
+        return;
+    uint bucket = _SplatBucket[i];
+    if (bucket == INVALID_BUCKET)
+        return;
+    uint pos;
+    InterlockedAdd(_BucketOffsets[bucket], 1, pos);
+    _SortedIndices[pos] = i;
+}
