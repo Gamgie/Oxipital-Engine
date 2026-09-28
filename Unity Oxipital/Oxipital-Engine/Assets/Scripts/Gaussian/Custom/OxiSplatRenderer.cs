@@ -88,20 +88,25 @@ public class OxiSplatRenderer : MonoBehaviour
     {
         if (asset == null || asset.splatCount <= 0 || computeShader == null || renderShader == null)
             return false;
+        if (asset.positionData == null || asset.covarianceData == null || asset.colorOpacityData == null || asset.shData == null)
+        {
+            Debug.LogWarning($"OxiSplatRenderer: '{asset.name}' is missing its data files - re-import the .ply via Oxipital > Import Gaussian Splat PLY...", asset);
+            return false;
+        }
 
         _splatCount = asset.splatCount;
 
         _posBuffer = new GraphicsBuffer(GraphicsBuffer.Target.Structured, _splatCount, 12);
-        _posBuffer.SetData(asset.positionData);
+        _posBuffer.SetData(asset.positionData.GetData<byte>());
 
         _covBuffer = new GraphicsBuffer(GraphicsBuffer.Target.Structured, _splatCount, 24);
-        _covBuffer.SetData(asset.covarianceData);
+        _covBuffer.SetData(asset.covarianceData.GetData<byte>());
 
         _colorOpacityBuffer = new GraphicsBuffer(GraphicsBuffer.Target.Structured, _splatCount, 16);
-        _colorOpacityBuffer.SetData(asset.colorOpacityData);
+        _colorOpacityBuffer.SetData(asset.colorOpacityData.GetData<byte>());
 
         _shBuffer = new GraphicsBuffer(GraphicsBuffer.Target.Structured, _splatCount * 15, 12);
-        _shBuffer.SetData(asset.shData);
+        _shBuffer.SetData(asset.shData.GetData<byte>());
 
         // +1: a permanently-invisible dummy entry that unwritten scatter slots point to.
         _viewDataBuffer = new GraphicsBuffer(GraphicsBuffer.Target.Structured, _splatCount + 1, 60);

@@ -214,12 +214,29 @@ public static class OxiSplatPlyImporter
             AssetDatabase.CreateAsset(asset, assetSavePath);
         }
 
+        // Written as separate binary .bytes files (imported as TextAsset) instead of assigned
+        // to byte[] fields directly - see the comment on OxiSplatAsset for why.
+        EditorUtility.DisplayProgressBar("Importing Gaussian Splat", "Writing data files...", 0.97f);
+        string folder = Path.GetDirectoryName(assetSavePath);
+        string baseName = Path.GetFileNameWithoutExtension(assetSavePath);
+        string pathPos = $"{folder}/{baseName}_pos.bytes";
+        string pathCov = $"{folder}/{baseName}_cov.bytes";
+        string pathCol = $"{folder}/{baseName}_col.bytes";
+        string pathSh = $"{folder}/{baseName}_sh.bytes";
+
+        File.WriteAllBytes(pathPos, posData);
+        File.WriteAllBytes(pathCov, covData);
+        File.WriteAllBytes(pathCol, colorOpacityData);
+        File.WriteAllBytes(pathSh, shData);
+
+        AssetDatabase.Refresh();
+
         asset.splatCount = vertexCount;
         asset.bounds = new Bounds((boundsMin + boundsMax) * 0.5f, boundsMax - boundsMin);
-        asset.positionData = posData;
-        asset.covarianceData = covData;
-        asset.colorOpacityData = colorOpacityData;
-        asset.shData = shData;
+        asset.positionData = AssetDatabase.LoadAssetAtPath<TextAsset>(pathPos);
+        asset.covarianceData = AssetDatabase.LoadAssetAtPath<TextAsset>(pathCov);
+        asset.colorOpacityData = AssetDatabase.LoadAssetAtPath<TextAsset>(pathCol);
+        asset.shData = AssetDatabase.LoadAssetAtPath<TextAsset>(pathSh);
 
         EditorUtility.SetDirty(asset);
         AssetDatabase.SaveAssets();
