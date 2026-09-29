@@ -1,0 +1,168 @@
+// Oxipital optical flow - flow stage
+//
+// FromInput    : SpoutFlow mode, the flow comes from TouchDesigner in RG, we only normalize it.
+// Luminance    : SpoutMaskComputeInUnity mode, packs current (R) and previous (G) body mask into one texture.
+// LumBlur      : 5 taps separable gaussian on both luminances (soft edges = clean gradients).
+// FlowGradient : single pass gradient method (Bonjour Lab / ofxFlowTools / TD palette opticalFlow).
+// LKGradients  : Lucas-Kanade pass 1, Ix Iy on the current frame and It = current - previous.
+// LKFlow       : Lucas-Kanade pass 2, gaussian weighted window, solves the 2x2 system per pixel.
+//
+// Every algorithm ends with NormalizeFlow (gain + threshold + response curve + length <= 1)
+// so the processor receives the same scale whatever the source.
+// When the source did not produce a new frame (_State[0] == 0) the computed flow is kept as is.
+
+#pragma kernel FromInput
+#pragma kernel Luminance
+#pragma kernel LumBlur
+#pragma kernel FlowGradient
+#pragma kernel LKGradients
+#pragma kernel LKFlow
+
+SamplerState sampler_linear_clamp;
+
+Texture2D<float4> _Current;
+Texture2D<float4> _Previous;
+StructuredBuffer<float> _State;
+
+Texture2D<float2> _Lum;      // R = current, G = previous
+RWTexture2D<float2> _LumOut;
+Texture2D<float4> _Grad;     // Ix, Iy, It
+RWTexture2D<float4> _GradOut;
+RWTexture2D<float2> _FlowOut;
+
+int2 _Size;
+float2 _TexelSize;
+int2 _Dir;
+
+float _Offset;      // gradient distance in pixels (1..6)
+float _Lambda;      // regularisation
+float _Threshold;   // noise threshold (0..0.2)
+float _Power;       // response curve
+float _Gain;
+float2 _FlowSign;   // invertX / invertY
+int _Window;        // Lucas-Kanade half window size
+float _DetEpsilon;  // Lucas-Kanade minimum determinant
+
+bool OutOfBounds(uint2 id)
+{
+    return any((int2)id >= _Size);
+}
+
+float2 NormalizeFlow(float2 flow)
+{
+    float len = length(flow);
+    if (len < 1e-5) return 0;
+
+    float m = saturate((max(len, _Threshold) - _Threshold) / (1.0 - _Threshold));
+    m = pow(m, _Power);
+    return flow / len * m;
+}
+
+int2 ClampPixel(int2 p)
+{
+    return clamp(p, 0, _Size - 1);
+}
+
+[numthreads(8, 8, 1)]
+void FromInput(uint3 id : SV_DispatchThreadID)
+{
+    if (OutOfBounds(id.xy)) return;
+    _FlowOut[id.xy] = NormalizeFlow(_Current[id.xy].rg * _Gain) * _FlowSign;
+}
+
+[numthreads(8, 8, 1)]
+void Luminance(uint3 id : SV_DispatchThreadID)
+{
+    if (OutOfBounds(id.xy)) return;
+    _LumOut[id.xy] = float2(_Current[id.xy].r, _Previous[id.xy].r);
+}
+
+static const float BLUR5[5] = { 0.0625, 0.25, 0.375, 0.25, 0.0625 };
+
+[numthreads(8, 8, 1)]
+void LumBlur(uint3 id : SV_DispatchThreadID)
+{
+    if (OutOfBounds(id.xy)) return;
+
+    float2 sum = 0;
+    [unroll]
+    for (int i = -2; i <= 2; i++)
+        sum += _Lum.Load(int3(ClampPixel((int2)id.xy + _Dir * i), 0)) * BLUR5[i + 2];
+
+    _LumOut[id.xy] = sum;
+}
+
+float2 LumAt(float2 uv)
+{
+    return _Lum.SampleLevel(sampler_linear_clamp, uv, 0);
+}
+
+[numthreads(8, 8, 1)]
+void FlowGradient(uint3 id : SV_DispatchThreadID)
+{
+    if (OutOfBounds(id.xy)) return;
+    if (_State[0] < 0.5) return; // same camera frame : keep the flow of the last new frame
+
+    float2 uv = (id.xy + 0.5) * _TexelSize;
+    float2 ox = float2(_Offset * _TexelSize.x, 0);
+    float2 oy = float2(0, _Offset * _TexelSize.y);
+
+    float2 c = LumAt(uv);
+    float2 px = LumAt(uv + ox);
+    float2 nx = LumAt(uv - ox);
+    float2 py = LumAt(uv + oy);
+    float2 ny = LumAt(uv - oy);
+
+    float dt = c.r - c.g;
+    float gx = (px.r - nx.r) + (px.g - nx.g);
+    float gy = (py.r - ny.r) + (py.g - ny.g);
+    float gm = sqrt(gx * gx + gy * gy + _Lambda);
+
+    float2 flow = -dt * float2(gx, gy) / gm;
+    _FlowOut[id.xy] = NormalizeFlow(flow * _Gain) * _FlowSign;
+}
+
+[numthreads(8, 8, 1)]
+void LKGradients(uint3 id : SV_DispatchThreadID)
+{
+    if (OutOfBounds(id.xy)) return;
+
+    int2 p = (int2)id.xy;
+    float2 c = _Lum.Load(int3(p, 0));
+    float ix = (_Lum.Load(int3(ClampPixel(p + int2(1, 0)), 0)).r - _Lum.Load(int3(ClampPixel(p - int2(1, 0)), 0)).r) * 0.5;
+    float iy = (_Lum.Load(int3(ClampPixel(p + int2(0, 1)), 0)).r - _Lum.Load(int3(ClampPixel(p - int2(0, 1)), 0)).r) * 0.5;
+
+    _GradOut[id.xy] = float4(ix, iy, c.r - c.g, 0);
+}
+
+[numthreads(8, 8, 1)]
+void LKFlow(uint3 id : SV_DispatchThreadID)
+{
+    if (OutOfBounds(id.xy)) return;
+    if (_State[0] < 0.5) return;
+
+    int k = _Window;
+    float sigma = (2 * k + 1) / 3.0;
+    float invTwoSigma2 = 1.0 / (2 * sigma * sigma);
+
+    // A^T W A = [a b ; b c], A^T W b = [d ; e]
+    float a = 0, b = 0, c = 0, d = 0, e = 0;
+    for (int y = -k; y <= k; y++)
+    {
+        for (int x = -k; x <= k; x++)
+        {
+            float4 g = _Grad.Load(int3(ClampPixel((int2)id.xy + int2(x, y)), 0));
+            float w = exp(-(x * x + y * y) * invTwoSigma2);
+            a += w * g.x * g.x;
+            b += w * g.x * g.y;
+            c += w * g.y * g.y;
+            d -= w * g.x * g.z;
+            e -= w * g.y * g.z;
+        }
+    }
+
+    float det = a * c - b * b;
+    float2 flow = det > _DetEpsilon ? float2(c * d - b * e, a * e - b * d) / det : 0; // pixels / frame
+
+    _FlowOut[id.xy] = NormalizeFlow(flow * _Gain) * _FlowSign;
+}

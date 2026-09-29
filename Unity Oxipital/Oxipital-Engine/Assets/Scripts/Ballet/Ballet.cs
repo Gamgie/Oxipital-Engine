@@ -8,12 +8,15 @@ namespace Oxipital
     {
         OrbManager orbManager;
         StandardForceManager standardForceManager;
+        OpticalFlowManager opticalFlow;
 
         public float totalParticles;
         void OnEnable()
         {
             orbManager = GetComponentInChildren<OrbManager>();
             standardForceManager = GetComponentInChildren<StandardForceManager>();
+            opticalFlow = GetComponentInChildren<OpticalFlowManager>();
+            if (opticalFlow == null) opticalFlow = FindFirstObjectByType<OpticalFlowManager>();
         }
 
         // Update is called once per frame
@@ -31,6 +34,7 @@ namespace Oxipital
             foreach (OrbGroup group in orbManager.items)
             {
                 group.setForceBuffers(forceBuffers);
+                if (opticalFlow != null) group.setOpticalFlow(opticalFlow);
                 totalParticles += group.vfx.aliveParticleCount;
             }
         }

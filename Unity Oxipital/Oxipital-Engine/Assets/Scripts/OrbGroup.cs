@@ -284,6 +284,9 @@ namespace Oxipital
         [InBuffer(26)]
         public Vector3 emitterScale = Vector3.one;
 
+        [Range(0, 1)]
+        public float opticalFlowWeight = 1;
+
 
         public string customMeshName = string.Empty;
 
@@ -479,6 +482,12 @@ namespace Oxipital
 
             //Update intensity here as we need to pass it outside the GraphicsBuffer
             //Discussion : https://discussions.unity.com/t/spawn-a-variable-amount-of-particles-from-graphics-buffer/899049/2
+        }
+
+        internal void setOpticalFlow(OpticalFlowManager opticalFlow)
+        {
+            if (vfx == null) return;
+            opticalFlow.ApplyTo(vfx, opticalFlowWeight);
         }
 
         override protected Dancer addItem()

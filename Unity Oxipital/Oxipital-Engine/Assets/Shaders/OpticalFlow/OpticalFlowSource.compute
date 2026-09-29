@@ -1,0 +1,128 @@
+// Oxipital optical flow - input stage
+//
+// Copy         : brings the received texture (Spout or test source) to the working resolution,
+//                applying crop / mirror / vertical flip.
+// DetectChange : GPU new frame detector. The Kinect runs at 30 fps and Unity at 60+, so most Unity
+//                frames see the same image twice. Writes into _State :
+//                  _State[0] = 1 if the current frame differs from the previous one
+//                  _State[1] = seconds since the last new frame (fades out a frozen / lost source)
+// Commit       : keeps the current frame as "previous" when it was a new one.
+// TestDisc     : synthetic source (moving soft disc) to tune the pipeline without a Kinect.
+
+#pragma kernel Copy
+#pragma kernel DetectChange
+#pragma kernel Commit
+#pragma kernel TestDisc
+
+SamplerState sampler_linear_clamp;
+
+Texture2D<float4> _Input;
+RWTexture2D<float4> _Current;
+Texture2D<float4> _CurrentRead;
+Texture2D<float4> _Previous;
+RWTexture2D<float4> _PreviousOut;
+RWStructuredBuffer<float> _State;
+RWTexture2D<float4> _TestOut;
+
+int2 _Size;
+float4 _Crop;         // uv rect : xy = min, zw = max
+float2 _FlipSign;     // -1 on mirrored / flipped axes
+float _FlowInRG;      // 1 when RG holds a signed flow vector (SpoutFlow mode)
+float _ChangeThreshold;
+float _ForceChange;   // -1 = use detection, 0 = no new frame, 1 = new frame
+float _DeltaTime;
+
+float2 _DiscCenter;   // uv
+float2 _DiscVelocity; // pixels per camera frame
+float _DiscRadius;    // fraction of the height
+float _DiscSoftness;
+float _TestFlowMode;  // 1 = write a flow (SpoutFlow contract), 0 = write a mask
+
+bool OutOfBounds(uint2 id)
+{
+    return any((int2)id >= _Size);
+}
+
+[numthreads(8, 8, 1)]
+void Copy(uint3 id : SV_DispatchThreadID)
+{
+    if (OutOfBounds(id.xy)) return;
+
+    float2 uv = (id.xy + 0.5) / (float2)_Size;
+    if (_FlipSign.x < 0) uv.x = 1 - uv.x;
+    if (_FlipSign.y < 0) uv.y = 1 - uv.y;
+    uv = lerp(_Crop.xy, _Crop.zw, uv);
+
+    float4 c = _Input.SampleLevel(sampler_linear_clamp, uv, 0);
+
+    // A flow vector has to follow the image when it is mirrored / flipped.
+    // Mask and depth are clamped to 0..1 : an unclamped TD chain (Level TOP in float) can send huge values
+    if (_FlowInRG > 0.5)
+    {
+        c.rg *= _FlipSign;
+        c.ba = saturate(c.ba);
+    }
+    else
+    {
+        c = saturate(c);
+    }
+
+    _Current[id.xy] = c;
+}
+
+#define GRID_X 64
+#define GRID_Y 32
+groupshared float gs_Diff[GRID_X];
+
+[numthreads(GRID_X, 1, 1)]
+void DetectChange(uint3 tid : SV_GroupThreadID)
+{
+    float diff = 0;
+    int x = (int)((tid.x + 0.5) * _Size.x / GRID_X);
+    for (int j = 0; j < GRID_Y; j++)
+    {
+        int y = (int)((j + 0.5) * _Size.y / GRID_Y);
+        float4 d = abs(_CurrentRead.Load(int3(x, y, 0)) - _Previous.Load(int3(x, y, 0)));
+        diff += d.r + d.g + d.b + d.a;
+    }
+    gs_Diff[tid.x] = diff;
+    GroupMemoryBarrierWithGroupSync();
+
+    [unroll]
+    for (uint s = GRID_X / 2; s > 0; s >>= 1)
+    {
+        if (tid.x < s) gs_Diff[tid.x] += gs_Diff[tid.x + s];
+        GroupMemoryBarrierWithGroupSync();
+    }
+
+    if (tid.x == 0)
+    {
+        float changed = (gs_Diff[0] / (GRID_X * GRID_Y)) > _ChangeThreshold ? 1 : 0;
+        if (_ForceChange >= 0) changed = _ForceChange;
+
+        _State[0] = changed;
+        _State[1] = changed > 0.5 ? 0 : min(_State[1] + _DeltaTime, 1000);
+    }
+}
+
+[numthreads(8, 8, 1)]
+void Commit(uint3 id : SV_DispatchThreadID)
+{
+    if (OutOfBounds(id.xy)) return;
+    if (_State[0] < 0.5) return;
+    _PreviousOut[id.xy] = _CurrentRead[id.xy];
+}
+
+[numthreads(8, 8, 1)]
+void TestDisc(uint3 id : SV_DispatchThreadID)
+{
+    if (OutOfBounds(id.xy)) return;
+
+    float2 center = _DiscCenter * _Size;
+    float d = length((id.xy + 0.5) - center) / max(_DiscRadius * _Size.y, 1);
+    float mask = 1 - smoothstep(1 - _DiscSoftness, 1, d);
+
+    _TestOut[id.xy] = _TestFlowMode > 0.5
+        ? float4(_DiscVelocity * mask, mask, mask)
+        : float4(mask, 0, 0, mask);
+}

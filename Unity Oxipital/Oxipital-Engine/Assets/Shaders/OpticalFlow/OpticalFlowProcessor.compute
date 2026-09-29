@@ -1,0 +1,133 @@
+// Oxipital optical flow - processing stage (the "look")
+//
+// Trail     : remanence, trail = trail * decay + flow * injectGain (framerate independent, see OpticalFlowProcessor.cs)
+// Blur      : separable gaussian, called twice (H then V)
+// Compose   : output RG = flow, B = magnitude, A = body mask. Optionally writes the blur back into the trail.
+// DebugView : colour encoded view of any stage (hue = direction, brightness = magnitude)
+
+#pragma kernel Trail
+#pragma kernel Blur
+#pragma kernel Compose
+#pragma kernel DebugView
+
+Texture2D<float2> _RawFlow;
+RWTexture2D<float2> _Trail;
+StructuredBuffer<float> _State;
+
+Texture2D<float2> _BlurIn;
+RWTexture2D<float2> _BlurOut;
+
+Texture2D<float2> _Blurred;
+Texture2D<float4> _Current;
+RWTexture2D<float4> _Output;
+
+Texture2D<float4> _DebugIn;
+RWTexture2D<float4> _DebugOut;
+
+int2 _Size;
+int2 _Dir;
+int _Radius;
+float _Decay;
+float _InjectGain;
+float _StaleTimeout;
+float4 _MaskChannel;
+float _OutputGain;
+float _MaxLength;
+float _Feedback;
+
+int _DebugMode;       // 0 = raw rgb, 1 = flow colour, 2 = single channel
+float4 _DebugChannel;
+float _DebugGain;
+
+bool OutOfBounds(uint2 id)
+{
+    return any((int2)id >= _Size);
+}
+
+float2 ClampLength(float2 v, float maxLength)
+{
+    float len = length(v);
+    return len > maxLength && len > 0 ? v * (maxLength / len) : v;
+}
+
+[numthreads(8, 8, 1)]
+void Trail(uint3 id : SV_DispatchThreadID)
+{
+    if (OutOfBounds(id.xy)) return;
+
+    float2 trail = _Trail[id.xy] * _Decay;
+
+    // No injection when the source is frozen or lost, the trail just fades out
+    if (_State[1] <= _StaleTimeout) trail += _RawFlow[id.xy] * _InjectGain;
+
+    _Trail[id.xy] = ClampLength(trail, 1);
+}
+
+[numthreads(8, 8, 1)]
+void Blur(uint3 id : SV_DispatchThreadID)
+{
+    if (OutOfBounds(id.xy)) return;
+
+    float sigma = max(_Radius * 0.5, 0.5);
+    float invTwoSigma2 = 1.0 / (2 * sigma * sigma);
+
+    float2 sum = 0;
+    float weightSum = 0;
+    for (int i = -_Radius; i <= _Radius; i++)
+    {
+        int2 p = clamp((int2)id.xy + _Dir * i, 0, _Size - 1);
+        float w = exp(-(i * i) * invTwoSigma2);
+        sum += _BlurIn.Load(int3(p, 0)) * w;
+        weightSum += w;
+    }
+
+    _BlurOut[id.xy] = sum / weightSum;
+}
+
+[numthreads(8, 8, 1)]
+void Compose(uint3 id : SV_DispatchThreadID)
+{
+    if (OutOfBounds(id.xy)) return;
+
+    float2 flow = _Blurred.Load(int3(id.xy, 0));
+
+    // Blur inside the feedback loop (TD "Feedback + Blur + x0.98" look)
+    if (_Feedback > 0.5) _Trail[id.xy] = flow;
+
+    flow = ClampLength(flow * _OutputGain, _MaxLength);
+    float mask = saturate(dot(_Current.Load(int3(id.xy, 0)), _MaskChannel));
+
+    _Output[id.xy] = float4(flow, length(flow), mask);
+}
+
+float3 HueToRgb(float h)
+{
+    return saturate(abs(frac(h + float3(0, 2.0 / 3.0, 1.0 / 3.0)) * 6 - 3) - 1);
+}
+
+[numthreads(8, 8, 1)]
+void DebugView(uint3 id : SV_DispatchThreadID)
+{
+    if (OutOfBounds(id.xy)) return;
+
+    float4 c = _DebugIn.Load(int3(id.xy, 0));
+    float3 rgb;
+
+    if (_DebugMode == 1)
+    {
+        float2 f = c.rg * _DebugGain;
+        float m = saturate(length(f));
+        float hue = atan2(f.y, f.x) / (2 * 3.14159265) + 0.5;
+        rgb = HueToRgb(hue) * m;
+    }
+    else if (_DebugMode == 2)
+    {
+        rgb = saturate(dot(c, _DebugChannel) * _DebugGain);
+    }
+    else
+    {
+        rgb = saturate(c.rgb * _DebugGain);
+    }
+
+    _DebugOut[id.xy] = float4(rgb, 1);
+}
