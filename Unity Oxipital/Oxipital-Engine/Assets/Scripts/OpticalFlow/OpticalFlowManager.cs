@@ -31,6 +31,12 @@ namespace Oxipital
         [Range(0, 20)]
         public float windDrag = 4;
 
+        [Header("Plane")]
+        // Height of the flow plane in meters. The width follows the aspect ratio of the Spout texture (OxipitalFlow),
+        // crop included, so the image is never stretched.
+        [Range(.1f, 20)]
+        public float planeScale = 4;
+
         [OSCQuery.DoNotExpose]
         public FlowPlane plane;
 
@@ -65,6 +71,7 @@ namespace Oxipital
 
         void Update()
         {
+            ApplyPlaneScale();
             if (!HasShaders()) return;
 
             // Working resolution follows the Spout sender texture (textures rebuilt when it changes)
@@ -91,6 +98,23 @@ namespace Oxipital
 
             if (metrics != null && metrics.enabled) metrics.Execute(processor.Output, plane);
             if (debugView != null && debugView.enabled) debugView.Render(this, processor.shader);
+        }
+
+        // Plane size from planeScale and the Spout texture aspect ratio. Also called by FlowPlane in edit mode,
+        // where OnEnable has not run (until a sender is received, the source default size is used).
+        internal void ApplyPlaneScale()
+        {
+            FlowPlane target = plane != null ? plane : GetComponentInChildren<FlowPlane>();
+            OpticalFlowSource input = source != null ? source : GetComponent<OpticalFlowSource>();
+            if (target == null || input == null) return;
+
+            Vector2Int size = input.DesiredSize;
+            float width = size.x * (1 - input.cropLeft - input.cropRight);
+            float height = size.y * (1 - input.cropBottom - input.cropTop);
+            float aspect = width > 0 && height > 0 ? width / height : 1;
+
+            Vector3 scale = new Vector3(planeScale * aspect, planeScale, 1);
+            if (target.transform.localScale != scale) target.transform.localScale = scale;
         }
 
         void ReleaseAll()
