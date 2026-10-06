@@ -164,37 +164,54 @@ namespace Oxipital
         [Range(0, 120)]
         public float life = 20;
 
+        // Particles never die : Emitter Intensity sets the particle count (intensity * maxInfiniteParticles)
+        [InBuffer(1)]
+        public bool infiniteLife = false;
+
+        [InBuffer(2)]
+        [HideInInspector]
+        [OSCQuery.DoNotExpose]
+        public float infiniteCount = 0; // infinite particles spawned and kept (particles with infiniteRank > infiniteCount are killed)
+
         public enum EmitterShape { Sphere, Plane, Torus, Cube, Pipe, Egg, Line, Circle, Merkaba, Pyramid, Custom, Augmenta }
         public enum RenderType { UnlitOpaque, UnlitAdditive, LitQuad, LitMesh }
 
-        [InBuffer(1)]
+        [InBuffer(3)]
         public EmitterShape emitterShape;
         EmitterShape lastEmitterShape;
 
         
 
-        [InBuffer(2)]
+        [InBuffer(4)]
         [Range(0, 1)]
         public float emitterSurfaceFactor = 0;
 
-        [InBuffer(3)]
+        [InBuffer(5)]
         [Range(0, 1)]
         public float emitterVolumeFactor = 0;
 
-        [InBuffer(4)]
+        [InBuffer(6)]
         [Range(0, 1)]
         public float emitterPositionNoise = 0;
 
-        [InBuffer(5)]
+        [InBuffer(7)]
         [Range(0, 5)]
         public float emitterPositionNoiseFrequency = 1;
 
-        [InBuffer(6)]
+        [InBuffer(8)]
         [Range(0, 1)]
         public float emitterPositionNoiseRadius = 1;
 
+        // Grid emission (next feature, not used by the VFX yet)
+        [InBuffer(9)]
+        public Vector3 gridDimension = Vector3.one;
+
+        [InBuffer(12)]
+        [Range(0, 500)]
+        public float gridDensity = 0; // particles per dimension unit
+
         [Header("Appearance")]
-        [InBuffer(7)]
+        [InBuffer(13)]
         [ColorUsage(true, true)]
         public Color color = Color.white;
 
@@ -202,7 +219,7 @@ namespace Oxipital
         [Range(0, 1)]
         public float colorLifeRange = 1;
         public Gradient colorOverLife;
-		[InBuffer(10)]
+		[InBuffer(16)]
 		[Range(0, 1)]
 		public float colorLifeBlend = 0;
 
@@ -210,38 +227,38 @@ namespace Oxipital
 		[Range(0, 1)]
 		public float colorSpeedRange = 1;
 		public Gradient colorOverSpeed;
-		[InBuffer(11)]
+		[InBuffer(17)]
 		[Range(0, 1)]
 		public float colorSpeedBlend = 0;
 
-		[InBuffer(12)]
+		[InBuffer(18)]
 		[Range(0, 1)]
 		public float colorMaxSpeed = 1;
 
-		[InBuffer(13)]
+		[InBuffer(19)]
         [Range(0, 1)]
         public float alpha = .5f;
 
-        [InBuffer(14)]
+        [InBuffer(20)]
         [Range(0, 1)]
         public float hdrMultiplier = 1;
 
-        [InBuffer(15)]
+        [InBuffer(21)]
         [Range(0, 1)]
         public float alphaSpeedThreshold = 0;
 
-        [InBuffer(16)]
+        [InBuffer(22)]
         [Range(0, 1)]
         public float textureOpacity = 0;
 
-        [InBuffer(17)]
+        [InBuffer(23)]
         [Range(0, 1)]
         public float particleSize = 0;
 
-        [InBuffer(18)]
+        [InBuffer(24)]
         public RenderType renderType = RenderType.UnlitAdditive;
 
-        [InBuffer(19)]
+        [InBuffer(25)]
         [Range(0, 1)]
         public float meshOpacity = 0;
         [Range(0, 1)]
@@ -258,31 +275,51 @@ namespace Oxipital
 
 
 		[Header("Physics")]
-        [InBuffer(20)]
+        [InBuffer(26)]
         [Range(0, 1)]
         public float forceWeight = 1;
 
-        [InBuffer(21)]
+        [InBuffer(27)]
         [Range(0, 1)]
         public float drag = .5f;
 
-        [InBuffer(22)]
+        [InBuffer(28)]
         [Range(0, 1)]
         public float velocityDrag = 0;
 
-        [InBuffer(23)]
+        [InBuffer(29)]
         [Range(0, 1)]
         public float noisyDrag = 0;
 
-        [InBuffer(24)]
+        [InBuffer(30)]
         [Range(0, 5)]
         public float noisyDragFrequency = 0;
 
-        [InBuffer(25)]
+        [InBuffer(31)]
         public bool activateCollision = false;
         
-        [InBuffer(26)]
+        [InBuffer(32)]
         public Vector3 emitterScale = Vector3.one;
+
+        // Infinite life bookkeeping
+        public int maxInfiniteParticles = 100000;
+
+        [InBuffer(35)]
+        [HideInInspector]
+        [OSCQuery.DoNotExpose]
+        public float infiniteRankBase = 0; // rank of the first infinite particle spawned this frame - 1
+
+        VFXEventAttribute infiniteSpawnAttribute;
+        static readonly int spawnInfiniteEventID = Shader.PropertyToID("SpawnInfinite");
+        static readonly int spawnCountID = Shader.PropertyToID("spawnCount");
+        static readonly int orbSystemID = Shader.PropertyToID("Orb VFX");
+        static readonly int spawnSystemID = Shader.PropertyToID("Spawn System");
+        VFXSpawnerState spawnerState;
+        // Particles spawned (rate spawner + infinite events) during the last seconds : the alive count readback
+        // is refreshed about once per second so it may not include them yet.
+        const float SPAWN_READBACK_DELAY = 2;
+        Queue<(float time, int count)> recentSpawns = new Queue<(float, int)>();
+        int recentSpawnCount = 0;
 
         [Range(0, 1)]
         public float opticalFlowWeight = 1;
@@ -308,20 +345,34 @@ namespace Oxipital
             base.OnEnable();
             MeshLoader.loadMeshes();
             vfx = GetComponent<VisualEffect>();
-            // pclGraphics = GetComponent<PCLToGraphicsBuffer>(); 
+            infiniteSpawnAttribute = vfx.CreateVFXEventAttribute();
+            spawnerState = new VFXSpawnerState();
+            infiniteCount = 0;
+            // pclGraphics = GetComponent<PCLToGraphicsBuffer>();
             textureLoaded = false;
 			spoutTexture2D = new Texture2D(spoutTexture.width, spoutTexture.height, TextureFormat.RGBAFloat, false);
 		}
 
+        protected override void OnDisable()
+        {
+            base.OnDisable();
+            spawnerState.Dispose();
+            infiniteSpawnAttribute.Dispose();
+        }
+
         protected override void Update()
         {
+            // Before base.Update() so the buffer sent this frame carries the new count / rank base
+            updateInfiniteLife();
+
             base.Update();
 
             colorOverLife = CreateGradient(color, colorLife, 0, 1, 0, colorLifeRange);
             colorOverSpeed = CreateGradient(Color.black, colorSpeed, 1, 1, (1-colorSpeedRange), 1);
 
 			bool isDying = killProgress > 0;
-            vfx.SetFloat("Emitter Intensity", isDying ? 0 : dancerIntensity);
+            // In infinite life mode, particles are only spawned by the SpawnInfinite event
+            vfx.SetFloat("Emitter Intensity", isDying || infiniteLife ? 0 : dancerIntensity);
             vfx.SetGraphicsBuffer("Orb Buffer", buffer);
             vfx.SetGradient("Color Over Life", colorOverLife);
             vfx.SetGradient("Color Over Speed", colorOverSpeed);
@@ -457,6 +508,41 @@ namespace Oxipital
 
         }
 
+        // Infinite particles are ranked 1..infiniteCount in the VFX (InfiniteLifeInit/Update.hlsl).
+        // Growing the count spawns the missing ranks, shrinking it kills the ranks above the count.
+        void updateInfiniteLife()
+        {
+            int target = infiniteLife ? Mathf.RoundToInt(dancerIntensity * maxInfiniteParticles) : 0;
+
+            infiniteCount = Mathf.Min(infiniteCount, target);
+            infiniteRankBase = infiniteCount;
+
+            // Only spawn what fits in the free capacity : the VFX silently drops particles spawned when it is full
+            // (e.g. finite particles still fading out after switching to infinite life). The rest comes on the next frames.
+            while (recentSpawns.Count > 0 && Time.time - recentSpawns.Peek().time > SPAWN_READBACK_DELAY) recentSpawnCount -= recentSpawns.Dequeue().count;
+            vfx.GetSpawnSystemInfo(spawnSystemID, spawnerState);
+            addRecentSpawn((int)spawnerState.spawnCount);
+
+            VFXParticleSystemInfo info = vfx.GetParticleSystemInfo(orbSystemID);
+            int free = (int)info.capacity - (int)info.aliveCount - recentSpawnCount;
+            int toSpawn = Mathf.Min(target - (int)infiniteCount, free);
+
+            if (toSpawn > 0)
+            {
+                infiniteSpawnAttribute.SetFloat(spawnCountID, toSpawn);
+                vfx.SendEvent(spawnInfiniteEventID, infiniteSpawnAttribute);
+                infiniteCount += toSpawn;
+                addRecentSpawn(toSpawn);
+            }
+        }
+
+        void addRecentSpawn(int count)
+        {
+            if (count <= 0) return;
+            recentSpawns.Enqueue((Time.time, count));
+            recentSpawnCount += count;
+        }
+
         internal void setForceBuffers(Dictionary<string, GraphicsBuffer> forceBuffers)
         {
             if (vfx == null) return;
@@ -541,6 +627,7 @@ namespace Oxipital
         public override void kill(float time)
         {
             base.kill(time);
+            infiniteLife = false; // infinite particles go back to a normal life and fade out
             if (vfx == null) return;
             vfx.SetFloat("Emitter Intensity", 0);
             count = 0;
@@ -559,6 +646,7 @@ namespace Oxipital
         public void killAllParticle()
         {
             vfx.Reinit();
+            infiniteCount = 0;
         }
 
         public new void ResetPattern()

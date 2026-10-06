@@ -48,6 +48,18 @@ This pattern is reused for orbs (`OrbManager : BaseManager<OrbGroup>`), physics 
     pack the buffer layout (`initBufferAndFieldInfoList` / `getList`). When adding a new buffer-exposed field on
     an `OrbGroup`/`DancerGroup` subclass, give it the next free `InBuffer` index and keep `DANCER_DATA_SIZE`
     (per-dancer floats) and the VFX Graph's buffer-reading nodes in sync.
+    - Indices are field slots, not field counts: a `Vector3`/`Color` takes 3 consecutive slots (e.g. `emitterScale`
+      at 32 uses 32–34). Inserting a field in the middle shifts every later index, so every graph read of
+      "Orb Buffer" (`OrbVFX.vfx`, `OxipitalInit/Update/OutputLit/OutputQuadUnlit`, `StandardForce`,
+      `PositionColorSpawn`) and the `ORB_*` defines in `OxipitalHelpers.hlsl` must be shifted too — prefer
+      appending at the next free index instead.
+    - The buffer starts with a 2-float header (dancer count, dancer start index). In the graphs, an orb field is
+      read as `Sample Graphics Buffer(Orb Buffer, Add(fieldIndex, Orb Index Offset = 2))` — the constant on the
+      Add node is the `InBuffer` index. Custom HLSL uses `getBufferFloatProperty(index, buffer)`, which adds the
+      +2 itself. Don't confuse with the `Orb Index` inputs (0–9) on the subgraph blocks in `OrbVFX.vfx`, which
+      select the orb, nor with dancer-data reads (`GetDancerFloat/Vector3`, relative to the dancer start index).
+    - The canonical layout table is the Notion DB "DancerGroup Buffer Structure" (Documentation Oxipital >
+      Standard Buffer Organization); keep it in sync when indices change.
   - `DancePattern.updatePattern<T>` blends a target position onto each dancer's local position using
     `blendMode` (Add/Multiply/Replace) and a smoothed `weight`; concrete patterns only need to implement
     `getPatternPositions`.
@@ -55,6 +67,23 @@ This pattern is reused for orbs (`OrbManager : BaseManager<OrbGroup>`), physics 
     emitter shape/appearance/physics parameters (also `[InBuffer]`-tagged) into it every frame, plus loads
     emitter meshes/textures (via `MeshLoader`, using glTFast to load `.glb` files from
     `StreamingAssets/emitters`) and optional Spout-fed textures.
+  - **Infinite life mode** (`OrbGroup.infiniteLife`, `Assets/VFX/Shaders/InfiniteLifeInit.hlsl` /
+    `InfiniteLifeUpdate.hlsl`): particles never die and the dancer intensity sets the particle count
+    (`intensity × maxInfiniteParticles`) instead of the spawn rate. The rate spawner is stopped
+    (`Emitter Intensity` = 0) and `updateInfiniteLife()` sends a `SpawnInfinite` event with the missing count,
+    capped to the free VFX capacity (alive count readback lags ~1 s, so spawns from the last 2 s are counted as
+    used). Each spawned particle gets a unique custom attribute `infiniteRank` (`infiniteRankBase + spawnIndex + 1`,
+    0 = normal particle). In Update, ranks above `infiniteCount` are killed (lowering intensity removes particles)
+    and the others have their age held at `INFINITE_LIFE_HOLD` (10%) of their lifetime so over-life curves still
+    apply. Switching the mode off or `kill()` clears ranks so particles age and fade out normally. Buffer fields:
+    `infiniteLife` = 1, `infiniteCount` = 2, `infiniteRankBase` = 35 (next free `InBuffer` index: 36).
+    `gridDimension` (9–11) / `gridDensity` (12) are reserved in the buffer for the upcoming grid emission and not
+    read by the VFX yet.
+    Known limits: KillDarkParticles can kill some ranks at spawn in UnlitAdditive; counts can drift if the effect
+    isn't simulated on a frame where the count changes (toggle the mode off/on to resync).
+  - Custom HLSL blocks that read "Orb Buffer" in a context where a Sample Buffer node also reads it must declare
+    it `StructuredBuffer<Single>` (`#define Single float` in `OxipitalHelpers.hlsl`), otherwise VFX Graph sees
+    two different buffer types.
 
 ### Live OSC control (OSCQuery / Chataigne)
 

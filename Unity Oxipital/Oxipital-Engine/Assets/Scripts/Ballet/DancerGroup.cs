@@ -117,7 +117,8 @@ namespace Oxipital
 				if (f.FieldType == typeof(Vector3)) fieldNumFloats = 3;
 				if (f.FieldType == typeof(Vector4)) fieldNumFloats = 4;
 				if (f.FieldType == typeof(Color)) fieldNumFloats = 3;
-				lastGroupFloatIndex = inBufferAttribute.index + fieldNumFloats;
+				// Max : buffer size must not depend on the field declaration order
+				lastGroupFloatIndex = Mathf.Max(lastGroupFloatIndex, inBufferAttribute.index + fieldNumFloats);
 			}
 
 			if (buffer == null || !buffer.IsValid())

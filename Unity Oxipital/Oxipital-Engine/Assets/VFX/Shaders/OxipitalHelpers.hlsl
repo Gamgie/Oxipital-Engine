@@ -9,6 +9,16 @@
 #define GetDVector(d,i) getDancerVectorProperty(d, i, buffer, dancerStartIndex);
 #define DANCER_DATA_SIZE 8
 
+// A Custom HLSL block reading a buffer that is also read by a Sample Buffer node (same context) must declare it
+// StructuredBuffer<Single> : VFX Graph compares the template name and Sample Buffer registers "Single", not "float".
+#define Single float
+
+// Orb Buffer group fields (OrbGroup [InBuffer] indices) used by the infinite life mode
+#define ORB_INFINITE_LIFE 1
+#define ORB_INFINITE_COUNT 2
+#define ORB_INFINITE_RANK_BASE 35
+#define INFINITE_LIFE_HOLD 0.1 // fraction of its lifetime where an infinite particle stops aging (just after the size fade-in)
+
 float getBufferFloatProperty(in int index, in StructuredBuffer<float> buffer)
 {
      return buffer[index+2];
