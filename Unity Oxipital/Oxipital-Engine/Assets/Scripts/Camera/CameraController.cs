@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using Unity.Cinemachine;
+using UnityEngine.Serialization;
 
 public class CameraController : MonoBehaviour
 {
-    public enum CameraMovementType { Orbital, Spaceship, Hands }
+    public enum CameraMovementType { Orbital, Spaceship, Sensor }
 
     public bool renderMainWindow = true;
 
@@ -27,7 +28,8 @@ public class CameraController : MonoBehaviour
 
     public OrbitalMovement orbitalCamera;
     public SpaceshipMovement spaceshipCamera;
-    public HandsMovement handsCamera;
+    [FormerlySerializedAs("handsCamera")]
+    public SensorMovement sensorCamera;
     [Range(0, 5)]
     public float cameraNoiseGain;
     [Range(0, 5)]
@@ -50,7 +52,7 @@ public class CameraController : MonoBehaviour
         _cameraList = new List<CameraMovement>();
         _cameraList.Add(orbitalCamera);
         _cameraList.Add(spaceshipCamera);
-        _cameraList.Add(handsCamera);
+        _cameraList.Add(sensorCamera);
 
         foreach (CameraMovement c in _cameraList)
         {
@@ -151,14 +153,14 @@ public class CameraController : MonoBehaviour
         // Activate the selected camera
         switch (type)
         {
-            case CameraMovementType.Hands:
-                _activeCamera = handsCamera;
-                break;
             case CameraMovementType.Orbital:
                 _activeCamera = orbitalCamera;
                 break;
             case CameraMovementType.Spaceship:
                 _activeCamera = spaceshipCamera;
+                break;
+            case CameraMovementType.Sensor:
+                _activeCamera = sensorCamera;
                 break;
         }
 

@@ -51,14 +51,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   count: 1
-  itemPrefab: {fileID: 2571879226783642111, guid: 6c3335afc3105d24f8438dadb7190311,
-    type: 3}
+  itemPrefab: {fileID: 2571879226783642111, guid: 6c3335afc3105d24f8438dadb7190311, type: 3}
   patternSize: 1.83
   patternSizeSpread: 0
   patternAxisSpread: 0
   patternSpeed: 0
   patternSpeedRandom: 0
-  patternTime: 0
   patternTimeOffset: 0
   dancerSize: 1.06
   dancerHyperSize: 0
@@ -93,12 +91,16 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   life: 0.6
+  infiniteLife: 0
+  infiniteCount: 0
   emitterShape: 0
   emitterSurfaceFactor: 1
   emitterVolumeFactor: 0
   emitterPositionNoise: 0
   emitterPositionNoiseFrequency: 1
   emitterPositionNoiseRadius: 1
+  gridDimension: {x: 1, y: 1, z: 1}
+  gridDensity: 0
   color: {r: 1, g: 1, b: 1, a: 1}
   colorLife: {r: 0, g: 0, b: 0, a: 1}
   colorLifeRange: 1
@@ -188,9 +190,12 @@ MonoBehaviour:
   noisyDrag: 0
   noisyDragFrequency: 0
   activateCollision: 0
+  emitterScale: {x: 1, y: 1, z: 1}
+  maxInfiniteParticles: 2000000
+  infiniteRankBase: 0
+  opticalFlowWeight: 1
   customMeshName: 
   meshName: Sphere
-  augmentaObject: {fileID: 0}
 --- !u!114 &157857250213721860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -313,6 +318,8 @@ VFXRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_StaticBatchInfo:
@@ -332,9 +339,11 @@ VFXRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
 --- !u!114 &4676014088361587612
 MonoBehaviour:
   m_ObjectHideFlags: 0

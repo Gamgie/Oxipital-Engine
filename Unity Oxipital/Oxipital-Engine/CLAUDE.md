@@ -97,14 +97,30 @@ exposing a collection.
 ### Camera system (`Assets/Scripts/Camera/`)
 
 - `CameraController` is the top-level camera state machine: it owns a Cinemachine setup (`CinemachineBrain` +
-  one `CinemachineCamera` per mode) and switches between `CameraMovementType.Orbital / Spaceship / Hands`
-  (`OrbitalMovement`, `SpaceshipMovement`, `HandsMovement`, each a `CameraMovement` subclass). On switch it
+  one `CinemachineCamera` per mode) and switches between `CameraMovementType.Orbital / Spaceship / Sensor`
+  (`OrbitalMovement`, `SpaceshipMovement`, `SensorMovement`, each a `CameraMovement` subclass). On switch it
   hands the outgoing camera's live position/rotation to the incoming one (`SetCameraTransform`) so the
   Cinemachine blend starts smoothly instead of snapping. It also drives shared FOV/ortho/noise/transition-time
   parameters into whichever camera is active, and toggles `isFullDome` for dome-rig output.
 - `CameraMovement` (abstract) is the interface each movement mode implements: `Init`, `UpdateMovement`,
   `SetActive`, `Reset`, `UpdateFOV`/`UpdateOrthoSize`, `UpdateZOffset`, `UpdateNoiseParameter` (Cinemachine Perlin
   noise), `SetCameraTransform`.
+- `SensorMovement` drives an orbit camera from a body-worn SOMI-1 IMU: its transform is the pivot, pinned on
+  `centerPosition` and rotated by the sensor; `CM Sensor Camera` (CinemachineFollow, LockToTarget binding so roll
+  is kept, + RotateWithFollowTarget) sits at `FollowOffset` = (0, 0, -`CameraController.followZOffset`) and looks
+  at the center. Chataigne maps the sensor `Orientation` (Euler degrees, as one Point3D) onto
+  `sensorOrientation`. The Euler triple is turned into a quaternion right away (`eulerOrder`, then
+  `axisSwizzle`/`axisSigns` to Unity's frame) and everything else is quaternion math: the body rotation is a
+  delta against the neutral pose (`neutralSensorOrientation`, raw sensor degrees, captured by `CalibrateNeutral()`
+  and persisted in `PlayerPrefs`), glitch-filtered per sensor update (`maxTurnSpeed`, deg/s: a faster change is
+  held; if it lasts over 0.2 s it re-bases a correction instead of moving — the SOMI's heading sweeps at
+  900-3000 deg/s when its X is near ±90, i.e. when it is strapped vertically), split by swing-twist around world up into a tilt and a turn that is unwrapped
+  frame to frame into the continuous multi-turn `turnAngle` (so `yawAmount` != 1 never jumps at ±180), scaled
+  by `yawAmount`/`tiltAmount`, optionally
+  inverted (`invertDirection`, default on = the world turns with the performer), applied on top of `neutralView`
+  (where the camera looks in the neutral pose), and slerp-smoothed in `Update` (frame rate, not FixedUpdate).
+  Calibration/`Reset` ease in over `calibrationBlendTime` through a decaying offset; switching modes hands
+  nothing over (the pivot stays on the center), Cinemachine's blend smooths the switch. Never convert back to Euler or smooth per Euler axis (gimbal lock, ±180° spins).
 - `DomeCameraRigFollow` re-targets a dome rig transform to follow a camera target, compensating for the
   `com.pfc.dome-tools` rig being offset from the projection center.
 - `CameraSpoutManager` (`[ExecuteInEditMode]`) owns the output `RenderTexture` that the main camera renders

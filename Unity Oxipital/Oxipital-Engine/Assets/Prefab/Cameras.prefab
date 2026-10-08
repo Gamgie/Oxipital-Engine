@@ -59,7 +59,7 @@ MonoBehaviour:
   cameraTransitionDuration: 8
   orbitalCamera: {fileID: 3191237927038926054}
   spaceshipCamera: {fileID: 1550919124978421708}
-  handsCamera: {fileID: 6951607649845510702}
+  sensorCamera: {fileID: 6951607649845510702}
   cameraNoiseGain: 0
   cameraNoiseFrequency: 0.15
   showXwing: 0
@@ -537,7 +537,7 @@ GameObject:
   - component: {fileID: 430021902533602672}
   - component: {fileID: 6951607649845510702}
   m_Layer: 0
-  m_Name: Hands Camera target
+  m_Name: Sensor Camera target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -567,14 +567,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3576254718150830467}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 777496cf2a9c6ba418a2953c4b43e8fb, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d6c14a9dae2e3f02f2f142001d1d8e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  virtualCamera: {fileID: 0}
+  virtualCamera: {fileID: 8422552319327052413}
   type: 2
-  handPosition: {x: 0, y: 0, z: 0}
-  centerLookAt: {x: 0, y: 0, z: 0}
-  zBlocked: 0
 --- !u!1 &3662709944177359054
 GameObject:
   m_ObjectHideFlags: 0
@@ -858,7 +855,7 @@ GameObject:
   - component: {fileID: 6583051068160494662}
   - component: {fileID: 2253214526965047443}
   m_Layer: 0
-  m_Name: CM Hands Camera
+  m_Name: CM Sensor Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -900,8 +897,8 @@ MonoBehaviour:
   m_LegacyPriority: 0
   Target:
     TrackingTarget: {fileID: 430021902533602672}
-    LookAtTarget: {fileID: 6057321336191732691}
-    CustomLookAtTarget: 1
+    LookAtTarget: {fileID: 430021902533602672}
+    CustomLookAtTarget: 0
   Lens:
     FieldOfView: 49.9
     OrthographicSize: 10
@@ -931,10 +928,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8256914113300102662}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e8b78ac948f05a46a6d8339a503172b, type: 3}
+  m_Script: {fileID: 11500000, guid: 4afa82ae3200b82408d605c3dbdd1e38, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineHardLookAt
-  LookAtOffset: {x: 0, y: 0, z: 0}
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineRotateWithFollowTarget
+  Damping: 0
 --- !u!114 &6583051068160494662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -961,23 +958,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 8256914113300102662}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 625c14eee3ad46c99df7c7c891ef668a, type: 3}
+  m_Script: {fileID: 11500000, guid: b617507da6d07e749b7efdb34e1173e1, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineThirdPersonFollow
-  Damping: {x: 0, y: 0, z: 0}
-  ShoulderOffset: {x: 0, y: 0, z: 0}
-  VerticalArmLength: 0
-  CameraSide: 0
-  CameraDistance: 0
-  AvoidObstacles:
-    Enabled: 1
-    CollisionFilter:
-      serializedVersion: 2
-      m_Bits: 0
-    IgnoreTag: 
-    CameraRadius: 0.2
-    DampingIntoCollision: 0
-    DampingFromCollision: 2
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineFollow
+  TrackerSettings:
+    BindingMode: 3
+    PositionDamping: {x: 0, y: 0, z: 0}
+    AngularDampingMode: 0
+    RotationDamping: {x: 0, y: 0, z: 0}
+    QuaternionDamping: 0
+  FollowOffset: {x: 0, y: 0, z: -5}
 --- !u!1001 &7398112280982353082
 PrefabInstance:
   m_ObjectHideFlags: 0
