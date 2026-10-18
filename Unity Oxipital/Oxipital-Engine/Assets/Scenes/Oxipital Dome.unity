@@ -178,7 +178,7 @@ Transform:
   m_GameObject: {fileID: 173927236}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -506,7 +506,7 @@ PrefabInstance:
       objectReference: {fileID: 8400000, guid: ad86a41120f21ff4ca8ccbb6230a614d, type: 2}
     - target: {fileID: 3536949669177069555, guid: 5f59b1ee65447b04f973467c44011280, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.07
+      value: -0.3
       objectReference: {fileID: 0}
     - target: {fileID: 3536949669177069555, guid: 5f59b1ee65447b04f973467c44011280, type: 3}
       propertyPath: m_LocalRotation.w
@@ -570,7 +570,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5574132720932381241, guid: 5f59b1ee65447b04f973467c44011280, type: 3}
       propertyPath: m_Text
-      value: Seleynora
+      value: Stellar Drift
       objectReference: {fileID: 0}
     - target: {fileID: 5574132721090885432, guid: 5f59b1ee65447b04f973467c44011280, type: 3}
       propertyPath: m_IsActive
@@ -983,13 +983,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraTarget: {fileID: 1414289100}
   offsetTarget: {fileID: 678174081}
-  offset: -0.01
-  rigTiltOffset: 45
---- !u!4 &482032531 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3162953881194843084, guid: 5f59b1ee65447b04f973467c44011280, type: 3}
-  m_PrefabInstance: {fileID: 358429954}
-  m_PrefabAsset: {fileID: 0}
+  offset: -0.128
+  rigTiltOffset: 0
 --- !u!4 &497207345
 Transform:
   m_ObjectHideFlags: 0
@@ -3124,7 +3119,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1393603960
 Transform:
   m_ObjectHideFlags: 0
@@ -3514,6 +3509,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   virtualCamera: {fileID: 173927242}
   type: 2
+  sensorOrientation: {x: 0, y: 0, z: 0}
+  eulerOrder: 2
+  axisSwizzle: 0
+  axisSigns: {x: 1, y: 1, z: 1}
+  localFrameDelta: 0
+  invertDirection: 1
+  yawAmount: 1
+  tiltAmount: 1
+  smoothing: 0.05
+  maxTurnSpeed: 720
+  turnAngle: 0
+  neutralSensorOrientation: {x: 0, y: 0, z: 0}
+  neutralView: {x: 0, y: 0, z: 0}
+  calibrationBlendTime: 1
+  centerPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &1490736785
 GameObject:
   m_ObjectHideFlags: 0
@@ -3589,7 +3599,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12d929a7f62c48adbe9ff45c9a33ff0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: GaussianSplatting::GaussianSplatting.Runtime.GaussianSplatRenderer
-  m_Asset: {fileID: 11400000, guid: fbbc5c8ad93ea6b4086c09ade3997416, type: 2}
+  m_Asset: {fileID: 0}
   m_RenderOrder: 0
   m_SplatScale: 0.20332001
   m_OpacityScale: 0.221
@@ -3781,62 +3791,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 305550d6fd131614786b605490a35fcf, type: 3}
   m_PrefabInstance: {fileID: 1267255740}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1723025847
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1723025849}
-  - component: {fileID: 1723025848}
-  m_Layer: 0
-  m_Name: SplatCubeCapture
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &1723025848
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1723025847}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9ece1800cd4a0040b823497f0242f0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::OxiSplatCubeCapture
-  captureOrigin: {fileID: 482032531}
-  faceSize: 1024
-  skipBottomFace: 1
-  faceFovDegrees: 92
-  nearClip: 0.05
-  farClip: 1000
-  cubeToDomeShader: {fileID: 4800000, guid: 05295fa188b53f943adb8a6e54f72d4d, type: 3}
-  alphaCompositeShader: {fileID: 4800000, guid: 11a04d327c75d3846852c82a38d46ab0, type: 3}
-  domeRotationReference: {fileID: 482032531}
-  domeViewAngle: 180
-  domeOutputTexture: {fileID: 8400000, guid: b278d5e0e7355bf4da4b278601008525, type: 2}
-  triggerCamera: {fileID: 1922959170}
---- !u!4 &1723025849
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1723025847}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1740264274
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3943,7 +3897,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1769851418
 Transform:
   m_ObjectHideFlags: 0
@@ -4421,7 +4375,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 164.06079
+  field of view: 118.07249
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -5209,4 +5163,3 @@ SceneRoots:
   - {fileID: 928324026}
   - {fileID: 801118255}
   - {fileID: 358429954}
-  - {fileID: 1723025849}
