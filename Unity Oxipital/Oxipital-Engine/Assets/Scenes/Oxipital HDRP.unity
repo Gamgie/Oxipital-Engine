@@ -2177,43 +2177,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 305550d6fd131614786b605490a35fcf, type: 3}
   m_PrefabInstance: {fileID: 1267255740}
   m_PrefabAsset: {fileID: 0}
---- !u!84 &301729530
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_IsAlphaChannelOptional: 0
-  serializedVersion: 6
-  m_Width: 1920
-  m_Height: 1200
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthStencilFormat: 90
-  m_ColorFormat: 4
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 1
-  m_UseDynamicScale: 0
-  m_UseDynamicScaleExplicit: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_EnableRandomWrite: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
-  m_ShadowSamplingMode: 2
 --- !u!1 &334450956
 GameObject:
   m_ObjectHideFlags: 0
@@ -7759,7 +7722,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1040443352
 Transform:
   m_ObjectHideFlags: 0
@@ -10457,7 +10420,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 15671
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 301729530}
+  m_TargetTexture: {fileID: 1646920683}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
@@ -11913,6 +11876,43 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1622614578}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!84 &1646920683
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 6
+  m_Width: 1920
+  m_Height: 1080
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthStencilFormat: 90
+  m_ColorFormat: 4
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 1
+  m_UseDynamicScale: 0
+  m_UseDynamicScaleExplicit: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_EnableRandomWrite: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
+  m_ShadowSamplingMode: 2
 --- !u!1 &1659234526
 GameObject:
   m_ObjectHideFlags: 0
@@ -12668,7 +12668,7 @@ MonoBehaviour:
   _keepAlpha: 0
   _captureMethod: 2
   _sourceCamera: {fileID: 0}
-  _sourceTexture: {fileID: 301729530}
+  _sourceTexture: {fileID: 1646920683}
   _resources: {fileID: 11400000, guid: f449ebbe2051c2e4d993eaa773a410de, type: 2}
 --- !u!114 &1783646959
 MonoBehaviour:
@@ -12686,7 +12686,7 @@ MonoBehaviour:
   syphonServer: {fileID: 1783646960}
   mainCamera: {fileID: 1414289106}
   width: 1920
-  height: 1200
+  height: 1080
   rtFormat: 0
 --- !u!114 &1783646960
 MonoBehaviour:
