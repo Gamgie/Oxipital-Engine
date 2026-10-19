@@ -27,6 +27,19 @@
 6. Click the "OXIPITAL EXE" button to start the program
 7. Use Spout to use Oxipital in whatever other software
 
+### Working on the Unity project
+
+The engine lives in two Unity packages, **Oxipital Core** and **Oxipital Camera**, in the
+[Oxipital-Packages](https://github.com/Gamgie/Oxipital-Packages) repository. It is included here as a git
+submodule (`Oxipital-Packages/`), so clone with:
+
+```bash
+git clone --recursive https://github.com/Gamgie/Oxipital-Engine.git
+```
+
+On an existing clone, run `git submodule update --init` once. [Git LFS](https://git-lfs.com) is required.
+To use Oxipital in another Unity project, see the Oxipital-Packages README.
+
 ## 📖 User Guide
 
 Oxipital is organized around three main concepts:
