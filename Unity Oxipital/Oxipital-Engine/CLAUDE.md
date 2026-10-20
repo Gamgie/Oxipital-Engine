@@ -31,8 +31,8 @@ There is no separate build/test tooling — this is developed and run entirely i
 
 Show-specific content and project tools: scenes, HDRP settings and volume profiles (`Assets/Settings`), heavy
 models (`Assets/Mesh`: Earth, Moon), `Assets/StreamingAssets/emitters` (all emitter shapes, including the custom
-ones), `SolarSystemController` (Seleynora's sun/earth/moons), `ToolsManager` (Graphy / Logs Viewer toggles; reads
-`CameraController.renderMainWindow`), the `RecordScene` editor tool, and the Asset Store plugins in
+ones), `SolarSystemController` (Seleynora's sun/earth/moons), `ToolsManager` (Graphy / Logs Viewer, shown by its own
+`activateGraphy` / `activateReporter`), the `RecordScene` editor tool, and the Asset Store plugins in
 `Assets/Plugins` (DOTween, Graphy, Unity-Logs-Viewer, MeshToSDF). The packages must never depend on these.
 
 ## Working on the engine (submodule workflow)
