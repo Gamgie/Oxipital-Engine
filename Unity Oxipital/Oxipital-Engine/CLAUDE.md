@@ -48,3 +48,15 @@ ones), `SolarSystemController` (Seleynora's sun/earth/moons), `ToolsManager` (Gr
 - Show projects use the packages by git URL and tag; to work on the engine from inside a show project, they can
   temporarily point to this submodule's folder (Package Manager > Add package from disk). Never commit a show
   project while it points to a local folder.
+
+## Chataigne
+
+- `Chataigne/Oxipital.noisette` is the public, light session (no personal MIDI controllers or sensors). The
+  performance session with the personal controllers lives in the separate Oxipital-Live repository.
+- The Oxipital Chataigne module is a submodule at `Chataigne/modules/Oxipital`
+  ([Oxipital-Chataigne](https://github.com/Gamgie/Oxipital-Chataigne)), shared with Oxipital-Live: Chataigne only
+  loads local modules from the `modules` folder next to a session. Commit module changes inside it, then the
+  pointer here and in Oxipital-Live. When an engine field is added, its control is added to `Oxipital.js` there.
+- A sync ("Sync Data") is heavy: Unity's OSCQuery rebuilds the description of the whole scene on its main thread
+  (about 44 ms and 2.5 MB of garbage). The module decides when to sync (see "LINK WITH UNITY" in `Oxipital.js`).
+  Never add a session action that syncs when "Is Connected" turns on: a sync disconnects and reconnects, it loops.

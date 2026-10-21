@@ -40,6 +40,11 @@ git clone --recursive https://github.com/Gamgie/Oxipital-Engine.git
 On an existing clone, run `git submodule update --init` once. [Git LFS](https://git-lfs.com) is required.
 To use Oxipital in another Unity project, see the Oxipital-Packages README.
 
+The Chataigne session in `Chataigne/` is a light one, without any specific MIDI controller or sensor. Its
+Oxipital module (`Chataigne/modules/Oxipital`) is also a submodule, the
+[Oxipital-Chataigne](https://github.com/Gamgie/Oxipital-Chataigne) repository, so the same `--recursive` clone
+brings it.
+
 ## 📖 User Guide
 
 Oxipital is organized around three main concepts:
