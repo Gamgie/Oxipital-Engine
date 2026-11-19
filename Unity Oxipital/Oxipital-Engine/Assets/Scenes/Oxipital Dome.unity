@@ -1656,6 +1656,7 @@ MonoBehaviour:
   orbitalCamera: {fileID: 594180644}
   spaceshipCamera: {fileID: 534914489}
   sensorCamera: {fileID: 1479544960}
+  splineCamera: {fileID: 0}
   cameraNoiseGain: 0
   cameraNoiseFrequency: 0.15
   showXwing: 0
@@ -1924,7 +1925,7 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 1788514402378448971
-      type: {class: OxiSplatPass, ns: , asm: Assembly-CSharp}
+      type: {class: OxiSplatPass, ns: Oxipital, asm: Gamgie.Oxipital.Core}
       data:
         m_Name: Custom Pass
         enabled: 1
@@ -2462,6 +2463,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd60c7951ecf41a458c0f5f39b048683, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spoutManager: {fileID: 0}
   spout: {fileID: 1783646958}
 --- !u!114 &984565066
 MonoBehaviour:
@@ -2470,7 +2472,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 984565063}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
   m_Name: 
